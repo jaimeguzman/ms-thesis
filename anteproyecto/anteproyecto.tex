@@ -1,342 +1,132 @@
-\documentclass[thesis]{udpbook}
+% !TeX spellcheck=es
+% Puede descargar la clase udpreport.cls de
+% git@giteit.udp.cl:udp/udp-latex.git
+
+\documentclass{udparticle}
 
 
 
-  
+%\usepackage{udpthesis}
+
+
+\setlogo{EITFI}
+
+\title{  }
+\author{Jaime Guzmán\\{\small\ttfamily mail@jguzman.cl}\protect\\[5pt]%
+{\small Adin Ramirez\thanks{Profesor guía} y Francisco Claude\thanks{Profesor comisión}}%
+}
+
 \begin{document}
 
+\maketitle
 
+\section{Antecedentes y Motivación}
 
-\degreedoc
-{ Degree Doc }{Ingeniero Civil Informático y Telecomunicaciones}{Jaime Guzmán}
+\subsection{Contexto}
+Hoy en día es habitual escuchar a las personas comentar sobre las cosas que hace facebook o google en el campo de visión por computador, por ejemplo, facebook reconoce los rostros de las personas y te recomienda etiquetarlos o te dice ``esta persona puede ser conocido tuyo'' por medio de una fotografía, ó como ``google image'' que con tan solo escribir una palabra este te entrega un conjunto de imágenes extraídas de la web relacionadas con la palabra escrita.
 
-\udplogo
-%\UDP
- 
-\author{ Jaime Guzmán }
+Dados estos ejemplos y junto con la posibilidad de investigar nuevas tecnologías relacionadas con esta área de la computación, y tomando en cuenta el estado del arte en el que está este tipo de investigaciones, presentaremos una manera eficiente, ligera y rápida para la identificación de objetos y expresiones faciales.
 
+Nos centraremos en la investigación de un nuevo mecanismo de descripción de características con el fin de crear una estructura que represente eficazmente dichas características y sea ligero para su procesamiento en el reconocimiento de objetos y expresiones.
 
-
-
-
-
-
-
- 
-\abstract{ asdasdasdasd }
-\dedicatory{ lorem lorem lorem }
-
-%============================ANTECEDENTES Y MOTIVACION=======================%
-
-\section{Título del Subcapítulo 1 }\label{chsub:Título del Subcapítulo 1}
-
-\parindent=0pt Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. 
-
-
-\subsection{Título de la sección 1 del subcapítulo 1}\label{chsub:Título de la sección 1 del subcapítulo 1}
-
-
-\parindent=0pt Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. 
-
-\vspace{0.5cm}
-\parindent=30pt Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. 
-
-
-\subsubsection{Título de la subsección 1(no aparece en tabla de contenidos)}\label{chsub:Título de la subsección 1}
-
-\parindent=0pt Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
-
-
-
-\begin{description}
-\item[a)] Punteo de primer nivel 1
-\item[b)] Punteo de primer nivel 2
-
-    \begin{description}
-    \item[i)] Punteo de segundo nivel 1
-    \item[ii)] Punteo de segundo nivel 2
-  
-      \begin{description}
-      \item[-] Punteo de tercer nivel 1
-      \item[-] Punteo de tercer nivel 2
-    \end{description}  
-    
-    \item[iii)] Punteo de segundo nivel 3
-  \end{description}
-
-\item[c)] Punteo de primer nivel 3
-\end{description}
-
-\begin{enumerate}
-\item Enumerar 1.
-\item Enumerar 2.
-\item Enumerar 3
-\end{enumerate}
-
+\subsection{Trabajos relacionados}
+En esta área se encuentran variados trabajos que nos dan una idea de lo que se ha descubierto y propuesto hasta el momento. Trabajos tales como los presentados por Ramanan et al.~\cite{oddt}, Ramirez et al.~\cite{ldnp}, Bay et al.~\cite{surf}, y Lowe~\cite{sift}, nos servirán de guía para realizar nuestra investigación. A continuación se detalla en rasgos generales cada uno de ellos.
 \begin{itemize}
-\item Ítem de lista 1.
-\item Ítem de lista 2.
-\item Ítem de lista 3.
+  \item Ramanan et al.~\cite{oddt} presenta un modelo basado en partes, entendiendo por modelo, una abstracción teórica del mundo real, el cual permite hacer predicciones sobre la información que estamos analizando y por modelo basado en partes, a la utilización de varias partes de la imagen con el fin de determinar si existe un objeto de interés en ella. En este trabajo se busca optimizar \textit{Dalal-Triggs detector} el que utiliza un único filtro de HOG~\cite{hog}. Este tiene como principal objetivo obtener características específicas del objeto mediante la dirección de los gradientes o bordes, esto es implementado de la siguiente forma: Se divide la imagen en pequeñas porciones, llamadas celdas, las cuales generan otros histogramas de gradientes o bordes por cada pixel dentro de esta celda, combinando estos se obtiene la representación del descriptor. La mejora realizada sobre este método es que en paralelo se computa una función que maximiza los puntos obtenidos por HOG, lo cual permite capturar más características en el mismo espectro de muestreo.
+
+  \item Ramirez et al.~\cite{ldnp} presenta un nuevo descriptor de características locales, llamado Local Directional Number Pattern (LDN), para reconocimiento de rostro y expresiones. Este estudio comenta que la eficiencia de un descriptor depende de su representación y la facilidad de extracción del rostro. Idealmente un descriptor debería tener una alta varianza con clases muy distintas (diferentes personas o expresiones), por otra parte si las clases son semejantes (misma persona o expresión), su varianza debería ser inferior o cero. 
+
+Comúnmente existen dos enfoques para la extracción de características en el rostro: basados en características geométricas y basados en apariencia, nos enfocaremos en este último ya que es el que más nos puede servir para a lo que deseamos hacer por su naturaleza, puesto que este método utiliza filtros que crean características generales o en una área del rostro en especifico para crear características locales, con el fin de extraer los cambios de apariencia en la imagen del rostro.
+
+  \item Lowe~\cite{sift} presenta un método para la extracción de características invariantes de una imagen que son utilizadas para hacer una comparación entre diferentes vistas o escenas de un objeto. Las características son invariantes a la escala de la imagen y la rotación que esta pueda presentar. Por el lado de los descriptores, estos se representan con la dirección y el gradiente que poseen los puntos de interés encontrados en etapas previas, luego se preprocesan los datos con una función de peso gaussiana, la cual asigna un peso a cada uno de los puntos. El propósito de este filtro es evitar que las muestras sufran variaciones.
+
+  \item Bay et al.~\cite{surf} presenta un detector y descriptor que es invariante a las rotaciones, llamado SURF (Speeded-Up Robust Feature). Como lo que nos interesa son los descriptores, SURF utiliza un descriptor basado en distribuciones. Para SURF la creación de un descriptor debe ser único e invariante al ruido. Para esto cada descriptor describe una distribución de intensidad de los puntos adyacentes al punto de interés, similar a lo que se postula en Lowe~\cite{sift}, pero con la diferencia que no se utiliza el gradiente sino que una distribución de primer orden basado en los wavelet the Haar.
+
+Con estos antecedentes previos podemos comenzar a preparar nuestra hipótesis para utilizar descriptores en imágenes temporales (vídeos), con el objetivo ya dicho antes de reconocer de mejor forma objetos y expresiones de personas dentro de vídeos o ráfagas de imágenes.
+\end{itemize}
+\subsection{Motivación}
+Nuestra principal motivación es poder generar un descriptor eficiente, en tiempo de ejecución y que sea ligero con el fin de poder ser utilizado, por ejemplo, en aplicaciones móviles. En detalle, dicho descriptor podrá ser utilizado para crear aplicaciones que nos permitan, por ejemplo, pasear por un museo y dentro de éste, visualizar un elemento; y mientras lo observamos obtenemos información sobre este mismo de forma rápida y precisa.
+
+Incluso poder ir por la calle, ver a personas  y poder saber quienes son antes de que nos saluden, detectar objetos interesantes y obtener información sobre ellos, llevar la computación más allá del viejo y olvidado ordenador.
+
+
+\section{Descripción de la solución}
+La idea principal es generar un descriptor basado en partes utilizando métodos de reconocimiento de patrones temporales.
+\begin{itemize}
+\item Objetivos generales.
+  \begin{itemize}
+    \item Combinar los diferentes métodos para generar un nuevo descriptor.
+    \item Analizar técnicas basadas en partes y basadas en apariencia, tanto para objetos como para expresiones faciales en secuencia de imágenes.
+  \end{itemize}
+\newpage
+\item Objetivos específicos.
+  \begin{itemize}
+    \item Analizar y evaluar el comportamiento del descriptor con conjuntos de imágenes, para poder obtener métricas que nos permitan identificar que tan buena es nuestra propuesta para identificar objetos.
+    \item Analizar y evaluar el comportamiento del descriptor con diversas imágenes, para poder obtener métricas que nos permitan identificar que tan buena es nuestra propuesta con expresiones faciales.
+    \item Analizar la precisión del descriptor, es decir, obtener métricas que nos permitan verificar mediante experimentos que tan eficiente es el algoritmo propuesto.
+    \item Analizar el rendimiento y velocidad de computo de nuestra propuesta con métricas especificas para analizar dicho comportamiento.
+    
+  \end{itemize}      
+
 \end{itemize}
 
+\section{Metodología de trabajo}
+\subsection{Etapa 1}
+Se necesita  generar un marco de trabajo donde se pueda probar el algoritmo diseñado por nosotros para luego hacer las pruebas respectivas junto con los demás descriptores y modelos que aparecen en el estado del arte.
+\subsection{Etapa 2}
+Luego con este marco de trabajo realizaremos el pre-procesamiento de la información, para así poder probar nuestra propuesta con el fin de poder clasificar dicha información como corresponde.
+\subsection{Etapa 3}
+Etapa donde revisaremos si nuestra propuesta es viable o no, con el fin de asegurar el trabajo posterior.
+\subsection{Etapa 4}
+En esta etapa validaremos nuestro modelo, comparándolo con los modelos ya existentes en el estado del arte, tomando en cuenta diversas características con el fin de generar un análisis más riguroso de nuestra propuesta.
 
-\vspace{0.5cm}
-\parindent=30pt Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores.
 
-\subsection{Título de la sección 2 del subcapítulo 1}\label{chsub:Título de la sección 2 del subcapítulo 1}
+\section{Cronograma de actividades, hitos y entregables}
+\begin{tabular}{ll}
+\hline\noalign{\smallskip}
+Fecha & Actividad \\
+\hline\noalign{\smallskip}
+21/03/2014 & Presentación anteproyecto (firmado por profesor guía y comisión).\\
 
-\parindent=0pt Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. 
- 
+02/04/2014 & Entrega resultados anteproyectos.\\
 
+04/04/2014 & Entrega anteproyectos corregidos.\\
 
-\section{Título del Subcapítulo 2} \label{chsub:Título del Subcapítulo 2}
+09/04/2014 &  Entrega resultados correcciones.\\
 
-\parindent=0pt Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+25/04/2014 & Marco de trabajo.\\
 
-\vspace{0.5cm}
-\parindent=30pt Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per.
+23/05/2014 & Primer prototipo de propuesta.\\
 
-\subsection{Título de la sección 1 del subcapítulo 2}\label{chsub:Título de la sección 1 del subcapítulo 2}
+13/06/2014 & Resultados parciales.\\
 
-\parindent=0pt Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. 
+27/06/2014 & Entrega Memoria Titulo 1 firmada por profesor guía.\\
 
+11/07/2014 & Fecha límite para que la comisión entregue correcciones.\\
 
-\chapter[TÍTULO DEL SEGUNDO CAPÍTULO ]{TÍTULO DEL SEGUNDO CAPÍTULO }\label{ch:capitulo2}
- 
+18/07/2014 & Fecha límite para que se realicen correcciones.\\
 
-%=================================================ANTECEDENTES Y MOTIVACION========================================%
+20/08/2014 & Avance.\\
 
-\section{Ecuaciones} \label{chsub:ecuaciones}
+10/09/2014 & Avance.\\
 
+08/10/2014 & Entrega Descriptor.\\
 
-Esta ecuación $3=\frac{6}{2}$ está en la frase, la siguiente no.
-
-
-  \[3=\frac{6}{2}
-\]
-
-
-Para referenciar una ecuación~\ref{CODIGO ECUACION}.
-
-\begin{equation}
-\label{CODIGO ECUACION}
-\lim_{n\to\infty}
-\sum_{i=1}^n\frac{1}{i^2}=
-\frac{\pi^2}{6}
-\end{equation}
-
-
-\section{Figuras} \label{chsub:figuras}
-
-\parindent=0pt A continuación se pueden ver dos figuras, la primera figura~\ref{Imagen1png}, es un archivo .png 
-
- \begin{figure}
-  \begin{center}
-    \includegraphics[width=0.65\textwidth, trim = 0mm 0mm 0mm 0mm, clip]{Figuras/imagen1.png}
-  \end{center}
-  \caption{Imagen 1 en formato .png}
-  \label{Imagen1png}
-  \end{figure}
-
-\vspace{0.5cm}
-\parindent=30pt Y la segunda figura (Fig.~\ref{Imagen1pdf}), es un archivo .pdf
-
- \begin{figure}
-  \begin{center}
-    \includegraphics[width=0.65\textwidth, trim = 0mm 0mm 0mm 0mm, clip]{Figuras/imagen1.pdf}
-  \end{center}
-  \caption{Imagen 1 en formato .pdf}
-  \label{Imagen1pdf}
-  \end{figure}
-  
-
-
-
-%===============================Tablas===========================================
-
-\section{Tablas} \label{chsub:Tablas}
-
-
-
-\parindent=0pt  El tamaño ideal que se adapta perfecto a las páginas pares e impares es de \emph{15 cm}. Se puede crear una tabla de menor tamaño, pero no es recomendable crear una tabla mayor a \emph{15 cm}. 
-
-\vspace{0.5cm}
-\parindent=30pt Primero se puede apreciar una tabla de tamaño total \emph{15 cm}(tabla~\ref{Comparación de técnicas basadas en modelos}). Esta tabla tiene tres columnas y cinco filas, donde cada columna tiene un tamaño de \emph{5 cm}.
-
-
-  \begin{table}
-  \begin{center}
-  \resizebox{15cm}{!} {
-
-  \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
-
-  \hline
-
-  Concepto & Modelación Analítica & Modelación por Simulación \\
-
-  \hline
-
-  Tiempo de aprendizaje & 4 & 1\\
-
-
-
-  \hline
-
-  Costo de construcción & 1 & 5\\
-
-
-  \hline
-
-  Costo de ejecución & 1 & 20\\
-
-  \hline
-
-  Error & 20 & 1\\
-
-  \hline
-
-  \end{tabular}
-
-  }
-
-  \end{center}
-
-  \caption{Comparación de técnicas basadas en modelos}
-
-  \label{Comparación de técnicas basadas en modelos}
-
-  \end{table} 
-
-
-
-\vspace{0.5cm}
-\parindent=30pt A continuación se presentan dos tablas, la primera de un tamaño total de \emph{10 cm} y la segunda de \emph{15 cm}. Estas dos tablas tienen dos columnas y cuatro filas cada uno, donde cada columna de la primera tabla tiene un tamaño de \emph{5 cm} y cada columna de la segunda tabla tiene un tamaño de \emph{7.5 cm}.
-
-\begin{table}
-\begin{center}
-\resizebox{10cm}{!} {
-
-\begin{tabular}{|p{5cm}|p{5cm}|}
-
-\hline
-
-Ventajas & Desventajas \\
-
-\hline
-
-El conjunto de aplicaciones Apache-PHP-MySQL es uno de los más utilizados en Internet en servicios web y de buscadores de aplicaciones. & Carece de soporte para transacciones, rollback's y subconsultas. \\
-
-
-
-\hline
-
-Tiene gran velocidad a la hora de realizar operaciones, lo que le hace uno de los gestores que ofrecen mayor rendimiento. & No es viable para su uso con grandes bases de datos, a las que se acceda continuamente, ya que no implementa una buena escalabilidad. \\
-
-
-\hline
-
-Las utilidades de administración de este gestor son envidiables para muchos de los gestores comerciales existentes, debido a su gran facilidad de configuración e instalación. &  El hecho de que no maneje la integridad referencial, hace de este gestor una solución pobre para muchos campos de aplicación.\\
 
 \hline
 
 \end{tabular}
 
-}
 
-\end{center}
+\section{Resultados esperados}
+Esperamos poder crear un nuevo descriptor robusto con ayuda de los trabajos hechos con anterioridad relacionados con este tema para poder identificar tanto objetos como expresiones. Diseñaremos nuestros algoritmos con el fin de generar un descriptor eficiente (con la idea de que pueda ser utilizado en un sistema móvil), para así ayudar a las personas a obtener información del mundo real de forma más fácil y dinámica.
 
-\caption{Ventajas y desventajas de MySQL (tabla 10cm)}
-
-\label{Ventajas y desventajas de MySQL}
-
-\end{table} 
-
-
-
-\begin{table}
-\begin{center}
-\resizebox{15cm}{!} {
-
-\begin{tabular}{|p{7.5cm}|p{7.5cm}|}
-
-\hline
-
-Ventajas & Desventajas \\
-
-\hline
-
-El conjunto de aplicaciones Apache-PHP-MySQL es uno de los más utilizados en Internet en servicios web y de buscadores de aplicaciones. & Carece de soporte para transacciones, rollback's y subconsultas. \\
-
-
-
-\hline
-
-Tiene gran velocidad a la hora de realizar operaciones, lo que le hace uno de los gestores que ofrecen mayor rendimiento. & No es viable para su uso con grandes bases de datos, a las que se acceda continuamente, ya que no implementa una buena escalabilidad. \\
-
-
-\hline
-
-Las utilidades de administración de este gestor son envidiables para muchos de los gestores comerciales existentes, debido a su gran facilidad de configuración e instalación. &  El hecho de que no maneje la integridad referencial, hace de este gestor una solución pobre para muchos campos de aplicación.\\
-
-\hline
-
-\end{tabular}
-
-}
-
-\end{center}
-
-\caption{Ventajas y desventajas de MySQL (tabla 15cm)}
-
-\label{Ventajas y desventajas de MySQL}
-
-\end{table} 
-
-
-
-
-
-
-%===============================Citas y referencias===========================================
-
-\section{Citas y referencias} \label{chsubsub:citas y referencias}
-
-\parindent=0pt Referenciando la sección~\ref{chsub:figuras} de este mismo capítulo y referenciando la sección~\ref{chsub:Título de la sección 1 del subcapítulo 1} del capítulo anterior.
-
-\vspace{0.5cm}
-\parindent=30pt Se cita un libro~\cite{flanagan1998javascript}, se cita un artículo~\cite{stonebraker1991postgres} y se cita una página web~\cite{SCDPreguntas}.
-
-
- 
-
-%==================================================ANEXOS========================================%
-\chapter{PRIMER ANEXO}
-  \label{ch:capituloAA}
-
-  Contenido primer anexo
-
-
-  \chapter{SEGUNDO ANEXO}
-  \label{ch:capituloAB}
-
-
-  Contenido del segundo anexo.
-
-
-
-
-
-\chapter[TÍTULO DEL PRIMER CAPÍTULO]{TÍTULO DEL PRIMER CAPÍTULO}\label{ch:capitulo1}
-
-  \parindent=0pt Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
-
-  \vspace{0.5cm}
-  \parindent=30pt Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores.
-
-
-
-
-
-
+A su vez queremos analizar y verificar que nuestra propuesta cumple con los estándares vistos en el estado del arte de nuestra investigación, para así proponer nuestro método como, un método robusto y eficiente en comparación con los que existen en la actualidad.
+% ------------------------- %
+% ---- Section 6 ------- %
+% ------------------------- 
+%
+\bibliographystyle{IEEEtran}
+\bibliography{anteproyecto}% anteproyecto.bib
 
 \end{document}
