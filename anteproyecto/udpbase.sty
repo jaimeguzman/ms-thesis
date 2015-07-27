@@ -1,0 +1,60 @@
+%
+% =====================================================================
+% Identification
+% ---------------------------------------------------------------------
+                                           %
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]       % We need LaTeX2e or better
+                                           %
+\ProvidesPackage{udpbase}[2006/01/01 v1.0 LaTeX2e UDP base document package]
+                                           %
+\RequirePackage{ifthen}                    % we need ifthenelse
+\RequirePackage{graphicx}                  %
+\RequirePackage{epsfig}                    % for eps pictures
+                                           %
+% ---------------------------------------------------------------------
+% setting the school and department        %
+                                           %
+\newcommand{\udp@Escuela}                  %
+  { Escuela de Informática y Telecomunicaciones}                            %
+\newcommand{\udp@Facultad}                 %
+  { Facultad de Ingeniería}                           %
+\newcommand{\udp@Universidad}              %
+  {Universidad Diego Portales}             %
+                                           %
+\newcommand{\udpEscuela}[2]{               % def. school and department
+  \renewcommand{\udp@Escuela}{#1}          %
+  \renewcommand{\udp@Facultad}{#2}         %
+}                                          %
+                                           %
+\newcommand{\UDP}                          % University name
+  {\udp@Universidad}                       %
+                                           %
+% ---------------------------------------------------------------------
+% picture with the logo
+                                           %
+\newcommand{\udp@logo}[1]{                 %
+  \setlength\unitlength{1mm}               %
+  \begin{center}
+  \begin{picture}(69,26)                   %
+    \ifthenelse{\equal{#1}{true}}{         %
+      \put(0,10)                           %
+        {\epsfbox{udplogo}}                % university logo
+    }{                                     %
+      \put(0,10.0)                         %
+        {\makebox(69.0,3.0)                %
+          {\bfseries\MakeUppercase         %
+            {\udp@Universidad}}}           % university name
+    }                                      %
+    \put(0,5.0)                            %
+      {\makebox(69.0,3.0)                  %
+        {\bfseries\udp@Facultad}}          % faculty name
+    \put(0,0)                              %
+      {\makebox(69.0,3.0)                  %
+        {\bfseries\udp@Escuela}}           % school name
+  \end{picture}                            %
+  \end{center}
+}                                          %
+                                           %
+\newcommand{\udplogo}{\udp@logo{true}}     %
+                                           %
+\endinput
