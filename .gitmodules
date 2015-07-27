@@ -1,0 +1,5 @@
+[submodule "tesis-udp"]
+	url = https://gitlab.com/jaimeguzman/tesis-udp.git
+	path = tesis-udp
+	fetchrecursesubmodules = true
+	update = rebase
