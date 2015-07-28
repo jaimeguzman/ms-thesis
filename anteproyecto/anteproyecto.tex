@@ -9,7 +9,7 @@
 
 \setlogo{EITFI}
 
-\title{ Predicción de comportamiento de usuarios en la web basado en registro de accesos a servidor }
+\title{ Predicción de patrones de comportamiento de usuarios en la web basado en web access log}
 \author{  
   Jaime Guzmán\\{\small\ttfamily mail@jguzman.cl}\protect\\[5pt]%
   {\small Adin Ramirez\thanks{Profesor guía} y Francisco Claude\thanks{Profesor comisión}}%
@@ -24,17 +24,17 @@
 \subsection{Contexto}
 
 
-La Web crece constantemente y por ende su infraestructura como también la concurrencia de los mismos sistemas, paralelamente se suman un costo exponencial de recursos que no son optimizados para poder dar un experiencia de usuario con calidad de servicio.
-Lo cual podemos entender que llegará un punto en que no tener servidores de gran rendimiento será lo óptimo para dar un calidad de servicio web, el ancho de banda de Internet no crecerá a la misma proporción.
+  La Web crece constantemente y por ende su infraestructura como también la concurrencia de los mismos sistemas, paralelamente se suman un costo exponencial de recursos que no son optimizados para poder dar un experiencia de usuario con calidad de servicio.
+  Lo cual podemos entender que llegará un punto en que no tener servidores de gran rendimiento será lo óptimo para dar un calidad de servicio web, el ancho de banda de Internet no crecerá a la misma proporción.
 
 
-Adicionalmente las tecnologías para la creación de  web dinámicas han evolucionado a favor del cliente, se tiene MEAN stacks que disminuyen considerablemente la carga de un servidor, por lo cual hoy en día un buen servicio web  es proveer una balanceada carga dentro del cliente y el servidor.
+  Adicionalmente las tecnologías para la creación de  web dinámicas han evolucionado a favor del cliente, se tiene MEAN stacks que disminuyen considerablemente la carga de un servidor, por lo cual hoy en día un buen servicio web  es proveer una balanceada carga dentro del cliente y el servidor.
 
-Por lo mismo es de gran interés predecir lo siguientes moviemientos que tendrá un usuario en un determinada web, entendiendo que la forma en que navega una persona es su comportamiento web, que se puede reflejar mediante Web Access Log.
+  Por lo mismo es de gran interés predecir lo siguientes moviemientos que tendrá un usuario en un determinada web, entendiendo que la forma en que navega una persona es su comportamiento web, que se puede reflejar mediante Web Access Log.
 
-El registro de los mismo, de manera procesada ó pre-procesada ayudaría a ingenieros de desarrollo web y diseñadores, como a los mismo usuarios finales a tener una experiencia de usuario mejor.
+  El registro de los mismo, de manera procesada ó pre-procesada ayudaría a ingenieros de desarrollo web y diseñadores, como a los mismo usuarios finales a tener una experiencia de usuario mejor.
 
-Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una adaptabilidad a la demanda del usuario ó proveer información que permita adaptarse a los eventos, por lo cual es sumamente de interés profundizar este tópico.
+  Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una adaptabilidad a la demanda del usuario ó proveer información que permita adaptarse a los eventos, por lo cual es sumamente de interés profundizar este tópico.
 
 
 
@@ -47,10 +47,50 @@ Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una 
 
 \subsection{Trabajos relacionados}
 
+% @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
+
+En este tema participan dos áreas, por un lado existe trabajo para crear estructuras de eficiencias para predicciónes basadas en algoritmos de compresión Claude~\cite{BWT} y por otro lado el uso de máquinas de aprendizaje para realizar clustering y predecir el comportamiento.
+
+El tema de la predicción en la web en la literatura se ha presentado como un tema concurrente, abaracado por varios autores, tenemos los siguientes trabajos en orden cronológico:
+
+
+\begin{enumerate}
+
+  \item Xing Dongshan And Shen Junyi~\cite{tmmd}, destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones.
+  Para solucionarlo presentan un nuevo modelo de Markov basado en un representacion de Tree Order Model, el cual es un híbrido entre un modelo de markov tradcional y una representación de Tree, bautizada como HTMM (Hybrid-Order Tree Markov Model). 
+  Su modelo de presentado en 2002, da un importancia a conocer la predicción de los web access, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.  
+
+
+  \item Josep Domenech, Jose A. Gil, Julio Sahuquillo, Ana Pont ~\cite{domenech}, muestran un estudio de los rendimientons de técnicas de recuperación de datos, las misma que se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje ó algoritmos de predicción. Los conceptos mas destacables son las nuevas variables de carácteriazación que se le suman a la predicción propiamente las cuales son: temporalidad, espacio y  geografía. 
+  Además de comenzar un trabajo más elavorada a como tomar una predicción, se introduccen conceptos como Predicciones genéricas o específicas, variables de uso de recuros a nivel de red o de nivel procesamiento y finalmente lo que es totalmente significativo es que un modelo predictivo puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y QoS.
+
+
+  \item Zeljko Eremic, Dragica Radosav, Branko Markoski ~\cite{Dragica}, casi cinco años despues los sitios web son cada vez mas dinámicos y responden a eventos cada vez más adaptables a los usuarios. El trabajo de Zeljko-Dragica-Branko propone una optimización de la ruta de navegación de los sitios y estructura de la navegación del sitio. 
+  % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn delpunto de vista que de los docuentos 
+  % como los autores antteriores.
+
+
+  \item Yuhua Chen, Xin Chen and Haoyi Chen ~\cite{yuhua}, en su trabajo dan una nueva persepectiva enfocada a dar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log. El primer analisis realizados por los autores cubre las reglas asociativas que requiere un sistema de recomedación, pero en las pruebas propiamente tales encuentran que el analisis de los patrones detectadados dan una representación clara como hacer la optimización web y finalmente mediante sus pruebas logran una recomendación de calidad.
+
+
+  \item A. Rajimol and G. Raju ~\cite{rajimol}, en este estudio se hace ya una minería en los patrones de los accesos web, el enfoque es usar los registros de de accesos para crear subsecuencias y realizar comparaciones. Basado en este estudio es bastanta más claro que en la literuta y academia se presenta un interes para poder anticipar el patrón de comportamiento de la web.
+  % @TODO reflexionar mas sobre este paper
 
 
 
+  \item Liu Kewen ~\cite{kewen}, en este trabajo ya es un análisis mas profundo del web usage minning, parte de lo imporante de este trabajo es que después de minar los registros de accesos, se puede lograr que  la ''bad data'' sea reducidad
+  %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
 
+
+
+  \item Poornalatha G, Prakash S Raghavendra ~\cite{prakash}, esta presentación estable que se puede usar máquinas de aprendizaje para hacer predicción basadas en distinas entre cluster, estos autores al igual que Domenech-Gil-Sahuquillo-Pont[2005] y  Dongshan-Junyi, comporante el objetivo de optimizar los recuros tanto en redes(disminución de latencia) y experiencia de usuario.
+
+  % \item Jia li ~\cite{jiali}
+
+  \item Francisco Claude, Gonzalo Navarro y Roberto Konow  ~\cite{BWT}, finalmente se llega a un interés en particular, este trabajo presenta un estructura de representación eficiente que permite dar una representación de web access log y ofrece las operaciones básicas de WUM. 
+
+
+\end{enumerate}
 
  
 
@@ -58,16 +98,15 @@ Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una 
 
 
 \subsection{Motivación}
+
+  una piscola !
  
 
 \section{Descripción de la solución}
  
 
 \section{Metodología de trabajo}
-  \subsection{Etapa 1}
-  \subsection{Etapa 2} 
-  \subsection{Etapa 3}
-  \subsection{Etapa 4}
+ 
  
 
 
@@ -76,32 +115,27 @@ Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una 
   \hline\noalign{\smallskip}
   Fecha & Actividad \\
   \hline\noalign{\smallskip}
-  21/03/2014 & Presentación anteproyecto (firmado por profesor guía y comisión).\\
+  31/07/2015 & Presentación anteproyecto (firmado por profesor guía y comisión).\\
 
-  02/04/2014 & Entrega resultados anteproyectos.\\
+  02/08/2015 & Entrega resultados anteproyectos.\\
 
-  04/04/2014 & Entrega anteproyectos corregidos.\\
+  04/08/2015 & Entrega anteproyectos corregidos.\\
 
-  09/04/2014 &  Entrega resultados correcciones.\\
+  09/08/2015 &  Entrega resultados correcciones.\\
 
-  25/04/2014 & Marco de trabajo.\\
+  25/09/2015 & Marco de trabajo.\\
 
-  23/05/2014 & Primer prototipo de propuesta.\\
+  23/09/2015 & Primer prototipo de propuesta.\\
 
-  13/06/2014 & Resultados parciales.\\
+  13/10/2015 & Resultados parciales.\\
 
-  27/06/2014 & Entrega Memoria Titulo 1 firmada por profesor guía.\\
+  27/10/2015 & Entrega Memoria Titulo I/II firmada por profesor guía.\\
 
-  11/07/2014 & Fecha límite para que la comisión entregue correcciones.\\
+  11/11/2015 & Fecha límite para que la comisión entregue correcciones.\\
 
-  18/07/2014 & Fecha límite para que se realicen correcciones.\\
+  18/12/2015 & Fecha límite para que se realicen correcciones.\\
 
-  20/08/2014 & Avance.\\
-
-  10/09/2014 & Avance.\\
-
-  08/10/2014 & Entrega Descriptor.\\
-
+  20/08/2015 & Avance.\\
 
   \hline
 
