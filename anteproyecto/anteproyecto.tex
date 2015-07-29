@@ -9,7 +9,7 @@
 
 \setlogo{EITFI}
 
-\title{ Predicción de patrones de comportamiento de usuarios en la web basado en web access log}
+\title{ Predicción de patrones de comportamiento de usuarios en la web basado en web access log para un Admiinistrador de Contenidos Open Source}
 \author{  
   Jaime Guzmán\\{\small\ttfamily mail@jguzman.cl}\protect\\[5pt]%
   {\small Adin Ramirez\thanks{Profesor guía} y Francisco Claude\thanks{Profesor comisión}}%
@@ -27,7 +27,7 @@
   La Web crece constantemente y por ende su infraestructura como también la concurrencia de los mismos sistemas, paralelamente se suman un costo exponencial de recursos que no son optimizados para poder dar un experiencia de usuario con calidad de servicio.
   Lo cual podemos entender que llegará un punto en que no tener servidores de gran rendimiento será lo óptimo para dar un calidad de servicio web, el ancho de banda de Internet no crecerá a la misma proporción. Adicionalmente las tecnologías para la creación de  web dinámicas han evolucionado a favor del cliente, se tiene MEAN stacks que disminuyen considerablemente la carga de un servidor, por lo cual hoy en día un buen servicio web  es proveer una balanceada carga dentro del cliente y el servidor.
 
-  Por lo mismo es de gran interés predecir lo siguientes moviemientos que tendrá un usuario en un determinada web, entendiendo que la forma en que navega una persona es su comportamiento web, que se puede reflejar mediante Web Access Log. El registro de los mismo, de manera procesada ó pre-procesada ayudaría a ingenieros de desarrollo web y diseñadores, como a los mismo usuarios finales a tener una experiencia de usuario mejor.
+  Por lo mismo es de gran interés predecir lo siguientes movimientos que tendrá un usuario en un determinada web, entendiendo que la forma en que navega una persona es su comportamiento web, que se puede reflejar mediante Web Access Log. El registro de los mismo, de manera procesada ó pre-procesada ayudaría a ingenieros de desarrollo web y diseñadores, como a los mismo usuarios finales a tener una experiencia de usuario mejor.
   
   Hoy en día las web no pueden ser simplemente dinámicas estas deben poseer una adaptabilidad a la demanda del usuario ó proveer información que permita adaptarse a los eventos, por lo cual es sumamente de interés profundizar este tópico.
 
@@ -43,41 +43,41 @@
 \subsection{Trabajos relacionados}
 
 % @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
-En este tema participan dos áreas, por un lado existe trabajo para crear estructuras de eficiencias para predicciónes basadas en algoritmos de compresión Claude~\cite{BWT} y por otro lado el uso de máquinas de aprendizaje para realizar clustering y predecir el comportamiento.
+En este tema participan dos áreas, por un lado existe trabajo para crear estructuras de eficiencias para predicciones basadas en algoritmos de compresión Claude~\cite{BWT} y por otro lado el uso de máquinas de aprendizaje para realizar clustering y predecir el comportamiento.
 
-El tema de la predicción en la web en la literatura se ha presentado como un tema concurrente, abaracado por varios autores, tenemos los siguientes trabajos en orden cronológico:
+El tema de la predicción en la web en la literatura se ha presentado como un tema concurrente, abarcado por varios autores, tenemos los siguientes trabajos en orden cronológico:
 
 
 \begin{enumerate}
 
   \item Xing Dongshan And Shen Junyi~\cite{tmmd}, destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones.
   Para solucionarlo presentan un nuevo modelo de Markov basado en un representacion de Tree Order Model, el cual es un híbrido entre un modelo de markov tradcional y una representación de Tree, bautizada como HTMM (Hybrid-Order Tree Markov Model). 
-  Su modelo de presentado en 2002, da un importancia a conocer la predicción de los web access, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.  
+  Su modelo fue presentado en 2002, da un importancia a conocer la predicción de los web access, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.  
 
 
-  \item Josep Domenech, Jose A. Gil, Julio Sahuquillo, Ana Pont ~\cite{domenech}, muestran un estudio de los rendimientons de técnicas de recuperación de datos, las misma que se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje ó algoritmos de predicción. Los conceptos mas destacables son las nuevas variables de carácteriazación que se le suman a la predicción propiamente las cuales son: temporalidad, espacio y  geografía. 
-  Además de comenzar un trabajo más elavorada a como tomar una predicción, se introduccen conceptos como Predicciones genéricas o específicas, variables de uso de recuros a nivel de red o de nivel procesamiento y finalmente lo que es totalmente significativo es que un modelo predictivo puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y QoS.
+  \item Josep Domenech, Jose A. Gil, Julio Sahuquillo, Ana Pont ~\cite{domenech}, muestran un estudio de los rendimientos de técnicas de recuperación de datos, las misma que se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje ó algoritmos de predicción. Los conceptos mas importantes son las nuevas variables de caracterización que se le suman a la predicción propiamente las cuales son: temporalidad, espacio y  geografía. 
+  Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como Predicciones genéricas o específicas, variables de uso de recursos a nivel de red ó nivel procesamiento y finalmente lo que es totalmente significativo es que un modelo predictivo puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y QoS.
 
 
-  \item Zeljko Eremic, Dragica Radosav, Branko Markoski ~\cite{Dragica}, casi cinco años despues los sitios web son cada vez mas dinámicos y responden a eventos cada vez más adaptables a los usuarios. El trabajo de Zeljko-Dragica-Branko propone una optimización de la ruta de navegación de los sitios y estructura de la navegación del sitio. 
+  \item Zeljko Eremic, Dragica Radosav, Branko Markoski ~\cite{Dragica}, casi cinco años después los sitios web son cada vez mas dinámicos y responden a eventos cada vez más adaptables a los usuarios. El trabajo de Zeljko-Dragica-Branko propone una optimización de la ruta de navegación de los sitios y estructura de la navegación del sitio. 
   % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn delpunto de vista que de los docuentos 
   % como los autores antteriores.
 
 
-  \item Yuhua Chen, Xin Chen and Haoyi Chen ~\cite{yuhua}, en su trabajo dan una nueva persepectiva enfocada a dar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log. El primer analisis realizados por los autores cubre las reglas asociativas que requiere un sistema de recomedación, pero en las pruebas propiamente tales encuentran que el analisis de los patrones detectadados dan una representación clara como hacer la optimización web y finalmente mediante sus pruebas logran una recomendación de calidad.
+  \item Yuhua Chen, Xin Chen and Haoyi Chen ~\cite{yuhua}, en su trabajo dan una nueva perspectiva enfocada a dar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log. El primer analisis realizados por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el analisis de los patrones detectadados dan una representación clara como optimizar web y finalmente mediante sus pruebas logran una recomendación de calidad.
 
 
-  \item A. Rajimol and G. Raju ~\cite{rajimol}, en este estudio se hace ya una minería en los patrones de los accesos web, el enfoque es usar los registros de de accesos para crear subsecuencias y realizar comparaciones. Basado en este estudio es bastanta más claro que en la literuta y academia se presenta un interes para poder anticipar el patrón de comportamiento de la web.
+  \item A. Rajimol and G. Raju ~\cite{rajimol}, en este estudio se hace ya una minería en los patrones de los accesos web, el enfoque es usar los registros de de accesos para crear subsecuencias y realizar comparaciones. Basado en este estudio es bastante más claro que en la literatura y academia se presenta un interés para poder anticipar el patrón de comportamiento de la web.
   % @TODO reflexionar mas sobre este paper
 
 
 
-  \item Liu Kewen ~\cite{kewen}, en este trabajo ya es un análisis mas profundo del web usage minning, parte de lo imporante de este trabajo es que después de minar los registros de accesos, se puede lograr que  la ''bad data'' sea reducidad
+  \item Liu Kewen ~\cite{kewen}, en este trabajo ya es un análisis mas profundo del web usage minning, parte de lo importante de este trabajo es que después de minar los registros de accesos, se puede lograr que  la ''bad data'' sea reducida.
   %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
 
 
 
-  \item Poornalatha G, Prakash S Raghavendra ~\cite{prakash}, esta presentación estable que se puede usar máquinas de aprendizaje para hacer predicción basadas en distinas entre cluster, estos autores al igual que Domenech-Gil-Sahuquillo-Pont[2005] y  Dongshan-Junyi, comporante el objetivo de optimizar los recuros tanto en redes(disminución de latencia) y experiencia de usuario.
+  \item Poornalatha G, Prakash S Raghavendra ~\cite{prakash}, esta presentación estable que se puede usar máquinas de aprendizaje para hacer predicción basadas en distintas entre cluster, estos autores al igual que Domenech-Gil-Sahuquillo-Pont[2005] y  Dongshan-Junyi, comporante el objetivo de optimizar los recursos tanto en redes(disminución de latencia) y experiencia de usuario.
 
   % \item Jia li ~\cite{jiali}
 
@@ -93,9 +93,9 @@ El tema de la predicción en la web en la literatura se ha presentado como un te
 
 \subsection{Motivación}
 
-La motivación de este proyecto de titulo es lograr una predicción de web access log, usando estructura eficiente
-como también un predicción exacta del comportamiento del usuario en la web, usando plataformas experimentales 
-como admininstradores de contenidos, con rutas url limpias predefinidas.
+La motivación de este proyecto de titulo es lograr una predicción mediante web access log, determinando que metodología usada es la más eficiente,
+como también un predicción del comportamiento del usuario en la web, 
+usando plataformas experimentales como administradores de contenidos, con rutas url limpias predeterminadas.
  
  
 \subsection{Descripción de la solución }
@@ -133,51 +133,36 @@ como admininstradores de contenidos, con rutas url limpias predefinidas.
 \section{Metodología de trabajo}
 
 
-Se investigar en detalle el funcionamiento del algoritmo, para luego generar una
-implementación del algoritmo aproximado.
-Durante el desarrollo del proyecto de título, se tomarán
-decisiones de implementación que permitan llevar la propuesta teórica a una implementación
+Se investigar en detalle el funcionamiento del algoritmo, para luego generar una implementación del algoritmo aproximado.
+Durante el desarrollo del proyecto de título, se tomarán decisiones de implementación que permitan llevar la propuesta teórica a una implementación
 práctica.
 
-Ya implementado el algoritmo, se realizarán pruebas un dataset de la literatura,
-Estas pruebas serán luego ejecutadas en una máquina de prueba y
-recopilados los resultados para ser analizados.
+Ya implementado el algoritmo, se realizarán pruebas un dataset de la literatura y se creará un módulo para el CMS Drupal que permita generar predicciones.
 
-El Análisis comprenderá como se relacionan las areas de IR, Machine Learning y Compresión de Algortimos
-con el fin de lograr unificar la propuesta de solución. 
+Estas pruebas serán luego ejecutadas en una máquina de prueba y recopilados los resultados para ser analizados.
+El Análisis comprenderá como se relacionan las áreas de IR, Machine Learning y Compresión de Algoritmos con el fin de lograr unificar la propuesta de solución. 
 
 
  
 
 
 
-
+% Preguntar a Adin que recomendaciones colocar para las fechas.
 \section{Cronograma de actividades, hitos y entregables}
   \begin{tabular}{ll}
   \hline\noalign{\smallskip}
   Fecha & Actividad \\
   \hline\noalign{\smallskip}
   31/07/2015 & Presentación anteproyecto (firmado por profesor guía y comisión).\\
-
   02/08/2015 & Entrega resultados anteproyectos.\\
-
   04/08/2015 & Entrega anteproyectos corregidos.\\
-
   09/08/2015 &  Entrega resultados correcciones.\\
-
   25/09/2015 & Marco de trabajo.\\
-
   23/09/2015 & Primer prototipo de propuesta.\\
-
   13/10/2015 & Resultados parciales.\\
-
   27/10/2015 & Entrega Memoria Titulo I/II firmada por profesor guía.\\
-
   11/11/2015 & Fecha límite para que la comisión entregue correcciones.\\
-
   18/12/2015 & Fecha límite para que se realicen correcciones.\\
-
-  20/08/2015 & Avance.\\
 
   \hline
 
@@ -186,8 +171,9 @@ con el fin de lograr unificar la propuesta de solución.
 
 \section{Resultados esperados}
 
-Se espera crear un estudio completo de las áreas de interés y la implementación de ambas metodogías para ambos casos
-Además se espera entregar un listado de puntos de evaluación para implementar un 
+Se espera crear un estudio completo de las áreas de interés y la implementación de ambas metodologías para ambos casos
+Además se espera entregar un listado de puntos de evaluación para implementar un algoritmo en el backend de un CMS que permita crear las predicciones
+del usuario basado en su comportamiento.
 
 
 
