@@ -1,0 +1,67 @@
+
+Definir mi problema ?
+
+La mayoria de las técnicas de WUM son basadas en ML y se debe usar prefetching de la data para poder manejarla.
+Todas tiene que manejar un historico
+
+
+Implementaciones son: 
+	En WUM task
+	En Sistemas de Recomendacion
+	En variados improvments para la mejorar la web
+	Disminución de la latencia
+
+
+
+
+Que es lo que quiero ?
+
+	Algo realizable.
+
+	Usar ML - ya esta hecho implementado y creado por ejemplo prediction.IO un servidor con ML
+
+	Dar mas ondemand a la solución
+
+	Crear una solución instalable dentro de un servidor basico y que funcione.
+
+	Pueda recolectar datos si existe un balanceador de carga (Distribuido )
+
+
+
+Cuanto tiempo dispongo ?
+
+	6 meses
+
+
+Que es lo que ya manejo ?
+
+	LZ 78
+	Data Minning basic
+	SVN
+	Drupal
+	C++ / PHP / Bash / AWS / DB's
+
+
+Que soluciono?
+
+	- Un modelo hibrido 
+	- Usar la estrucutura de datos de francisco
+	- Modificiar la estructura de francisco para poder 
+
+
+De donde saco la data:
+
+	1.- Diario Prisa España
+
+Como lo soluciono ?
+
+
+Como lo valido ?
+
+ - Implementando un modulo para un CMS Drupal, el cual genera los access log, por u
+ - 
+
+
+
+
+

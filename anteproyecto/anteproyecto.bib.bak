@@ -20,7 +20,7 @@
 }
 
 @Article{Claude2014,
-  Title                    = {Efficient Indexing and Representation of Web Access Logs},
+  Title                    = {Efficient Indexing and Representation of Web Access Logs {\LaTeX}},
   Author                   = {Claude, F. and Konow, R. and Navarro, G.},
   Year                     = {2014},
 

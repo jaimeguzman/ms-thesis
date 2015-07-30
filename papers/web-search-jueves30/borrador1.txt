@@ -1,0 +1,134 @@
+
+
+Objetivos:
+
+
+- Eficiencia 
+- Variables de temporalidad en el comportamiento.
+- La tarea de descubrir secuencias frecuentes es un desafio vigente.
+- Predicción de comportamientos de usuarios en la web.
+- Finding Frequent Sequential Pattern (FSP)
+
+
+- AWAPT (Adaptive Web Access Pattern Tree), for FSP mining.
+- WAP (Web Access Pattern)
+- Application of data mining techniques to the usage logs of large Web data repositories in order to produce results that can be applied to many practical subjects, such as improving Web sites/pages
+	(i) Web content mining, (ii) Web structure mining and (iii) Web usage mining.
+
+- Enfoque Data Minning 
+	(i) pre-processing, (ii) pattern discovery and (iii) pattern analysis.
+
+- we focus on mining web access patterns
+- sequential pattern mining problem
+- efficient mining of sequential patterns in large sequence database
+
+====
+
+- Traditional process mining algorithms have problems dealing with event logs
+- Data clustering is one of the most important fields of data mining
+- problem of the detection of all the repeated patterns with a specific periodicity
+- ML para-> Repeated Patterns Detection  en un Arbol de sufijo.
+- Web log mining has become very critical for effective web site management, creating adaptive Web sites, business and support services, personalization and so on [2].
+- A web log is a sequence of pairs:
+
+
+=== 
+- The web data is typically unlabelled, dis- tributed, heterogeneous, semi-structured, time varying and high dimensional [2].
+- With the exponential growth of WWW, there is imperative need for more efficient Web Access Pattern Mining algorithms.
+
+
+====
+
+- One particular WUM task is to predict the path of web pages that the user is going to traverse within a website. Accurately predicting the web user access behavior can minimize the user perception of latency, which is an important measure of the website quality of service [5,6,29]. This is achieved by fetching the web page before the user requests it. Another application is as a recommendation technique [20,30]: the prediction can be displayed to the user, giving an insight of what the user might be looking for, therefore improving the user’s experience.
+- Access logs obtained from web servers are used to extract the user’s web site visit path
+
+-In this paper we focus on improving the space consumption and time to perform queries on the web access sequences obtained from the web server logs used
+
+	– Access(u, i) : Access the i-th web page visited by user u.
+	– UserPath(u) : Return the complete path done by user u.
+	– Count(P) : Count how many times path P has been performed in the col-
+	lection.
+	– MostCommonNextPage(P,k) : Return the k most common web pages vis-
+	ited after path P.
+	– ListUsers(P,k) : Return k distinct users that have followed path P.
+	– MostFrequentPath(k,q) : Return the k most frequent paths of length q
+	done by the users.
+
+
+SSA
+RMQ
+Msnbc
+
+- a new data structure for handling web access sequences in com- pressed form that fully replaces the original dataset and also supports useful operations for typical WUM processes
+
+
+
+Profesores:	
+		 Adin Ramiez
+		 Francisco Claude
+
+
+Keywords:
+
+	Access Web log
+	Machine Learning
+	Prediction thecniques
+	Web Usage Minning	(WUM)
+	web usage mining processes.
+	Data Mining 
+	Log files 
+	Sequential pattern mining
+	frequent pattern mining
+	Data clustering
+	Trace clustering
+	Process mining
+	Web Access Sequence (WAS)
+	WAP-Mine
+	(Conditional Sequence Mining)
+
+
+Áreas:
+	Compression Algorithm
+		LZ 78
+		Suffix tree
+
+	Machine Learning 
+		Clustering supervisado
+
+
+Contexto:
+
+- Usar: Log files are stored on the server side | Por otro lado el lado del cliente es una área desconocida
+	
+
+Benchmark (Comparison of the Methods)
+
+	Compress Algorithm vs Machine Learning
+		- Performance
+		- Data Volume
+		- Accuracy
+
+
+Referencias: 
+
+A prediction system for web requests using n-gram sequence models
+A fuzzy recommender system for dynamic prediction of user’s behavior
+Data mining for web personalization
+Web usage mining: A survey on preprocessing of web log file
+Frequent pattern mining: current status and future directions
+A new markov model for web access prediction. Comput-
+ing in Science and Eng]
+
+
+	
+Aplicaciones ?
+
+
+
+
+
+
+
+	
+
+
