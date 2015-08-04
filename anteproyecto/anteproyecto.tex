@@ -25,17 +25,17 @@
 \setlogo{EITFI}
 
 
-
 \title{ Modelo Híbrido de LZ-78 y Machine Learning para predicción de comportamientos de usuarios basado en web access log }
-\author{  
-  Jaime Guzmán\\{\small\ttfamily mail@jguzman.cl}\protect\\[5pt]%
-  {\small Adin Ramírez\thanks{Profesor guía, adin.ramirez@mail.udp.cl ,Escuela de Informática y Telecomunicaciones Universidad Diego Portales   } y Francisco Claude\thanks{Profesor comisión, fclaude@recoded.cl, Escuela de Informática y Telecomunicaciones Universidad Diego Portales  }}%
-  }
+\author{ Jaime Guzmán, \\ {\small mail@jguzman.cl}\protect\\[5pt]%
+	{\small Adin Ramírez, \thanks{Profesor guía} y Francisco Claude \thanks{Profesor comisión}} \\
+		{\small Escuela de Informática y Telecomunicaciones Universidad Diego Portales} \\
+		{\small adin.ramirez@mail.udp.cl y fclaude@recoded.cl }\protect\\[5pt]% 
+}
+
 
 \begin{document}
 
 \maketitle
-
 \section{Antecedentes y Motivación}
 
 \subsection{Contexto}
@@ -111,7 +111,7 @@ Se medirá la precisión basado en la infraestructura de prediction.IO, con  y s
 
 \subsection{Objetivo General}
  
-El objetivo general del proyecto de título es crear ó modelar un algoritmo que use LZ78 y  poder encontrar predicciones basadas en patrones encontrados en \emph{access web log}, que permitan enfocar a predicciones mas certeras.
+El objetivo general del proyecto de título es crear ó modelar un algoritmo que use LZ-78 en conjunto con una representación de un Modelo Markov y  poder encontrar predicciones basadas en patrones encontrados en \emph{access web log}, que permitan entregar información con mayor grado exactitud.
  
 \subsection{Objetivo  Específicos }
  
@@ -131,7 +131,10 @@ A continuación se detallan los objetivos específicos:
 \section{Metodología de trabajo}
 
 Se investigará en detalle el funcionamiento del algoritmo de compresión Lempel Ziv, determinando como mezclarlo o viceversa con un representación arbórea de un modelo de Markov, para luego generar una implementación del algoritmo aproximado.
-Durante el desarrollo del proyecto de título, se tomarán decisiones de implementación que permitan llevar la propuesta teórica a una implementación práctica. Ya implementado el algoritmo, se realizarán pruebas en un data set anteriormente generado que 
+Durante el desarrollo del proyecto de título, se tomarán decisiones de implementación que permitan llevar la propuesta teórica a una implementación práctica. Ya implementado el algoritmo, se realizarán pruebas en un data set anteriormente señalado.
+
+El trabajo será guiad utilizando Gitlab de la escuela EIT y usando su sistema de issues tracking, para resolver hitos, componente y la escritura del documento de tesis. A nivel de código
+e implementación se ocuparán servicios recomendados por los profesores guías y recursos disponibles por la facultad.
 
 Estas pruebas serán luego ejecutadas en una máquina de prueba y recopilados los resultados para ser analizados.
 El análisis comprenderá como se relacionan las áreas de \emph{Machine Learning} y \emph{Compresión de Algoritmos} con el fin de lograr unificar una propuesta de algoritmo. 
