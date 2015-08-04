@@ -26,7 +26,7 @@
 
 
 
-\title{ Modelo Híbrido de LZ 78 y Machine Learning para predicción de comportamientos de usuarios basado en web access log }
+\title{ Modelo Híbrido de LZ-78 y Machine Learning para predicción de comportamientos de usuarios basado en web access log }
 \author{  
   Jaime Guzmán\\{\small\ttfamily mail@jguzman.cl}\protect\\[5pt]%
   {\small Adin Ramírez\thanks{Profesor guía, adin.ramirez@mail.udp.cl ,Escuela de Informática y Telecomunicaciones Universidad Diego Portales   } y Francisco Claude\thanks{Profesor comisión, fclaude@recoded.cl, Escuela de Informática y Telecomunicaciones Universidad Diego Portales  }}%
@@ -40,17 +40,17 @@
 
 \subsection{Contexto}
 
-  La Web crece constantemente y por ende su infraestructura, tipos de usuarios y  también la concurrencia de los mismos sistemas, la cual para usuarios finales
-  se traduce en latencia y una mejor o peor experiencia de usuario. 
-  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que llegará un punto en que el tener servidores de gran rendimiento será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
-   
-  Adicionalmente, las tecnologías para la creación de web dinámicas han evolucionado a favor del cliente.
-  Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, hoy en día, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor.
-
-  Por lo mismo, es de gran interés predecir los movimientos siguientes que un usuario tendrá en una determinada web.
-  Entendiendo que la forma en que navega una persona es su comportamiento web, y que se puede reflejar mediante Web Access Log y se puede hacer una minería de datos sobre estos datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera un innumerable cantidad de datos, por lo cual usar un algoritmo de compresión como LZ 78 presenta un interés ya que además de poder predecir trabajar con la mayor cantidad de datos de manera eficiente y precisa.
+  La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y  también la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. 
+  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.\\
   
-  El registro de los mismos, de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia de usuario mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+   
+  Adicionalmente, las tecnologías para la creación de web dinámicas e asíncronas han evolucionado a favor del cliente.
+  Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos considerables es requerido tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de hacer  web inteligente.
+
+  Es de gran interés predecir los movimientos siguientes que un usuario tendrá en una determinada web.
+  Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera un innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  
+  Los registros de acccesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia de usuario mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
   
   Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
 
@@ -58,34 +58,30 @@
 \subsection{Trabajos relacionados}
 
 % @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
-En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión~\cite{BWT}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering 
-y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, inclusive se han utilziado modelos de Markov para poder modelar el comportamiento de la web.
-La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta.
+En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de ~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
+La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
 
 
-En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. 
-Tenemos los siguientes trabajos en orden cronológico:
+En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
 
 \begin{enumerate}
-  \item Dongshan y Junyi~\cite{tmmd} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones.
-  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
+  \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
   Su modelo fue presentado en 2002, y da una importancia a conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
 
-  \item Domenech \etal~\cite{domenech}, muestran un estudio de los rendimientos de técnicas de recuperación de datos.
+  \item Domenech \etal~\cite{Domenech2006}, muestran un estudio de los rendimientos de técnicas de recuperación de datos.
   Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
   Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
   Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como predicciones genéricas o específicas, variables de uso de recursos a nivel de red ó nivel procesamiento.
   Finalmente, se presenta un modelo predictivo que puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y \emph{QoS}.
 
-  \item Casi cinco años después los sitios web son cada vez más dinámicos y responden a eventos cada vez más adaptables a los usuarios. 
-  El trabajo de Eremic \etal~\cite{Dragica2010} propone una optimización de la ruta de navegación de los sitios y estructura de la navegación del sitio. 
+
   % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn del punto de vista que de los docuentos 
   % como los autores antteriores.
 
-  \item Chen \etal~\cite{yuhua2011} dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
+  \item Chen \etal~\cite{Chen2011} dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
   El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.
 
-  \item Rajimol y Raju~\cite{rajimol2012} minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
+  \item Rajimol y Raju~\cite{Rajimol2012} minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
   La literatura presenta un interés para poder anticipar el patrón de comportamiento de la web.
   % @TODO reflexionar mas sobre este paper
 
