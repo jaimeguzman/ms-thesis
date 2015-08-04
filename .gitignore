@@ -101,6 +101,9 @@
 *.sympy
 sympy-plots-for-*.tex/
 
+# JabRef
+*.bib.bak
+
 # todonotes
 *.tdo
 
