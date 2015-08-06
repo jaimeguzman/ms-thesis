@@ -27,9 +27,9 @@
 
 \title{ Modelo Híbrido de LZ-78 y Machine Learning para predicción de comportamiento de usuarios basado en Web Access Log }
 \author{ Jaime Guzmán, \\ {\small mail@jguzman.cl}\protect\\[5pt]%
-	{\small Adin Ramírez\thanks{Profesor guía}, y Francisco Claude \thanks{Profesor comisión}} \\
-	{\small Escuela de Informática y Telecomunicaciones Universidad Diego Portales} \\
-	{\small adin.ramirez@mail.udp.cl y fclaude@recoded.cl }\protect\\[5pt]% 
+  {\small Adin Ramírez\thanks{Profesor guía}, y Francisco Claude \thanks{Profesor comisión}} \\
+  {\small Escuela de Informática y Telecomunicaciones Universidad Diego Portales} \\
+  {\small adin.ramirez@mail.udp.cl y fclaude@recoded.cl }\protect\\[5pt]% 
 }
 
 
@@ -40,16 +40,16 @@
 
 \subsection{Contexto}
 
-  La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y  también la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. 
-  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
+  La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia. 
+  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el  tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
    
-  Adicionalmente, las tecnologías para la creación de web dinámicas e asíncronas han evolucionado a favor del cliente.
+  Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas han evolucionado a favor del cliente.
   Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos considerables es requerido tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de hacer  web inteligente.
 
-  Es de gran interés predecir los movimientos siguientes que un usuario tendrá en una determinada web.
-  Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera un innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  Es de gran interés para los investigadores predecir los movimientos siguientes que un usuario tendrá en una determinada web.
+  Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera una innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
   
-  Los registros de acccesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia de usuario mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+  Los registros de accesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia mucho mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
   
   Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
 
@@ -57,10 +57,10 @@
 \subsection{Trabajos relacionados}
 
 % @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
-En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
+En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta  esta área como un foco de múltiples implementaciones. 
 
 
-En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
+En la literatura, el tema de la predicción en la web se ha presentado como un tema recurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
 
 \begin{enumerate}
   \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
@@ -100,7 +100,7 @@ La motivación de este proyecto de título es poder converger dos áreas de estu
 
 \subsection{Descripción de la solución }
 
-Básicamente se pretender alterar la composición del árbol generado por el algoritmo de Lempel Ziv y crear un híbrido con un Modelo de markov representado en \emph{Trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar.
+Básicamente se pretender alterar la composición del árbol generado por el algoritmo de Lempel Ziv y crear un híbrido con un Modelo de Markov representado en \emph{Trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar.
 
 Se utilizará como base la implementación OpenSource de Prediction.IO para poder hacer el entrenamiento de un data set provisto por el diario español \emph{Prisa}, el cual posee 1.000.000 de registros correspondientes al año 2009, septiembre.
 
@@ -117,8 +117,8 @@ A continuación se detallan los objetivos específicos:
  
 \begin{enumerate}
   \item Estudiar y describir el estado del arte respecto a las variantes existentes de Modelos Predictivos, describiendo limitaciones pros y contras entre áreas de estudio, como futuras implementaciones y mejoras para la web.
-  \item Estudio un algoritmo de compresión para usarlo como un algoritmo de predicción.
-  \item Estudio un algoritmo basado en modelos de Markov que permita entregar una predicción.
+  \item Estudiar un algoritmo de compresión para usarlo como un algoritmo de predicción.
+  \item Estudiar un algoritmo basado en modelos de Markov que permita entregar una predicción.
   \item Implementación de algoritmo híbrido propuesto.
   \item Preparar conjuntos de datos de prueba 
   \item Ejecutar pruebas para medir, y clasificar las predicciones de rendimiento usando nuestra implementación, y comparar con algoritmos expuestos en la literatura.
@@ -128,7 +128,7 @@ A continuación se detallan los objetivos específicos:
 
 \section{Metodología de trabajo}
 
-Se investigará en detalle el funcionamiento del algoritmo de compresión Lempel Ziv, determinando como mezclarlo o viceversa con un representación arbórea de un modelo de Markov, para luego generar una implementación del algoritmo aproximado.
+Se investigará en detalle el funcionamiento del algoritmo de compresión Lempel Ziv, determinando como mezclarlo o viceversa con una representación arbórea de un modelo de Markov, para luego generar una implementación del algoritmo aproximado.
 Durante el desarrollo del proyecto de título, se tomarán decisiones de implementación que permitan llevar la propuesta teórica a una implementación práctica. Ya implementado el algoritmo, se realizarán pruebas en un data set anteriormente señalado.
 
 El trabajo será dirigido y monitoreado mediante el Gitlab de la escuela \emph{EIT} y su sistema de \emph{issues tracking}, para resolver hitos, componente y la escritura del documento de tesis. A nivel de código e implementación se ocuparán servicios recomendados por los profesores guías y recursos disponibles por la facultad.
