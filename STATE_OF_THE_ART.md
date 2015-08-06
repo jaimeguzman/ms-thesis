@@ -1,0 +1,1 @@
+El resumen no debe contener menos de 100 palabras ni mas de 300 palabras.
