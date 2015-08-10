@@ -3,6 +3,7 @@
 .log
 .aux
 .gz
+.gitignore
 
 # More ignore files at https://github.com/github/gitignore
 #############################
@@ -22,7 +23,9 @@
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-*.pdf
+#*.pdf
+anteproyecto/*.pdf
+tesis/*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -110,5 +113,3 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
-anteproyecto/anteproyecto.pdf
-tesis/thesis.pdf
