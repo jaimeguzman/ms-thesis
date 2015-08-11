@@ -52,3 +52,19 @@ LZ78 consume less memory than LZW, but has less hit rate and precision. In LZW l
 
 
 ==============================================================================
+PAPER::::
+A NEW MARKOV MODEL FOR WEB ACCESS PREDICTION
+==============================================================================
+
+
+
+
+Web user access behavior can minimize user-perceived latency, which is crucial in the rapidly growing World Wide Web.
+
+
+
+However, if we could predict future user re- quests, we could put those pages into the client- side cache when the browser is free. 
+
+
+
+Our hybrid-order tree-like Markov model can predict Web access precisely, providing high coverage and good scalability. HTMM intelli- gently merges two methods: a tree-like structure Markov model method that aggregates the ac- cess sequences by pattern matching and a hy- brid-order method that combines varying-order Markov models. Performance evaluations com- paring our HTMM with traditional Markov models confirm its usefulness.
