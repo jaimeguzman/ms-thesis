@@ -68,3 +68,34 @@ However, if we could predict future user re- quests, we could put those pages in
 
 
 Our hybrid-order tree-like Markov model can predict Web access precisely, providing high coverage and good scalability. HTMM intelli- gently merges two methods: a tree-like structure Markov model method that aggregates the ac- cess sequences by pattern matching and a hy- brid-order method that combines varying-order Markov models. Performance evaluations com- paring our HTMM with traditional Markov models confirm its usefulness.
+
+
+
+
+==============================================================================
+PAPER::::
+On Prediction Using Variable Order Markov Models
+==============================================================================
+
+
+
+
+
+There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994)
+
+
+
+
+
+
+
+
+3.1 Lempel-Ziv 78 (LZ78)
+The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
+The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary.
+
+
+
+
+
+Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
