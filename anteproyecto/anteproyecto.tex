@@ -49,7 +49,7 @@
   Es de gran interés para los investigadores predecir los movimientos siguientes que un usuario tendrá en una determinada web.
   Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera una innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
   
-  Los registros de accesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia mucho mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+  Los registros de accesos de manera procesada o previamente procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia mucho mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
   
   Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
 
@@ -95,7 +95,8 @@ En la literatura, el tema de la predicción en la web se ha presentado como un t
 
 \subsection{Motivación}
 
-La motivación de este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de la web. Usar recursos tanto que la industria ofrece (predicction.IO) y la academia para poder crear un algoritmo o modelo que permita dar mejor precisión.
+La motivación de este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de la web.
+Usar recursos que ofrece la industria y la academia para poder crear un algoritmo o modelo que permita dar mejores predicciones del comportamiento de los usuarios en una web, basados en los registros de web access log.
 
 
 \subsection{Descripción de la solución }
@@ -113,7 +114,7 @@ En una etapa más experimental todas las mediciones y experimentos correrán sob
 
 \subsection{Objetivo General}
  
-El objetivo general del proyecto de título es crear un algoritmo que use un algoritmo de compresión en conjunto con una infraestructura de Machine Learning, teniendo en consideración algoritmos de tipo \emph{Variable Markov Model} y encontrar predicciones basadas en patrones encontrados en \emph{access web log} previamente limpios, que permitan entregar mejor información sobre la minería en los accesos, con manipulación off-line .
+	El objetivo general del proyecto de título es crear un algoritmo que use un algoritmo de compresión en conjunto con una infraestructura de Machine Learning, teniendo en consideración algoritmos de tipo \emph{Variable Markov Model} y encontrar predicciones basadas en patrones encontrados en \emph{access web log} previamente limpios, que permitan entregar mejor información sobre la minería en los accesos, con manipulación off-line .
  
 \subsection{Objetivo  Específicos }
  
@@ -124,15 +125,19 @@ A continuación se detallan los objetivos específicos:
   \item Estudiar un algoritmo de compresión para usarlo como un algoritmo de predicción.
   \item Estudiar un algoritmo basado en modelos de Markov que permita entregar una predicción.
   \item Implementación de algoritmo híbrido propuesto.
-  \item Preparar conjuntos de datos de prueba 
-  \item Ejecutar pruebas para medir, y clasificar las predicciones de rendimiento usando nuestra implementación, y comparar con algoritmos expuestos en la literatura.
-  \item Analizar los resultados obtenidos y mostrar el uso del algoritmo .
+  \item Usar un set de datos, con distintos algoritmos para establecer valores base y comparaciones.
+  \item Definir métricas de efectividad de la predicción.
+  \item Definir métricas de relación de comportamiento de usuario con la predicción. 
+  \item Ejecutar pruebas para medir y clasificar las predicciones usando nuestra implementación, y comparar con algoritmos seleccionados de la familia de Lempel-Ziv y algoritmos ofrecidos por prediction.io. % Aun no me caso con que algoritmo de ML voy a correr
+  
+  \item Analizar los resultados obtenidos y compararlos en base a las métricas de predicción.
+  \item Mostrar el uso del algoritmo y señalar casos de  implementaciones.
 \end{enumerate}
 
 
 \section{Metodología de trabajo}
 
-Se investigará en detalle el funcionamiento del algoritmo de compresión Lempel Ziv, determinando como mezclarlo o viceversa con una representación arbórea de un modelo de Markov, para luego generar una implementación del algoritmo aproximado.
+Se investigará en detalle el funcionamiento del algoritmo de compresión Lempel Ziv, determinando una combinación o viceversa de una representación arbórea de un modelo de Markov, para luego generar una implementación del algoritmo aproximado.
 Durante el desarrollo del proyecto de título, se tomarán decisiones de implementación que permitan llevar la propuesta teórica a una implementación práctica. Ya implementado el algoritmo, se realizarán pruebas en un data set anteriormente señalado.
 
 El trabajo será dirigido y monitoreado mediante el Gitlab de la escuela \emph{EIT} y su sistema de \emph{issues tracking}, para resolver hitos, componente y la escritura del documento de tesis. A nivel de código e implementación se ocuparán servicios recomendados por los profesores guías y recursos disponibles por la facultad.
