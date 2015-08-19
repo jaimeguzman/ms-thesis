@@ -99,17 +99,21 @@ La motivación de este proyecto de título es poder converger dos áreas de estu
 
 
 \subsection{Descripción de la solución }
+Básicamente se pretende crear un algoritmo que represente un punto de inflexión entre las áreas de Machine Learning y Lossless Compression Algorithm, tomando como un algoritmo de compresión, ej. es el caso de LZ-78, se puede usar como un algoritmo de predicción.
 
-Básicamente se pretender alterar la composición del árbol generado por el algoritmo de Lempel Ziv y crear un híbrido con un Modelo de Markov representado en \emph{Trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar.
+Se busca alterar las propiedades del diccionario generado en Lempel Ziv y crear un híbrido con un Modelo de Markov representado en \emph{Trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar, acorde al transcurso del desarrollo puede sufrir variaciones, pero siguiendo la premisa de la integración de un algoritmo de compresión con técnicas de Machine Learning+, ofrecidas por \textit{Prediction.IO (PIO)}.
 
-Se utilizará como base la implementación OpenSource de Prediction.IO para poder hacer el entrenamiento de un data set provisto por el diario español \emph{Prisa}, el cual posee 1.000.000 de registros correspondientes al año 2009, septiembre.
+Se utilizará como base la implementación Open Source de Prediction.IO para poder hacer el entrenamiento de un data set provisto por el diario español \emph{Prisa}, el cual posee 1.000.000 de registros correspondientes al año 2009, septiembre. La data se adecuará al formato de la PIO, para la entradas y pruebas de la suite basado en \emph{DASE},
 
-Se medirá la precisión basado en la infraestructura de prediction.IO, con  y sin el algoritmo propuesto con el fin de encontrar un ponderado de predicciones favorables en el set de datos con el algoritmo propuesto.
+Se realizará comparaciones con algoritmos de la familia de Lempel-Ziv, en el estado del arte se analizarán con mayor detalle, los cuales se seleccionaran acorde a literatura y recomendaciones de los profesores guía. Adicionalmente se usarán las implementaciones ofrecidas por \emph{PIO}.
+
+En una etapa más experimental todas las mediciones y experimentos correrán sobre la infraestructura de prediction.IO, con y sin el algoritmo propuesto con el fin de encontrar valores cuantitativos de predicciones favorables en el set de datos.
+%Con que algoritmos voy a comparar.
 
 
 \subsection{Objetivo General}
  
-El objetivo general del proyecto de título es crear un algoritmo que use LZ-78 en conjunto con una representación de un Modelo Markov y  poder encontrar predicciones basadas en patrones encontrados en \emph{access web log}, que permitan entregar información con mayor grado exactitud.
+El objetivo general del proyecto de título es crear un algoritmo que use un algoritmo de compresión en conjunto con una infraestructura de Machine Learning, teniendo en consideración algoritmos de tipo \emph{Variable Markov Model} y encontrar predicciones basadas en patrones encontrados en \emph{access web log} previamente limpios, que permitan entregar mejor información sobre la minería en los accesos, con manipulación off-line .
  
 \subsection{Objetivo  Específicos }
  
