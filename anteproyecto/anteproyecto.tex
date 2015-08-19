@@ -25,7 +25,7 @@
 \setlogo{EITFI}
 
 
-\title{ Modelo Híbrido de LZ-78 y Machine Learning para predicción de comportamiento de usuarios basado en Web Access Log }
+\title{ Modelo Híbrido de Lempel-Ziv y Machine Learning para predicción de comportamiento de usuarios basado en Web Access Log }
 \author{ Jaime Guzmán, \\ {\small mail@jguzman.cl}\protect\\[5pt]%
   {\small Adin Ramírez\thanks{Profesor guía}, y Francisco Claude \thanks{Profesor comisión}} \\
   {\small Escuela de Informática y Telecomunicaciones Universidad Diego Portales} \\
@@ -40,16 +40,14 @@
 
 \subsection{Contexto}
 
-  La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia. 
-  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el  tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
+  La Web crece constantemente día a día, también los tipos de usuarios y la concurrencia de los mismos sistemas, por ende su infraestructura, la cual para usuarios finales se traduce en tener mayor latencia al acceder a recursos y un nivel de experiencia no deseado. 
+  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Entonces podemos reflexionar que tener mayores recursos no mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
    
-  Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas han evolucionado a favor del cliente.
-  Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos considerables es requerido tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de hacer  web inteligente.
+  Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas ha evolucionado a favor del cliente. Hoy en día se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos considerables es requerido tomar decisiones que los recursos de infraestructura y lenguajes orientados a web no cubren, es ahí el interés de hacer web inteligente.
 
-  Es de gran interés para los investigadores predecir los movimientos siguientes que un usuario tendrá en una determinada web.
-  Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera una innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  Es de gran interés para los investigadores predecir los siguientes movimientos que un usuario tendrá en una determinada web. Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos en estos registros, Web Usage Minning. El por qué de hacer minería de datos es debido a que cada día la web genera una innumerable cantidad de datos, por lo cual usar un algoritmo como LZ-78, que además de ser un algoritmo de compresión, se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos sin tener pérdida.
   
-  Los registros de accesos de manera procesada o previamente procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia mucho mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+  Los registros de accesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web, expertos de usabilidad, diseñadores y usuarios finales a tener una experiencia mucho mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
   
   Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
 
@@ -95,20 +93,21 @@ En la literatura, el tema de la predicción en la web se ha presentado como un t
 
 \subsection{Motivación}
 
-La motivación de este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de la web.
-Usar recursos que ofrece la industria y la academia para poder crear un algoritmo o modelo que permita dar mejores predicciones del comportamiento de los usuarios en una web, basados en los registros de web access log.
+La motivación de este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de usuario en una web.
+
+Usar recursos que ofrece la industria y la academia para poder crear un algoritmo o modelo que permita dar predicciones del comportamiento de los usuarios en una web, basados en los registros de web access log.
 
 
 \subsection{Descripción de la solución }
-Básicamente se pretende crear un algoritmo que represente un punto de inflexión entre las áreas de Machine Learning y Lossless Compression Algorithm, tomando como un algoritmo de compresión, ej. es el caso de LZ-78, se puede usar como un algoritmo de predicción.
+Básicamente se pretende crear un algoritmo que represente un punto en común entre las áreas de Machine Learning y Lossless Data Compression, tomando un compresor, ej. es el caso de LZ-78, el cual se se puede usar como un algoritmo de predicción.
 
-Se busca alterar las propiedades del diccionario generado en Lempel Ziv y crear un híbrido con un Modelo de Markov representado en \emph{Trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar, acorde al transcurso del desarrollo puede sufrir variaciones, pero siguiendo la premisa de la integración de un algoritmo de compresión con técnicas de Machine Learning+, ofrecidas por \textit{Prediction.IO (PIO)}.
+Se busca alterar un algoritmo de compresión de la familia de Lempel Ziv y crear un híbrido con un Modelo de basado en Markov representado en \emph{trie}, lo anterior no es la solución definitiva pero es la ruta que se busca estudiar, acorde al transcurso del desarrollo puede sufrir variaciones, pero siguiendo la premisa de la integración de un algoritmo de compresión con técnicas de Machine Learning+, ofrecidas por \textit{Prediction.IO (PIO)}.
 
-Se utilizará como base la implementación Open Source de Prediction.IO para poder hacer el entrenamiento de un data set provisto por el diario español \emph{Prisa}, el cual posee 1.000.000 de registros correspondientes al año 2009, septiembre. La data se adecuará al formato de la PIO, para la entradas y pruebas de la suite basado en \emph{DASE},
+Se utilizará como base la implementación Open Source de Prediction.IO para poder hacer el entrenamiento de un data set provisto por el diario español \emph{Prisa}, el cual posee 1.000.000 de registros correspondientes al año 2009, septiembre. La data se adecuará al formato de la PIO, para la entradas y pruebas de la suite basado en \emph{DASE}, de las siglas de Data Source and Data Preparator, Algorithm, Serving, Evaluation Metrics.
 
-Se realizará comparaciones con algoritmos de la familia de Lempel-Ziv, en el estado del arte se analizarán con mayor detalle, los cuales se seleccionaran acorde a literatura y recomendaciones de los profesores guía. Adicionalmente se usarán las implementaciones ofrecidas por \emph{PIO}.
+Se realizará comparaciones con algoritmos de la familia de Lempel-Ziv, en el estado del arte propuesto se analizarán con mayor detalle, los cuales se seleccionaran acorde a literatura y recomendaciones de los profesores guía. Adicionalmente se usarán las implementaciones ofrecidas por \emph{PIO}.
 
-En una etapa más experimental todas las mediciones y experimentos correrán sobre la infraestructura de prediction.IO, con y sin el algoritmo propuesto con el fin de encontrar valores cuantitativos de predicciones favorables en el set de datos.
+En una etapa más experimental todas las mediciones y experimentos correrán sobre la infraestructura de \emph{PIO} con y sin el algoritmo propuesto con el fin de encontrar valores cuantitativos de predicciones favorables en el set de datos, para cada caso. La solución no pretende tener un mejor rendimiento o exactitud, pero sí poder combinar ambos campos en un algoritmo y ponerlo a disposición de herramientas de la industria.
 %Con que algoritmos voy a comparar.
 
 
@@ -128,10 +127,10 @@ A continuación se detallan los objetivos específicos:
   \item Usar un set de datos, con distintos algoritmos para establecer valores base y comparaciones.
   \item Definir métricas de efectividad de la predicción.
   \item Definir métricas de relación de comportamiento de usuario con la predicción. 
-  \item Ejecutar pruebas para medir y clasificar las predicciones usando nuestra implementación, y comparar con algoritmos seleccionados de la familia de Lempel-Ziv y algoritmos ofrecidos por prediction.io. % Aun no me caso con que algoritmo de ML voy a correr
+  \item Ejecutar pruebas para medir y clasificar las predicciones usando nuestra implementación y comparar con algoritmos seleccionados de la familia de Lempel-Ziv y algoritmos ofrecidos por prediction.io. % Aun no me caso con que algoritmo de ML voy a correr
   
-  \item Analizar los resultados obtenidos y compararlos en base a las métricas de predicción.
-  \item Mostrar el uso del algoritmo y señalar casos de  implementaciones.
+  \item Analizar los resultados obtenidos y compararlos cuantitativamente en base a las métricas de predicción.
+  \item Mostrar el uso del algoritmo y señalar casos de  implementaciones en la vida real.
 \end{enumerate}
 
 
@@ -148,77 +147,89 @@ El análisis comprenderá como se relacionan las áreas de \emph{Machine Learnin
 \section{Resultados esperados}
 
 Se espera crear un estudio que abarque las áreas de interés y la implementación de ambas metodologías que converjan en un algoritmo, 
-también la implementación que la industria del Data Science, prediction.IO, ofrece ver sus fortalezas en aspectos de predicciones y comparar con nuestra propuesta.
+también la implementación que la industria del Data Science, prediction.IO, ofrece y además ver sus fortalezas en aspectos de predicciones y comparar con nuestra propuesta.
 
 Además se espera entregar un listado de puntos de evaluación y mejoras propuestas para el algoritmo propuesto.
 
-\newpage
+
 % Preguntar a Adin que recomendaciones colocar para las fechas.
 \section{Cronograma de actividades, hitos y entregables}
   \begin{center}
-  \begin{tabular}{ll}
-  \hline\noalign{\smallskip}
-  Fecha & Actividad \\
-  \hline\noalign{\smallskip}
-  05/08/2015 & Presentación anteproyecto (firmado por profesor guía y comisión).\\
-  07/08/2015 & Entrega resultados anteproyectos.\\
-  10/08/2015 & Entrega anteproyectos corregidos.\\
-  12/08/2015 & Entrega resultados correcciones.\\
-  17/08/2015 & Inicio Marco de trabajo.\\
-  20/08/2015 & Buscar todos los papers relacionados tanto en temas como trabajos posibles que tengan relación.\\
-  24/08/2015 & Escribir estado del arte.\\
-  25/08/2015 & Reutilizar textos de anteproyecto para re-utilización.\\
-  27/08/2015 & Revisión estado del arte por profesor Guía.\\
-  31/08/2015 & Hacer un análisis completo de Prediction.IO y comienzo de estudio de uso.\\
-  %Septiembre
-  03/09/2015 & Ver como incluir el algoritmo híbrido.\\
-  04/09/2015 & Estructurar capítulos de tesis.\\
-  05/09/2015 & Proponer un introducción.\\
-  06/09/2015 & Recolectar datos provenientes de Prisa.\\
-  07/09/2015 & Aprender a utilizar el algoritmo de Claude para poder dar representación. \\
-  10/09/2015 & Investigar representación de markov se puede implementar con el árbol del LZ-78.\\
-  10/09/2015 & Aprender noción básica de lenguaje de programación Pascal.\\
-  12/09/2015 & Levantar entorno Experimental basado en Dockers, en ambiente UDP o Propio.\\
-  14/09/2015 & Hacer pruebas de validación para el entorno de desarrollo y pruebas.\\
-  17/09/2015 & Documentación del proceso de entorno.\\
-  24/09/2015 & Iteración de validación con profesores Guías.\\
-  25/09/2015 & Redacción de capitulo ``Experimental''.\\
-  28/09/2015 & Recolección de datos para casos sin modelo híbrido.\\
-  29/09/2015 & Investigación teórica de implementación.\\
-  
-  %Octubre
-  01/10/2015 & Decisión del lenguaje de implementación.\\
-  05/10/2015 & Programación. \\
-  12/10/2015 & Iteración de Codificación y validación con profesor guía.\\
-  15/10/2015 & Arreglos de algoritmo propuesto.\\
-  19/10/2015 & Revisión e iteración de bugs. \\
-  22/10/2015 & Iteración de revisión. \\
-  30/10/2015 & Comienzo de etapa de pruebas.\\
-  
-  %Noviembre
-  02/11/2015 & Correcciones. \\
-  06/11/2015 & Comienzo de etapas de pruebas con dataset\\
-  09/11/2015 & Comparación con datos de literatura.\\
-  10/11/2015 & Escritura de capitulo.\\
-  12/11/2015 & Análisis de Resultados.\\
-  13/11/2015 & Comparativa.\\
-  14/11/2015 & Trabajos futuro.\\
-  17/11/2015 & Conclusiones.\\
-  23/11/2015 & Revisión de capítulo.\\
-
-  %Diciembre
-  01/12/2015 & Correcciones en \LaTeX. \\
-  14/12/2015 & Creación de presentación.\\
-  14/12/2015 & Entrega Memoria Título I/II firmada por profesor guía.\\
-  18/12/2015 & Fecha límite para que la comisión entregue correcciones.\\
-  21/12/2015 & Fecha límite para que se realicen correcciones.\\
-
-  
-  \hline
-  \end{tabular}
+  	\begin{tabular}{ll}
+  		\hline\noalign{\smallskip}
+  		Fecha & Actividad  \\
+  		\hline\noalign{\smallskip}
+  		05/08/2015 & Presentación anteproyecto (firmado por profesor guía y comisión) \\
+  		& Entregable: Documento de Anteproyecto \\
+  		07/08/2015 & Entrega resultados anteproyectos. \\
+  		& Entregable: Correcciones de Anteproyecto \\
+  		10/08/2015 & Entrega anteproyectos corregidos. \\
+  		& Entregable: Anteproyecto corregido \\
+  		12/08/2015 & Entrega resultados correcciones. \\
+  		17/08/2015 & Inicio Marco de trabajo. \\
+  		20/08/2015 & Buscar todos los papers relacionados tanto en temas como trabajos posibles que tengan relación.\\
+  		24/08/2015 & Escribir estado del arte. \\
+  		25/08/2015 & Reutilizar textos de anteproyecto para re-utilización.\\
+  		27/08/2015 & Revisión estado del arte por profesor Guía.\\
+  		31/08/2015 & Hacer un análisis completo de Prediction.IO y comienzo de estudio de uso.\\
+  		& Entregable: Avance documento escrito y estudio de container Docker-PIO \\
+  		%Septiembre
+  		03/09/2015 & Ver como incluir el algoritmo híbrido.\\
+  		& Entregable: Correcciones de Anteproyecto \\
+  		04/09/2015 & Estructurar capítulos de tesis.\\
+  		05/09/2015 & Proponer un introducción.\\
+  		& Entregable: Texto de introducción \\
+  		06/09/2015 & Tabular datos provenientes del diario de Prisa.\\
+  		07/09/2015 & Aprender a utilizar el algoritmo de Claude para poder dar representación. \\
+  		10/09/2015 & Investigar representación de markov se puede implementar con el árbol del LZ-78.\\
+  		10/09/2015 & Aprender noción básica de lenguaje de programación Pascal.\\
+  	%	12/09/2015 & Levantar entorno Experimental basado en Dockers, en ambiente UDP o Propio.\\
+  		14/09/2015 & Hacer pruebas de validación para el entorno de desarrollo y pruebas.\\
+  		17/09/2015 & Documentación del proceso de entorno.\\
+  		24/09/2015 & Iteración de validación con profesores Guías.\\
+  		25/09/2015 & Redacción de capitulo ``Experimental''.\\
+  		28/09/2015 & Recolección de datos para casos sin modelo híbrido.\\
+  		29/09/2015 & Investigación teórica de implementación.\\
+  		
+  		%Octubre
+  		01/10/2015 & Decisión del lenguaje de implementación.\\
+  		05/10/2015 & Programación. \\
+  		12/10/2015 & Iteración de Codificación y validación con profesor guía.\\
+  		15/10/2015 & Arreglos de algoritmo propuesto.\\
+  		19/10/2015 & Revisión e iteración de bugs. \\
+  		22/10/2015 & Iteración de revisión. \\
+  		30/10/2015 & Comienzo de etapa de pruebas.\\
+  		& Entregable: Código/Algoritmo propuesto \\
+  		
+  		%Noviembre
+  		02/11/2015 & Correcciones. \\
+  		06/11/2015 & Comienzo de etapas de pruebas con dataset\\
+  		09/11/2015 & Comparación con datos de literatura.\\
+  		10/11/2015 & Escritura de capitulo.\\
+  		12/11/2015 & Análisis de Resultados.\\
+  		13/11/2015 & Comparativa.\\
+  		& Entregable: Documento de tesis para revisión 1 \\
+  		14/11/2015 & Trabajos futuro.\\
+  		17/11/2015 & Conclusiones.\\
+  		23/11/2015 & Revisión de capítulo.\\
+  		25/11/2015 & Correcciones en \LaTeX. \\
+  		27/11/2015 & Entrega Memoria Título I/II firmada por profesor guía.\\
+  		& Entregable: Documento\\ 
+  		
+  		04/12/2015 & Fecha límite para que la comisión entregue correcciones.\\
+  		11/12/2015 & Fecha límite para que se realicen correcciones.\\
+  		
+  		%Diciembre
+  		04/12/2015 & Creación de presentación.\\
+  		& Entregable: Documento de Presentación  \\
+  		27/12/2015 & Presentación.\\
+  		
+  		
+  		\hline
+  	\end{tabular}
   \end{center}
 
-\newpage
+
 \section{Cursos Relacionados}
 
 Para el desarrollo de este proyecto se tomarán las bases teóricas y prácticas aprendidas en cursos como Estructuras de datos, 
