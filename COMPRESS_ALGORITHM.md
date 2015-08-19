@@ -13,3 +13,19 @@ Sayood, Introduction to Data Compression, Morgan Kaufmann, 2006
 Ohm, Multimedia Communication Technology, Springer, 2004
 Solari, Digital video and audio compression, McGraw-Hill, 1997
 Tekalp, Digital Video Processing, Prentice Hall, 1995
+
+
+
+Comparison to Lempel-Ziv 78
+Both LZ77 and LZ78 and their variants keep a
+“dictionary” of recent strings that have been seen.
+The differences are:
+– How the dictionary is stored (LZ78 is a trie)
+– How it is extended (LZ78 only extends an existing
+entry by one character)
+– How it is indexed (LZ78 indexes the nodes of the
+trie)
+– How elements are removed
+
+
+https://docs.prediction.io/api/current/#io.prediction.controller.LAlgorithm
