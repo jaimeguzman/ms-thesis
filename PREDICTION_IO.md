@@ -178,4 +178,32 @@ https://github.com/zdlopez
 
 ```
 
+# Links de interes de PIO
 
+https://docs.prediction.io/resources/faq/#deploy-engine
+
+https://docs.prediction.io/demo/textclassification/
+
+
+
+
+```
+  503  subl Vagrantfile 
+  504  curl -H "Content-Type: application/json" -d '{ "text":"I like speed and fast motorcycles." }' http://192.168.67.67/:8000/queries.json
+  505  curl -H "Content-Type: application/json" -d '{ "text":"I like speed and fast motorcycles." }' http://192.168.67.67:8000/queries.json
+  506  curl -H "Content-Type: application/json" -d '{ "text":"I like speed and fast motorcycles." }' http://192.168.67.67/:8000/queries.json &
+  507  curl -H "Content-Type: application/json" -d '{ "text":"I like speed and fast motorcycles." }' http://192.168.67.67:8000/queries.json &
+  508  curl -H "Content-Type: application/json" -d '{ "text":"I want to pass my grade" }' http://192.168.67.67:8000/queries.json 
+  509  ll
+  510  curl -H "Content-Type: application/json" -d '{ "text":"I like sex." }' http://192.168.67.67/:8000/queries.json
+  511  curl -H "Content-Type: application/json" -d '{ "text":"I like sex." }' http://192.168.67.67:8000/queries.json
+  512  curl -H "Content-Type: application/json" -d '{ "text":"Learning DASE and Prediction IO." }' http://192.168.67.67:8000/queries.json
+  513  curl -H "Content-Type: application/json" -d '{ "text":"Learning DASE and Prediction IO." }' http://192.168.67.67:8000/queries.json
+  514  curl -H "Content-Type: application/json" -d '{ "text":"sex porn." }' http://192.168.67.67:8000/queries.json
+  515  curl -H "Content-Type: application/json" -d '{ "text":"sex." }' http://192.168.67.67:8000/queries.json
+  516  curl -H "Content-Type: application/json" -d '{ "text":"sex." }' http://192.168.67.67:8000/queries.json
+  517  curl -H "Content-Type: application/json" -d '{ "text":"sex." }' http://192.168.67.67:8000/queries.json
+  518  curl -H "Content-Type: application/json" -d '{ "text":"Hi My name is Max, and I want to be a CEO of Ratslabs.IO" }' http://192.168.67.67:8000/queries.json
+  519  curl -H "Content-Type: application/json" -d '{ "text":"Hi My name is Max, and I want to be a CEO of Ratslabs.IO" }' http://192.168.67.67:8000/queries.json
+
+```
