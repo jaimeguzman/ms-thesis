@@ -1,25 +1,55 @@
-\chapter[Tema]{Compresión}
+\chapter[Tema]{Algoritmos de Compresión}
 \label{ch:tema}
 
 %empezar habalr sibre lempel ziv
-Los algoritmo de compresión si perdida, son un área en constante desarrollo
+
+Los algoritmos de compresión han sido estudiados e investigados por durante varios años, la motivación
+fundamental es poder optimizar el espacio, para mayor uso o almacenamiento de datos. Estos algoritmos se encuentran sin saberlo en nuestro día a día, desde el nucleo de un sistema operativo como linux hasta por ejemplo los formatos \emph{zip}, \emph{rar},\emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar en dispositivos físicos, etc.
+
+La motivación de profundizar en el área de compresión de datos se debe a una de la razones mencionadas con anterioridad, Internet. Esta red de redes, constante crea nuevos contenidos, registros, imágenes etc. los cuales no es conveniente mover de un lugar a otro mediante un transferencia directa, estos archivos crecen innumerablemente y aquí es uno de los mayores aporte que poseen los algoritmos de compresión con relación a nuestra red de redes. 
+
+A diferencia del volúmenes de datos las infraestructura de redes y su velocidad no crece directamente proporcional, que esto genera un sin fin de problemas para los usuarios e industria web. La latencia  es el tiempo de respuesta que demora un usuario en solicitar, hacer un \emph{REQUEST}, a un servidor, simplemente es un el tiempo de respuesta desde iniciada una acción demandada. 
+Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos multimedia, texto, etc.
+
+Las propiedades de estos algoritmo no solo permiten juntar un set de archivos y lograr un tasa de compresión optima para ser transmitido por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés debido a ya las antes mencionadas similitudes que poseen un algoritmo de compresión y un modelo variable de Markov.
+
+Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}, algoritmos de compresión sin pérdida.
 
 
 
 
-\section{Tipos de Algoritmo de compresión}
+
+
+
+
+
+%Sintetis de paper: Using Compresion models for filtering troll comments
+\section{Modelos de Compresión}
  
-	\begin{enumerate}
-		\item PPM
-		\item LZ 77
-		\item LZ 78
-		\item LZ W
-		
-	 	
-	\end{enumerate}
+ \subsection{Prediction by Partial Match (PPM)}
+ 
+	El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algoriths}. El algoritmo requiere un tope superior $D$ en el maximo del orden de Markov de un modelo variable de Markov (\emph{VMM}) para construirse. 
+	PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
 	
+	\begin{itemize}
+		\item Escape
+		\item Exclusion
+	\end{itemize}
+	
+% @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
+
+
+ \subsection{Probabilistic Suffix Tree (PST)}
+ 
+ Los arboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor VMM con limite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un limite superior a la orden de Markov de un "fuente certera" es conocida como \emph{learner}.
+ 
+ %@TODO: explayar mas aca
  
  
+ \subsection{Cadenas de Markov Dinámicas}
+ 
+ 
+ Los Algoritmos DMC ó \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. 
  
  
 
