@@ -49,7 +49,10 @@ Para introducir el camino se debe presentar formalmente los algoritmos de compre
  \subsection{Cadenas de Markov Dinámicas}
  
  
- Los Algoritmos DMC ó \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. 
+ Los Algoritmos DMC ó \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los simbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los simbolos en el alfabeto. 
+ Esta distribución de probabilidad es usada para predecir el siguiente digito binario. 
+ Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo simbolo entra. La estructura puede también 
+ ser actualizada usando \emph{state cloning method}.
  
  
 
