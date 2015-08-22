@@ -1,0 +1,70 @@
+\chapter[Tema]{Predicciones sobre Web Access}
+\label{ch:tema}
+
+%w 
+
+Cada vez que un usuario accede a un sitio web el tiempo en el que pasa en este es registrado
+por el servidor, dependiendo de los distintas ofertas que ofrece la industria existen servidores como Apache, Ngnix, Tomcat
+y recientemente Node.js. Todos los servidores propiamente tal cumple con su función de orquestar procesos
+como también ir ofreciendo en cada petición que desee el cliente el contenido indicado.
+
+Una de los puntos en común en los servidores mencionados anteriormente es que cada uno guarda registros variados sobre su funcionamiento,
+estos archivos denominados \emph{Logs}, son los que realmente presentan interés para nosotros. Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{REQUEST} que ha realizado el usuario mas su \emph{SESSION} nos da la información necesaria para clasificar tipos de usuarios.
+
+Dado lo anterior podemos hacer minería de los datos que un servidor ha recolectado durante un periodo de tiempo, de lo anterior  podemos mencionar que existen varias
+técnicas para poder hacer \emph{WEB ACCESS PATTERN } y también  "Web Usage Minning", de sus siglas en ingles es minería del uso de una \emph{web}. Nuestro interés no es abordar este tema pero si explicarlo para poder analizar secuencias de acceso, con el objetivo de poder predecir el siguiente comportamiento que tiene un usuario al momento de visitar un sitio web.
+
+
+
+
+
+\section{Modelos tradicionales}
+ 
+Los modelos tradicionales están basado en modelos de Markov, los cuales han ayudado a predecir los accesos de los usuarios, pero en la práctica existen 
+muchas limitaciones técnicas que permiten que se usen. 
+
+%explicar los jodidos de Markov y su matemática
+Los modelos de  
+
+ %explicar que son los prrocesos estocasticos y modelos.
+ 
+ 
+ \subsection{Limitaciones de los modelos tradicionales de Markov}
+ 
+ %%%%% Cita pagina 2 Dongshan2002 %%%%%%%%
+ 
+ Los modelos tradicionales de Markov predicen la siguiente página Web que un usuario puede acceder considerando el acceso más probable, iterando coincidir su secuencia de acceso actual con secuencias de acceso Web histórica.
+ 
+
+ 
+ Usando estos modelos se ha comparado los investigadores comparan el máximo de elementos  prefijos de cada secuencia histórica de web access con los elementos sufijos de la  misma longitud de secuencia de web access actual del usuario y obteniendo secuencias históricas con la probabilidad más alta de elementos que coinciden.
+ 
+ El modelo de Markov de orden cero es la tasa base de probabilidad incondicional, la cual es la probabilidad de la página visitada.
+ 
+$$ p(xn) = Pr(Xn) $$
+ 
+ 
+ El modelo de Markov de orden uno observa la probabilidad de la transición de un pagina a otra, la podemos interpretar así:
+ 
+ $$ p(x2 | x1) = Pr(X2 = x2 | X1 = x1) $$
+ 
+ El K-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una nueva  n-ésima página  dado su anterior pagina visitada, teniendo que $k = n -1$ paginas vistas:
+ 
+ 
+
+$$ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k})$$
+ 
+ 
+ 
+ Modelos de Markov de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resulatan de alta complejidad en espacio de estado y cobertura.
+ 
+Modelos con mayor Orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el numero de estados tiende a crecer exponencialmente al igual que el Orden del modelo.
+
+Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los test podrían no tener estados correspondientes en los modelos de Markov de mayor orden, por lo que reduciría su alcance.
+ 
+  %%%%% fin Cita parafraseo pagina 2 Dongshan2002 %%%%%%%%
+ 
+
+% Genero toda las referencias para demostrar el uso de la bibliografía
+% No es necesario que utilice este comando en su documento.
+\nocite{*}
