@@ -34,7 +34,43 @@ Perhaps the most commonly used techniques are based on Hidden Markov Models (HMM
 
 - ¿ Porque se eligio lz78 y no PPM?
 
-- the goal is to generate a model capable of predicting the rest of the sequence.},
+- the goal is to generate a model capable of predicting the rest of the sequence.
+
+- The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.
+
+- lz78 algorithm that forms the basis of many commercial applications for compression
+
+-
+3.1 Lempel-Ziv 78 (LZ78)
+The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
+The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary. Clearly, the newly parsed phrase s′ extends an existing
+ 
+dictionary phrase by one symbol; that is, s′ = sσ, where s is already in the dictionary
+(s can be the empty phrase). For compression, the algorithm encodes the index of s′
+(among all parsed phrases) followed by a fixed code for σ. Note that coding issues will not
+concern us in this paper. Also observe that lz78 compresses sequences without explicit
+probabilistic estimates. Here is an example of this lz78 parsing: if q11 = abracadabra, 1
+then the parsed phrases are a|b|r|ac|ad|ab|ra. Observe that the empty sequence ǫ is always in the dictionary and is omitted in our discussions.
+An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983). We describe separately the learning and prediction phases.6 For simplicity we first discuss the binary case where Σ = {0, 1}, but the algorithm can be naturally extended to alphabets of any size (and in the experiments discussed below we do use the multi-alphabet algorithm). In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above). In the tree we also maintain counters that hold statistics of q1n. The initial tree contains a root and two (left and right) leaves. The left child of a node corresponds to a parsing of ‘0’ and the right child corresponds to a parsing of ‘1’. Each node maintains a counter. The counter in a leaf is always set to 1. The counter in an internal node is always maintained so that it equals the sum of its left and right child counters. Given a newly parsed phrase s′, we start at the root and traverse the tree according to s′ (clearly the tree contains a corresponding path, which ends at a leaf). When reaching a leaf, the tree is expanded by making this leaf an internal node and adding two leaf-sons to this new internal node. The counters along the path to the root are updated accordingly.
+To compute the estimate Pˆ(σ|s) we start from the root and traverse the tree according to s. If we reach a leaf before “consuming” s we continue this traversal from the root, etc. Upon completion of this traversal (at some internal node, or a leaf) the prediction for σ = ‘0’ is the ‘0’ (left) counter divided by the sum of ‘0’ and ‘1’ counters at that node, etc.
+For larger alphabets, the algorithm is naturally extended such that the phrases are
+stored in a multi-way tree and each internal node has exactly k = |Σ| children. In addition,
+each node has k counters, one for each possible symbol. In Figure 1 we depict the resulting
+tree for the training sequence q11 = abracadabra and calculate the probability Pˆ(b|ab), 1
+assuming Σ = {a, b, c, d, r}.
+Several performance guarantees were proven for the lz78 compression (and prediction)
+algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
+
+
+
+-> Modificaciones a LZ78 
+
+A major advantage of the lz78 algorithm is its speed. This speed is made possible by compromising on the systematic counts of all sub-sequences. For example, in Figure 1, the sub-sequence br is not parsed and, therefore, is not part of the tree. However, this sub- sequence is significant for calculating Pˆ(a|br). While for a very long training sequence this compromise will not affect the prediction quality significantly, for short training sequences the lz78 algorithm yields sparse and noisy statistics. Another disadvantage of the lz78 algorithm is its loss of context when calculating Pˆ(σ|s). For example, in Figure 1, when taking σ = b and s = raa, the lz78 prediction algorithm will compute Pˆ(b|raa) by travers- ing the tree along the raa path (starting from the root) and will end on a leaf. Therefore, Pˆ(b|raa) = Pˆ(b|ǫ) = 5/33. Nevertheless, we could use the suffix a of raa to get the more accurate value Pˆ(b|a) = 5/17. These are two major deficiencies of lz78. The lz-ms al- gorithm attempts to overcome both these disadvantages by introducing two corresponding heuristics. This algorithm improves the lz78 predictions by extracting more phrases during learning and by ensuring a minimal context for the next phrase, whenever possible.
+
+
+
+-> 
+We focused on prediction settings that are more closely related to those required by machine learning practitioners dealing with discrete sequences},
   Url                      = {http://dl.acm.org/citation.cfm?id=1622487.1622499}
 }
 
