@@ -5,6 +5,11 @@
 .gz
 .gitignore
 
+#codes
+.idea
+*.class
+.class
+
 # More ignore files at https://github.com/github/gitignore
 #############################
 # Tex
