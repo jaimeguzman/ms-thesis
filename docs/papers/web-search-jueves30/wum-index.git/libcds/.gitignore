@@ -1,6 +1,0 @@
-include/*.h
-*.o
-includes/*.h
-*.a
-*.so
-.DS_Store
