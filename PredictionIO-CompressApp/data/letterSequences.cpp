@@ -19,6 +19,10 @@ using namespace std;
 
 frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
 
+@TODO:
+ 	le quite las primeras lineas al input para concentrarme
+ 	en los datos 
+
 **/
 
  
@@ -54,7 +58,7 @@ int main()
    // Iterate through all elements in map
    map<string, int>::iterator it = mapCategories.begin();
 
-   ifstream  fin("msnbc990928-10entry.seq");
+   ifstream  fin("msnbc990928.seq");
    string    file_line;
    while(getline(fin, file_line))
    {
@@ -67,7 +71,7 @@ int main()
 
 	  for (int i = 0; i < tokens.size(); ++i){
 		string tmp = tokens.at(i); 
-		cout << alphabet.at( stoi(tmp)) << " ";
+		cout << alphabet.at( stoi(tmp) - 1) << " ";
 	  }cout<< endl;
    }
     return 0;
