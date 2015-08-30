@@ -4,6 +4,8 @@
 .aux
 .gz
 .gitignore
+tesis/thesis.tex
+
 
 #codes
 .idea
