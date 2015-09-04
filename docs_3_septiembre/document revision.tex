@@ -1,0 +1,369 @@
+Argumento de tesis
+Este documento comprende el estudio y creación de un algoritmo híbrido entre Machine Learning y Loseless Compression Algorithm. Dado que  Internet crece cada día y los datos aumentan en volúmenes del orden de los Terabytes, creemos de interés usar técnicas de compresión para realizar un procesamiento de mayor información con la menor cantidad de recursos.
+Hoy existen variados tipos de web, redes sociales, microbloging, web informativas, etc. El contenido proporcionado a los usuarios finales  ya no es estático y esto permite que los mismos puedan generar, aportar, y/o modificar contenidos, Por esta razón, la ingeniería ofrecida para construir web está en constante evolución, lo que ha ayudado a generar mas recursos para poder desarrollarla. 
+Muchas de estas nuevas tecnologías han permitido entregar una mejor experiencia al momento de navergarla, pero, a pesar de este gran avance tecnológico, esto no ha permitido crear Webs que sean por sí mismas inteligentes y puedan ir anticipando su comportamiento,  por ejemplo;  como disminuir la latencia desde que se abre una web ya visitada,  cuando se navega dentro de un sitio con alta demanda,  el punto de vista de  arquitectura como servicio en que las hospedan no se ha visto incluída, dando un aspecto económico a los recursos utilizados. Si bien el crecimiento de los recursos de almacenamiento en la nube se encuentran en apogeo, las redes no crecen a la misma velocidad. 
+
+
+
+
+1.-Copia de resumen de los archivos para tesis
+
+Predicción de Markov de Orden Variable
+Ron Begleiter
+Ran El-Yaniv
+Golan Yona
+
+Este documento se refiere a los algoritmos de predicción de secuencias discretas en un alfabeto finito, utilizando variables modelos Markov. La clase de este tipo de algoritmos es amplio y comprende en principio cualquier algoritmo de compresión sin pérdida. Nos enfocamos en seis prominentes algoritmos de predicción, incluyendo  (CTW), (PPM) y (PST).  Discutiremos las propiedades de estos algoritmos y podemos comparar su rendimiento con secuencias reales de tres dominios.
+La comparación se hace con respecto a la predicción calidad medido por el promedio de pérdida de registro. También comparamos algoritmos de clasificación basados en estos predictores con respecto a un gran número de clasificación de  tareas. Nuestros resultados indican que una "descomposición" CTW (una variante del algoritmo CTW) y PPM superan todos los demás algoritmos de predicción de las tareas. Sorprendentemente, un algoritmo diferente, que es una modificación del algoritmo de compresión Lempel-Ziv supera todos los algoritmos de  problemas de clasificación..
+
+
+UN NUEVO MODELO DE MARKOV PARA EL ACCESO A LA WEB PREDICCIÓN
+XING DONGSHAN AND SHEN JUNYI
+
+Predecir con exactitud el comportamiento del usuario al acceder a la Web puede reducir al mínimo la latencia que percibe el usuario, que es crucial en el rápido y creciente World Wide Web. A pesar de que los modelos Markov han ayudado a predecir comportamientos de acceso de usuario, tienen graves limitaciones. Los modelos Híbridos de árbol, Markov predicen acceso a la Web, precisamente al mismo tiempo que ofrecen un alto nivel de cobertura y escalabilidad.
+
+La World Wide Web es una gran base de datos donde se almacena  y se accesa a la información, permite a los usuarios navegar a través de enlaces y ver con los exploradores. El tráfico de Internet ha aumentado considerablemente debido a la popularidad de la Web y como consecuencia los usuarios perciben la latencia. La solución obvia de incrementar el ancho de banda, no es viable, ya que no podemos cambiar fácilmente la infraestructura de la Web (Internet) sin gran costo económico. Sin embargo, si se pueden predecir las búsquedas del futuro usuario, podríamos poner esas páginas en el lado del cliente de caché cuando el navegador es gratuito. Cuando un usuario solicita una de las páginas, el navegador puede recuperarlo directamente desde la memoria caché.
+
+Gran parte de las actuales investigaciones han examinado modelos y buscan predecir comportamientos acceso de usuario en la Web para mejorar los motores de búsqueda, y a entender los modelos compra influencia para predecir Web access, necesitamos un método para modelar y analizar secuencias de acceso Web. Con esta información, podemos deducir las solicitudes de los usuarios.
+
+Algunos investigadores han usado modelos Markov tradicionales, que a menudo son empleados para estudiar los procesos estocásticos y predecir comportamientos acceso de usuario. En general, se utiliza la secuencia de páginas Web el usuario ha accedido a que la entrada, con el objetivo de construir modelos de Markov que pueden predecir la página a la que el usuario lo más probable es acceder a la siguiente.  usado el N-hop Markov modelos para mejorar las estrategias de prelectura cachés Web,  Markov modelos para predecir la siguiente página que accede el usuario;  Lo Mejor y  utilizaron modelos Markov para clasificar las sesiones de usuario.  Sin embargo, pusieron a prueba la eficacia de los diferentes modelos de predicción de Markov para el acceso a la Web y los tradicionales modelos de Markov son inadecuados para este propósito. Por lo tanto, necesitamos un nuevo modelo de predicción de Markov para el acceso a la Web.
+
+El híbrido de fin de árbol modelo de Markov puede predecir precisamente el acceso Web, lo que proporciona una alta cobertura y una buena escalabilidad. HTMM inteligente combina dos métodos: una estructura de árbol modelo de Markov que agrega el método acceso secuencias de coincidencia de patrones y un híbrido de método que combina diferentes modelos de Markov. Las evaluaciones del rendimiento comparando nuestros HTMM Markov modelos tradicionales a confirmar su utilidad..
+
+
+
+
+Memoria dinámica y eficiente página web modelo de predicción de LZ78 y LZW algoritmos
+Alborz moghaddam * and Ehsanollah kabir*
+
+La predicción de acceso a la Web  ha despertado un gran interés en los últimos años. Prelectura Web y algunos sistemas de personalización para utilizar algoritmos de predicción. La mayoría de sus aplicaciones para predecir la siguiente  página web tienen un componente que no es la preparación de datos y una sección en línea que proporciona contenido personalizado para los usuarios basándose en sus actuales actividades de navegación. En este trabajo presentamos un modelo de predicción que no tiene un componente sin conexión y coloca en la memoria con  buena precisión. El algoritmo se basa en la LZ78 y LZW los algoritmos que están adaptados para modelar la navegación del usuario en la web. Nuestro modelo reduce complejidad computacional que es un problema grave en los países en desarrollo en sistemas de predicción en línea. La evaluación del desempeño se presenta mediante registros real en la web. Esta evaluación muestra que nuestro modelo necesita mucho menos memoria PPM que la familia de algoritmos con una mejor precisión..
+
+
+
+Utilizando modelos de compresión para filtrar Comentarios Troll
+Jorge de-la-Pen ̃a-Sordo, Igor Santos, and Pablo G. Bringas
+
+Internet está evolucionando, el contenido ha cambiado y en la actualidad, los usuarios y lectores de un sitio pueden crear contenido. Pueden expresarse mostrando sus sentimientos u opiniones comentando diversas historias o comentarios de otros usuarios en sitios web de noticias sociales. Este hecho ha llevado a efectos secundarios negativos: la aparición de troll los usuarios y sus contenidos que buscan deliberadamente polémica. En este trabajo proponemos un nuevo método para filtrar trolling comentarios utilizando modelos de compresión. Normalmente, espacio vectorial, representación y utilización  del modelo  es bastante común, pero estos filtros pueden ser atacados. Con este fin, se valida nuestro enfoque con datos de "Menéame", un popular sitio de noticias social española, la formación de varios modelos de compresión, que demuestra que nuestro método puede mantener altos índices de precisión, mientras que este tipo de filtros es difícil de derrotar..
+
+
+
+Web prefetching performance metrics: A survey 
+Josep Dome`nech∗, Jose ́ A. Gil, Julio Sahuquillo, Ana Pont
+
+Las técnicas de Prelectura Web  han sido señaladas  especialmente importante para reducir las latencias web percibidas y, en consecuencia, una importante cantidad de trabajo se puede encontrar en la literatura. Pero, en general, no es posible hacer una comparación justa entre las propuestas técnicas de prelectura debido a tres razones principales: (i) el sistema de referencia donde se aplica prefetching varía ampliamente entre los estudios; (ii) la carga de trabajo utilizada en los experimentos no es la misma; (iii) los diferentes indicadores clave de rendimiento se utilizan para evaluar sus beneficios.
+Este documento se centra en la tercera razón. Nuestra principal preocupación es la de identificar cuáles son los índices cuando se trata de estudiar el comportamiento de diferentes técnicas recuperadoras. Con este fin, proponemos una taxonomía basada en tres categorías, la cual nos permite identificar las analogías y diferencias entre los índices comúnmente utilizados. Con el fin de controlar, de manera más formal, la relación entre ellos, que ejecute los experimentos y estimar estadísticamente la correlación entre un subconjunto representativo de estas medidas. Los resultados estadísticos nos ayudan a sugerir que los índices deben ser seleccionados para realizar estudios de evaluación en función de los diferentes elementos de la arquitectura web.
+La elección de las métricas clave es de máxima importancia para un correcto estudio y representante. Como los resultados experimentales demuestran, en función de la métrica empleada para controlar el rendimiento del sistema, los resultados no sólo varían mucho pero también llegar a conclusiones opuestas..
+
+
+
+Pattern Based Lossles Data Compression
+Angel Kuri Morales
+
+En este trabajo se discute un método de compresión de datos sin pérdidas (LDC) que se basa en encontrar un conjunto de patrones (cada uno de estos patrones se llama metasymbol) de un conjunto de datos cuyos elementos (que llamaremos símbolos) son de tamaño arbitrario y que es, en sí mismo, también de tamaño arbitrario. Este conjunto de datos arbitrarios se llama  mensaje. Con el fin de lograr los LDC se necesitan dos cosas: a) un método para encontrar el metasymbols y b) un esquema para representar el mensaje en función de estos metasymbols. En el pasado,  LDC se ha intentado, entre otros métodos, mediante el uso de la probabilidad de que un símbolo determinado o de la combinación de símbolos aparecen en el mensaje (como en Huffman y PPM esquemas de codificación) o por mantener un registro de las últimas K símbolos de los mensajes stream y utilizar las referencias a este registro para representar los datos (como en las diversas variantes de sistemas de compresión Lempel-Ziv).  En los dos enfoques antes mencionados a la LDC la estructura de la primera estructura de datos en que se basa la metodología se fija a priori. Por otra parte, la relación de compresión de ambos enfoques, los cambios incluso en la presencia de patrones similares en la estructura del mensaje. La estructura de los metasymbols en nuestro enfoque, sin embargo, no depende de consideraciones preconcebidas. De hecho, la estructura de cada metasymbol es arbitraria y, en general, diferente de cualquier otro. Mostramos que Metasymbolic Compresión de datos sin pérdidas (MLDC) depende de la estructura de los patrones de los símbolos y no en los símbolos y en qué condiciones MLDC es superior a otros LDC..
+
+
+Foundations of Machine Learning
+Marcus Hutter
+
+La formación y desarrollo de algoritmos que aprenden de la experiencia en la máquina, construir modelos de medio ambiente de los conocimientos adquiridos, y el uso de estos modelos de predicción. Aprendizaje de la máquina se suelen enseñar como un conjunto de métodos que pueden resolver un montón de problemas (véase mi introducción a LME la semana pasada).  El siguiente tutorial se da un paso hacia atrás y le pregunta sobre los fundamentos del aprendizaje de la máquina, y en particular la (filosófico) problema de inferencia inductiva, (Bayesiano) las estadísticas, y la inteligencia artificial. El tutorial se centra en principios, unificados  y métodos exactos..
+
+
+A community detection algorithm for Web Usage Mining Systems
+Yacine Slimani 1, Abdelouahab Moussaoui 1,Yves Lechevallier 2, Ahlem Drif 
+
+ La extracción de conocimiento de como el usuario de la Web puede acceder a los datos y a la utilización de la Web Mining (WUM) es tarea difícil que sigue ganando importancia como el tamaño de la web y su base de usuarios. Es por eso que varios métodos han sido propuestos en la literatura para comprender el comportamiento del usuario en la web y mejorar los modos de acceso a la información. En el presente trabajo, nos proponemos salir a la comunidad técnica de detección del proceso en WUM, por ello, proponemos un método de extracción de datos basado en la modularidad. Los resultados obtenidos muestran la aptitud del algoritmo propuesto para determinar la solución óptima, y para mejorar el diseño Web..
+
+
+Web Log Cleaning for Mining of Web Usage Patterns
+Theint Theint Aye
+
+Web usage mining (WUM) es un tipo de web mining, que explota técnicas de minería de datos para extraer información valiosa de comportamiento de navegación del mundo de los usuarios de la Web. Los datos deben ser preprocesados para mejorar la eficiencia y la facilidad del proceso de minería. Por ello es muy importante definir antes de aplicar técnicas de minería de datos el descubrir patrones de acceso de usuario web log. La tarea principal de preproceso de los datos  para eliminar lo que es ruidoso y datos irrelevantes,con el fin de reducir el volumen de los datos para descubrir patrones fase. Este trabajo principalmente es en preprocesamiento de  datos en  la primera fase de la web usage mining campo con actividades como extracción y limpieza de datos algoritmos. Extracción Campo algoritmo realiza el proceso de separar los campos de la única línea del archivo de registro. Algoritmo de limpieza elimina datos incoherentes o elementos innecesarios en el análisis de los datos..
+
+
+
+An effective Data Preprocessing method for Web Usage Mining
+K. Sudheer Reddy 
+M. Kantha Reddy
+V. Sitaramulu
+
+Web Usage Mining (WUM) es una de las categorías de la minería de datos técnica que identifica patrones de uso de los datos de la web, a fin de percibir y atender mejor las necesidades de las aplicaciones web. La aplicación de WUM implica tres pasos: el preprocesamiento, descubrir patrones y análisis. El primer paso en WUM - El Preprocesamiento de los datos es una de las actividades esenciales que ayudarán a mejorar la calidad de los datos y sucesivamente los resultados de la minería. Este trabajo de investigación presenta varias técnicas de preparación de los datos de acceso incluso antes del proceso de extracción puede ser arrancado y estos se utilizan para mejorar el rendimiento de los datos el preproceso de identificar las sesiones individuales y usuarios únicos. Los métodos propuestos  ayudan a descubrir patrones significativos y relaciones a partir de la secuencia de acceso al usuario y resultan ser válidos y útiles en diversos ensayos de investigación. El papel se concluye proponiendo a futuro las líneas de investigación en este espacio..
+
+
+Analysis of Preprocessing Methods for Web Usage Data
+Liu Kewen
+
+Web usage mining Web de análisis de archivos de registro y acceso de usuario descubrir patrones de páginas Web, se pueden encontrar los modelos de acceso de los  usuarios automáticamente y rápidamente de los datos de registro gran Web, como rutas de acceso frecuente, acceso frecuente, grupos de páginas y la  agrupación de usuarios. Esto proporcionará una base  para la toma de decisiones de las organizaciones. Preprocesamiento de datos es una tecnología clave en esta actividad minera. En este documento se analiza el preproceso de Web usage mining en detalle. Después de que los datos de preproceso, el número de datos no válidos pueden reducirse significativamente..
+
+
+An Approach for Frequent Access Pattern Identification in Web Usage Mining
+Murli Manohar Sharma
+Anju Bala
+
+En la autorización de este mundo de internet, nadie es tocado con internet para su uso. Para este tipo de escenario, la minería de datos se convierte en una parte esencial de la informática. Minería de Datos es un sub-campo, en el que procesa los datos informáticamente datos recopilados y es capaz de ayudar al analista para proponer ideas para mejorar algunos de la compañía. El acceso de los usuarios se registran en los archivos de registro. Los logs del servidor web proporcionan información importante. En el campo de minería web el análisis de los registros web se realiza para identificar patrones de búsqueda del usuario. Enfoques de la forma habitual de encontrar los patrones, patrón árbol es creado y, a continuación, se hace el análisis, pero en este algoritmo propuesto no hay ninguna necesidad de creación y el árbol se realiza un análisis basado en el sitio web arquitectura, lo que aumentará la eficiencia del otro patrón algoritmos de coincidencia y sólo necesita un escaneado base..
+
+
+
+La información en Internet: Breve estado del arte para discutir el poder los usuarios v/s los medios tradicionales de comunicación en la red
+Diego Sáez-Trumper
+
+El siguiente articulo es un breve resumen de investigaciones recientes sobre los fenomenos de propagacion de informacion a traves de Internet y sobre el rol que cumplen los usuarios frente a las versiones “on-line” de los grandes medios de comunicacion. Con este proposito, damos un vistazo general a las tecnicas utilizadas en las Ciencias de la Computacion para analizar dichos procesos. En definitiva, el articulo permite familiarizar al lector con las investigaciones realizadas desde este campo sobre los procesos de difusion de informacion en redes, introduciendo conceptos y tecnicas claves para nuestra disciplina..
+
+
+
+Web cache memory compression for optimizing the performance in web browsers
+G. ShanmugaSundaram
+S. Aswini
+
+Los navegadores Web se utilizan a diario, el almacenamiento en caché de web donde juega un papel importante para la salvación de las páginas web y por lo tanto, ayuda a los usuarios en el proceso de reactivación de la páginas web más rápido cuando se utiliza otra vez. El estudio es realizado bajo el concepto de la compresión en la web, que se centra en gran medida en diferentes tipos de técnicas de compresión con antecedentes detallados son objeto de estudio. Y estudiar las obras de los investigadores anteriores, que analizan el problema.  Otro problema con cuestiones relacionadas con este trabajo son discutidos y se tendrá más en el futuro..
+
+
+A NewClustering and Preprocessing for Web Log Mining
+1B.Uma Maheswari, 2 Dr. P.Sumathi
+
+World Wide Web es un gran repositorio de páginas web y enlaces. Proporciona información acerca de muchas áreas para los usuarios de Internet. Hay un gran crecimiento y desarrollo en internet. Los accesos de usuarios  son documentados en los registros web. Web usage mining es la aplicación de técnicas de explotación minera en los registros. Ya que, debido a la gran utilización, los archivos de registro están creciendo a un ritmo más rápido y el tamaño es enorme. El preprocesamiento desempeña un papel vital en la eficacia del proceso de minería de datos de registro es normalmente ruidoso e indefinidos. Reconstrucción de los períodos de sesiones y las rutas están terminado por añadir páginas faltantes en el preprocesamiento. Además, las transacciones que ilustran el comportamiento de los usuarios se construyen exactamente en el preprocesamiento de calcular la longitud de referencia acceso de los usuarios por medio de tipo byte. Web de la agrupación de varios tipos de objetos pueden ser agrupados en torno a diferentes grupos con distintos fines. Mediante la teoría de la distribución de Dempster - Shafer la teoría, la creencia función medida de similitud en este algoritmo añade a la agrupación tarea la posibilidad de capturar la incertidumbre entre Web de navegación del usuario. Este documento los experimentos sobre el cumplimiento de preprocesamiento y la agrupación de registros en la web.Los resultados experimentales demuestra el gran rendimiento del algoritmo propuesto.
+
+
+Algorithms in the Real World Lecture Notes Fall 1997
+Guy Blelloch
+
+Este documento contiene los apuntes tomados por los alumnos en el curso de algoritmos en el semestre.
+
+
+
+DOBBS: Towards a Comprehensive Dataset to Study the Browsing Behavior of Online Users
+Christian von der Weth, Manfred Hauswirth
+
+La investigación de la conducta de navegación de los usuarios ha sido un tema de investigación activa desde la Web. Sin embargo, los nuevos servicios en línea cambian el significado detrás de la navegación por Internet y requieren una nueva mirada al problema. Plataformas como YOUTUBE o LAST.FM han comenzado a sustituir a los medios de comunicación tradicionales (cine, televisión, radio) y la distribución de los medios formatos CD, DVD, Blu-ray. En particular las redes sociales como Facebook atrajo toda nueva, especialmente los menos expertos en tecnología al público. Los avances en las tecnologías móviles de exploración de la de mover el norma y ha cambiado el comportamiento de los usuarios, a menudo se ha visto influida por la ubicación del usuario y el contexto en el mundo físico. Comúnmente se utilizan conjuntos de datos, tales como un servidor web para  acceder a los registros o los motores de búsqueda los registros de transacciones, son inherentemente incapaz de captar el comportamiento de navegación de los usuarios en todas estas facetas. DOBBS DERI Estudio del Comportamiento En Línea es un esfuerzo para crear un conjunto de datos que no sean intrusivas, completamente anónimo y capaz de preservar la privacidad. DOBBS es un complemento del explorador que realiza un seguimiento de los usuarios en el comportamiento de navegación. En este documento, se presenta la motivación detrás de DOBBS, describir el add-on, conjunto de datos, y se presentan algunos resultados para resaltar los puntos fuertes de DOBBS..
+
+
+
+Comparative Analysis Of Web Security In Open Source Content Management System
+Savan K. Patel
+V. R. Rathod
+Jigna B. Prajapati
+
+Internet se ha convertido en una herramienta de  valor incalculable  que permite mostrar sus capacidades al mundo corporativo. Mientras que las aplicaciones Web han adquirido importancia en  Internet, la seguridad es la única cosa a preocuparse. Los datos de la empresa son muy importantes para que floten en la nube y por eso la Seguridad de las aplicaciones Web se está convirtiendo rápidamente en una creciente preocupación para todas las empresas. En este trabajo hemos tratado de mostrar lo que es Piratería y sus síntomas. En el desarrollo de páginas web Sistema de Gestión de contenidos (CMS) está ganando tanta popularidad que se utiliza para hacer fácil la edición y el proceso de publicación para novatos incluso si él no sabe programación web. Hay miles de CMS de código abierto disponible en el mercado. Al hablar de gestión de contenido concepto dos o tres nombres como Joomla, Drupal y WordPress quedan en la mente. Como estos son uno de los mejores cmss en el mercado y su comunidad proporciona seguridad básica agradable aún queremos comparar estos CMS y quieren saber qué CMS ofrece mejor seguridad. Para hacer la comparación es que hemos hecho dos estudios de caso. En el caso 1 hemos desarrollado una página común en todos los CMS y, a continuación, una vez que hemos aplicado diferentes ataques web como sqli, XSS, CSRF, etc. y obtiene sus resultados hacking. En el caso 2 se utilizó Acunetix WVS Reporter v6.0 para encontrar la fuerza de seguridad en los diferentes CMS Aparte de esto, también hay que tratar de encontrar enlaces rotos en todas CMSs..
+
+
+Prediction Algorithms for User Actions
+Melanie Hartmann and Daniel Schreiber
+FALTA REVISAR DESDE AQUI-----
+
+Interfaces de usuario dinámicas (puig) tienen como objetivo facilitar la interacción con una interfaz de usuario, por ejemplo, poniendo de relieve los campos o de la adaptación de la interfaz. Para ello, es necesario que sean capaces de pre- dict la próxima acción del usuario de la interacción his- toria. En este documento, nos dan una visión general de la secuencia predicción algoritmos (spa) que se aplican en este dominio, y construir a partir de ellas para desarrollar dos nuevos algoritmos que combinan base de Markov de orden diferente. Se identifican las necesidades especiales que plantean y después de estos algoritmos y evaluar el desempeño de los balnearios en este sentido. Para ello, se utilizan tres conjuntos de uso real de los datos y sintetizar datos adicionales con características específicas. Nuestro relativamente simple pero eficiente algoritmo FxL funciona muy bien en el dominio de los balnearios que la convierten en un candidato ideal para la integración de un PUI. Para facilitar una mayor investigación en este campo, ofrecemos una biblioteca de Perl que contiene los algoritmos y herramientas para la evaluación.
+
+
+An Efficient Web Recommender System based on Approach of Mining Frequent Sequential Pattern from Customized Web Log Preprocessing
+Manisha Valera, GTU
+Uttam Chauhan, GTU
+
+Internet ha penetrado en todas las esferas de la sociedad, también se ha convertido en un inmenso y omnipresente distribución y servicio global de información centro..En el mundo real la única opción que queda es captar la atención del usuario y proporcionar con la lista de recomendaciones para que se ajuste a las necesidades de los usuarios y mantener su atención en su sitio web. Web usage mining es un tipo de minería de datos inteligente método personalizado que ofrecen servicios en línea, tales como recomendaciones web, generalmente es necesario para los usuarios del modelo de acceso a la web. Web usage mining incluye tres procesos, a saber, el preprocesamiento, descubrir patrones y análisis del modelo. La reducción de datos se logra a través de los datos el preprocesamiento. El objetivo de descubrir patrones de acceso secuencial frecuentes en la Web los datos del registro para obtener información sobre las ayudas a la navegación de los usuarios. En el sistema propuesto, una eficiente extracción secuencial se utiliza el algoritmo secuencial frecuentes para identificar patrones de acceso web. Los patrones de acceso se recuperan de un gráfico, que luego se utiliza para la correspondencia y generar enlaces web de recomendaciones.
+
+
+Extracting Sequential Access Pattern from Pre-processed
+Web Logs.
+S.Vijayalakshmi
+Dr.V.Mohan
+M.S.Sassirekha,O.R.Deepika
+
+Frecuente patrón secuencial (FSP) es un problema importante en web usage mining. En este documento, explorar sistemáticamente un patrón de crecimiento eficiente para minería de patrones secuenciales de gran base de datos de secuencias. Los enfoques adopta un (divide y vencerás) principio de crecimiento de la siguiente manera: bases de datos en secuencia recursiva se proyecta en un conjunto de pequeñas bases proyectadas sobre la base de la actual secuencia(s), y patrones secuenciales son cultivados en cada uno proyecta bases de datos por explorar solamente fragmentos localmente frecuente. Nuestra propuesta de método combina árboles y prefijo proyección crecimiento características de patrón de crecimiento con categoría posición característica codificada de poda categoría, todas estas características son las características clave de sus respectivas categorías, por lo que consideramos nuestro método propuesto como un crecimiento / principios de poda algoritmo híbrido que reduce de forma considerable tiempo de ejecución. Aplicación de estos enfoques híbridos método concreto usando algoritmos de minería de patrones secuenciales.
+
+
+
+How to Write Your PhD Proposal: A Step-By-Step Guide
+Dr. Qais Faryadi
+
+Esta evaluación sostiene que un pedazo de investigación debe pasar a través de un conjunto de pruebas rigurosas, como metodología científica (cuantitativo, cualitativo, experimental, y para la observación de), su validez, lógica (procedimiento para responder a una pregunta), fiabilidad (calidad de medida) y conclusión (con una precisión objetiva se han tomado medidas para asegurarse de que está libre de interés individual).  Esta guía examina, además, los procedimientos para escribir un práctico y realista propuesta doctoral. Además, esta evaluación crítica ayuda a los estudiantes de doctorado, proporcionando una completa guía sobre cómo escribir una tesis doctoral propuesta internacionalmente reconocidas. Por último, en esta investigación, los estudios de doctorado propuesta proceso de escritura, como resumen, introducción, planteamiento del problema, preguntas de investigación, revisión de la literatura, metodología de la investigación, los resultados de la investigación, la conclusión, los debates y las consecuencias están ilustradas.
+
+
+Web Page Prediction by Clustering and Integrated Distance Measure
+Poornalatha G1, Prakash S Raghavendra
+
+Los enormes avances de la internet y la World Wide Web en los últimos tiempos ha insistido en la necesidad de reducir la latencia en el cliente o el usuario final. En general, el almacenamiento en caché y recuperadores se utilizan técnicas para reducir el retraso experimentado por el usuario mientras esperas a que te la página web desde el servidor web remoto. El presente documento se trata de resolver el problema de predecir la siguiente página que se accede por el usuario sobre la base de la explotación de los registros del servidor web que mantiene la información de los usuarios que acceden al sitio web. La predicción de la siguiente página para ser visitadas por el usuario puede ser obtenido por el navegador, el cual a su vez reduce la latencia para el usuario. Usuario y así analizar la conducta en el pasado para predecir el futuro páginas web para ser navegado por el usuario es de gran importancia. El modelo propuesto da como resultado una buena precisión en comparación con los métodos existentes como modelo de Markov, regla de asociación, ANN etc.
+
+
+Correlation-based Feature Selection for Machine Learning
+
+Mark A. Hall
+
+Un problema central en aprendizaje de máquinas es la identificación de un conjunto representativo de las características para construir un modelo de clasificación para una tarea concreta. Esta tesis aborda el problema de selección de la función de aprendizaje de la máquina a través de una correlación. La hipótesis central es que la buena función juegos contienen características que están altamente correlacionados con la clase, pero sin correlación con los demás. Una evaluación de las características fórmula y sobre la base de las ideas de teoría, ofrece una definición operativa de la hipótesis. CFS (relación sobre la base de selección) es un algoritmo que las parejas esta evaluación fórmula con una adecuada correlación medida y una estrategia de búsqueda heurística.
+CFS fue evaluada por los experimentos con conjuntos artificiales y naturales. La máquina tres algoritmos de aprendizaje utilizadas fueron: C4.5 (un árbol de decisión alumno), IB1 (un ejemplo alumno), y Bayes ingenuo. Los experimentos con los conjuntos artificiales mostraron que el síndrome de fatiga crónica identifica rápidamente y pantallas irrelevantes, redundantes, ruidosa y características, y se identifican las características tanto tiempo como su pertinencia no dependen fuertemente de otras características. En dominios naturales, CFS normalmente eliminado más de la mitad de los largometrajes. En la mayoría de los casos, precisión de la clasificación con el conjunto reducido de características equivalentes o superar precisión utilizando el completo conjunto de características. Selección de la función de aprendizaje de la máquina degradado en los casos en que se han eliminado algunas funciones que son altamente predictivos de áreas muy pequeñas de la instancia.
+Más experimentos en comparación CSA con un contenedor de un conocido método de selección de la función objetivo que utiliza el algoritmo de aprendizaje para evaluar conjuntos de funciones. En muchos casos el CSA dio resultados comparables con la envoltura, y, en general, superó al contenedor en conjuntos pequeños. CFS ejecuta muchas veces más rápido que el contenedor, que le permite escalar a conjuntos de datos de mayor tamaño.
+Dos métodos de ampliar CFS a manejar interacción de características se presentan y evalúan experimentalmente. El primero considera pares de características y el segundo incorpora función peso calculado por el algoritmo RELIEF. Los experimentos sobre dominios artificial demostraron que ambos métodos son capaces de identificar características interactuando. En dominios naturales pares, el método dio resultados más fiables que usando los pesos de RELIEF.
+
+
+An Effective Clustering-based Prefetching Scheme
+for Spatial Databases System
+Huichao Mi and Yongqiang Yang
+
+Debido a las características de la web bases de datos espaciales, las restricciones sobre las aplicaciones de bases de datos espaciales web acceso a centrarse en velocidad. La principal solución para mejorar acceso a velocidad es el almacenamiento en caché y recuperadores. La prelectura prefetch planes futuros objetos espaciales en función de las distancias de las ubicaciones espaciales en lugar de acceder a contenidos. Para la mejora de la precisión de captura previa, proponemos un algoritmo de agrupamiento de clustVoronoi que, a partir de los registros del usuario web. Y, a continuación, se aplica a la prelectura clustVoronoi plan, llamado clustPref. Este sistema captura previa puede determinar automáticamente el número de clusters y dar el caso real de acceso a bases de datos espaciales. A través de un entorno de simulación, utilizando un conjunto de datos reales, podemos sacar la conclusión de que esta búsqueda puede mejorar de manera efectiva el acceso a bases de datos espaciales.
+
+
+ACTIVE LEZI: AN INCREMENTAL PARSING ALGORITHM FOR SEQUENTIAL PREDICTION
+KARTHIK GOPALRATNAM and DIANE J. COOK
+
+Predicción es un componente importante en una gran variedad de dominios de la Inteligencia Artificial y de aprendizaje de las máquinas, a fin de que Sistemas Inteligentes pueden hacer más informado y decisiones confiables. Algunos dominios requieren que la predicción se puede realizar en las secuencias de eventos que normalmente se pueden modelar como procesos estocásticos. Este trabajo presenta Activo LeZi (ALZ), un algoritmo de predicción secuencial que se basa en un enfoque teórico, y se basa en la aclamada LZ78 familia de algoritmos de compresión de datos. La eficacia de este algoritmo en un típico ambiente inteligente - la casa inteligente, está demostrado mediante este algoritmo para predecir uso del dispositivo en el hogar. El rendimiento de este algoritmo ha sido probado en conjuntos de datos sintéticos que son representativos de las interacciones típicas entre una casa inteligente y el habitante. Además, en el caso de la Casa entorno inteligente, introducimos un método de aprendizaje de una medida de la relación entre las acciones de ALZ, y demostrar la eficacia de este enfoque en Casa Inteligente datos sintéticos.
+
+
+Fast Lempel-ZIV (LZ’78) Algorithm Using Codebook Hashing
+Megha Atwal, Lovnish Bansal
+
+Cada sistema de comunicación debe ser capaz de replicar los datos transmitidos en el receptor aproximadamente el mismo si no exactos. Menor es la cantidad de datos es menor el consumo de ancho de banda y también la probabilidad de recepción errónea también disminuye. Fuente sistemas de codificación como algoritmo Lempel-Ziv ayudar a comprimir los datos antes de la transmisión y, por tanto, ayuda en ahorro de ancho de banda: Pero los datos comprimidos debe ser descomprimido antes de su uso. También el tiempo de compresión necesaria conduce a un retraso en la transmisión de datos que puede resultar fatal en sistemas de tiempo real.
+Para reducir el tiempo de codificación o compresión de algoritmo Lempel-Ziv, hash técnica puede ser utilizada que es el núcleo de este trabajo. El Hashing permite un rápido y fácil acceso a los datos almacenados, reduciendo así el tiempo de búsqueda de exponencial a lineal o en algunos casos casi constante o estable.
+
+
+Improve on Frequent Access Path Algorithm in Web Page Personalized Recommendation Model
+Yuhua Chen, Xin Chen and Haoyi Chen
+
+Los registros Web registrar las acciones y comportamientos de los usuarios. Por la explotación minera y analizar estos registros podemos encontrar navegación de los usuarios y patrones de acceso, y esto es muy importante y útil para la optimización de sitios web y web recomendadas. Este trabajo analiza en primer lugar la asociación personalizada basada en reglas modelo recomienda que es muy popular en sitio web consejero sistema, señala la limitación del acceso frecuente algoritmo de ruta en este modelo y, a continuación, la mejora. Por último, el documento muestra los resultados de la prueba de que el algoritmo mejorado puede recomendar la calidad.
+
+
+
+An Improved Algorithm of Mining Preferred Browsing Paths
+Hongbo Li
+Ning Wang
+Yu Wu
+
+Los algoritmos de minería navegación preferido trazados considerar la influencia de usuario horario de visita, pero ignoran la precisión influenciado por otros factores. Con el fin de resolver el problema, un algoritmo mejorado que las importaciones página similitud y el apoyo de preferencia se propone conceptos. En primer lugar, un Web-log de acceso de usuario en matrix. A continuación, mediante el cálculo de la similitud y ángel coseno apoyo de preferencia, el 2-elementos navegación preferido sub-conjunto de rutas. Finalmente a todos los sub-rutas se combinan. Los experimentos demuestran que el algoritmo es más preciso y eficaz.
+
+
+Research of Analysis of User Behavior Based on Web Log
+Jia Li
+
+En primer lugar, en este documento presenta la teoría y los conocimientos relacionados con los registros Web y, a continuación, se presenta un registro Web proceso de minería. En cuanto a este artículo se basa en procesamiento de registro Web, queremos llamar válido según los datos de los usuarios a un sitio web específico de usuarios acceder a los datos a través del procesado y, a continuación, analizar los comportamientos del usuario. El trabajo puede proporcionar un fundamento teórico para la gestión y optimización del sitio para los administradores de los sitios. Los experimentos han demostrado que el trabajo sea efectivo.
+
+
+GENRE CLASSIFICATION VIA AN LZ78-BASED STRING KERNEL
+Ming Li
+Ronan Sleep
+
+Desarrollamos el concepto de información normalizada distancia (NID) [ 7] en el núcleo distancia adecuada para su uso con un clasificador Vectores de Soporte, y demostrar su uso para un género de audio clasificación tarea. Nuestro sistema de clasificación implica un número relativamente pequeño de bajo nivel características de audio, es eficiente para calcular, pero genera una precisión que se compara positivamente con obras recientes.
+
+
+Mining User Access Logs to Optimize Naviga- tional Structure of Adaptive Web Sites
+Željko Eremić*, Dragica Radosav*, Branko Markoski*
+
+Sitios Web pueden contener numerosos documentos. Mediante el uso de algunas técnicas de la web, es posible analizar los datos de los usuarios sobre cómo utilizar los recursos, el contenido de esos documentos y la estructura de los sitios web. Sitios web adaptable automáticamente cambiar su estructura y representación basada en comportamiento del visitante. Shortcutting es un enfoque que permite conectar dos documentos- que nunca se ha conectado antes. La mayoría de los enfoques existentes permite conectar el primero y el último documento de ruta de navegación del usuario, sin tener en consideración la posibilidad de que algunos de los documentos dentro de la ruta de navegación puede contener información útil para lograr un documento de destino. Estos documentos, que se colocan dentro del usuario ruta de navegación, son llamados wayposts y pueden contener información útil que puede ayudar a los usuarios a llegar a la "meta" documento. El objetivo de este trámite es para discutir sobre todas las posibilidades de la identificación de los documentos waypost en las rutas de navegación de los usuarios y que suponen una optimización de estructura de navegación de un sitio web basado en las rutas de navegación de los usuarios, inicial y documentos de destino.
+
+
+
+Web Navigation Model based on linear probabilistic approach
+Dr.Arvinder Kaur Diksha Dani* & Kamna Singh
+
+Todas las aplicaciones web están formados por un conjunto de páginas. Navegación es uno de los aspectos más importantes de un diseño web. Por lo tanto, una de las principales preocupaciones de una aplicación web es la de gestionar la navegación entre estas páginas . Comportamiento del usuario web es impredecible. El ojo del usuario explora a través de una página para decidir qué enlace en el que se hace clic. Por lo que es necesario para el estudio y seguimiento de la navegación del usuario comportamiento con el fin de predecir la página siguiente accesos. Navegación Web predicción es uno de los temas más importantes para el debate en el ámbito de la investigación área de navegación Web minería de patrones. Este trabajo se propone un modelo de navegación web probabilista que predicen la secuencia de las páginas de la web se accede por los usuarios después de la entrada en la página web. Se basa en lineal enfoque probabilista. El modelo se asemeja al modelo de Markov.
+
+
+Survey of Recent Web Prefetching Techniques
+Sonia Setia
+justjyoti.verma
+Neelam Duhan
+
+Almacenamiento en caché de Web y web prefetching son las dos áreas principales de investigación se centró en reducir el usuario percibe latencia. Tanto si se utiliza bien puede ser de gran ayuda a la hora de reducir esta latencia de almacenamiento en caché de web le ayuda en la explotación temporal web latencia mientras captura previa espacial ayuda a explotar la latencia. Sin embargo, si precapturan páginas no son visitados por los usuarios en sus posteriores accesos, pueden aumentar el tráfico de la red y la sobrecarga del servidor web. Este documento tiene el propósito de estudiar diversos trabajos de investigación que han trabajado en esta dirección.
+
+
+
+CPT+: Decreasing the time/space complexity of the Compact Prediction Tree
+Ted Gueniche, Philippe Fournier-Viger,
+Rajeev Raman, and Vincent S. Tseng
+
+Predicción próximos temas de secuencias de símbolos tiene muchos ap de embellecimiento en una amplia gama de dominios. Secuencia varios modelos de predicción se han propuesto como DG, todos k-fin markov y PPM. Recientemente, un modelo compacto llamado árbol Predicción (CPT) se ha propuesto. Se basa en una estructura de árbol y un algoritmo de predicción más complejos para ofrecer mucho más las predicciones exactas de muchas de las de pre- dicción arte modelos. Sin embargo, una limitación importante de CPT es su alta complejidad tiempo y espacio. En este artículo, abordamos esta cuestión, proponiendo tres nuevas estrategias para reducir la prevención de la tortura y la predicción de tiempo, aumentar y su precisión. Resultados experimentales en siete conjuntos reales muestran que el modelo resultante (CPT) es hasta 98 veces más compacto y 4.5 veces más rápido que CPT, y tiene la mejor precisión global en comparación con seis de los modelos más actuales de la literatura: Todos K-fin Markov, CPT, DG Lz78, PPM y AGTD.
+
+
+Research of Data Mining Based on E-Commerce
+Li Yong-hong,
+Liu Xiao-liang
+
+El documento describe los datos de la Web tecnología de la minería, minería de datos Web proceso, fuentes de datos y usos, diseña un sistema de recomendaciones personalizadas basadas en Web utilizar la minería para el comercio electrónico, y se analiza en detalle la función de cada uno de los módulos del sistema y técnicas de ejecución. A través de la minería de datos el registro histórico de servidor Web, el sistema puede acceder a la exploración del usuario pautas para brindar un servicio personalizado para los usuarios.
+
+
+Web-scale Entity Annotation Using MapReduce
+Shashank Gupta
+Varun Chandramouli
+Soumen Chakrabarti
+
+Cloud computing marcos, como mapa de reducir (MR) son ampliamente utilizados en el contexto de registro minero, invertida indexación y análisis de datos científicos. Aquí nos ocupamos de la nueva e importante tarea de anotar token se extiende en miles de millones de páginas Web que mencionan entidades de una gran entidad catálogo como la Wikipedia o cocaína (crack).  El paso clave en la anotación es desambiguación: dado que el token Albert, utilice su mención para determinar que Albert se ha mencionado. Desambiguación requiere una celebración en la RAM de la máquina adquirida modelo estadístico para cada mención frase. En un trabajo anterior con sólo dos millones entidades, podríamos colocar todos los modelos en la memoria RAM, y transmitir rápidamente a través del corpus desde el disco. Sin embargo, a medida que crece el catálogo de cientos de millones de entidades, esta sencilla solución ya no es viable. Adaptaciones simples como el almacenamiento en caché y desalojar a los modelos en línea, o de hacer varias pasadas sobre el corpus mientras mantiene una pequeña fracción de los modelos en la memoria RAM, mostraron desempeño inaceptable. A continuación, se ha intentado escribir un MR aplicación Hadoop estándar, pero esta en un grave problema de sesgo.  (82,12 % CPU inactiva).  Sesgo en EL MR. aplicación parece muy difundida. Muchos métodos de mitigación de inclinación se han propuesto recientemente. Hemos intentado SkewTune, que mostraron una mejora muy modesta. Nos dimos cuenta de que reducir división de claves es esencial, y simples pero eficaces diseñado específica de la aplicación de carga y estimación de métodos de división. Un modelo de alto rendimiento se creó por primera vez, lo que condujo a una función objetiva que hemos optimizado heurísticamente. El programa fue ejecutado el Hadoop EL MR. Este enfoque dio lugar a grandes beneficios: nuestra última anotador fue 5.4× más rápido que el estándar Hadoop MR y 5,2 × más rápidamente de lo SkewTune. Tiempo de inactividad se redujo a 3 %.  Si bien afinado para nuestra aplicación, nuestra técnica independiente puede ser de interés.
+
+
+Stability Analysis for Users' Web Preference
+Bo Zhang, Wenli Zhou, Hao Yan, Yinan Dou, Jing Ma
+
+Advanced correo electrónico personalizado de aplicaciones requieren un amplio conocimiento acerca de sus preferencias del usuario con el fin de dar a las recomendaciones de productos personalizados y adaptados a las necesidades específicas de producto ofrece. Mucha investigación se ha realizado con los registros Web de inferir las preferencias de los usuarios y predecir el comportamiento de los usuarios. Sin embargo, poca investigación mide la estabilidad de las preferencias del usuario en el tiempo. En este documento, el índice que se denomina coeficiente de estabilidad Web (ST) a partir de un análisis exhaustivo de la Web acceso a los registros se propone representar la estabilidad de preferencia del usuario. A continuación, hemos utilizado k-means clustering algorithm para asignar a los usuarios en diferentes grupos, que se calcula a partir de los valores de representación vectorial de ST. Al analizar patrones de usuario, presentamos algunas conclusiones interesantes que nos facilite para comprender mejor características de comportamiento del usuario en la página Web.
+
+
+The Research of Web Users’ Behavior Mining Based on Association Rules
+Xiaohong Shan
+Huamei Sun
+
+Al acceder a sitios web, los usuarios suelen dejar un montón de acceder a la información, que puede ser explotado razonablemente para ayudar a los administradores de sitio web para obtener acceso a los patrones de los usuarios. En primer lugar, en este artículo presenta el preproceso de registros web, que incluye las tareas de limpieza de datos, datos Discretizaciï¿½ y su aplicación. Sobre la base de preproceso el método de análisis del recurso solicitado "URL" y "referer" que es la página web antes de que los usuarios navegar por la dirección URL de web log por el uso de las reglas de la asociación se propone encontrar el acceso a los patrones de los usuarios. Por último, el experimento se lleva a cabo. El resultado muestra que el método es viable y que puede ayudar al gestor en la toma de decisiones sobre el análisis del sitio web el comportamiento de los usuarios y la optimización del sitio web.
+
+
+The Study on the Preprocessing in Web Log Mining
+Ma Shu-yue, Liu Wen-cai
+Wang Shuo
+
+Según el registro de los sitios Web mining, el sitio los administradores pueden controlar el tráfico de la red y comprender el usuario modos de acceso. A continuación, se puede mejorar aún más el rendimiento de sistemas Web y optimizar el diseño del sistema de sitios Web utilizando estos datos. Sin embargo, la Web datos de registro no realiza la minería de datos directamente en la mayoría de los casos debido a la complicada y redundante contenido y otras razones. Este documento analiza los datos pre-procesamiento de registro en la Web con el fin de satisfacer las necesidades de la minería de datos. Al mismo tiempo, también presenta algunas proceso razonable significa
+
+
+Neighborhood User Estimation from Web Access Log in EC Service
+Tomohiro Koketsu
+Hidekazu Yanagimoto
+Michifumi Yoshioka
+
+El objetivo de este trabajo es encontrar los usuarios del barrio con los clientes de los registros de acceso a un sitio de comercio electrónico eléctrico. En la recomendación general servicios barrio por lo general, los usuarios se definen en función de sus historiales de pedidos o sus datos demográficos. Desde un barrio usuario algoritmo de estimación no define el barrio de los usuarios que nunca han comprado los productos en un sitio CE, un problema de arranque en frío sucede en filtrado colaborativo. Para superar el problema de arranque en frío que hacemos perfil de usuario a partir de sus registros de acceso en lugar de historial de pedidos. Tenemos que seleccionar los registros de acceso del usuario que muestran intención claramente desde los registros de acceso son actividades que no están relacionadas con compra del producto. Por lo tanto, nos centramos en las páginas Web que muchos usuarios que compran los mismos productos visitados. Suponemos que el usuario afectan a las páginas Web de compra y utilización como característica páginas Web para predecir los usuarios la intención. Dado que consideramos como la característica páginas Web son diferentes en las categorías de productos se define un conjunto de páginas Web en cada categoría. Después de encontrar la característica páginas Web en todas las categorías, podemos hacer una función vectorial elementos que denotan la característica páginas Web y valor indica si el usuario visita las páginas Web o no. Calculamos las similitudes entre las categorías de productos utilizando conjuntos de usuarios que compran un producto incluido en una categoría para comprobar un perfil de usuario discrimina las categorías. Llevar a cabo la evaluación experimentos, hemos confirmado que hay una gran similitud entre los usuarios que compren productos en la misma categoría, y la semejanza es un criterio discriminatorio. Y calculamos barrio de los nuevos usuarios, que nunca han comprado los productos, y confirmar que el barrio incluye muchos usuarios que han comprado productos de la misma categoría.
+
+
+
+User Behavior Analysis in Web Log through Comparative Study of Eelat and Apriori
+Bina Kotiyalt, Ankit Kumar, Bhaskar Pant, R.H. Goudar,
+
+Como sabemos World Wide Web juega papel fundamental para atender las necesidades de los usuarios de internet. Los archivos de registro web se generan como resultado de la interacción entre el cliente y el proveedor de servicios en internet. Web archivo de registro contiene la enorme oculta información valiosa acerca de los visitantes, si minada puede ser utilizado para predecir el comportamiento de navegación de los usuarios. Sin embargo, la tarea de descubrir patrones de secuencia frecuente la web log es un desafío. Patrón Secuencial minería da un papel importante al servicio de un enfoque prometedor del comportamiento de acceso del usuario. Este documento se centra en adoptar una técnica inteligente que pueden proporcionar servicios web personalizada para acceder a páginas web relacionadas con mayor eficiencia y eficacia, de manera que pueda determinarse que las páginas web tienen más probabilidades de ser accedido por el usuario en el futuro. Este trabajo utiliza dos algoritmos inteligentes para la predicción del comportamiento de los usuarios a saber del apriori y Eclat y también hace una comparación del rendimiento de los dos algoritmos en términos de tiempo y espacio complejidad para los datos filtrados.
+
+
+Virtual Dataspace-A Service Oriented Model for Scientific Big Data
+Wei Lin, Changjun Hu, Yang Li, Xin Cheng
+
+La masiva, distribuido, heterogéneo y diversas características de los datos se han planteado grandes desafíos a los tradicionales sistemas de gestión de datos. Como el desarrollo y la innovación, virtual dataspace (VDS) se propone modelo de gestión de datos grandes. Las ontologías son creados a partir de fuentes de datos. A continuación, las ontologías se asignan y formó una ontología global. Sobre esta base, registro de acceso y los comentarios de los usuarios son considerados de evolución de los datos. En fin, un material de servicio orientado a los científicos (materiales erudito assistant) es introducido como la aplicación caso de VDS.
+
+
+A SURVEY ON LOSSLESS DICTIONARY BASED DATA COMPRESSION ALGORITHMS
+NISHAD PM, Dr. R.Manicka Chezian
+
+Compresión de datos es un requisito común para la mayoría de las aplicaciones informáticas. Hay una serie de algoritmos de compresión de datos, que están dedicados a comprimir distintos formatos de datos. Incluso en el caso de un único tipo de datos hay una serie de diferentes algoritmos de compresión, que utilizan diferentes enfoques. Este papel presenta encuesta diccionario basado en varios algoritmos de compresión sin pérdida de datos y compara su rendimiento en función de relación de compresión y codificación en relación de tiempo y la decodificación. Un conjunto de algoritmos seleccionados son examinados y para evaluar el rendimiento en la compresión de archivos de texto. Una comparación experimental de una serie de diferentes diccionario sin pérdidas en algoritmos de compresión de datos se presenta en este documento. Este documento se concluyó diciendo qué algoritmo funciona bien para los datos de texto.
+
+
+
+MINING OF USERS’ ACCESS BEHAVIOUR FOR FREQUENT SEQUENTIAL PATTERN FROM WEB LOGS
+S.Vijayalakshmi
+V .Mohan
+S.Suresh Raja
+
+Minería de patrones secuenciales es el proceso de aplicar técnicas de minería de datos a una base secuencial para descubrir la correlación las relaciones que existen entre una lista ordenada de los acontecimientos. La tarea de descubrir las secuencias frecuentes es una tarea difícil, debido a que el algoritmo necesita para procesar un explosivo combinatorially número de posibles secuencias. Descubrir información oculta desde la Web datos de registro se denomina Web usage mining. Un uso común de las aplicaciones web es la minería de acceso de los usuarios de comportamiento con el fin de predecir y, por tanto, antes de buscar las páginas web que es muy probable que el usuario visita. El objetivo de descubrir patrones frecuentes secuencial en la Web los datos del registro para obtener información acerca del comportamiento de acceso los usuarios.
+Diagnóstico frecuente patrón secuencial (FSP) es un problema importante en web usage mining. En este trabajo analizamos una nueva frecuencia patrón secuencia técnica llamada AWAPT (Adaptive Web Access Patrón Árbol), para FSP minería. AWAPT combina un sufijo y Prefijo árbol árbol de almacenamiento eficiente de todas las secuencias que contienen un determinado tema. Elimina recursiva WAP reconstrucción de intermedio árbol durante la explotación minera de asignar los códigos binarios en cada nodo del árbol WAP. Árbol patrón de acceso Web (WAP-tree) la minería es un patrón secuencial minería web acceso al registro de secuencias, que almacena el primer acceso a la web original base de datos de secuencias (WASD) sobre el prefijo árbol, similar a la frecuente árbol (FP-tree) para el almacenamiento de datos secuenciales. W AP algoritmo de árbol de entonces, las minas de la secuencias frecuentes de la W AP-tree de forma recursiva re-construir árboles intermedios, comenzando con el sufijo secuencias y terminando con el prefijo secuencias. Se ha hecho un intento de AWAPT enfoque para mejorar la eficiencia. AWAPT elimina completamente la necesidad de participar en numerosas reconstrucciones de WAP intermedio de árboles durante la explotación minera y reduce de forma considerable tiempo de ejecución.
+
+
+
+Efficient Indexing and Representation of Web Access Logs ⋆
+Francisco Claude, Roberto Konow1, and Gonzalo Navarro
+
+Presentamos un espacio de estructura de datos eficaz, basado en el¿½ Burrows-Wheeler Transform, especialmente diseñado para manejar los registros secuencia, que se necesitan para los procesos web usage mining. Nuestro índice es capaz de procesar un conjunto de operaciones de forma eficiente, mientras que al mismo tiempo que mantiene la información original en forma comprimida. Los resultados muestran que el acceso a la web de registros se pueden representar mediante 0,85 a 1,03 veces superior al original (simple) tamaño, a la vez que ejecuta la mayoría de las operaciones de unas pocas decenas de microsegundos.
+
+
+Using Suffix-Tree to Identify Patterns and Cluster Traces from Event Log
+Xiaodong Wang, Li Zhang, and Hongming Cai
+
+Proceso minero se refiere a la extracción de modelos de los registros de eventos. Algoritmos de minería proceso tradicionales tienen problemas en el tratamiento de registros de eventos que se producen a partir de los procesos reales y generar los espaguetis y modelos de proceso incomprensible. Uno de los medios que las trazas más estructural es comúnmente usado para extraer construcciones modelo de proceso (patrones comunes) en el registro de eventos y transformar restos basándose en tales construcciones. Otra forma de pre-procesamiento de huellas es categorizar las huellas en el registro de eventos en grupos como ese proceso huellas en cada clúster puede ser adecuadamente representados por un modelo de proceso. Sin embargo, los enfoques actuales de la agrupación de traza tienen muchos problemas como ignorar contexto proceso computacional y enorme cabeza. En este documento, el índice de árbol es, en primer lugar utilizado para descubrir patrones comunes. Las huellas en el registro de eventos se transforman con patrones comunes. Índice a partir de los árboles se aplican a categorizar transformado huellas. El algoritmo de agrupación ha trazado lineal de complejidad computacional. Los modelos de proceso minado desde el clúster restos muestran un alto grado de idoneidad y la inteligibilidad.
+
+
+
+Pattern Detection and Analysis in Financial Time Series Using Suffix Arrays
+Konstantinos F. Xylogiannopoulos, Panagiotis Karampelas, and Reda Alhajj
+
+El presente capítulo se centra en las técnicas de extracción de datos en el estudio de series de tiempo los datos financieros y, más específicamente, de divisas las fluctuaciones de las tasas. La minería de datos utiliza técnicas tratan de analizar series de tiempo y extraer, si es posible, información valiosa acerca de periodicidad que puede estar oculto detrás gran cantidad de formato y vaga información. Este tipo de información es de gran importancia debido a que puede ser utilizado para interpretar las correlaciones entre diferentes eventos en cuanto a los mercados o incluso a pronosticar el comportamiento. En el presente capítulo una metodología nueva se ha introducido para aprovechar las ventajas del índice las matrices en minería de datos en lugar de los datos que se utiliza comúnmente índice de estructura los árboles. Aunque sufijo requieren matrices de alta capacidad de almacenamiento, en el algoritmo propuesto que puede ser construida en tiempo lineal O(n) u O(nlogn) con una base de datos externa sistema de gestión, que permite una mejor y más rápida durante el análisis de resultados. La metodología propuesta se extienda también a detectar patrones repetidos en las series de tiempo con el tiempo complejidad de O(n log n).  Esto, junto con la capacidad de almacenamiento externo crea una ventaja decisiva para una eficiente extracción de datos análisis respecto de la construcción de series de tiempo y la estructura de los datos periodicidad detección.
+
+
+
+Web Access Pattern Mining – A Survey
+A. Rajimol and G. Raju
+
+Este artículo proporciona un estudio de diferentes Web Árbol patrón de acceso WAP (árbol) métodos para acceder a la Web minería de patrones. Acceso a la Web minería de patrones las minas juego completo de patrones que cumplen el umbral de un soporte Web acceso Base de datos de secuencias. Un breve examen de teoría básica y terminologías relacionadas con el acceso a la web minería de patrones se presentan. Una comparación de los diferentes métodos.
+
+

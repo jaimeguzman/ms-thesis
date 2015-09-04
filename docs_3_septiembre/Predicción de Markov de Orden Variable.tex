@@ -1,0 +1,52 @@
+Predicción de Markov de Orden Variable
+Ron Begleiter
+Ran El-Yaniv
+Golan Yona
+RESUMEN
+Este documento se refiere a los algoritmos de predicción de secuencias discretas en un alfabeto finito, utilizando variables modelos Markov. La clase de este tipo de algoritmos es amplio y comprende en principio cualquier algoritmo de compresión sin pérdida. Nos enfocamos en seis prominentes algoritmos de predicción, incluyendo  (CTW), (PPM) y (PST).  Discutiremos las propiedades de estos algoritmos y podemos comparar su rendimiento con secuencias reales de tres dominios.
+La comparación se hace con respecto a la predicción calidad medido por el promedio de pérdida de registro. También comparamos algoritmos de clasificación basados en estos predictores con respecto a un gran número de clasificación de  tareas. Nuestros resultados indican que una "descomposición" CTW (una variante del algoritmo CTW) y PPM superan todos los demás algoritmos de predicción de las tareas. Sorprendentemente, un algoritmo diferente, que es una modificación del algoritmo de compresión Lempel-Ziv supera todos los algoritmos de  problemas de clasificación..
+
+CONCLUSIONES
+En este trabajo se estudió el comportamiento empírico de un número  prominentes de algoritmos de predicción. Nos hemos centrado en los valores de predicción  que están más estrechamente relacionados con los de aprendizaje de la máquina, requiere profesionales que se ocupen de las secuencias discretas. Resultados previos relacionados con estos algoritmos suelen centrarse en una compresión estándar.
+Aunque no se debe esperar que un algoritmo se supere ampliamente en todas las otras tareas, nuestra extensa evaluación empírica de los tres dominios indican que hay importantes algoritmos, que siempre tienden a generar predicciones más exactas que los otros algoritmos que examinamos. Estos algoritmos son los "predicción por coincidencia parcial" (ppm-c) y árbol de contexto "descompuesto" (dectw ponderación).  Para la clasificación de las proteínas, observamos que también hay uno de los ganadores. Sin embargo, sorprendentemente, el mejor predictor de la pérdida de registro no es el mejor clasificador. Por el contrario, la mejor proteína clasificador siempre se basa en la mediocre lz-ms predictor! Este algoritmo es una simple modificación de la conocida -78 Lempel-Ziv (lz78) algoritmo de predicción, que puede capturar VMMs con grandes contextos. La sorprendentemente buena precisión de la clasificación de este algoritmo puede ser de interés independiente de investigación y análisis de proteínas que merece más investigación.
+Este éxito relativo de lz-ms está relacionado con el ganador se lo lleva todo esquema de clasificación que utilizamos. Un clasificador basado en este enfoque puede padecer de una degradación del rendimiento si sólo uno o algunos de los modelos generados (para algunas de las clases) están mal equipados para otras clases (en cuyo caso el modelo erróneo es el ganador).  Es evidente que el rendimiento superior de lz-ms está relacionada con su solidez a este respecto y un examen más detallado del comportamiento de los algoritmos pueden ser reveladores. Una posible explicación de este dinamismo podría estar relacionada con la longitud de memoria ilimitada de la carretera lz-ms modelo. En la mayoría de los otros modelos, el VMM longitud de memoria es un hiper-parámetro. Sin embargo, como se discutió en la Sección 7, algunos de los otros algoritmos, tales como ppm puede ampliarse para trabajar sin un conocimiento consolidado en el contexto.
+Una observación importante, que se observa en estos resultados, es que uno no puede confiar en el inicio de sesión pérdida (compresión) rendimiento cuando se selecciona un algoritmo de clasificación VMM (utilizando un enfoque WTA).  Ya que la clasificación de secuencias no se ha estudiado de forma tan general como compresión y predicción, creemos que es mucho lo que puede ser adquirida por VMM especializados centrándose en los algoritmos de clasificación.
+Esperamos que nuestra contribución ayudará a los profesionales adecuados a la hora de seleccionar los algoritmos de predicción para predecir y clasificar las tareas y también proporcionar el código de todos los algoritmos que hemos considerado. Por último, hemos llegado a la conclusión de una serie de preguntas abiertas y direcciones para futuras investigaciones.
+Una de las propuestas más exitosas que hemos examinado  es el de-ctw algoritmo predictores general, con su alfabeto  mecanismo de descomposición, como sugiere Volf (2002).  No obstante, este mecanismo es fundamental para el éxito de la ctw. Sin embargo, en la actualidad no existen límites redundancia (u otro tipo de garantías de rendimiento) para esta descomposición. Sería interesante probar ese, de manera que también motivan a un criterio de optimización en la descomposición de árbol (ver Sección 3.4 ).  Tenga en cuenta que el método heurístico propuesto por Volf para generar el árbol de descomposición se basa en la codificación Huffman, pero no lo conocemos con una razón de peso para el éxito de este enfoque.
+De igual manera, el ppm (y el ppm-c variante que hemos examinado) no tienen ninguna límites en su registro de redundancia. Evidentemente, estos límites pueden contribuir significativamente a la comprensión este algoritmo (y sus variantes) y puede ayudar a diseñar mejores versiones de este sistema.
+Uno de los principales factores que influyen en el éxito del algoritmo ppm son los detalles de su mecanismo de escape, incluyendo la asignación de masa de probabilidad para el evento "escape". Esta asignación de probabilidades es, en esencia, una solución de los problemas de frecuencia cero (también llamado problema "masa faltante").  Hasta el momento, no hay justificaciones formales para el cumplimiento de las más exitosas implementaciones escape. Sería interesante ver si algunos de los últimos resultados sobre el problema de masa faltante, tales como los presentados por Orlitsky et al. (2003) y McAllester y Ortiz (2003), pueden ayudar a obtener una medida formal de implementación de la optimización ppm escape.
+Podemos ver el algoritmo ctw  como un conjunto de numerosas VMM. Sin embargo, la ponderación de los diversos modelos VMM se fija. Diversos métodos de ensamble la máquina de aprendizaje como el impulso y asesoramiento de expertos en línea algoritmos para optimizar el peso de los distintos miembros del ensamble. Se puede lograr un mejor rendimiento y más datos empíricos que garanticen  métodos de aprendizaje adaptativos? Volf (2002) tiene algunos resultados (desde el punto de vista de la combinación lz78 y de la ctw) indicando que se trata de una dirección prometedora. Otra posibilidad sería la de emplear algoritmos de selección de carteras cambiar de forma dinámica el peso de varios modelos, siguiendo los lineamientos sugeridos por Kalai et al. (1999).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
