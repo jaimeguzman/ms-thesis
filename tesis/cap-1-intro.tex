@@ -3,63 +3,130 @@
 
 \section{Motivación}
 \label{sec:motivacion}
+Resulta para nosotros muy motivante usar este proyecto de título para analizar, estructurar y ejemplificar la idea de  poder converger dos áreas de estudio para el mismo problema, "predicción del comportamiento de la web". 
 
-La motivación para realizar este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de la web. Usar los recursos que la industria ofrece (predicction.IO) y la información de la academia para poder crear un algoritmo o modelo que permita dar mejor precisión.
+Usar los recursos que la industria ofrece (predicction.IO) y la información que nos proporcionan los diversos planteamientos de la academia, para poder crear un algoritmo o modelo que permita dar mejor precisión y optimizar el comportamiento de la web.
 
 \section{Contexto}
 \label{sec:contexto}
 
-  La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y  la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. 
-  Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el tener mayores recursos no mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
+  La Web crece constantemente y por ende su infraestructura, necesitamos ir a la par del crecimiento, entregando al usuario una mejor experiencia de navegación dentro de ella.
+  
+  Hasta ahora hemos comprobado que esto no ocurre, dado que también existen diversos tipos de usuarios y la experiencia en la web, les aporta grandes diferencias en la respuesta que ellos esperan.
+  
+  Normalmente tratamos con decenas de problemas de optimización, los cuales resolvemos muchas veces sin percatarnos de que lo estamos haciendo, son problemas simples, que pueden ser resueltos de manera analítica, o con simple observación, sin embargo, entre más grande es el abanico de posibilidades y mayor la cantidad de variables a considerar, los problemas se van volviendo mas complejos y es entonces que necesitamos algoritmos y herramientas, que nos ayuden a solucionarlos.
+  
+  Los principales obstáculos de los algoritmos existentes es que los problemas son demasiado demandantes computacionalmente, es decir, requieren recursos significativamente grandes en tiempo y hardware. Ofrecen soluciones que parecen ser las mejores para resolver problema entero, pero sólo lo son de una parte del mismo.
+  
+  Por esta razón, nuestra principal dedicación en este proyecto, se centrará en dar respuesta al usuario final, en que obtenga una mejor experiencia y un buen servicio.
+  
+  El uso eficiente de los recursos computacionales, es un aspecto cada vez más importante en el desarrollo de algoritmos de optimización y concurrencia de los sistemas,  para usuarios finales se puede traducir en latencia y/o una mejor o peor experiencia. 
+  
+  Paralelamente, se suma un costo exponencial de recursos tanto en tecnologías de desarrollo, como optimización de servicios  para poder dar una experiencia de gran calidad al usuario.
+  
+  Podemos reflexionar entonces, que el tener mayores recursos no mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá en la misma proporción.
+  
+  Han sido desarrollados muchos algoritmos convencionales para la optimización de funciones, sin embargo, para problemas altamente complejos, con espacios de búsqueda grandes, de muchas variables, no diferenciales,  altamente no lineales, grandes volumenes de datos, aún necesitamos profundizar en investigación, experimentación y búsqueda de óptimos resultados.
    
   Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas han evolucionado a favor del cliente.
-  Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se posee un volumen de datos considerable es necesario tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de hacer  web inteligente.
+  Hoy en día ya se poseen \emph{MEAN stacks} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web tiene que proveer una balanceada carga dentro del cliente y el servidor, pero cuando se posee un volumen de datos considerable, es necesario tomar decisiones que los recursos y lenguajes no cubren, es ahí lo interesante  de hacer una web inteligente.
 
-  Es de gran interés predecir los movimientos siguientes que un usuario tendrá en una determinada web.
-  Entendiendo que la manera en que un usuario final navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se les puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera una innumerable cantidad de datos, por lo cual usar un algoritmo como LZ 78 presenta un interés ya que además de ser un algoritmo de compresión, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  Para el desarrollo de este trabajo, hemos considerado de gran importancia predecir los movimientos siguientes, que un usuario tendrá en una determinada web.
+  Entendiendo que la manera de realizar el seguimiento de un usuario final y cómo navega, es a través de su comportamiento registrado en una web, y que se puede analizar, estudiar y procesar mediante \emph{Web Access Log}  a los cuales se les puede hacer una minería de datos, Web Usage Minning. 
   
-  Los registros de accesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia de usuario mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+  Para explicarnos la utilización de Minería de Datos tenemos claro que cada día la Web genera una innumerable cantidad de datos, que necesitamos limpiar, (eliminar fragmentos inútiles, repetidos, etc.) organizarlos y una vez realizado este proceso decimos que tenemos la Información. 
+  En consecuencia, usar un algoritmo como LZ 78 sería muy interesante ya que además de ser un algoritmo de compresión, este se puede usar como un Algoritmo de Predicción y trabajar con una mayor cantidad de datos.
   
-  Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
+  Los registros de accesos de manera procesada o pre-procesada, ayudarían a ingenieros de desarrollo web y diseñadores, como también a usuarios finales a tener una experiencia  mejor, disminuyendo por ejemplo, la latencia en respuestas por parte de cada petición que realizan.
+  
+  Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, deben poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, para nosotros es un gran desafío y muy importante  profundizar en este tópico.
 
 
 
 
   \subsection{Trabajos relacionados}
 
-% @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
-En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
-La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
 
 
-En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
+En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario al actual contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
+La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta esta área como un foco de múltiples implementaciones. 
+
+
+En la literatura, el tema de la predicción en la web se ha presentado como contenido recurrente en los estudios, y ha sido abarcado por varios autores. Tenemos los siguientes documentos de interés como aporte para la realización de nuestro trabajo:
 
 \begin{enumerate}
-  \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
-  Su modelo fue presentado en 2002, y da una importancia a conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
+  \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones.  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre el modelo de Markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
+  Su modelo fue presentado en 2002, y es relevante conocer la predicción de los \emph{web access}, dada la importancia de creación de redes,  minería de datos, e-commerce, y otras áreas.
+  
+  También recalcan que predecir con exactitud el comportamiento del usuario al acceder a la Web puede reducir al mínimo la latencia que percibe el usuario, que es crucial en el rápido y creciente World Wide Web. A pesar de que los modelos Markov han ayudado a predecir comportamientos de acceso de usuario, tienen graves limitaciones. 
+  
+  Los modelos Híbridos que nos entregan predicen acceso a la Web, al mismo tiempo que ofrecen un alto nivel de cobertura y escalabilidad.
+  
+  Es una realidad que la World Wide Web es una gran base de datos donde se almacena  y  accesa a la información, permite que los  usuarios puedan navegar a través de enlaces y ver con diferentes exploradores. El tráfico de Internet ha aumentado considerablemente debido a la popularidad de la Web y como consecuencia los usuarios perciben la latencia. La solución obvia de incrementar el ancho de banda, no es viable, ya que no podemos cambiar fácilmente la infraestructura de la Web (Internet) sin gran costo económico. Sin embargo, si se pueden predecir las búsquedas futuras del usuario.
+  
+  Los autores nos dan como pauta que podríamos poner esas páginas en el lado del cliente de caché cuando el navegador es gratuito. Cuando un usuario solicita una de las páginas, el navegador puede recuperarlo directamente desde la memoria caché. Necesitamos un método para modelar y analizar secuencias de acceso Web. Con esta información, podemos deducir las solicitudes de los usuarios.
+  
+  Algunos investigadores han usado los modelos tradicionales de Markov, que a menudo son empleados para estudiar los procesos estocásticos y predecir el comportamiento de acceso como usuario. En general, se utiliza la secuencia de páginas Web. Cuando el usuario ha accedido a la entrada, con el objetivo de construir modelos de Markov que pueden predecir la página siguiente, a la que el usuario lo más probable acceda.  Han usado  modelos para mejorar las estrategias de prelectura cachés Web, y  utilizaron modelos Markov para clasificar las sesiones de usuario.  Sin embargo, pusieron a prueba la eficacia de los diferentes modelos de predicción de Markov para el acceso a la Web y los tradicionales modelos de Markov son inadecuados para este propósito. Por lo tanto, necesitamos un nuevo modelo de predicción de Markov para el acceso a la Web.
+  
+  En consecuencia  nos muestran que el híbrido originado en el modelo de Markov puede predecir precisamente el acceso Web, lo que proporciona una alta cobertura y una buena escalabilidad. El HTMM inteligente combina dos métodos: una estructura de árbol modelo de Markov que agrega el método acceso secuencias de coincidencia de patrones y un híbrido de método que combina diferentes modelos de Markov. 
+  
+  Nos dejan la tarea de confirmar en las evaluaciones el rendimiento y utilidad de este modelo  HTMM.
+  
+  
 
   \item Domenech \etal~\cite{Domenech2006}, muestran un estudio de los rendimientos de técnicas de recuperación de datos.
   Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
   Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
   Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como predicciones genéricas o específicas, variables de uso de recursos a nivel de red ó nivel procesamiento.
   Finalmente, se presenta un modelo predictivo que puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y \emph{QoS}.
+  
+  Los autores nos señalan que las técnicas de Prelectura Web  han sido especialmente importantes para reducir las latencias web percibidas y, en consecuencia, una importante cantidad de trabajo se puede encontrar en la literatura. Pero, en general, no es posible hacer una comparación justa entre las propuestas técnicas de prelectura debido a tres razones principales: (i) el sistema de referencia donde se aplica prefetching varía ampliamente entre los estudios; (ii) la carga de trabajo utilizada en los experimentos no es la misma; (iii) los diferentes indicadores clave de rendimiento se utilizan para evaluar sus beneficios.
+  
+  Este documento se centra en la tercera razón. La principal preocupación es la de identificar cuáles son los índices cuando se trata de estudiar el comportamiento de diferentes técnicas recuperadoras. Con este fin, proponen una taxonomía basada en tres categorías, la cual permite identificar las analogías y diferencias entre los índices comúnmente utilizados. Con el fin de controlar, de manera más formal, la relación entre ellos, que ejecuten los experimentos y estimar estadísticamente la correlación entre un subconjunto representativo de estas medidas. Los resultados estadísticos  ayudan a sugerir los índices que deben ser seleccionados para realizar estudios de evaluación en función de los diferentes elementos de la arquitectura web.
+  La elección de las métricas  es de máxima importancia para un correcto estudio y representación. Como los resultados experimentales demuestran, en función de la métrica empleada para controlar el rendimiento del sistema, los resultados no sólo varían mucho, también llegan a conclusiones opuestas.
+  
 
 
-  % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn del punto de vista que de los docuentos 
-  % como los autores antteriores.
-
-  \item Chen \etal~\cite{Chen2011} dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
+  \item Chen \etal~\cite{Chen2011} dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los Access Log.
   El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.
+  
+  Los autores logran registrar las acciones y comportamientos de los usuarios en la web. A través de la minería de datos pueden analizar estos registros y encontrar navegación de los usuarios y patrones de acceso, y esto es muy importante y útil para la optimización de sitios web y web recomendadas. Este trabajo analiza en primer lugar la asociación personalizada basada en el modelo que señala la limitación del acceso frecuente y analizan un algoritmo de ruta en este modelo y, a continuación, la mejora. Por último, el documento muestra los resultados de la prueba de que el algoritmo mejorado puede recomendar la calidad.
+  
 
   \item Rajimol y Raju~\cite{Rajimol2012} minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
-  La literatura presenta un interés para poder anticipar el patrón de comportamiento de la web.
-  % @TODO reflexionar mas sobre este paper
+  La literatura presenta datos de interés para poder anticipar el patrón de comportamiento de la web.
+  
+  Este artículo proporciona un estudio de diferentes tipos de  patrones de acceso y métodos para acceder a la Web.  este acceso a la Web se da en base a la minería de datos  usando un juego completo de patrones que cumplen el umbral de un soporte para acceder a la Web, una Base de Datos en secuencias. Un breve examen de teoría básica y terminologías relacionadas con el acceso a la web se presentan usando patrones de minería de datos. Una comparación de los diferentes métodos.
+  
+  Web mining es la extracción de conocimiento útil e interesante información implícita y de actividad relacionada con la WWW. Los datos de la web normalmente son en blanco, distribuidos y heterogéneos, semi-estructurados, varían en el tiempo y son multidimensionales.
+  
+  Web Usage Mining, también conocido como registro de Web Mining, descubre los interesantes  patrones de acceso como usuario frecuente de la navegación por la web, detalles almacenados en el servidor web logs, servidor proxy logs o registros del navegador.  Web Log Mining se ha convertido en un método muy importante para una eficaz gestión de sitios web, creación de sitios Web, negocios y servicios de apoyo, la personalización y otros.
+
 
   \item Kewen~\cite{kewen2012} realizó un análisis más profundo del \emph{web usage minning}.
   Parte de la importancia de este trabajo, es que después de minar los registros de accesos, logran reducir la ``\emph{bad data}''.
-  %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
-
-  \item Poornalatha y Raghavendra~\cite{Poornalatha2012} establecen que se pueden utilizar máquinas de aprendizaje para predecir basándose en distintas entre clusters. Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
+  La importancia de este texto es que con Web Usage Mining realiza un  análisis de archivos de registro y acceso de usuario, para  descubrir patrones de páginas Web, se pueden encontrar modelos de acceso de usuarios automática y rápidamente, de los datos de registro en la gran Web, como rutas de acceso frecuente,  grupos de páginas y la agrupación de usuarios.
+  Esto proporcionará fundamento para la toma de decisiones de las organizaciones. Preprocesamiento de datos es una tecnología clave en esta actividad de Minería de Datos. En este documento analiza el preproceso de Web Usage Mining en detalle. Después de verificar los datos de preproceso, el número de datos no válidos pueden reducirse significativamente.
+  
+  
+  \item Poornalatha y Raghavendra~\cite{Poornalatha2012} establecen que se puede utilizar máquinas de aprendizaje para predecir basándose en distintos  clusters. 
+  Los enormes avances de la internet y la World Wide Web en los últimos tiempos ha insistido en la necesidad de reducir la latencia en el cliente o el usuario final. En general, el almacenamiento en caché y recuperadores se utilizan como técnicas para reducir el retraso experimentado por el usuario, mientras espera a que se muestre la siguiente página web desde el servidor web remoto. 
+  
+  El documento de estos autores trata de resolver el problema de predecir la siguiente página que se accede por el usuario sobre la base de la explotación de los registros del servidor web que mantiene la información de los usuarios que acceden al sitio web. La predicción de la siguiente página para ser visitadas por el usuario puede ser obtenida por el navegador, el cual a su vez reduce la latencia para el usuario. Así analizar la conducta en el pasado para predecir el futuro de páginas web que serán navegadas por el usuario es de gran importancia. El modelo propuesto da como resultado una buena precisión en comparación con los métodos existentes como modelo de Markov, regla de asociación, ANN etc.
+  
+  
+  Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
 
   \item Claude \etal~\cite{Claude2014} presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
+  
+  En este artículo los autores presentan un espacio de estructura de datos eficaz, basado en el Burrows-Wheeler Transform, especialmente diseñado para manejar las secuencias de registros, que se necesitan para los procesos Web Usage Mining. 
+  Según los autores este índice es capaz de procesar un conjunto de operaciones de forma eficiente, mientras que al mismo tiempo  mantiene la información original en forma comprimida. Los resultados muestran que los registros de acceso a la web  se pueden representar mediante 0,85 a 1,03 veces superior al tamaño original, a la vez que ejecuta la mayoría de las operaciones en unas pocas decenas de microsegundos.
+  
+  
+  
+  
+  
+ 
+  
+  
 \end{enumerate}
