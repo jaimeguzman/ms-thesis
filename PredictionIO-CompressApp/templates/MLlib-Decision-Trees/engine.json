@@ -4,7 +4,7 @@
   "engineFactory": "org.template.classification.ClassificationEngine",
   "datasource": {
     "params": {
-      "appId": 3
+      "appId": 1
     }
   },
   "algorithms": [
