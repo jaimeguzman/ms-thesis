@@ -19,6 +19,7 @@ class DataSource(val dsp: DataSourceParams)
   override
   def readTraining(sc: SparkContext): TrainingData = {
     val eventsDb = Storage.getPEvents()
+
     val labeledPoints: RDD[LabeledPoint] = eventsDb.aggregateProperties(
       appId = dsp.appId,
       entityType = "user",
@@ -28,6 +29,9 @@ class DataSource(val dsp: DataSourceParams)
       // entity ID and its aggregated properties
       .map { case (entityId, properties) =>
         try {
+          logger.info("----entityID------" + s"${entityId}" )
+          logger.info("----entityID------" + s"${properties}" )
+
           LabeledPoint(properties.get[Double]("plan"),
             Vectors.dense(Array(
               properties.get[Double]("attr0"),
@@ -44,8 +48,12 @@ class DataSource(val dsp: DataSourceParams)
         }
       }.cache()
 
-    logger.debug(eventsDb)
 
+
+    logger.info("-----asdasdasdasd-------")
+    logger.info("-------->---HOLA QUE HACE.....")
+    logger.info("----eventsDb------" + s"${eventsDb}" )
+    logger.info("---- ending eventSDb ------ ")
 
 
     new TrainingData(labeledPoints)
