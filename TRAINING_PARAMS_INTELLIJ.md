@@ -1,0 +1,38 @@
+
+
+
+
+#Con estos parametros de ambiente se puede correr un run and debug en Idea
+
+
+SPARK_HOME=/Users/jguzman/PredictionIO/vendors/spark-1.4.1/bin
+PIO_FS_BASEDIR=/Users/jguzman/.pio_store
+PIO_FS_ENGINESDIR=/Users/jguzman/.pio_store/engines
+PIO_FS_TMPDIR=/Users/jguzman/.pio_store/tmp
+PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta
+PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH
+PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model
+PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS
+PIO_STORAGE_REPOSITORIES_APPDATA_NAME=pio_appdata
+PIO_STORAGE_REPOSITORIES_APPDATA_SOURCE=ELASTICSEARCH
+PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event
+PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE
+PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch
+PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost
+PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300
+PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+PIO_STORAGE_SOURCES_LOCALFS_HOSTS=/Users/jguzman/.pio_store/models
+PIO_STORAGE_SOURCES_LOCALFS_PORTS=0
+PIO_STORAGE_SOURCES_HBASE_TYPE=hbase
+PIO_STORAGE_SOURCES_HBASE_HOSTS=0
+PIO_STORAGE_SOURCES_HBASE_PORTS=0
+
+
+
+#Otros hacks 
+
+
+
+-Dspark.master=local -Dlog4j.configuration=file:/Users/jguzman/PredictionIO/conf/log4j.properties -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib
+
+--engine-id dummy --engine-version dummy --engine-variant engine.json
