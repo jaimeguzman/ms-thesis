@@ -17,16 +17,28 @@ def import_events(client, file):
       event="$set",
       entity_type="user",
       entity_id=str(count), # use the count num as user ID
-      properties= {
-        "attr0" : int(attr[0]),
-        "attr1" : int(attr[1]),
-        "attr2" : int(attr[2]),
-        "plan" : int(plan)
+      properties= { #represento las vistias como los estados de la cadena de Markov
+        "v0" : int(attr[0]),
+        "v1" : int(attr[1]),
+        "v3" : int(attr[2]),
+        "v4" : int(attr[3]),
+        "v4" : int(attr[4]),
+        "v4" : int(attr[5]),
+        "v4" : int(attr[6]),
+        "v4" : int(attr[7]),
+        "v4" : int(attr[8]),
+        "v4" : int(attr[9]),
+        "v4" : int(attr[10]),
+        "v4" : int(attr[11]),
+        "v4" : int(attr[12]),
+        "v4" : int(attr[13]),
+        "v4" : int(attr[14]),
+        "v4" : int(attr[15]),
       }
     )
     count += 1
   f.close()
-  print "%s events are imported." % count
+  print "%s LOS EVENTOS HAN SIDO IMPORTADOS." % count
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(

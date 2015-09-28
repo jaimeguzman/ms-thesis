@@ -1,19 +1,14 @@
 package org.template.classification
 
-import io.prediction.controller.PDataSource
-import io.prediction.controller.EmptyEvaluationInfo
-import io.prediction.controller.EmptyActualResult
-import io.prediction.controller.Params
-import io.prediction.data.storage.Event
-import io.prediction.data.storage.Storage
-
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
-import org.apache.spark.rdd.RDD
-import org.apache.spark.mllib.regression.LabeledPoint
-import org.apache.spark.mllib.linalg.Vectors
-
 import grizzled.slf4j.Logger
+import io.prediction.controller.{EmptyActualResult, EmptyEvaluationInfo, PDataSource, Params}
+import io.prediction.data.storage.Storage
+import org.apache.spark.SparkContext
+import org.apache.spark.mllib.linalg.Vectors
+import org.apache.spark.mllib.regression.LabeledPoint
+import org.apache.spark.rdd.RDD
+
+//JAVA LIBRARIES
 
 case class DataSourceParams(appId: Int) extends Params
 
@@ -28,6 +23,9 @@ class DataSource(val dsp: DataSourceParams)
 
     val variableExample = ":::::::::...THIS IS A TEST....."
 
+    println("::::::::::::: HOLA MUNDO ...")
+
+    println( variableExample )
 
     logger.info( ":::::: Aqui se empieza algo con event DB ::::" )
 
@@ -47,9 +45,7 @@ class DataSource(val dsp: DataSourceParams)
       // only keep entities with these required properties defined
 
 
-      required = Some(List("plan", "attr0", "attr1", "attr2")))(sc)
-      // aggregateProperties() returns RDD pair of
-      // entity ID and its aggregated properties
+      required = Some(List("plan", "attr0", "attr1", "attr2")))(sc) // aggregateProperties() returns RDD pair of entity ID and its aggregated properties
       .map { case (entityId, properties) =>
 
         try {
@@ -73,8 +69,13 @@ class DataSource(val dsp: DataSourceParams)
         }
       }.cache()
 
+
+
       logger.info(":::::::::Aqui  podria empezar a debuggear algo... de labeledPoints")
       logger.info(":::::::::" + s"${labeledPoints}" )
+            logger.info(":::::::::" + s"  labeledPoints ")
+      println( labeledPoints  )
+
 
     new TrainingData(labeledPoints)
   }

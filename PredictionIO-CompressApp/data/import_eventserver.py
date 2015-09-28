@@ -9,7 +9,7 @@ import argparse
 def import_events(client, file):
   f = open(file, 'r')
   count = 0
-  print "Importing data..."
+  print "Importando la DATA..."
   for line in f:
     data = line.rstrip('\r\n').split(" ")
     data.remove('')
@@ -21,7 +21,7 @@ def import_events(client, file):
       pos += 1
       print "El usuario %d vio la pagina %s por %d vez " % (count,feature, pos)
       cliente.create_event(
-        event="view", #el usuario siempre ve una seccion de PRISA
+        event="view",   #el usuario siempre ve una seccion de PRISA
         entity_type="user",
         entity_id=str(count), # use the count num as user ID
         properties= {
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     description="Import sample data for classification engine")
   parser.add_argument('--access_key', default='invald_access_key')
   parser.add_argument('--url', default="http://localhost:7070")
-  parser.add_argument('--file', default="./data/msnbc990928-letter-split10.seq")
+  parser.add_argument('--file', default="./data/msnbc990928-10entry.seq")
 
   args = parser.parse_args()
   print args
