@@ -4,6 +4,7 @@
 .aux
 .gz
 .gitignore
+PredictionIO-CompressApp-Ref/
 
 #codes
 .idea
@@ -31,6 +32,8 @@
 #*.pdf
 anteproyecto/*.pdf
 tesis/*.pdf
+
+
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
