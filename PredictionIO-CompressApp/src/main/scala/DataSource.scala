@@ -22,9 +22,7 @@ class DataSource(val dsp: DataSourceParams)
   def readTraining( sc: SparkContext): TrainingData = {
 
     val variableExample = ":::::::::...THIS IS A TEST....."
-
     println("::::::::::::: HOLA FUCKING MUNDO ...")
-
     println( variableExample )
 
     logger.info( ":::::: Aqui se empieza algo con event DB ::::" )
