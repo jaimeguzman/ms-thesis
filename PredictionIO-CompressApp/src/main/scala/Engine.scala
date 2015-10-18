@@ -16,7 +16,7 @@ object ClassificationEngine extends IEngineFactory {
     new Engine(
       classOf[DataSource],
       classOf[Preparator],
-      Map("decisiontree" -> classOf[Algorithm]),
+      Map("lempelziv" -> classOf[Algorithm]),
       classOf[Serving])
   }
 }

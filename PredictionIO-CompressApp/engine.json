@@ -9,12 +9,9 @@
   },
   "algorithms": [
     {
-      "name": "decisiontree",
+      "name": "lempelziv",
       "params": {
-        
-        "numClasses": 3,
-        "maxDepth": 5,
-        "maxBins": 100      
+        numPages: 17
       }
     }
   ]

@@ -8,13 +8,11 @@ import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD
 
-//JAVA LIBRARIES
 
 case class DataSourceParams(appId: Int) extends Params
 
 class DataSource(val dsp: DataSourceParams)
-  extends PDataSource[TrainingData,
-      EmptyEvaluationInfo, Query, EmptyActualResult] {
+  extends PDataSource[TrainingData,EmptyEvaluationInfo, Query, EmptyActualResult] {
 
   @transient lazy val logger = Logger[this.type]
 
@@ -22,7 +20,9 @@ class DataSource(val dsp: DataSourceParams)
   def readTraining( sc: SparkContext): TrainingData = {
 
     val variableExample = ":::::::::...THIS IS A TEST....."
+
     println("::::::::::::: HOLA FUCKING MUNDO ...")
+
     println( variableExample )
 
     logger.info( ":::::: Aqui se empieza algo con event DB ::::" )
@@ -31,32 +31,28 @@ class DataSource(val dsp: DataSourceParams)
     
     logger.info( ":::::::::" + s"${eventsDb}" )
     logger.info( "::::::  / event DB ::::" )
-    logger.debug( s" ${variableExample}  ")
 
 
 
 
-
+    println(" Antes de entrar a val labelPoints")
     val labeledPoints: RDD[LabeledPoint] = eventsDb.aggregateProperties(
-      appId = dsp.appId,
-      entityType = "user",
+      appId         = dsp.appId,
+      entityType    = "user",
       // only keep entities with these required properties defined
-
-
-      required = Some(List("plan", "attr0", "attr1", "attr2")))(sc) // aggregateProperties() returns RDD pair of entity ID and its aggregated properties
+      required      = Some(List("plan", "page", "pos")))(sc) // aggregateProperties() returns RDD pair of entity ID and its aggregated properties
       .map { case (entityId, properties) =>
 
         try {
-          logger.info( ":::::::::::::::::" +s"--- properties --"  )
-          logger.info( ":::::::::::::::::" +s"--- entityTYPE --" + s"${entityId} "  )
-          logger.debug( s"--- entityTYPE --" + s"${properties} "  )
+          //logger.info( ":::::::::::::::::" +s"--- properties --"  )
+          //logger.info( ":::::::::::::::::" +s"--- entityTYPE --" + s"${entityId} "  )
+          //logger.debug( s"--- entityTYPE --" + s"${properties} "  )
 
 
           LabeledPoint(properties.get[Double]("plan"),
             Vectors.dense(Array(
-              properties.get[Double]("attr0"),
-              properties.get[Double]("attr1"),
-              properties.get[Double]("attr2")
+              properties.get[Double]("page"),
+              properties.get[Double]("pos")
             ))
           )
         } catch {
@@ -71,7 +67,8 @@ class DataSource(val dsp: DataSourceParams)
 
       logger.info(":::::::::Aqui  podria empezar a debuggear algo... de labeledPoints")
       logger.info(":::::::::" + s"${labeledPoints}" )
-            logger.info(":::::::::" + s"  labeledPoints ")
+      logger.info(":::::::::" + s"  labeledPoints ")
+
       println( labeledPoints  )
 
 
