@@ -24,9 +24,9 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
                              var word:   Option[String] = None,
                              var counter:Int= 0 ) extends Trie {
 
-  private[trie] val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
-
   var trieHeigth = 0
+
+  private[trie] val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
 
   override def  append(key: String) = {
 
@@ -152,7 +152,7 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
 
   override def  toString() : String = s"Trie(char=${char},word=${word},counter=${counter}})"
 
-  def   imprime[U](f: String => U): Unit = {
+  def printTree[U](f: String => U): Unit = {
     println("epsilon");
     @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
@@ -167,11 +167,25 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
                                 }  )
           foreachHelper(nodes.flatMap(node => node.children.values): _*)
 
-
       }
     }
 
     foreachHelper(this)
+  }
+
+  /*
+  *@TODO: Me faltan estas ideas que pueden ser utiles
+  */
+  def clearTree()  ={
+
+  }
+
+  def getFirstSymbol() ={
+
+  }
+
+  def setAlphabet() ={
+
   }
 
 
@@ -211,8 +225,6 @@ object Run extends App {
 
 
         println("X es: " + listaValores(i))
-
-
         if (trie.contains(listaValores(i)) == true) {
           print("esta en el diccionario y X es: " + listaValores(i) + "\n")
           Thread sleep 1000
@@ -222,35 +234,22 @@ object Run extends App {
             break
           }
 
-
           tmpStr += listaValores(i) + listaValores(i + 1)
-
           println("tmpStr " + tmpStr)
-
           if (tmpStr.length > 1) trie.append(tmpStr)
 
           //reset tmp
           tmpStr = ""
-
-
         } else {
           trie.append(listaValores(i))
           tmpStr = ""
         }
-
-
-
-
-
         println()
       }
 
     }
 
-
-
   }
-
   println("::::::::::::::::::::\n\n")
 
 
@@ -258,7 +257,7 @@ object Run extends App {
 
 
 
-  trie.imprime( t => print( t ) )
+  trie.printTree( t => print( t ) )
   println(  )
 
   /*println("trie...MIN :::" +trie.min )
