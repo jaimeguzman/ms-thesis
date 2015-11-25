@@ -2,7 +2,7 @@ import AssemblyKeys._
 
 assemblySettings
 
-name := "template-scala-parallel-classification"
+name := "pio-lempelziv"
 
 organization := "io.prediction"
 

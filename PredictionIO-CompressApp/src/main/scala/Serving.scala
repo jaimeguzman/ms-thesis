@@ -1,4 +1,4 @@
-package org.template.classification
+package cl.jguzman.piocompressapp
 
 import io.prediction.controller.LServing
 

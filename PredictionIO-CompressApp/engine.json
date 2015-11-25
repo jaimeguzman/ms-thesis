@@ -1,7 +1,7 @@
 {
   "id": "default",
   "description": "Default settings",
-  "engineFactory": "org.template.classification.ClassificationEngine",
+  "engineFactory": "cl.jguzman.piocompressapp.LempelZivEngine",
   "datasource": {
     "params": {
       "appId": 1
@@ -11,7 +11,8 @@
     {
       "name": "lempelziv",
       "params": {
-        numPages: 17
+        "numAlphabet": 23
+
       }
     }
   ]

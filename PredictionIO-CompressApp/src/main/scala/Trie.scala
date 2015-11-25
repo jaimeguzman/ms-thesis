@@ -1,10 +1,11 @@
-package trie
+package cl.jguzman.piocompressapp.trie
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks._
+
 
 
 object Trie {
@@ -18,15 +19,15 @@ sealed trait Trie extends Traversable[String] {
   def contains(word: String): Boolean
   def remove(word : String) : Boolean
 
-}
+};
 
-private[trie] class TrieNode(val char:   Option[Char] = None,
+protected [trie] class TrieNode(val char:   Option[Char] = None,
                              var word:   Option[String] = None,
                              var counter:Int= 0 ) extends Trie {
 
   var trieHeigth = 0
 
-  private[trie] val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
+  protected[trie] val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
 
   override def  append(key: String) = {
 
@@ -99,7 +100,8 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
     helper(0, this)
   }
 
-  override def  remove(word : String) : Boolean = {
+  override
+  def  remove(word : String) : Boolean = {
 
     pathTo(word) match {
       case Some(path) => {
@@ -131,7 +133,7 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
 
   }
 
-  private[trie] def pathTo( word : String ) : Option[ListBuffer[TrieNode]] = {
+  protected[trie] def pathTo( word : String ) : Option[ListBuffer[TrieNode]] = {
 
     def helper(buffer : ListBuffer[TrieNode], currentIndex : Int, node : TrieNode) : Option[ListBuffer[TrieNode]] = {
       if ( currentIndex == word.length) {
@@ -157,15 +159,15 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
     @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
         //println("\tSZ"+nodes.size )
-          println()
-          println("--|")
+        println()
+        println("--|")
 
-          nodes.foreach(node =>{ for(i <- 0 to node.children.size ){print("    ")}
-                                 print(" "+node.children.size+"_(" )
-                                 node.word.foreach(f)
-                                 print(")#"+node.counter )
-                                }  )
-          foreachHelper(nodes.flatMap(node => node.children.values): _*)
+        nodes.foreach(node =>{ for(i <- 0 to node.children.size ){print("    ")}
+          print(" "+node.children.size+"_(" )
+          node.word.foreach(f)
+          print(")#"+node.counter )
+        }  )
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
 
       }
     }
@@ -191,115 +193,3 @@ private[trie] class TrieNode(val char:   Option[Char] = None,
 
 }
 
-
-
-
-
-object Run extends App {
-
-  // Initialize a dictonary by empty phrase
-  val trie = new TrieNode()
-
-  val listaValores = List("A","B","R","A","C","A","D","A","B","R","A")
-  //val listaValores = List("A","B","R","AC","AD","AB","RA","RAB","RABA","RABZ")
-
-  for( i <- listaValores){
-    //println( i )
-   // trie.append(i)
-  }
-
-
-  println("::::::::::::::::::::\n\n")
-
-  /* trie.foreach( e => println( e.toString ) )
-
-  println( trie.contains("AB")  )
-  println( trie.init  )
-  println( trie.children.tail  )
-  println( trie.children.last  )
-  */
-
-  val lz78 = {
-
-    var tmpStr = ""
-
-    // pass a function to the breakable method
-    breakable {
-      for (i <- 0 to listaValores.size - 1) {
-
-
-        println("X es: " + listaValores(i))
-        if (trie.contains(listaValores(i)) == true) {
-          print("esta en el diccionario y X es: " + listaValores(i) + "\n")
-          Thread sleep 1000
-
-          if ((i + 1) >= listaValores.size) {
-            println("value de i+1 es" + (i + 1))
-            break
-          }
-
-          tmpStr += listaValores(i) + listaValores(i + 1)
-          println("tmpStr " + tmpStr)
-          if (tmpStr.length > 1) trie.append(tmpStr)
-
-          //reset tmp
-          tmpStr = ""
-        } else {
-          trie.append(listaValores(i))
-          tmpStr = ""
-        }
-        println()
-      }
-
-    }
-
-  }
-  println("::::::::::::::::::::\n\n")
-
-
-
-
-
-
-  trie.printTree( t => print( t ) )
-  println(  )
-
-  /*println("trie...MIN :::" +trie.min )
-   println("trie...HEAD :::" +trie.head )
-   println("trie...LAST :::" +trie.last )
-   for( nodo <- trie )      println( nodo.)
-
-
-  println("trie children::" )
-  trie.children.keys.foreach{ i =>
-                print("Key " + i +"\t")
-                println("Value "+ trie.children(i) )
-                  }
-  println(trie.children.toList.toString() )
-  */
-
-
-  println("::::::::::::::::::::")
-
-  trie.foreach( n => {
-      //println( n.length )
-    //print( n.head + " - " )
-    print( n + " - " )
-
-
-  });println()
-
-  //println(  trie.children.toString() )
-
-  print(" Find By Prefix:: "); println( trie.findByPrefix("AB") )
-
-  println("path To ::")
-  for(it <- trie.pathTo("RA")){
-    print( it )
-    print(" - ")
-  }
-
-
-
-
-}

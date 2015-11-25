@@ -1,17 +1,25 @@
-package org.template.classification
+package cl.jguzman.piocompressapp
 
-import io.prediction.controller.IEngineFactory
-import io.prediction.controller.Engine
+import io.prediction.controller.{Engine, EngineFactory}
 
 class Query(
   val features: Array[Double]
+
 ) extends Serializable
+
+
 
 class PredictedResult(
   val label: Double
+
 ) extends Serializable
 
-object ClassificationEngine extends IEngineFactory {
+
+
+//https://docs.prediction.io/api/current/index.html#io.prediction.controller.EngineFactory
+object LempelZivEngine extends EngineFactory {
+
+
   def apply() = {
     new Engine(
       classOf[DataSource],
@@ -19,4 +27,6 @@ object ClassificationEngine extends IEngineFactory {
       Map("lempelziv" -> classOf[Algorithm]),
       classOf[Serving])
   }
+
+
 }
