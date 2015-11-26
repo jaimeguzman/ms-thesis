@@ -1,13 +1,41 @@
 \chapter[Introducción]{Introducción}
 \label{ch:intro}
 
-\section{Motivación}
-\label{sec:motivacion}
+%charara
+{
+	El área de las ciencias de la computación que se encarga de estudiar todos los datos de maneras en que entregue información relevante, para poder ser estudiada es la Minería de Datos. Hoy en día esta área toma mucha relevancia al encontrarnos en una auge de la información generada por usuarios, redes sociales y variadas plataformas, podemos mencionar que esta es una de las razones para poder requerir disponer de herramientas de analisis que nos permitan saber como se comporta usuarios sobre una web, conocer la frecuencia en que se accede a un recurso en internet, etc.
+	
+	Sea el caso que entre una conexión cliente-servidor, una gran cantidad de servicios proporcionan datos de acccesos de los usuarios que acceden, sobre estos mismos existe se puede realizar un estudio sobre como predecir cual es la siguiente página que van a visitar.
+	}
 
-La motivación de este proyecto de título es poder converger dos áreas de estudio para el mismo problema, predicción del comportamiento de la web. Usar recursos tanto que la industria ofrece (predicction.IO) y la academia para poder crear un algoritmo o modelo que permita dar mejor precisión.
 
-\section{Contexto}
-\label{sec:contexto}
+\section{Preliminar} \label{sec:preliminar}
+
+  El interés en hacer un estudio sobre esto es poder hacer integraciones en áreas como compresión y la áreas que se dedican a completamente a hacer estudios sobre maquinas de aprendizaje. De por sí solas cada una se abordado independientemente lo cual es un interés converge en un problema en común que se puede resolver de manera eficiente.
+
+  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de Machine Learning. Adicionalmente toda la experimentación se llevará acabo disponibilizando los algoritmos y modelos como servicio REST, el cual se explicará mas adelante, ya mencionado lo anterior este trabajo es implementable en áreas productivas las cuales pueden presentar interés.
+
+  Definiremos que un usuarios es un la que se conecta a un servicio web, estos pueden ser paginas web informativas, redes sociales, etc. Este usuario establece una conexión directa con una pagina al momento de realizar esta operación, es posible almacenar datos los cuales vamos a llamar "access log" ó registros de accesos, durante el texto se mantendrán las referencias en ingles.
+
+  Un ejemplo de access log podría ser el siguiente:
+
+
+\begin{verbatim}
+  172.31.33.116 - - [26/Nov/2015:00:12:11 +0000] "GET /wp-content/themes/corridacuprum/images/cuprum-footer.png HTTP/1.1" 200 4447 "http://virtual.corridacuprumteleton.cl/?utm_source=masterbase&utm_medium=mail2&utm_campaign=corrida-cuprum-teleton&utm_campaign=8474:%20%23!nombre!%23%2c+PARTICIPA+EN+LA+CORRIDA+VIRTUAL+Y+APOYA++A+LA+TELETON&utm_source=MasterBase%20CUPRUM&utm_medium=email&utm_content=2&utm_term=none" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/principal-footer.png HTTP/1.1" 200 1784 "http://virtual.corridacuprumteleton.cl/?utm_source=masterbase&utm_medium=mail2&utm_campaign=corrida-cuprum-teleton&utm_campaign=8474:%20%23!nombre!%23%2c+PARTICIPA+EN+LA+CORRIDA+VIRTUAL+Y+APOYA++A+LA+TELETON&utm_source=MasterBase%20CUPRUM&utm_medium=email&utm_content=2&utm_term=none" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/main.png HTTP/1.1" 200 179333 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/fonts/akzidenzgrotesk-eb.woff2 HTTP/1.1" 200 24660 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/fonts/akzidenzgrotesk-mc.woff2 HTTP/1.1" 200 24604 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/lines-left.png HTTP/1.1" 200 4860 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/lines-right.png HTTP/1.1" 200 4841 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  	
+  \end{verbatim}
+
+  El ejemplo anterior nos da mucha información interesante como la IP desde donde se conecta, el tipo de navegador, el dispositivo si es un telefono inteligente o un navegador de escritorio, la fecha en que se realizo el acceso y también lo mas relevante el destino del usuario.
+
+
+\subsection{Contexto}
+  \label{sec:contexto}
 
   La Web crece constantemente y por ende su infraestructura, también los tipos de usuarios y  también la concurrencia de los mismos sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. 
   Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
@@ -25,13 +53,47 @@ La motivación de este proyecto de título es poder converger dos áreas de estu
 
 
 
-  \subsection{Trabajos relacionados}
+
 
 % @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
-En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
-La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
+%En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
+%La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
 
 
+
+\section{Minería Web}
+
+
+\section{Compresión}
+
+
+
+\section{Algoritmos como servicio web }
+
+
+  En esta sección hablare de como disponer los algoritmos como un servicio el cual se puede consumir, como si fuera una API.
+
+Una API es un interfaz de programación de Aplicaciones que nos permiten intermediar el Servicio A con el Servicio B.
+Por ejemplo si quisieramos disponer de datos que se encuentran dentro de un servidor especifico, estos se podrían consumir por esta interfaz. Existen variados clientes que nos permiten ayudar a esta comunicación, incluso se puede hacer que por una terminal de unix la cual es posible que mediante el programa curl entregue la información.
+
+Disponer de algorimtos como servicio ayuda en el caso de que podemos disminiuir la carga de un servidor en particula y ayuda a la integración. Un ejemplo claro de esto son el analisis de datos en sistemas legados, es normal que estos sistemas legados no posean la Infraestructura para poder ser procesados, por lo cual desligar la carga de procesamiento, memoria ayuda a una integración.
+
+En sí los algormimos de Compresión ó algoritmos de Machine Learning pueden ocupar muchos recursos los cuales pueden ser razones para no implementarlos.
+
+
+
+
+
+
+\section{Predicción }
+
+  \subsection{Ventajas }
+
+
+  \subsection{Desventajas }
+
+
+\section{Literatura}
 En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
 
 \begin{enumerate}
@@ -62,4 +124,5 @@ En la literatura, el tema de la predicción en la web se ha presentado como un t
   \item Poornalatha y Raghavendra~\cite{Poornalatha2012} establecen que se pueden utilizar máquinas de aprendizaje para predecir basándose en distintas entre clusters. Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
 
   \item Claude \etal~\cite{Claude2014} presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
+  
 \end{enumerate}
