@@ -1,0 +1,97 @@
+\chapter[Introducción]{Introducción}
+\label{ch:intro}
+
+%chacharara
+{
+  El área de las ciencias de la computación que se encarga de estudiar todos los datos de maneras en que entregue información relevante, para poder ser estudiada es la Minería de Datos. Hoy en día esta área toma mucha relevancia al encontrarnos en una auge de la información generada por usuarios, redes sociales y variadas plataformas, podemos mencionar que esta es una de las razones para poder requerir disponer de herramientas de analisis que nos permitan saber como se comporta usuarios sobre una web, conocer la frecuencia en que se accede a un recurso en internet, etc.
+  
+  Sea el caso que entre una conexión cliente-servidor, una gran cantidad de servicios proporcionan datos de acccesos de los usuarios que acceden, sobre estos mismos existe se puede realizar un estudio sobre como predecir cual es la siguiente página que van a visitar.
+  }
+
+% Normalmente se ocupa muchos algorimot de maquinas de aprendizaje para poder hacer predicciones en variadas areas,
+
+% Nuestro intere es hacer que las rpecicciones sean modeladas por un compresaor de datos basado en Lempel ziv
+
+
+
+%%%%%%%%%%
+% Uno de los interes en poder crear un un aplicación de ambas areas es la convergenia de las areas en la cual un proceso de aprendizaje ó predicción secuencial se puede usar con ML y Compress data
+
+% Cuando se hace el pio train se hace un entrenamiento de modelo lo que resulta ser es que genera el arbol que es un trie de LZ que será el predicto
+
+% Una función de predición implementada con MLIB y PIO sería predict () en scala
+
+
+
+
+%%%%%%% CONTEXTO PRELIMINAR 
+\input{preliminar}
+
+
+
+%%%%%%% CONCEPTOS BASICOS
+\input{conceptos-basicos}
+
+
+
+
+% @TODO: SEGUIR TRABAJANDO EN ESTA BREVE INTRODUCCION
+%En este tema convergen tres áreas, por un lado existe trabajo para crear estructuras eficientes para predicciones basadas en algoritmos de compresión, como es en el caso de~\cite{Claude2014}, y, por otro lado, el uso de algoritmos de aprendizaje para realizar clustering y predecir el comportamiento basado en el mismo contenido o en la distancia del contenido que visita el usuario actual al contenido clusterizado, como es el caso de ~\cite{Poornalatha2012}, inclusive se han utilizado modelos de Markov en ~\cite{Dongshan2002}  para poder modelar el comportamiento de la web.
+%La tercera área son los Sistemas de Recomendación, la cual en este proyecto no se tocará pero si se mencionará el enfoque práctico que presenta área como un foco de múltiples implementaciones. 
+
+
+
+
+
+
+
+%Algoritmos como serivcio
+\input{algoritimos-saas}
+
+
+
+
+%introducción a las Prediccion
+\input{predictionio}
+
+
+
+%@TODO:
+% Este tema debería detallarse en las siguientes secciones
+\section{Literatura}
+En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
+
+\begin{enumerate}
+  \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
+  Su modelo fue presentado en 2002, y da una importancia a conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
+
+  \item Domenech \etal~\cite{Domenech2006}, muestran un estudio de los rendimientos de técnicas de recuperación de datos.
+  Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
+  Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
+  Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como predicciones genéricas o específicas, variables de uso de recursos a nivel de red ó nivel procesamiento.
+  Finalmente, se presenta un modelo predictivo que puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y \emph{QoS}.
+
+
+  % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn del punto de vista que de los docuentos 
+  % como los autores antteriores.
+
+  \item Chen \etal~\cite{Chen2011} dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
+  El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.
+
+  \item Rajimol y Raju~\cite{Rajimol2012} minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
+  La literatura presenta un interés para poder anticipar el patrón de comportamiento de la web.
+  % @TODO reflexionar mas sobre este paper
+
+  \item Kewen~\cite{kewen2012} realizó un análisis más profundo del \emph{web usage minning}.
+  Parte de la importancia de este trabajo, es que después de minar los registros de accesos, logran reducir la ``\emph{bad data}''.
+  %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
+
+  \item Poornalatha y Raghavendra~\cite{Poornalatha2012} establecen que se pueden utilizar máquinas de aprendizaje para predecir basándose en distintas entre clusters. Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
+
+  \item Claude \etal~\cite{Claude2014} presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
+  
+\end{enumerate}
+
+
+
+\section{Descripción del Contenido y Contribuciones}

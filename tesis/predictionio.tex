@@ -1,0 +1,48 @@
+
+
+\section{Predicción }
+
+  En esta sección se presenta formalmente la libreía y framework Prediction.IO, %@TODO: colocar referencia web
+  es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite
+  crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente esta construido en Apache Spark, HBase y Spray.
+
+  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer
+  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algorimtos
+  sean utilizados para solucionar problemas reales.
+
+  \subsection{Modelamiento de Eventos}
+
+Que es el event modeling, es simplemente el hecho de poder llevar un feature  que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
+
+  Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
+  Como ya se ha mencionado en sección anteriores esta información esta totalmente depurada y entregada por los access log, los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+
+
+%Poner algo mas matematico.
+% EVENT API 
+
+% https://docs.prediction.io/datacollection/eventapi/
+
+
+
+  El modelamiento que se realizará contempla que el usuario :
+
+
+    \begin{itemize}
+      \item Tipo de Evento: Visitar
+      \item Entidad que ejecuta el evento: Usuario
+      \item Propiedades:
+          \begin{enumerate}
+            \item Pagina actual
+            \item Pagina siguiente
+            \item Cierre de Sesión
+          \end{enumerate}
+    \end{itemize}
+
+
+
+    El interes de tener un modelo totalmente atómico es poder contemplar la información que nos entrega, destacando sus variables y propiedades como restricciones.
+
+
+
+  \subsection{Ventajas }

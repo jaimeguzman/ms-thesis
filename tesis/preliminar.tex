@@ -1,4 +1,34 @@
-\section{Preliminar}
-\label{sec:preliminar}
+\section{Contexto Preliminar} \label{sec:preliminar}
 
-El interés en hacer un estudio sobre esto es poder hacer integraciones en areas como compresión y la áreas que se dedican a completamente a hacer estudios sobre maquinas de aprendizaje
+  La Web crece constantemente y por ende su infraestructura, también la información que podemos obtener de los  usuarios y  concurrencia de los sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
+   
+  Adicionalmente, las tecnologías para la creación de web dinámicas e asíncronas han evolucionado a favor de traspasar la carga cliente.
+  Hoy en día ya se poseen leguanjes y framework que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos grandes es requerido tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a los servicios web.
+
+  Predecir los futuros accesos que un usuario tendrá en una determinada web. Entendiendo que la manera en que un usuario navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Web Access Log} y a los cuales se puede hacer una minería de datos, Web Usage Minning. El por qué de hacer minería de datos es que cada día la web genera un innumerable cantidad de datos, por lo cual usar un algoritmo que se puedan operan comprimidos presenta un interés ya que además de disminuir el espacio físico o recursos utilizados, este se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  
+  Los registros de accesos de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores, como a  usuarios finales a tener una experiencia de usuario mejor, disminuyendo por ejemplo la latencia en respuestas por parte de cada petición que realizan.
+  
+  Hoy en día, las web no pueden ser simplemente dinámicas en contenidos, debe poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el profundizar en este tópico.
+
+  El interés en hacer un estudio sobre esto es poder hacer integraciones en áreas como compresión y la áreas que se dedican a completamente a hacer estudios sobre maquinas de aprendizaje. De por sí solas cada una se abordado independientemente lo cual es un interés converge en un problema en común que se puede resolver de manera eficiente.
+
+  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de Machine Learning. Adicionalmente toda la experimentación se llevará acabo disponibilizando los algoritmos y modelos como servicio REST, el cual se explicará mas adelante, ya mencionado lo anterior este trabajo es implementable en áreas productivas las cuales pueden presentar interés.
+
+  Definiremos que un usuarios es un la que se conecta a un servicio web, estos pueden ser paginas web informativas, redes sociales, etc. Este usuario establece una conexión directa con una pagina al momento de realizar esta operación, es posible almacenar datos los cuales vamos a llamar "access log" ó registros de accesos, durante el texto se mantendrán las referencias en ingles.
+
+  Un ejemplo de access log podría ser el siguiente:
+
+
+\begin{verbatim}
+  172.31.33.116 - - [26/Nov/2015:00:12:11 +0000] "GET /wp-content/themes/corridacuprum/images/cuprum-footer.png HTTP/1.1" 200 4447 "http://virtual.corridacuprumteleton.cl/?utm_source=masterbase&utm_medium=mail2&utm_campaign=corrida-cuprum-teleton&utm_campaign=8474:%20%23!nombre!%23%2c+PARTICIPA+EN+LA+CORRIDA+VIRTUAL+Y+APOYA++A+LA+TELETON&utm_source=MasterBase%20CUPRUM&utm_medium=email&utm_content=2&utm_term=none" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/principal-footer.png HTTP/1.1" 200 1784 "http://virtual.corridacuprumteleton.cl/?utm_source=masterbase&utm_medium=mail2&utm_campaign=corrida-cuprum-teleton&utm_campaign=8474:%20%23!nombre!%23%2c+PARTICIPA+EN+LA+CORRIDA+VIRTUAL+Y+APOYA++A+LA+TELETON&utm_source=MasterBase%20CUPRUM&utm_medium=email&utm_content=2&utm_term=none" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/main.png HTTP/1.1" 200 179333 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/fonts/akzidenzgrotesk-eb.woff2 HTTP/1.1" 200 24660 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/fonts/akzidenzgrotesk-mc.woff2 HTTP/1.1" 200 24604 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/lines-left.png HTTP/1.1" 200 4860 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "GET /wp-content/themes/corridacuprum/images/lines-right.png HTTP/1.1" 200 4841 "http://virtual.corridacuprumteleton.cl/wp-content/themes/corridacuprum/style.css?ver=3.8.1" "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
+  	
+  \end{verbatim}
+
+  El ejemplo anterior nos da mucha información interesante como la IP desde donde se conecta, el tipo de navegador, el dispositivo si es un telefono inteligente o un navegador de escritorio, la fecha en que se realizo el acceso y también lo mas relevante el destino del usuario.
