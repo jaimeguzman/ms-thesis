@@ -68,13 +68,13 @@ class DataSource(val dsp: DataSourceParams)
         userAccess
     }.cache()
 
-    println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
+    //println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
     //webAccessRDD.foreach( f => println( f ) )
 
 
 
     print("\n\n\n \n ")
-    println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
+   // println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
 
 
     new TrainingData(webAccessRDD)
@@ -82,7 +82,16 @@ class DataSource(val dsp: DataSourceParams)
 }
 
 case class WebAccess( user: Option[Int],page: Option[String],pos:  Option[Int])
-  extends Serializable {
+  extends Serializable with Ordered[WebAccess] {
+
+
+  val orderingById: Ordering[WebAccess] = Ordering.by(e => e.user.get )
+
+  import scala.math.Ordered.orderingToOrdered
+  def compare( a:WebAccess ) = user.get.compareTo(a.user.get)
+
+  //def compare(that: WebAccess): Int = (this.user.get, this.load) compare (that.tag, that.load)
+
 }
 
 

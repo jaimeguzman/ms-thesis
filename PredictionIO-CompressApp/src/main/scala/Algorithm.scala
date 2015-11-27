@@ -1,28 +1,18 @@
 package cl.jguzman.piocompressapp
 
-
-
-import scala.collection.JavaConversions._
-
-
-
-import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel}
-import org.apache.spark.SparkContext
-
-
+import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader}
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
-import org.apache.spark.mllib.tree.configuration.Algo._
-
+import grizzled.slf4j.Logger
+import scala.collection.mutable.Stack
+import scala.util.control.Breaks._
 import scala.util.Random
 
-import grizzled.slf4j.Logger
+import org.apache.spark.rdd.RDD
+import org.apache.spark.SparkContext
+import org.apache.spark.sql.{SQLContext, SchemaRDD}
 
-import io.prediction.controller.PersistentModel
 
-import cl.jguzman.piocompressapp.trie._
-
-import scala.math.Ordering.Implicits._
-
+import org.apache.spark.sql._
 
 /***
  * Parametros que le estoy pasando al algoritmo
@@ -34,141 +24,143 @@ case class AlgorithmParams(
 
 
 
- class LZModel(
-     val sc: SparkContext
+class LZModel(
+      val lz: TrieNode) extends PersistentModel[AlgorithmParams]
+          with Serializable{
 
-     ) extends PersistentModel[AlgorithmParams] with Serializable {
+   @transient lazy val logger = Logger[this.type]
+   def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
+     //println(" ::::::: ENTRO A SAVE ::::::::::: ")
 
-    @transient lazy val logger = Logger[this.type]
-    def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
+     val sqlContext = new SQLContext(sc)
+     import sqlContext._
 
-      false
-
-      }
-
-  }
-
+     // Create an RDD
+     val lzmodel = sc.textFile("data/lzmodel.txt")
 
 
- class Algorithm(val ap: AlgorithmParams)
+
+     // Import Row.
+     import org.apache.spark.sql.Row
+
+     // Import Spark SQL data types
+     //import org.apache.spark.sql.types.{StructType,StructField,StringType}
+
+     // The schema is encoded in a string
+     val schemaString = "uid page pos prob"
+
+
+     // Generate the schema based on the string of schema
+     /*   val schema =
+       StructType(
+         schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, true))
+       )
+      */
+
+
+     false
+
+   }
+}
+
+object lztrie{
+  val trie = new TrieNode()
+}
+
+
+object LZModel extends PersistentModelLoader[AlgorithmParams, LZModel]{
+  def apply(id: String, params: AlgorithmParams, sc: Option[SparkContext]):LZModel=
+    {
+
+      new LZModel(lztrie.trie)
+    }
+}
+
+
+
+
+
+
+
+class Algorithm(val ap: AlgorithmParams)
   extends P2LAlgorithm [PreparedData,
                         LZModel,
                         Query,
                         PredictedResult] {
-
   @transient lazy val logger = Logger[this.type]
 
 
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
+    println("\n\n\n.... Training .....\n")
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[WebAccess]  PreparedData no puede estar vacio." +
         " Verificar si  DataSource genera TrainingData" +
         " y Preprator genera PreparedData correctamente.")
 
-
-    System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
-
-    println("\n\n\n")
-    val rows  = data.labeledPoints
-
-    println( "la clase de data es.::::" +   data.getClass )
-    println(data.labeledPoints.take(1).isEmpty  )
-    println(data.labeledPoints.take(1)  )
-    println(data.labeledPoints.count()  )
-    println(data.labeledPoints.first()  )
-//    println(data.labeledPoints.toDebugString)
-  //  println(data.labeledPoints.toString() )
+    val webaccessLoad: RDD[WebAccess] = data.labeledPoints
 
 
 
-    //rows.collect().foreach(a => println(a.toString() ))
+    val trie = lztrie.trie
 
-    val trie = new TrieNode()
-
-
-    //data.labeledPoints.sortBy( c => c.user.get   ,true)
-
-    val lastUserWebAccess = data.labeledPoints.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
-
-    System.out.println(":::::::::::el ultimo "+   lastUserWebAccess  )
+    val lastUserWebAccess = webaccessLoad.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
+    //System.out.println(":::::::::::lastUserWebAccess\t "+   lastUserWebAccess  )
 
 
+    val test = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
 
-    // num de usuarios como parametro del algoritmo
-
-
-    System.out.println("*********" + data.labeledPoints.collect().apply(8).user.get  );
-
-
-    /*
-    for( j <- 0 until  data.labeledPoints.count().toInt ){
-        println("j :"+j+"   "+  data.labeledPoints.collect().apply( j ).user.get   )
-    }*/
-
-
-
-    val test = data.labeledPoints.map( x => List(x.user,x.page )  ).collect()
-    val test2 = test groupBy(_.head) toList //.sortBy( _._2.toList. )
-
-    //test2.sortBy( a => a._1.head    )(Ordering[Any].reverse)
-
-
-
+    val test2 = test.groupBy(_.head).toList
+    test2.sortBy( _._1.get.asInstanceOf[Int] )
 
 
     for( it <- test2){
-      //      println(  it._1.head  );
-      print (  it._1.head +"\t "+"# "+it._2.length+"\t")
-
+           val userSession =  Stack[String]()
            for(  i <- 0 until  it._2.length ){
-
-                  print(" "+ it._2.apply(i).last.get )
-
+             userSession.push( it._2.apply(i).last.get.asInstanceOf[String] )
+             //print(" "+ it._2.apply(i).last.get.asInstanceOf[String] ) // La idea es aqui ir agregando al mdoelo geerado
            }
-      println()
+           print("\t  Lista de tamaño temporal "+ userSession.length +"\n")
 
 
+          for(  j <- 0 until  it._2.length ){
 
+            var tmpStr = ""
+            breakable {
+              for (j <- 0 to userSession.size - 1) {
+                //print ( ":: j ::\t" + j +"\t\t" + "X es: " + userSession.apply(j) +"\t\t")
 
-    }
+                if (trie.contains(userSession(j)) == true) {
+                 // print("esta en el diccionario y userSession(j) es: " + userSession(j) )
+                  //Thread sleep  500
 
-    val tmp: List[String] = Nil
+                  //stop looking forward to avoid overflow
+                  if ((j + 2) >= userSession.size) {
+                    //println("\t\t\t"+"value de j+2 es\t" + (j + 2))
+                    break
+                  }
+                  //Aca puedo ir concatennando all lo que vea en el futuro
+                  tmpStr += userSession.apply(j).concat(userSession.apply(j+1)).concat(userSession.apply(j+2)) //+ userSession(i + 1)
+                  //println("tmpStr " + tmpStr)
+                  if (tmpStr.length > 1) trie.append(tmpStr)
 
-    /*
-    for( i <- 0 to lastUserWebAccess){
+                  //reset tmp
+                  tmpStr = ""
 
-          if( i.equals( test.apply(i).head.get )  ){
-
-              println( "es igual "+i+"   "+test.apply(i).head.get  );
-          }else{
-
-            println( "NO es igual "+i+"   "+test.apply(i).head.get  );
+                } else {
+                  trie.append(userSession(j))
+                  tmpStr = ""
+                }
+                //println()
+              }
+            }
           }
-    }*/
+    }
+    //    trie.printTree( t => print( t ) )
+    //    println(  )
 
-
-
-    println(  test.apply( 10  ).tail  )
-
-
-
-
-
-
-
-
-
-
-
-
-       new LZModel(sc)
-
-
-
-
-
+    new LZModel(trie)
   }
 
 
@@ -182,10 +174,21 @@ case class AlgorithmParams(
 
   def predict(model: LZModel, query: Query): PredictedResult = {
 
+      val tester = model.lz.findByPrefix("AF")
+
+     println("la ruta hasta AF es :\t"+tester )
+     print( "EL modelo LZ cargado es:\t" )
+     println( model.lz.toString() )
+     println(query )
 
 
 
+     lztrie.trie.printTree( t => print( t ) )
+     println(  )
 
+      for( t <- tester){
+          println(t)
+      }
 
 
 

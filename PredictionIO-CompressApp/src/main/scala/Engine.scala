@@ -2,17 +2,23 @@ package cl.jguzman.piocompressapp
 
 import io.prediction.controller.{Engine, EngineFactory}
 
-class Query(
-  val features: Array[Double]
 
-) extends Serializable
 
+class Query(q: String) extends Serializable{
+
+  println( "Entro a QUERY ")
+
+}
 
 
 class PredictedResult(
   val label: Double
 
-) extends Serializable
+) extends Serializable{
+
+  println( "Entro a PREDICT RESULT  ")
+
+}
 
 
 

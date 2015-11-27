@@ -18,9 +18,15 @@ $ time pio build
 
 # Train options with timming:
 $ time pio train -- --driver-memory 8G --executor-memory 4G --verbose
-
+time pio train -- --driver-memory 8G --executor-memory 8G --verbose
 
 # Deploy options:
-$ pio deploy -- --driver-memory 2G --executor-memory 2G --conf spark.akka.framesize=2
+pio deploy -- --driver-memory 2G --executor-memory 2G --conf spark.akka.framesize=2
+
+#For debug options
+
+pio deploy -- --driver-memory 2G --executor-memory 2G --verbose
+
+http://localhost:7070/events.json?accessKey=nHpUz1bTdXY9b9Mi3VNWZYfTz5lA1G9hka8uGXaJHGMF1c15vUWkSePfONONhxDD
 
 ```

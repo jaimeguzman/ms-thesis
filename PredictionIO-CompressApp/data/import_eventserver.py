@@ -4,6 +4,9 @@ Import sample data for classification engine
 
 import predictionio
 import argparse
+import time
+
+
 
 # def import_events(client, file):
 def import_events(client, file):
@@ -19,9 +22,9 @@ def import_events(client, file):
     pos = 0
     for features in data:
       # print "El usuario %d vio la pagina %s por %d vez " % (count,features, pos)
+      #time.sleep(3) # delays for 5 seconds
       for ft in features:
         pos += 1
-
         cliente.create_event(
           event="view",   #el usuario siempre ve una seccion de PRISA
           entity_type="user",
@@ -53,7 +56,7 @@ if __name__ == '__main__':
   client = predictionio.EventClient(
     access_key=args.access_key,
     url=args.url,
-    threads=100,
+    threads=1000,
     qsize=10000)
 
   import_events(client, args.file)
