@@ -6,9 +6,7 @@ import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import scala.util.control.Breaks._
-
-
+import scala.collection.mutable.Stack
 
 object Trie {
   def apply() : Trie = new TrieNode()
@@ -23,10 +21,9 @@ sealed trait Trie extends Traversable[String] {
 
 };
 
-//protected [trie]
-class TrieNode(val char:   Option[Char] = None,
-                             var word:   Option[String] = None,
-                             var counter:Int= 0 ) extends Trie {
+class TrieNode(val char: Option[Char] = None,
+               var word: Option[String] = None,
+               var counter:Int= 0) extends Trie {
 
   var trieHeigth = 0
   val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
@@ -38,14 +35,14 @@ class TrieNode(val char:   Option[Char] = None,
 
       if (currentIndex == key.length) {
         //System.out.println( "IF "+currentIndex+" == "+key.length+" - "+node.word+"\t "+node.counter )
+        node.counter  += 1
         node.word     = Some(key)
       }else{
 
         val char      = key.charAt(currentIndex).toLower
         val result    = node.children.getOrElseUpdate(char, { new TrieNode(Some(char)) })
 
-
-        node.counter  += 1
+        //node.counter  += 1
         //System.out.println("char "+char+"\t"+result+"\t "+node.counter )
         //System.out.println( "EL "+currentIndex+" == "+key.length+" - "+node.word+"\t "+node.counter )
         appendHelper(result, currentIndex + 1)
@@ -154,7 +151,7 @@ class TrieNode(val char:   Option[Char] = None,
     helper(new ListBuffer[TrieNode](), 0, this)
   }
 
-  override def  toString() : String = s"Trie(char=${char},word=${word},counter=${counter}})"
+  override def  toString() : String = s"Trie(char=${char},\t\tpage= ${word},\tcounter= ${counter}})"
 
   def printTree[U](f: String => U): Unit = {
     println("epsilon");
@@ -164,10 +161,12 @@ class TrieNode(val char:   Option[Char] = None,
         println()
         println("--|")
 
-        nodes.foreach(node =>{ for(i <- 0 to node.children.size ){print("    ")}
-          print(" "+node.children.size+"_(" )
+        nodes.foreach(
+          node =>{
+            for(i <- 0 to node.children.size ){print("    ")}
+          print(" "+node.children.size+"_[" )
           node.word.foreach(f)
-          print(")#"+node.counter )
+          print("]#"+node.counter )
         }  )
         foreachHelper(nodes.flatMap(node => node.children.values): _*)
 
@@ -177,20 +176,127 @@ class TrieNode(val char:   Option[Char] = None,
     foreachHelper(this)
   }
 
+
   /*
-  *@TODO: Me faltan estas ideas que pueden ser utiles
+  *@TODO:
+  *  Need to work here, the primary idea is get the frecuency
+  *  of ocurrency for caculate the probability
+  * */
+
+  def updateCounters[U](f: String => U): Unit = {
+    @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
+      if (nodes.size != 0) {
+        //println("\tSZ"+nodes.size )
+        println()
+
+
+        nodes.foreach(
+          node =>{
+
+            val aux = node.word
+            if( aux!=None ) {
+              node.children.foreach {
+                case (key, value) =>
+                  if( value.word != None){
+                    print("\t" + key)
+                    println("\t aux\t"
+                      + aux.get.toLowerCase
+                      + "\tvalue\t" + value.word.get.toLowerCase)
+
+
+
+                    val chars = value.word.get.toCharArray
+                    for (c <- chars) {
+                      val check = c.toLower
+
+                      if (check == key){
+                        print("-" + c + "-")
+                        node.counter +=1
+                        value.counter = 1
+                      }
+
+                    }
+
+                    //value.counter += 1
+                  }
+              }
+              println()
+            }
+            /*
+            // node.children.foreach(p => println(">>> key=" + p._1 + ", value=" + p._2))
+            //println("********" )
+          **/
+
+          }  )
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+
+      }
+    }
+
+    foreachHelper(this)
+  }
+
+  /*
+  * De Parametro le paso la secuencia a predecir o una letra
+  *
+  * Idea: Itero todo el arbol
+  * me coloco en el que tenga mas hijos
+  * busco el que tenga mayor counter
+  * lo devuelvo con su valor
+  *
+  * */
+
+
+  def predictNextPage[U]( param: String ): String = {
+
+    println(">>>>>>>>predictNextPage")
+    var currentIndex:Int =0
+    var nextSymbol:String = ""
+
+    @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
+      if (nodes.size != 0) {
+
+        var aux:Int=0
+        nodes.foreach(
+          node =>{
+            var chMatch = param.charAt(currentIndex).toLower
+
+            node.children.get( chMatch ) match {
+              case Some(child) =>{
+                println(child)
+                if (child.counter > aux  ){
+                  aux = child.counter
+                  nextSymbol = child.word.get
+                }
+
+              }
+              case None => None
+            }
+          }
+        )
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+
+      }
+    }
+    //Se me va fuera de rango
+    //currentIndex += 1
+    foreachHelper(this)
+    println(">>>>>>>>The prediction of the next page is:\t"+ nextSymbol)
+
+
+    nextSymbol
+  }
+
+
+
+  /*
+  *@TODO:
   */
   def clearTree()  ={
 
   }
 
-  def getFirstSymbol() ={
 
-  }
-
-  def setAlphabet() ={
-
-  }
 
 
 }

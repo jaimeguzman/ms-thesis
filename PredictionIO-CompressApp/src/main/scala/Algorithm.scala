@@ -92,7 +92,7 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
-    println("\n\n\n.... Training .....\n")
+    println("\n.... Training .....\n")
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[WebAccess]  PreparedData no puede estar vacio." +
@@ -101,55 +101,69 @@ class Algorithm(val ap: AlgorithmParams)
 
     val webaccessLoad: RDD[WebAccess] = data.labeledPoints
 
-
-
     val trie = lztrie.trie
 
     val lastUserWebAccess = webaccessLoad.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
-    //System.out.println(":::::::::::lastUserWebAccess\t "+   lastUserWebAccess  )
 
+    val webaccessMap = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
 
-    val test = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
+    val webaccessGrouped = webaccessMap.groupBy(_.head).toList
+    //test2.sortBy( _._1.get.asInstanceOf[Int] )
 
-    val test2 = test.groupBy(_.head).toList
-    test2.sortBy( _._1.get.asInstanceOf[Int] )
+    /**
+     * TEST
+     * INPUT:  “AAABABBBBBAABCCDDCBAAAA”
+     * OUTPUT: “A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA”.
+     * */
 
+    // Read each session from users on EventServer
+    for( it <- webaccessGrouped ){
+      val userSession =  Stack[String]()
+      val sizeOfTrieMap = it._2.length
 
-    for( it <- test2){
-           val userSession =  Stack[String]()
-           for(  i <- 0 until  it._2.length ){
-             userSession.push( it._2.apply(i).last.get.asInstanceOf[String] )
-             //print(" "+ it._2.apply(i).last.get.asInstanceOf[String] ) // La idea es aqui ir agregando al mdoelo geerado
+          // This is a temporal stack to
+      for(  i <- 0 until  sizeOfTrieMap ){
+             userSession.push( it._2.apply(i)
+                                  .last.get.asInstanceOf[String] )
            }
-           print("\t  Lista de tamaño temporal "+ userSession.length +"\n")
 
 
-          for(  j <- 0 until  it._2.length ){
+
+          for(  j <- 0 until  sizeOfTrieMap ){
 
             var tmpStr = ""
+
+
+
             breakable {
               for (j <- 0 to userSession.size - 1) {
-                //print ( ":: j ::\t" + j +"\t\t" + "X es: " + userSession.apply(j) +"\t\t")
+
 
                 if (trie.contains(userSession(j)) == true) {
-                 // print("esta en el diccionario y userSession(j) es: " + userSession(j) )
-                  //Thread sleep  500
 
-                  //stop looking forward to avoid overflow
-                  if ((j + 2) >= userSession.size) {
-                    //println("\t\t\t"+"value de j+2 es\t" + (j + 2))
-                    break
-                  }
-                  //Aca puedo ir concatennando all lo que vea en el futuro
-                  tmpStr += userSession.apply(j).concat(userSession.apply(j+1)).concat(userSession.apply(j+2)) //+ userSession(i + 1)
-                  //println("tmpStr " + tmpStr)
-                  if (tmpStr.length > 1) trie.append(tmpStr)
+                    //Thread sleep  100
 
-                  //reset tmp
-                  tmpStr = ""
+                    //stop looking forward to prevent index overflow
+                    if ((j + 1) >= userSession.size) {
+
+                      
+                      break
+                    }
+                    //Aca puedo ir concatennando all lo que vea en el futuro
+                    tmpStr += userSession.apply(j).concat(userSession.apply(j+1))//.concat(userSession.apply(j+2)) //+ userSession(i + 1)
+
+
+
+
+                    if (tmpStr.length > 1) trie.append(tmpStr)
+
+                    // println(":::::::"+ trie.toString() )
+
+                    //reset tmp
+                    tmpStr = ""
 
                 } else {
-                  trie.append(userSession(j))
+                  trie.append( userSession(j) )
                   tmpStr = ""
                 }
                 //println()
@@ -157,42 +171,49 @@ class Algorithm(val ap: AlgorithmParams)
             }
           }
     }
-    //    trie.printTree( t => print( t ) )
-    //    println(  )
 
+    trie.printTree( p => print(p))
+    println()
+
+
+    //create new LZ Model
     new LZModel(trie)
   }
 
 
 
 
-
-
-
-
-   /**El predictor es la lectura del TRIE LZ ***/
-
   def predict(model: LZModel, query: Query): PredictedResult = {
-
-      val tester = model.lz.findByPrefix("AF")
-
-     println("la ruta hasta AF es :\t"+tester )
-     print( "EL modelo LZ cargado es:\t" )
-     println( model.lz.toString() )
-     println(query )
+     val lzResult =      lztrie.trie
 
 
 
-     lztrie.trie.printTree( t => print( t ) )
-     println(  )
+     //val tester = lzResult.findByPrefix("EJ")
+     //println("la ruta hasta EJ es :\t"+ tester.seq )
+     //for( t <- tester)    println(t)
 
-      for( t <- tester){
-          println(t)
-      }
+     //print(":::::::DEBUG::::::::"+" La query hecha es\t ")
+     //print( query.webaccess + "\t "+ query.num )
+     //println("::::::DEBUG:::::::: end query")
+
+
+     println  ("Next page....\t" )
+
+
+    //lzResult.predictNextPage( query.webaccess )
 
 
 
-    new PredictedResult( 2.0 )
+    // Working on it
+    //lzResult.updateCounters(c => print(c))
+    //println()
+
+    lzResult.printTree( t => print( t ) )
+    println()
+
+    new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
+
+
 
   }
 
