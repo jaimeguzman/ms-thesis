@@ -1,0 +1,99 @@
+\chapter[Conceptos Básicos]{Conceptos Básicos}
+\label{ch:Conceptos-Basicos}
+
+
+
+
+
+En este capitulo se introducira los conceptos principales que se trabajarán en los siguientes capitulos:
+
+
+
+
+\subsection{ Resilient Distributed Datasets }
+
+	Los RDD, permiten que en un servidor de Machine Learning sea puedea mantener un modelo o motor de aprendizaje persitente sin importan el flujo en que se encuentre.
+
+	Esta estructura es fundamental dentro de la libería que se introducirá mas adelante, Apache Spark. Esta estructura es una colección distribuida de objetos Inmutable, cada 
+	set de datos en un RDD es divido en particiones lógicas, las cuales puedes ser computdadas en distintos Clusters. Los RDD pueden contener cualquier tipo de objeto de los siguientes lenguajes: Python, Scala y Java, incluyendo clases definidas por el usuario. 
+
+	Formalmente los RDD son solo de lectura, una colección de objetos particionada. Estos pueden ser creados através de  operaciones determinstisticas en una cierta tabla o un almacenamiento externo ó otra RDD.
+	Otra de las carácteristicas de los RDD, es que son colecciones de elementos toleantes a fallas que puede ser operadas en si mismas o en paralelo.
+	Apache Spark hace el uso del concepto de RDD para lograr rapidez y efecienciencia en las operaciones de MapReduce, de ser requeridas. Destacamos la escabilidad de esta libería para un gran nivel de computo, pero en este trabajo no se explicará el uso de Spark, pero si se utilizarán algunos conceptos como RDD y otros.
+
+
+
+
+\subsection{Data Source y Dataset }
+
+	Ambos conceptos están focalizados en  proveer información tanto para el servidor de Machine Learning, como para el procesamiento y analisis.
+	En este trabajo los dataset a estudiar son un los registros de accesos de la web española Prisa, los cuales representan 1.000.000 de registros correspondientes.
+
+	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 17 
+
+	frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
+
+
+
+% \subsection{DataFrame}
+
+
+	% A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques.
+	% Here is a set of few characteristic features of DataFrame −
+	% Ability to process the data in the size of Kilobytes to Petabytes on a single node cluster to large cluster.
+	% Supports different data formats (Avro, csv, elastic search, and Cassandra) and storage systems (HDFS, HIVE tables, mysql, etc).
+	% State of art optimization and code generation through the Spark SQL Catalyst optimizer (tree transformation framework).
+	% Can be easily integrated with all Big Data tools and frameworks via Spark-Core.
+	% Provides API for Python, Java, Scala, and R Programming.
+
+
+
+
+
+% Compresor tonto o Machine Learning lento para predecir
+
+\subsection{Access Log}
+
+
+
+\subsection{Web Usage Minning}
+
+\subsection{Web Usage Pattern}
+
+Pattern Matching
+
+
+
+\subsection{Secuencias discretas}
+
+Definimos una secuencia de accesos discreta y finita, dado los acccesos que tiene un usuario frente a una web, lo anterio es acotado por el concepto de sesión, el cual es desde que se inicia la navegación, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamalo no superior a un alfabeto $A$.
+
+
+\subsection{Alfabeto}
+
+Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de un nodo de contenido de un sitio web.
+Donde $A $, puede ser definido como la página inical. Este alfabeto es finito y acotoda por la mineria de datos de uso web.
+
+
+
+\subsection{Arboles Trie}
+
+
+Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de muy fácil la recuperación de información de estos mismo. Sus características generales es ser un conjunto de llaves las cuales se representan en el arbol y sus nodos internos representan la información, en nuestro caso una caracter o string de tamaño 1.
+
+
+
+% easy text
+% https://es.wikipedia.org/wiki/Trie
+%Definición interpretada de esot
+
+\subsection{Cadenas de Markov}
+
+
+\subsection{Entropía}
+
+
+\subsection{Transferencia de Estado Representacional}
+
+ REST es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web. El término se originó en el año 2000, en una tesis doctoral sobre la web escrita por Roy Fielding, uno de los principales autores de la especificación del protocolo HTTP y ha pasado a ser ampliamente utilizado por la comunidad de 
+ %@TODO: poner una sucia referencia a wiki o algun paper mas sensato

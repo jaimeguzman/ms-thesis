@@ -3,16 +3,51 @@
 
 %w Predicciones sobre Web AccessPredicciones sobre Web AccessPredicciones sobre Web Access
 
-Cada vez que un usuario accede a un sitio web el tiempo en el que pasa en este es registrado
-por el servidor, dependiendo de los distintas ofertas que ofrece la industria existen servidores como Apache, Ngnix, Tomcat
-y recientemente Node.js. Todos los servidores propiamente tal cumple con su función de orquestar procesos
-como también ir ofreciendo en cada petición que desee el cliente el contenido indicado.
 
-Una de los puntos en común en los servidores mencionados anteriormente es que cada uno guarda registros variados sobre su funcionamiento,
-estos archivos denominados \emph{Logs}, son los que realmente presentan interés para nosotros. Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{REQUEST} que ha realizado el usuario mas su \emph{SESSION} nos da la información necesaria para clasificar tipos de usuarios.
 
-Dado lo anterior podemos hacer minería de los datos que un servidor ha recolectado durante un periodo de tiempo, de lo anterior  podemos mencionar que existen varias
-técnicas para poder hacer \emph{WEB ACCESS PATTERN } y también  "Web Usage Minning", de sus siglas en ingles es minería del uso de una \emph{web}. Nuestro interés no es abordar este tema pero si explicarlo para poder analizar secuencias de acceso, con el objetivo de poder predecir el siguiente comportamiento que tiene un usuario al momento de visitar un sitio web.
+
+Las predicciones son un area importante dentro del dominio de las Machine Learning y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un optimio desempeño, también ayudan a dar información para la elección de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que por lo general se puede modelar como un proceso estocástico. 
+
+Nuestro interés se focaliza en las predicciones de sequencias discretas, en el cual queremos demostrar la convergencia en el cual un modelo de compresión, como el caso de LZ78 que se explicará mas detalladamente en el capitulo posterior. La eficiencia de un algoritmo de compresión ofrece una nueva perspectiva a las predicciones, la cual ha despertado un interés en investigadores.
+% @TODO: hacer cita
+% ACTIVE LEZI: AN INCREMENTAL PARSING ALGORITHM FOR SEQUENTIAL PREDICTION
+
+Nos enfocaremos en el caso del los accesso que un usuario realiza a un sitio web, el tiempo en el que pasa en este es registrado por el servidor, en esta investigación no se requiere indagar en temas de Information Retrieval, ya que se entrega una colección de datos ya procesada, la cual es representa secuencias de acceso por parte de usuarios.
+
+
+
+
+Nuestro real interés se presetna en dada un sequencia accesso, si un usuario entra accede a la web, dado sus accesos web cual será la predicción de su sesión.  Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{request} que ha realizado el usuario mas su \emph{session} nos da la información necesaria para poder crear un modelo predictivo.
+
+Dado lo anterior podemos hacer minería de los datos que un servidor ha recolectado durante un periodo de tiempo, de lo anterior  podemos mencionar que existen varias técnicas para poder hacer \emph{Web Access Pattern } y también  "Web Usage Minning", de sus siglas en ingles es minería del uso de una \emph{web}. Nuestro interés no es abordar este tema pero si explicarlo para poder realizar un estudio predictivo de secuencias de acceso, con el objetivo de poder predecir el siguiente comportamiento que tiene un usuario al momento de visitar un sitio web.
+
+
+%  Applications involving sequential data may require pre- diction of new events, generation of new sequences, or decision making such as classification of sequences or sub-sequences. The classic application of discrete sequence prediction algo- rithms is lossless compression (Bell et al., 1990), but there are numerous other applications involving sequential data, which can be directly solved based on effective prediction of dis- crete sequences. Examples of such applications are biological sequence analysis (Bejerano & Yona, 2001), speech and language modeling (Schu ̈tze & Singer, 1994; Rabiner & Juang, 1993), text analysis and extraction (McCallum et al., 2000) music generation and classifica- tion (Pachet, 2002; Dubnov et al., 2003), hand-writing recognition (Singer & Tishby, 1994) and behaviormetric identification (Clarkson & Pentland, 2001; Nisenson et al., 2003).1
+
+
+
+
+
+\section{Predictores de Estado finito}
+
+
+Si se tiene un secuencia estocástica, $x n = x , x ,.....x .  $, en un tiempo $t$ el predictor debe saber cual es el siguiente simbolo, basdo en su historia o la frecuencia de ocurrencia que se vaya entrenando.
+
+Si llamamos al siguiente simbolo $b_{t}$, diremos que el resultado de nuestro predictor es entregar este valor. Dado esto, existe una función de perdida asociada $L( b_{t},x_{t} )$ para cada predicción realizada. 
+
+El objetivo de cada predictor es tener una función de minimización tal que minimize la fracción de predicciones erroneas, a lo anterior lo llamaremos $T$ que será:
+
+$$ T = \dfrac{1}{n} \sum^{n}^{t=1} {L( b_{t},x_{t} ) }  $$
+
+
+
+% Given the resources in a practical situation, the predictor that is capable of possibly meeting these
+% requirements must be a member of the set of all possible finite state machines (FSM’s). Consider the set of all possible finite state predictors with S states. Then the S-state predictability of the sequence xn (denoted by π S (x n ) ), is defined as the minimum fraction of prediction errors made by an FS predictor with S-
+% states. This is a measure of the performance of the best possible predictor with S states, with reference to a given sequence. For a fixed-length sequence, as S is increased, the best possible predictor for that sequence will eventually make zero errors. The finite state predictability for a particular sequence is then defined as the S – state predictability for very large S, and very large n, i.e. the finite state predictability of a particular sequence is
+% lim limπS(xn). S→∞ n→∞
+% FS predictability is an indicator of the best possible sequential prediction that can be made on an arbitrarily long sequence of input symbols by any FSM. This quantity is analogous to FS compressibility, as defined in (Ref. 5), where a value of zero for the FS predictability indicates perfect predictability and a value of 1⁄2 indicates perfect unpredictability.
+% This notion of predictability enables a different optimal FS predictor for every individual sequence, but it has been shown in (Ref. 1) that there exist universal FS predictors that, independent of the particular sequence being considered, always attain the FS predictability.
+
 
 
 
@@ -26,7 +61,11 @@ muchas limitaciones técnicas que permiten que se usen.
 %explicar los jodidos de Markov y su matemática
 Los modelos de  
 
- %explicar que son los prrocesos estocasticos y modelos.
+
+
+
+
+
  
  
  \subsection{Limitaciones de los modelos tradicionales de Markov}
