@@ -1,5 +1,4 @@
-\chapter[Predicciones sobre Web Access]{Predicciones sobre Web Access}
-\label{ch:tema}
+\chapter[Predicciones sobre Web Access]{Predicciones sobre Web Access} \label{ch:tema}
 
 %w Predicciones sobre Web AccessPredicciones sobre Web AccessPredicciones sobre Web Access
 
@@ -37,7 +36,7 @@ Si llamamos al siguiente simbolo $b_{t}$, diremos que el resultado de nuestro pr
 
 El objetivo de cada predictor es tener una función de minimización tal que minimize la fracción de predicciones erroneas, a lo anterior lo llamaremos $T$ que será:
 
-$$ T = \dfrac{1}{n} \sum^{n}^{t=1} {L( b_{t},x_{t} ) }  $$
+%$$ T = \dfrac{1}{n} \sum^{n}^{t=1} {L( b_{t},x_{t} ) }  $$
 
 
 
@@ -78,10 +77,11 @@ Los modelos de
  
  Usando estos modelos se ha comparado los investigadores comparan el máximo de elementos  prefijos de cada secuencia histórica de web access con los elementos sufijos de la  misma longitud de secuencia de web access actual del usuario y obteniendo secuencias históricas con la probabilidad más alta de elementos que coinciden.
  
- El modelo de Markov de orden cero es la tasa base de probabilidad incondicional, la cual es la probabilidad de la página visitada.
- 
-$$ p(xn) = Pr(Xn) $$
- 
+ El modelo de Markov de orden cero es la tasa base de probabilidad incondicional, la cual es la probabilidad de la página visitada, dada por
+ \begin{equation}
+p(x_n) = Pr(X_n),
+ \end{equation}	
+ donde $xn$ es xn y $Xn$ es otra Xn.
  
  El modelo de Markov de orden uno observa la probabilidad de la transición de un pagina a otra, la podemos interpretar así:
  
@@ -89,13 +89,15 @@ $$ p(xn) = Pr(Xn) $$
  
  El K-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una nueva  n-ésima página  dado su anterior pagina visitada, teniendo que $k = n -1$ paginas vistas:
  
- 
+ \begin{equation}\label{eq:tantito}
+p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k}) 
+ \end{equation}
 
-$$ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k})$$
+
  
  
  
- Modelos de Markov de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resulatan de alta complejidad en espacio de estado y cobertura.
+ Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resulatan de alta complejidad en espacio de estado y cobertura.
  
 Modelos con mayor Orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el numero de estados tiende a crecer exponencialmente al igual que el Orden del modelo.
 
