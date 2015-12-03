@@ -1,0 +1,1644 @@
+PPM: one step to practicality
+
+Dmitry Shkarin
+Institute for Dynamics of Geospheres, Moscow, Russia
+E-mail: dmitry.shkarin@mtu-net.ru
+PPM is one of the most promising lossless data compression algorithms using
+Markov source model of order D. Its main essence is the coding of a new (in the given
+context) symbol in one of inner nodes of the context tree; a sequence of the special
+escape symbols is used to describe this node. In the reality,the majority of symbols
+is encoded in inner nodes and the Markov model becomes rather conventional. In
+spite of the fact that PPM algorithm achieves best results in comparison with others,
+it is used rarely in practical applications due to its high computational complexity.
+This paper is devoted to the PPM algorithm implementation that has complexity
+comparable with widespread practical compression schemes based on LZ77, LZ78
+and BWT algorithms. This scheme has been proposed in [1] and named PPM with
+Information Inheritance (PPMII).
+1 Basic denitions
+
+Let A be a discrete alphabet consisting of M  2 symbols; x = x ; : : : ; x ; x 2 A
+be rst n symbols of message; jj be the length of sequence  or the cardinality of
+set . The probability of symbol x = a 2 A for a source with memory depends on
+current context s = x ; : : : ; x 2 A ; d  D. The set of all possible contexts can
+be presented as nodes in M -ary tree with depth D. Context (sequence) s describes a
+path from tree root to the current node also denoted as s.
+Usually the true conditional probabilities are unknown and the coding conditional
+pr ob abilitiesq(ajs) depend on characteristics of one or sev eralsubsequences x (s),
+x (s) is the subsequence of all symbols x such that x ; : : : ; x
+= s . These
+characteristics are: frequency f (ajs) = f (ajx (s)) of symbol a in x (s), alphabet
+A(s) = A(s; x (s)) = fa : f (ajs) > 0g, its cardinality m(s) = jA(s)j etc. Even at
+small D, the n umber of model states is big, subsequences x (s) are short ina verage,
+and their statistics is insuÆcient for eective compression.
+PPM algorithm [2] is based on an (implicit) assumption: the longer is the common initial part of contexts, the more (in average)similarity there is between their
+conditional probability distributions. High PPM eÆciency means this assumption is
+fair forthe majority of real sources.
+Let Z be the set of nodes s ; d  D on the current branch x ; x ; : : : of context
+tree; s(a) be the context with maximum length, for which f (ajs) > 0; d (a) = js(a)j (if
+such context is absent then d (a) = 1); q(ajs) and q(escjs) be the conditional
+probabilities for symbol a 2 A(s) and for escape symbol. The escape symbol signals
+a new symbol appearance in A(s).
+The key feature of all PPM modications is the representation of coding conditional probability for any symbol
+2 a 2 A as 3
+Y
+q  (ajx (s)) = 4
+q (escjs )5  q (ajs );
+d = d (a)
+(1)
+The product of escape conditional probabilities describes for the decoder a sequential
+descent from s to s(a) (if d (a) = D then this product is equal to 1). Usually
+t(escjs)
+t(ajs)
+; 8a 2 A (s);
+;
+(2)
+q (escjs) =
+q (ajs) =
+T (s)
+T (s)
+n
+
+n+1
+
+d
+
+n
+
+d+1
+
+n
+
+1
+
+n
+
+i
+
+d
+
+n
+
+n
+
+j
+
+j
+
+n
+
+1
+
+j
+
+d
+
+d
+
+n
+
+n
+
+n
+
+n
+
+d
+
+n
+
+n
+
+1
+
+n
+
+n
+
+D
+
+n
+
+i
+
+i=d+1
+
+D
+
+n
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+d
+
+n
+
+where A (s ) = A(s )nA(s ), s is a child context of s on the current tree
+branch Z (and vice versa, s is a par entcontext for s ), t(js) are generalize d
+frequencies introduced in [1], T (s) is the sum of all t(js). As a rule, t(js) are written
+as t(ajs) = f (ajs) + c, t(escjs) = f (escjs). F orexample, PPMC [3] and PPMD [4]
+correspond to c = 0,  = 1 and c = 1=2,  = 1=2 respectively.
+After encoding of current symbol a, it is necessary to update (to increase by one)
+t(ajs) in various tree nodes s 2 Z . Early PPM variants [2] used full up dateswhen
+frequencies are changed for all s 2 Z . Later PPM variants [3] use update exclusions
+when frequencies are changed only in nodes with length jsj  d (a). In some sense,
+full updates and update exclusions correspond to the two ultimate cases.
+During a descent along Z with the help of escape symbols, one must eliminate
+symbols already checked in higher order contexts (exclusions). Name such symbols
+as masked symbols and contexts (not) containing such symbols | (n)m-contexts.
+Designate s as a binary context if m(s) = 1 and only two probabilities are used, i.e.
+q (ajs)  1 q (escjs).
+j
+
+j +1
+
+j
+
+n
+
+j +1
+
+j
+
+j +1
+
+j
+
+n
+
+n
+
+n
+
+n
+
+2 Evaluation of generalized frequencies of symbols
+
+The main diÆculty of all explicit context-based
+modeling schemes is the statistics insuÆciency in the higher order contexts. Many
+ways have been proposed to overcomethis problem: predictions weighting for lower
+and higher order contexts (CTW, in terpolatedMarkov model), symbol coding only
+in contexts that have enough (b y some criterion) statistics (LOE, state selection).
+All these methods require a lot of computational resources and are unacceptable for
+our purposes. We can take advantage of the similarity of distribution functions in
+parent and child contexts and set the initial value t (ajs) of the generalized symbol
+frequency in the child context with regard to information about this symbol gathered
+in the parent context. Such an approach has two virtues: rstly, reference to the
+parent statistics occurs only at addition of a new symbol to the child context, i.e.
+rarely enough, that causes existence of linear (not depending on tree depth) time
+complexity solutions; secondly, due to the rare use of the parent statistics again, the
+model can quickly adapt to the variations of character of input data.
+The follo wingnotation is used below: s is the new context (T (s ) = 0) or the
+context, to that new symbol a has to be added (t(ajs ) = 0), s is the longest context
+which contains the current symbol a (s = s(a)). The addition of a new symbol to
+the old context statistics will be our initial concern. Locally, at the given point of
+the encoded text, it would be optimal immediately to use PPM-model of order k, i.e.
+to reduce the context tree depth to k; in that case, we eliminate errors associated
+with inaccuracy of the escape probabilities estimation. On the other hand, we need
+only statistics similar to statistics in s , for this reason, we must perform reduction of
+tree depth only along current context branch Z . Such tree depth reduction removes
+distortions of the probabilities distribution brought in by the symbol masking under
+update exclusions and increases precision of symbol probability estimation in s .
+Now, we can equate symbol a probability estimations in s and in s for tree with
+pruned branch:
+t(ajs )
+t (ajs )
+=
+;
+(3)
+T (s ) + t (ajs ) T (s ) + T
+where T is the statistics gathered
+0 in contexts s ; k < j  i: 1
+X
+@T (s ) t(escjs ) X t (a js )A
+T =
+1. Information inheritance.
+
+0
+
+i
+
+i
+
+i
+
+k
+
+k
+
+i
+
+n
+
+i
+
+i
+
+0
+
+i
+
+k
+
+i
+
+0
+
+k
+
+i
+
+k
+
+i;k
+
+i;k
+
+j
+
+m(sj )
+
+i
+
+i;k
+
+j
+
+j =k +1
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+0
+
+j
+
+n=1
+
+n
+
+j
+
+Equation (3) is too complex for calculations and requires an additional variable
+containing the sum of t (a js ) in each context structure. As a rule, the escape
+happens to the parent, i.e. k = i 1; if it is not true then statistics gathered in
+in termediate contexts s is small and consists mainly of the initial values t (ajs ).
+Therefore, we can neglect all in termediate s in T . We can also replace t(escjs )
+and t (a js ) by their evaluations in PPMD method. Resolving equation (3) relative
+to the inherited frequency t (ajs ) and using aforesaid simplications, we get formula:
+T (s )  t(ajs )
+(4)
+t (ajs ) =
+T (s ) t(ajs ) + T (s ) m(s )
+At deriving equations (3) { (4), it was implicitly assumed that t (ajs ) estimation
+is performed after statistics update in s . The same argumentation can be repeated
+for the case when inheritance is performed before statistics update; some intermediate cases are also possible. It requires an in troduction of free parameter  :  = 0
+corresponds to information inheriting after statistics update and  = 1 corresponds
+to inheriting before statistics update. Repeating all previous reasonings as well for
+the new context (T (s ) = 0), we come to the nal formula:
+8
+t (escjs )  (t(ajs )  )
+>
+>
+; T (s ) = 0
+>
+<
+T (s ) t(ajs )
+t (ajs ) =  + >
+; 0    1 ; (5)
+T (s )  (t(ajs )  )
+>
+: T (s ) t(ajs ) + T (s ) m(s ) ; T (s ) 6= 0
+where t (escjs ) should be specied b y extraneous methods (PPMD, for example).
+By experiments, the optimal value of  is approximately 1=4 for PPMD method.
+At deriving equation (5), it was supposed that t (ajs ) is calculated immediately
+after the rst advent of a in s . Howev er, at largeD, it is more preferable to delay calculation of (5) until s is encountered next time. In this case, the symbols probabilities
+distribution in another parent s0 = s0(a) is usually more similar to the distribution in
+s and calculated t (ajs ) corresponds better to unknown conditional probability of a
+in s . On the other0 hand, such \delayed" symbol 0addition to s requires an additional
+searching of a in s and additional searching of s itself; it would lead to the increase
+of algorithm complexity. For this reason, delayed symbol addition is performed for
+the new contexts only (T (s ) = 0).
+2. Update exclusions modication. F ororiginal PPM (without information
+inheritance), the parent contexts are used only for coding of new symbols which were
+not seen earlier in the child contexts. Their importance raises when the information
+inheritance is added, now they are also used for t (ajs) calculation. Therefore, the
+speed of statistics gathering in the parent contexts becomes more important. The
+conventional update exclusions mechanism does not meet these requirements, the full
+updates work badly also.
+The update exclusions can be modied in the following way: along with t(ajs )
+increment in s = s(a), we shall increase the frequency in its parent s , but with
+weight 1/2. At conven tionalupdate exclusions, the symbol frequency and its probabilit y estimation in the parent s are proportional to the number of child contexts s
+containing this symbol. Not to lose completely this property, the statistics update in
+s
+must be stopped when t(ajs ) reached some threshold. Experimentally, it was
+found equal to 8.
+Proposed update exclusions modication requires one additional scanning of s
+and this scanning can increase the execution time nearly twice in some cases. We
+can suppose if the symbol was processed by the longest possible context (d (a) = D)
+0
+
+n
+
+j
+
+0
+
+j
+
+j
+
+0
+
+n
+
+j
+
+i;k
+
+j
+
+j
+
+0
+
+i
+
+i
+
+0
+
+k
+
+i
+
+k
+
+k
+
+i
+
+i
+
+0
+
+i
+
+k
+
+i
+
+0
+
+i
+
+k
+
+i
+
+k
+
+0
+
+k
+
+i
+
+i
+
+k
+
+i
+
+k
+
+0
+
+k
+
+i
+
+i
+
+i
+
+0
+
+i
+
+i
+
+i
+
+k
+
+0
+
+i
+
+i
+
+i
+
+i
+
+k
+
+k
+
+i
+
+0
+
+k
+
+k
+
+k
+
+1
+
+j +1
+
+j
+
+k
+
+1
+
+k
+
+k
+
+n
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+1
+
+then statistics in this tree branch is already stable, the escape probability is small
+and here is no need to update statistics in the parent. With this assumption, the
+execution time is increased b y2-10% only (it depends on D).
+
+3 Evaluation of escapes probabilities
+
+F or estimation of escape probability, we shall divide all contexts into three types:
+binary contexts, nm-contexts and m-contexts. Consider each type of contexts separately.
+1. Escape probability for binary contexts. At big enough D, the symbol
+encoding begins at binary context in 60 { 80% of cases. The coding probability of
+a single symbol for such contexts is strongly connected to the escape probability:
+q (ajs) = 1 q (escjs). F orthese reasons, accurate estimation of q (escjs) giv essignicant gain for compression eÆciency. We shall construct an additional model for
+q (escjs) estimation dependent on some set of parameters w(s) = (w ; : : : ; w ) associated with the current context. Not to confuse this model with the basic model, we
+shall denote it as SEE (secondary escap e estimation) model [5] and parameters of this
+model | SEE-contexts. Escape probability for each SEE-context is computed by the
+usual formula for a mean
+Xw
+S (w)
+; S (w) =
+Æ (w);
+(6)
+q (escjw) = hÆ i =
+N (w)
+where Æ = 1 when a new symbol has appeared on j -th step and Æ = 0 otherwise,
+N (w) is the n umber of tests.
+Scheme with continuous rescaling of statistics is used in PPMII to improvealgorithm adaptivity. The number of tests is xed formally: N = N and (1 1= N ) is
+the scaling factor. On j -th step, Æ is added to the sum S and the mean value hÆi
+is subtracted from S , i.e. change of S is S = Æ S=N for each step. N can
+be chosen as power of two to eliminate division operation, thus, the total n umber
+of operations perestimating-updating
+one
+cycle
+is one addition, one subtraction and
+one arithmetic shift. This simple method of the mean estimation can be applied to
+various statistical andmodeling programs
+and, actually
+, it is in tensively used in [6].
+The number h of w(s) components, their quantization and their inuence on
+q (escjw) can be found experimentally only. They are en umeratedbelow in the decreasing inuence order.
+1) Of course, the escape probability depends on generalized symbol frequency
+t(ajs) to a great degree. This variable is quantized to 128 values.
+2) PPM uses similarity of parent and child contexts, therefore, the alphabet size
+m(s ) of the parent has strong eect on the probability of escape from the child s .
+This w(s) component is quantized to 4 values.
+3) The experiments show that highly predictable data blocks are interleaved with
+not so predictable ones for real sources. The size of such block is small (3{5 symbols),
+it corresponds to a natural language text segmentation into words and parts of words.
+The probability of the previous encoded symbol in the previous context is included
+into w(s) to trace switching between blocks. This variable is quantized to 2 values.
+4) The current coded symbol mostly correlates with the previous symbol. It is
+inexpedient to include the whole previous symbol in to w(s) because the number of
+SEE-contexts would betoo big and the frequency of each SEE-context would be too
+small. Only single-bit ag is included in to w(s). The ag value is set to 0 if two
+higher bits of the previous symbol are zeroed and to 1 otherwise.
+5) The long blo ck of symbols with length L is the sequence of input symbols for
+which the escapes to lower orders did not occur and the coding probability for L
+1
+
+N(
+
+h
+
+)
+
+j
+
+j =1
+
+j
+
+j
+
+0
+
+0
+
+j
+
+j
+
+i
+
+1
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+0
+
+0
+
+i
+
+symbols of this sequence was larger than 1/2. It is quite probable the PPM model
+with D < L works badly for such blocks. Special ag is included in to w(s) to signal
+the occurrence of a long block.
+6) By analogy with 4), the ag built of two higher bits of single observed symbol
+of binary context is added to SEE-context.
+Thus, the SEE-model for binary contexts consists of 128  4  2 = 8192 SEEcontexts. Quantization details of various w(s) components can be found in [7]. The
+SEE-model performs averagingoverlarge contexts groups, so it depends weakly on
+statistical outliers at small T (s). Therefore, the best value of the free parameter 
+in (5) is  = 1 and initial estimation of t (escjs) is performed by PPMC: t (escjs) = 1.
+2. Escape frequency for nm-contexts. This type of contexts is a more diÆcult
+case because such contexts occur rarely at high D and an adaptive method (similar
+to aforedescribed one) would not gather enough statistics. F or this reason,the semiadaptive methodcis hosen that has some parallel with PPMD method.
+Suppose the symbols probabilities distribution in the context is geometrical, i.e.
+q (a js) =  (1 ); 0 <  < 1; n = 0; 1; 2; :::
+(7)
+Then, at binary to nonbinary context transformation, the base number  can be
+found with the help of Sec. 3.1 results. At known , the escape frequency t (escjs)
+can be calculated for the context containing two symbols. These calculations can
+be performed n umerically only because symbols may occur not neccessarily in the
+decreasing probability order.
+F urthermore, t(escjs) value is changed only at addition of a new symbol to the
+context similarly to PPMD method.
+The increment of t(escjs) is
+8
+1
+=
+2
+;
+4m(s) < m(s(a))
+<
+2m(s) < m(s(a))
+Æ = : 1=4;
+(8)
+0; for all other cases
+The additional adjustment is required, when the new symbol has a small probability:
+Æ = 1 t (ajs);
+8a : t (ajs) < 1
+(9)
+The nal formula is those:
+X
+t(escjs) = t (escjs) +
+(Æ (s; s(a)) + Æ (a; s));
+(10)
+where t (escjs) is calculated only once, at binary to nonbinary context transformation, the summation is performed at each new symbol occurrence, Æ and Æ are
+dened b yequations (8) { (9).
+3. Escape frequency for m-contexts. The escape probability for these contexts depends mostly on T (s). This quantity must be presented with very high
+precision resulting in the large n umber of SEE-contexts and the low frequency of
+their occurrence. Therefore, we shall model the behavior of t(escjs) which depends
+weakly on the summary frequency, but not q(escjs). The mean estimation of t(escjs)
+is performed similarly to the mean estimation in Sec. 3.1 except for the beginning of
+coding (at small N (w)). At the beginning of coding, the formally xed n umber of
+tests N variesunder the law N = 2 d w e , N 0 (w) = max(4; N (w)), that leads
+to the faster adaptivity of the mean estimation.
+Components of vector w(s) are en umeratedbelow for this type of contexts:
+1) The escape frequency highly depends on jA (s)j, it is quantized to 25 values.
+2) The one bit ag is included into SEE-context that contains the comparison
+result for m(s ) m(s ) and m(s ).
+4
+
+0
+
+0
+
+n
+
+n
+
+02
+
+1
+
+2
+
+0
+
+0
+
+02
+
+1
+
+2
+
+02
+
+1
+
+0
+
+0
+
+i
+
+i+1
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+1+ log N 0 (
+
+i+1
+
+)
+
+2
+
+3) Similar ag, built of comparison result for m(s ) m(s ) and m(s ) m(s ),
+is included too.
+4) It is the same as 4) item in Sec. 3.1 enumeration.
+5) Some correlation does exist between t(escjs) and the averagegeneralized frequency t(s) = T (s)=(m(s) + 1); it is quantized to 2 values.
+Thus, the total number of SEE-contexts is 25  2 = 400.
+1
+
+i
+
+i
+
+i+1
+
+i
+
+4
+
+4 Implementation details
+
+Let's list the most time expensive operations:
+1) searching for the current coded symbol a in the list of all symbols seen in s and
+estimating the probability interval for this symbol, denote this operation as prob(s; a);
+2) escaping to the parent context in the case of symbol a not found in s, denote
+this operation as suÆx(s);
+3) nding the next active context after symbol a encoding, denote this operation
+as successor(s; a), it can be written formally:
+
+jsj < D
+successor(s; a) = suÆx(ssa;
+(11)
+)a; jsj = D
+The operation pr ob(s; a) is the most time consuming one, it can take up to a half
+of the execution time. The searching of the current symbol is done by the usual linear
+scan of the array of TRANSITION structures. TRANSITION structure contains symbol a
+and its generalized frequency t(ajs). The array is sorted in the decreasing frequency
+order for the speed-up of the search. More complex search methods would not giv e
+any speed gain because, rstly, the alphabet size m(s) is usually small and, secondly,
+it is necessary to perform exclusions while searching.
+The operation suÆx(s) can be eliminated b y saving a reference to the parent
+s in CONTEXT structure containing characteristics of the context s . The operation
+successor(s; a) is also eliminated by saving the corresponding reference in TRANSITION
+structure. F or memory saving, CONTEXT structure is created only forrepeatedly seen
+contexts (T (s) > 0); the position in the coded string is only stored for new contexts (T (s) = 0).
+Graphical representation of the used data structures is drawed on Fig.1. The
+gure shows that the proposed algorithm wastes 12 bytes for each repeated (binary or
+nonbinary) context and 6 bytes for each transition structure at the nonbinary context.
+F orcomparison, one of the most memory eÆcient PPM/PPM* implementations [8]
+requires 8 4-byte machine words for the nonbinary context structure, 6 words for the
+binary one and 6 words for the transition structure at the nonbinary context.
+The precision of the frequency representation is 1 for binary contexts and 1/4
+for nonbinary ones. The statistics in nonbinary context is scaled (all frequencies
+are halved) when the value of one of frequencies exceeds threshold 30. Simplied
+variant of the range coder [9] is used as an en tropy coder. The division operation
+in equation (5) is approximated by series of comparisons, other used approximations
+can be found in [7].
+i
+
+1
+
+i
+
+m(s) >
+m(s)
+
+CONTEXT structure
+
+1
+
+T (s)
+
+link to TRANSITIONs array
+link to suÆx( )
+
+=1
+
+m(s)
+
+TRANSITION structure
+
+link to suÆx(
+
+s
+
+1 byte
+
+m(s)
+
+TRANSITION structure
+
+s)
+
+a
+
+link to suc cessor(
+
+t(ajs)
+
+s; a)
+
+Figure 1. Data structures of PPMII algorithm.
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+5 Complicated PPMII (cPPMII)
+
+PPMII algorithm demonstrates nice results, so it becomes to be interesting to look
+at maximal compression eÆciency that similar approach can provide. We will not
+limit ourselves b ythe requirement of low computational complexity in this section.
+Some improvements can be obtained b y mere removing of in troduced simplications. Delayed addition of a new symbol to the context (Sec. 2.1) is performed
+for any contexts, but not just for binary ones. For the update exclusions modication (Sec. 2.2), the statistics is updated at any context length including js(a)j = D
+case. Moreover, the statistics is updated for three contexts in the parent-child chain
+with increments 1/2, 1/4, and 1/8. The precision of the frequency representation is
+increased up to 1/8. Other improvements require individual considerations.
+1. Improving probability estimation for more probable symbols and
+for less probable ones. Statistics in the parents is accumulated faster than in the
+\y oung"child contexts (with small T (s)), so there is good reason to use the parent
+statistics repeatedly.
+The generalized frequency of each of more probable symbols (the symbol a falls
+into this group when q(a js)  q(a js)=2, a means the most probable symbol (MPS) in the context) is corrected when the child s is young (T (s ) < T (s ))
+and symbol a probability estimation in s is less than the same estimation in s .
+New value t (a js0 ) is calculated as a weighted average of t(a js ) and of the adjusted
+frequency value t (a js ) in the parent:
+T (s )  t(a js ) + T (s )  t0 (a js )
+;
+(12)
+t (a js ) =
+T (s ) + T (s )
+where
+T (s ) t(ajs )
+t0 (ajs ) = t(ajs )
+;
+T (s ) t(ajs )
+under conditions (q(a js )  q(a js )=2 \ T (s ) < T (s ) \ q(a js ) < q(a js )).
+The same t(a js ) correction is performed while inheriting to new contexts.
+The probability overestimationof less probable symbol (the symbol a falls into
+this group when t(a js) < 2) can have ill eect on q(a js) estimation in the young
+contexts (the context s falls in to this group when t(s) < 4). Therefore, t(a js) is
+simply incremented b y3/4, but not b y1:
+t(a js) = 3=4; (t(a js) < 2 \ t(s) < 4)
+(13)
+2. Improving adaptive mean estimation. The mean estimation method
+(Sec. 3.1) requires minimal computational resources, but it adapts too slowly at small
+N (w), therefore cPPMII uses its modication mentioned in Sec. 3.3 everywhere.
+Adaptation speed of the mean estimation can be additionally increased if some
+suppositions are made on the mean dependency of vector w(s) components. Suppose
+some variable x (the probability, for example) monotonically depends on the discrete
+variable i, i.e. hx(i)i  (hx(i 1)i + hx(i +1)i)=2. Then, at small N (i), we can update
+statistics not only for i value, but also for (i 1) and (i + 1), with some small weight
+that decreases while N (i) increases. F or calculations simplicity , this weight is chosen
+c and it is set to zero after exceeding some threshold. This
+as equal to 2 b
+tec hniqueis applied to any variable i that is quantized to more than two values.
+3. Adaptive probability estimation for MPS. Compression eÆciency is
+markedly aected b y the precision of MPS probability estimation, therefore, after
+frequency correction (see Sec. 5.1), an adaptive probability estimation for MPS is
+m
+
+m
+
+MP S
+
+MP S
+
+i
+
+m
+
+1
+
+m
+
+m
+
+i
+
+m
+
+m
+
+i
+
+i
+
+1
+
+m
+
+i
+
+1
+
+i
+
+i
+
+i
+
+1
+
+i
+
+i
+
+1
+
+i
+
+m
+
+i
+
+1
+
+i
+
+1
+
+1
+
+i
+
+i
+
+i
+
+m
+
+m
+
+i
+
+i
+
+i
+
+MP S
+
+i
+
+1
+
+i
+
+i
+
+1
+
+i
+
+i
+
+i
+
+1
+
+1
+
+m
+
+i
+
+m
+
+i
+
+i
+
+l
+
+l
+
+m
+
+l
+
+l
+
+(log N (i))=2
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+l
+
+1
+
+1
+
+performed. The adaptive model for MPS is built similar to the model for escape
+symbols. The behavior of t(a js) is modeled for nm-contexts and the behavior
+of q(a js) is modeled for m-contexts. By analogy with SEE, this method can be
+called SSE (Se condarySymbol pr ob abilityEstimation).
+F or nm-contexts, vector w(s) consists of:
+1) the generalized symbol frequency t(a js), it is quantized to 68 values;
+2) the one bit ag indicating whether statistics rescaling has been performed;
+3) the comparison result of current context length jsj with the average used context
+length hd (a)i (a veraging is performed ov erlast 128 symbols);
+4) the same as 4) and 6) items in Sec. 3.1 enumeration;
+F or m-contexts, vector w(s) consists of:
+1) the probability estimation q(a js), it is quantized to 40v alues;
+2) the comparison result of averagemasked and nonmasked symbols frequencies;
+3) the one bit ag indicating whether only one symbol is not masked;
+4) the same as 2) and 4) items in previous enumeration;
+4. Additional SEE-contexts components. Additional SEE-context elds for
+binary contexts are as follo ws:
+1) the comparison result of m(s ) with m(s ), where s is the previous context;
+2) the n umber of binary parent contexts, it is quantized to 2 values;
+3) the ag built of two higher bits of symbol preceding the already encoded symbol;
+4) the same as 3) item in the rst Sec. 5.3 enumeration;
+Two additional w(s) components are added to the SEE-model for m-contexts.
+They are the same as 2) items in both Sec. 5.3 enumerations.
+5. Adaptive escape frequency estimation for nm-contexts. The SEEmodel for these contexts is built similarly to the one for m-contexts, i.e. t(escjs) is
+modeled,
+but not q(escjs). w(s) components are as follo ws:
+1) the alphabet size m(s), it is quantized to 25 values;
+2) the result of calculation (4m(s ) > 3m(s ));
+3) the same as 4) { 6) items in Sec. 3.1 en umeration,2) { 3) items in the rst
+Sec. 5.3 enumeration 1)and item in Sec. 5.4 enumeration;
+MP S
+
+MP S
+
+MP S
+
+n
+
+MP S
+
+i
+
+1
+
+i
+
+6 Experimental results
+
+p
+
+i
+
+p
+
+1
+
+PPMII algorithm and its complicated modication were implemented on C++
+programming language and these implementations are publicly available at[7]. The
+executable le PPMd.exe corresponds to the basic algorithm and PPMonstr.exe corresponds to cPPMII. All experiments were carried out on the standard Calgary corpus.
+1. Evaluation of contribution of each algorithm part. Unweighted average
+bits per b yte (bpb) for all 14 corpus les are presented in T able1 for each PPM
+algorithm modication as described in sections 2{3. Description of each column:
+PPMD { initial PPMD b yP .G.Howard (implementation of author);
++ II { previous scheme plus information inheritance (Sec. 2.1);
++ UE
+M { previous scheme plus update exclusions modication (Sec. 2.2);
++ SEE1 { previous scheme plus SEE-model for binary contexts (Sec. 3.1);
++ EE1 { previous scheme plus escape estimation for nm-contexts (Sec. 3.2);
++ SEE2 { previous scheme plus SEE-model for m-contexts (Sec. 3.3);
+2. Time and memory requirements. In the second experiment, time and
+memory requirements of PPMII/cPPMII implementations were compared with the
+widespread practical implementations of LZ77 (ZIP [10]) and BWT (BZIP2 [11]) algorithms and, also, with the most powerful implementation (PPMZ2 [12]) of PPM*
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+T able1. PPMII: step b ystep.
+Model order
+
+PPMD
+
++ II
+
++ UEM
+
++ SEE1
+
++ EE1
+
++ SEE2
+
+2
+
+2.790
+
+2.766
+
+2.766
+
+2.767
+
+2.767
+
+2.759
+
+3
+
+2.427
+
+2.387
+
+2.387
+
+2.382
+
+2.379
+
+2.366
+
+4
+
+2.310
+
+2.254
+
+2.254
+
+2.235
+
+2.230
+
+2.212
+
+5
+
+2.290
+
+2.215
+
+2.211
+
+2.185
+
+2.178
+
+2.158
+
+6
+
+2.297
+
+2.204
+
+2.197
+
+2.166
+
+2.158
+
+2.137
+
+8
+
+2.319
+
+2.196
+
+2.186
+
+2.150
+
+2.142
+
+2.118
+
+10
+
+2.339
+
+2.195
+
+2.184
+
+2.143
+
+2.136
+
+2.111
+
+16
+
+2.369
+
+2.194
+
+2.182
+
+2.137
+
+2.130
+
+2.104
+
+algorithm. Results of measurement of compression eÆciency (average bpb), compression time (seconds) and maximal memory requirements (megabytes) are presented
+in T able2. As a demonstration of PPM complexity reduction, the last line contains
+the results for author's implementation of PPMD algorithm.
+The table shows that basic PPMII algorithm provides wide range of opportunities.
+At small D (2{3), it giv escompression eÆciency comparable to the one of ZIP or of
+BZIP2 with faster compression speed and smaller memory requirements than BZIP2
+ones. At medium D (4{6), PPMII eÆciency is noticeable better than ZIP and BZIP2
+ones and time/memory requirements remain moderate. Lastly, at high D (8{16),
+PPMII outperforms the best of described programs PPMZ2 b y all characteristics.
+cPPMII gives even better eÆciency, but its low execution speed is not very promising.
+T able2. In tegralcharacteristics of v arious compressors.
+1
+
+2
+
+Model
+PPMII
+cPPMII
+order Average bpb Time, sec. Memory, MB Average bpb Time, sec. Memory, MB
+2
+
+2.759
+
+3.18
+
+0.6
+
+2.716
+
+8.51
+
+1.1
+
+3
+
+2.366
+
+3.79
+
+1.0
+
+2.321
+
+10.60
+
+1.5
+
+4
+
+2.212
+
+4.51
+
+1.9
+
+2.170
+
+12.46
+
+2.4
+
+5
+
+2.158
+
+5.21
+
+3.5
+
+2.114
+
+14.00
+
+4.0
+
+6
+
+2.137
+
+5.88
+
+5.6
+
+2.090
+
+15.21
+
+6.1
+
+8
+
+2.118
+
+6.76
+
+10.1
+
+2.067
+
+16.85
+
+10.6
+
+10
+
+2.111
+
+7.25
+
+13.3
+
+2.057
+
+17.57
+
+13.8
+
+16
+
+2.104
+
+7.74
+
+16.2
+
+2.047
+
+18.56
+
+16.7
+
+2.693
+
+5.93
+
+2.368
+
+not tested
+
+ZIP -9
+BZIP2 -8
+PPMZ2
+PPMD-5
+
+2.139
+2.290
+
+5.87
+
+4.67
+
+F orcomparison
+0.5
+6.0
+>
+
+100
+
+3.5
+
+3. Compression eÆciency. In the last experiment, the more detailed comparison is performed for proposed algorithms and for algorithms described in the
+literature. F ollo wingcompression schemes are presented in T able3: the implementation [13] of CTW method [14] with binary decomposition (results were taken
+from [15]), the associative coder (ACB) by G.Buyanovsky [16], the best of S.Bunton's
+FSMX coders [8], PPMZ2 b y C.Bloom [12]. Next column contains PPMII results
+1 All programs (excluding PPMZ2) w erecompiled with the same compiler (Intel C v. 4.0), at
+the same compilation options. The experiments w ere performed on PII-233 (overcloc ked up to 292)
+MHz computer with 64 MB RAM under OS MS Windows98 and FA T32 le system.
+2 PPMZ2 execution time was not measured due to memory insuÆciency.
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+T able3. Compression eÆciency for various compression schemes.
+File
+
+bib
+book1
+book2
+geo
+news
+obj1
+obj2
+paper1
+paper2
+pic
+progc
+progl
+progp
+trans
+
+Average
+
+CTW
+
+A CB FSMX PPMZ2 PPMII-8 cPPMII-8 cPPMII-16 cPPMII-64
+
+1.782
+
+1.935
+
+1.786
+
+1.717
+
+1.732
+
+1.694
+
+1.679
+
+1.676
+
+2.158
+
+2.317
+
+2.184
+
+2.195
+
+2.192
+
+2.136
+
+2.135
+
+2.135
+
+1.869
+
+1.936
+
+1.862
+
+1.843
+
+1.838
+
+1.795
+
+1.782
+
+1.782
+
+4.608
+
+4.555
+
+4.458
+
+4.576
+
+4.349
+
+4.163
+
+4.159
+
+4.158
+
+2.322
+
+2.317
+
+2.285
+
+2.205
+
+2.205
+
+2.160
+
+2.142
+
+2.137
+
+3.814
+
+3.498
+
+3.678
+
+3.661
+
+3.536
+
+3.507
+
+3.497
+
+3.498
+
+2.473
+
+2.201
+
+2.283
+
+2.241
+
+2.206
+
+2.154
+
+2.118
+
+2.110
+
+2.247
+
+2.343
+
+2.250
+
+2.214
+
+2.194
+
+2.152
+
+2.144
+
+2.142
+
+2.190
+
+2.337
+
+2.213
+
+2.184
+
+2.181
+
+2.130
+
+2.124
+
+2.124
+
+0.800
+
+0.745
+
+0.781
+
+0.751
+
+0.757
+
+0.721
+
+0.715
+
+0.704
+
+2.330
+
+2.332
+
+2.291
+
+2.257
+
+2.215
+
+2.178
+
+2.161
+
+2.161
+
+1.595
+
+1.505
+
+1.545
+
+1.445
+
+1.470
+
+1.433
+
+1.398
+
+1.390
+
+1.636
+
+1.502
+
+1.531
+
+1.448
+
+1.522
+
+1.489
+
+1.414
+
+1.391
+
+1.394
+
+1.293
+
+1.325
+
+1.214
+
+1.257
+
+1.228
+
+1.186
+
+1.172
+
+2.230
+
+2.201
+
+2.177
+
+2.139
+
+2.118
+
+2.067
+
+2.047
+
+2.041
+
+for D = 8 and last three columns contain cPPMII results for D = 8; 16; 64. It is
+necessary to emphasize the CTW implementation [13] uses symbol decomposition
+especially optimized for English texts.
+As opposed to the other PPM schemes, PPMII works well enough for nontextual
+data (geo, obj1, obj2). Now, it is really | universal data compression ;-).
+References.
+
+1. Shkarin, D. (2001) Improving the eÆciency of PPM algorithm. Problems of Information Transmission, 34(3):44-54, in Russian.
+2. Cleary, J.G. and Witten, I.H. (1984) Data compression using adaptive coding and partial string
+matching. IEEE Trans. on Comm., 32(4):396-402.
+3. Moat, A. (1990) Implementing the PPM data compression scheme. IEEE Trans. on Comm.,
+8(11):1917-1921.
+4. How ard, P.G. (1993) The Design and Analysis of EÆcient Lossless Data Compression Systems.
+PhD thesis, Brown University.
+5. Bloom, C. (1998) Solving the Problems of Context Modeling. www.cbloom.com/papers/.
+6. Shkarin, D. (1999) BMF | lossless image compressor. ftp.elf.stuba.sk/pub/pc/pack/bmf_1_10.zip
+7. Shkarin, D. (2001) PPMd | fast PPM compressor for textual data.
+ftp.elf.stuba.sk/pub/pc/pack/ppmdh.rar.
+8. Bunton, S. (1996) On-Line Stochastic Pr ocesses in Data Compression. PhD thesis, University
+of Washington.
+9. Martin, G.N.N. (1979) R ange enco ding: an algorithm for removing redundancy from a digitised
+message. Presented to The Video & Data Recording conference. Southampton.
+10. InfoZIP Group (1999) Zip v.2.3 | compression and le packaging utility.
+www.cdrom.com/pub/infozip/.
+11. Seward, J. (2000) BZip2 v.1.0 | block-sorting le compressor. www.muraroa.demon.co.uk/.
+12. Bloom, C. (1999) PPMZ2 | High Compression Markov Predictive Co der.www.cbloom.com/src/.
+13. Volf, P.A.J. (1996) Text compression methods b ased on context weighting. T echnical report, Stan
+Ac kermans Institute, Eindhov en University of Technology.
+14. Willems, F., Shtarkov, Y. and Tjalkens, T. (1995) The context-tree weighting method: Basic
+properties. IEEE Trans. on Inf. Theory, 41(3):653-664.
+15. Volf P.A.J and Willems F.M.J. (1998) Switching betwe en two universal source coding algorithms.
+Proc. IEEE Data Compression Conf. pp.491-500.
+16. Buyano vsky , G. (1994)Associative c oding.The Monitor, 8:10-19, in Russian.
+
+Proceedings of the DATA COMPRESSION CONFERENCE (DCC’02)
+1068-0314/02 $17.00 © 2002 IEEE
+
+

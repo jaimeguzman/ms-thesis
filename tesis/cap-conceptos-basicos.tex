@@ -12,8 +12,7 @@ En este capitulo se introducira los conceptos principales que se trabajarán en 
 
 \subsection{Access Log}
 
-Son los registros que se almacenan en un servidor, los cuales dependiendo de sistema operativo pueden tener mayor o menor información.
-
+Son los registros que se almacenan en un servidor, los cuales dependiendo de sistema operativo pueden tener mayor o menor información. Cuando los usuarios acceden a los sitios web, estos  suelen dejar una gran cantidad de información de acceso, la cual si es extraída razonable puede ayudar a los administradores de sitio web para obtener acceso a los patrones de los usuarios. 
 
 
 \subsection{Árboles Trie}
@@ -29,9 +28,27 @@ Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de 
 
 \subsection{Alfabeto}
 
+Un alfabeto discreto $A$ consiste en $M > 1$ simbolos.
 Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de un nodo de contenido de un sitio web.
 Donde $A$, puede ser definido como la página inical. Este alfabeto es finito y acotoda por la mineria de datos de uso web.
 
+%Let A be a discrete alphabet consisting of M  2 symbols; x = x ; : : : ; x ; x 2 A
+% be rst n symbols of message; jj be the length of sequence  or the cardinality of
+% set . The probability of symbol x = a 2 A for a source with memory depends on
+% current context s = x ; : : : ; x 2 A ; d  D. The set of all possible contexts can
+% be presented as nodes in M -ary tree with depth D. Context (sequence) s describes a
+% path from tree root to the current node also denoted as s.
+% Usually the true conditional probabilities are unknown and the coding conditional
+% pr ob abilitiesq(ajs) depend on characteristics of one or sev eralsubsequences x (s),
+% x (s) is the subsequence of all symbols x such that x ; : : : ; x
+% = s . These
+% characteristics are: frequency f (ajs) = f (ajx (s)) of symbol a in x (s), alphabet
+% A(s) = A(s; x (s)) = fa : f (ajs) > 0g, its cardinality m(s) = jA(s)j etc. Even at
+% small D, the n umber of model states is big, subsequences x (s) are short ina verage,
+% and their statistics is insuÆcient for eective compression.
+% PPM algorithm [2] is based on an (implicit) assumption: the longer is the common initial part of contexts, the more (in average)similarity there is between their
+% conditional probability distributions. High PPM eÆciency means this assumption is
+% fair forthe majority of real sources.
 
 
 
@@ -41,15 +58,15 @@ Definimos una secuencia de accesos discreta y finita, dado los acccesos que tien
 
 
 % Compresor tonto o Machine Learning lento para predecir
+\subsection{Lossless Data Compression}
 
-\subsection{Lossless Compression}
-
-
-
-\subsection{Entropía}
+La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir tener la posibilidad de codificar y decodificar. En capitulos posteriores introduciremos mas el tema compresión y como este ayuda a crear un modelo de predicción.
 
 
+\subsection{Motor de Predicción}
 
+Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección URL o una sección en particular de un cierta web. 
+% que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
 
 
 

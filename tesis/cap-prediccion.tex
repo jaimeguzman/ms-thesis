@@ -90,12 +90,21 @@ El objetivo de cada predictor es tener una función de minimización tal que min
 
 
 \section{Modelos tradicionales}
- 
-Los modelos tradicionales están basado en modelos de Markov, los cuales han ayudado a predecir los accesos de los usuarios, pero en la práctica existen 
-muchas limitaciones técnicas que permiten que se usen. 
+%Gueniche_Fournier-Viger_Raman_Tseng
+%However, these models suffer from some important limitations [5]. First, most of them assume the Markovian hypothesis that each event solely depends on the previous events. If this hypothesis does not hold, prediction accuracy using these models can severely decrease [5, 3]. Second, all these models are built using only part of the information contained in training sequences. Thus, these models do not use all the information contained in training sequences to perform predic- tions, and this can severely reduce their accuracy. For instance, Markov models typically considers only the last k items of training sequences to perform a pre- diction, where k is the order of the model. One may think that a solution to this problem is to increase the order of Markov models. However, increasing the order of Markov models often induces a very high state complexity, thus making them impractical for many real-life applications [3].
+
+%
+Primero asumimos que cada evento por si 
+
+
+
+En secciones anteriores se ha hablado de como los eventos secuenciales se pueden modelar como un proceso estocástico.
+
+Ciertamente el uso de reconocer frecuencia patrones secuenciales, reglas de asociación puede requerir mucha  información y entregar mejor precisión en la información de los usuarios y su comportamiento en la web. Pero un enfoque en que la temporalidad de los datos se debe modelar con un modelo de Markov es la clave para poder realizar esto, y estos ya han ayudado a predecir los accesos de los usuarios, como señala %Referencia a DONGSHAN
+pero en la práctica existen muchas limitaciones técnicas que permiten que se implementen. 
 
 %explicar los jodidos de Markov y su matemática
-Los modelos de  
+ 
 
 %CITED Moghaddam_Kabir
 %The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. Association rules were proposed to capture the co-occurrence of buying different items in a supermarket shopping [11]. Association rules indicate groups that are presented together. In [12] study on different kinds of sequential association rules for web document prediction is proposed. It shows how to construct the association rule based prediction models for web log data.
@@ -103,6 +112,7 @@ Los modelos de
 
 
 
+%@TODO
  
  
  \subsection{Limitaciones de los modelos tradicionales de Markov}
@@ -111,7 +121,6 @@ Los modelos de
  
  Los modelos tradicionales de Markov predicen la siguiente página Web que un usuario puede acceder considerando el acceso más probable, iterando coincidir su secuencia de acceso actual con secuencias de acceso Web histórica.
  
-
  
  Usando estos modelos se ha comparado los investigadores comparan el máximo de elementos  prefijos de cada secuencia histórica de web access con los elementos sufijos de la  misma longitud de secuencia de web access actual del usuario y obteniendo secuencias históricas con la probabilidad más alta de elementos que coinciden.
  
@@ -119,11 +128,13 @@ Los modelos de
  \begin{equation}
 p(x_n) = Pr(X_n),
  \end{equation}	
- donde $xn$ es xn y $Xn$ es otra Xn.
+ donde $x_{n}$ es xn y $Xn$ es otra Xn.
  
  El modelo de Markov de orden uno observa la probabilidad de la transición de un pagina a otra, la podemos interpretar así:
  
- $$ p(x2 | x1) = Pr(X2 = x2 | X1 = x1) $$
+ \begin{equation} 
+	 p(x2 | x1) = Pr(X2 = x2 | X1 = x1) 
+ \end{equation}	
  
  El K-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una nueva  n-ésima página  dado su anterior pagina visitada, teniendo que $k = n -1$ paginas vistas:
  
@@ -135,9 +146,9 @@ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{
  
  
  
- Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resulatan de alta complejidad en espacio de estado y cobertura.
+ Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resultaran de alta complejidad en espacio de estado y cobertura.
  
-Modelos con mayor Orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el numero de estados tiende a crecer exponencialmente al igual que el Orden del modelo.
+Modelos con mayor Orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el numero de estados tiende a crecer exponencial-mente al igual que el Orden del modelo.
 
 Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los test podrían no tener estados correspondientes en los modelos de Markov de mayor orden, por lo que reduciría su alcance.
  

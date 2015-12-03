@@ -54,6 +54,11 @@ Learning of sequential data continues to be a fundamental task and a challenge i
 
 
 
+%%%%@BEGLEITER
+% Vamos Σ ser un alfabeto finito. Un alumno se da una secuencia de entrenamiento Q1n = q1q2 · · · qn, donde Σ ∈ qi y qiqi + 1 es la concatenación de qi y qi + 1. Basado en Q1n, el objetivo es aprender un modelo P que proporciona una asignación de probabilidad de cualquier resultado futuro dado algún pasado. En concreto, para cualquier "contexto" s ∈ Σ * y símbolo σ ∈ Σ el alumno debe generar una distribución de probabilidad condicional P (σ | s).
+% Predicción del rendimiento se mide a través de la media de pérdida de log-l (P, XT1) de P (· | ·), con respecto a una secuencia de prueba XT1 = x1 ··· xT,
+
+
 %%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
 
 %Therefore, an important research problem is to propose strategies to reduce the size and prediction time of CPT. Reducing the spatial complexity is a very challenging task. An effective compression strategy should provide a huge spatial gain while providing a minimum overhead in terms of training time and prediction time
@@ -64,13 +69,16 @@ Learning of sequential data continues to be a fundamental task and a challenge i
 %Sintetis de paper: Using Compresion models for filtering troll comments
 \section{Modelos de Compresión}
 
+
+Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con Machine Learning y además tengan propiedades para ser candidatos a un predictor. 
+
+
 %%%%%Moghaddam_Kabir
 %These algorithms are compression algorithms and also are used in sequence mining. We use these algorithms for modeling the user navigation history.
 %%%%%%%%
 
 
-%Gueniche_Fournier-Viger_Raman_Tseng
-%However, these models suffer from some important limitations [5]. First, most of them assume the Markovian hypothesis that each event solely depends on the previous events. If this hypothesis does not hold, prediction accuracy using these models can severely decrease [5, 3]. Second, all these models are built using only part of the information contained in training sequences. Thus, these models do not use all the information contained in training sequences to perform predic- tions, and this can severely reduce their accuracy. For instance, Markov models typically considers only the last k items of training sequences to perform a pre- diction, where k is the order of the model. One may think that a solution to this problem is to increase the order of Markov models. However, increasing the order of Markov models often induces a very high state complexity, thus making them impractical for many real-life applications [3].
+
 
 
  
@@ -146,7 +154,26 @@ i. In any LZ parsing of an input string, all the information crossing phrase bou
 ii. The convergence rate of LZ78 to the optimal predictability as defined above is slow. The results outlined in (Ref. 1) by Feder, et al state that LZ78 asymptotically approaches optimal predictability.
 
 
-
+% Begleiter, El-Yaniv y YonaBegleiter, El-Yaniv y Yona
+%El algoritmo LZ78 es uno de los algoritmos de compresión sin pérdidas más populares (Ziv y Lem- pel, 1978). Se utiliza como la base de la utilidad de Unix comprimir y otras utilidades de archivado populares para PC. También cuenta con garantías de rendimiento dentro de varios modelos de análisis. Este algoritmo (junto con el método de compresión LZ77) atrajo una enorme atención e inspiró el área de compresión sin pérdidas y la secuencia de predicción.
+% El componente de predicción de este algoritmo se discutió por primera Langdon (1983) y Rissanen (1983). La presentación de este algoritmo se simplifica después del algoritmo de compresión LZ78 conocido, que funciona de la siguiente manera, se entiende. Dada una secuencia de Q1n ∈ Σn, LZ78 incrementalmente analiza Q1n en 'frases' adyacentes que no se solapan, que se recogen en una frase "diccionario". El algoritmo comienza con un diccionario que contiene el ǫ frase vacía. En cada paso del algoritmo analiza una nueva frase, que es la frase más corta que todavía no está en el diccionario. Claramente, la frase recién analizada s 'se extiende una ya existente
+% 5. No se incluyeron en el presente trabajo el algoritmo de predicción que se puede derivar del algoritmo de compresión bzip más reciente (ver http://www.digistar.com/bzip2), que se basa en el éxito de Burrows-Wheeler Transform ( Burrows y Wheeler, 1994; Manzini, 2001).
+% 
+% frase diccionario por un símbolo; es decir, s '= sσ, donde s ya está en el diccionario
+% (s puede ser la frase vacía). Para la compresión, el algoritmo codifica el índice de s '
+% (entre todas las frases analizadas), seguido de un código fijo para σ. Tenga en cuenta que los problemas de codificación no lo hará
+% nos concierne en este trabajo. También observe que LZ78 comprime secuencias sin explícita
+% estimaciones probabilísticas. He aquí un ejemplo de este análisis LZ78: si = Q11 abracadabra, 1
+% a continuación, las frases son analizados se a | b | r | ac | anuncio | ab | ra. Observe que el vacío secuencia ǫ siempre está en el diccionario y se omite en nuestras discusiones.
+% Un algoritmo de predicción basado en LZ78 fue propuesto por Langdon (1983) y Rissanen (1983). Se describen por separado el aprendizaje y la predicción phases.6 Por simplicidad primera discutimos el caso binario, donde Σ = {0, 1}, pero el algoritmo se puede extender naturalmente a alfabetos de cualquier tamaño (y en los experimentos discutidos a continuación hacemos uso de la algoritmo multi-alfabeto). En la fase de aprendizaje el algoritmo construye a partir de la secuencia de entrenamiento Q1n un árbol binario (trie) que registra las frases analizados se (como se mencionó anteriormente). En el árbol también mantenemos contadores que mantienen estadísticas de Q1n. El árbol inicial contiene una raíz y dos (izquierda y derecha) se va. El hijo izquierdo de un nodo corresponde a un análisis de '0' y el hijo derecho corresponde a un análisis de '1'. Cada nodo mantiene un contador. El contador en una hoja siempre se establece en 1. El contador en un nodo interno se mantiene siempre por lo que es igual a la suma de sus izquierdo y derecho contadores niño. Dada una frase recién analizada s ', empezamos en la raíz y recorrer el árbol de acuerdo a s' (claramente el árbol contiene una ruta correspondiente, que termina en una hoja). Al llegar a una hoja, el árbol se expande haciendo que esta hoja de un nodo interno y la adición de dos foliares hijos a este nuevo nodo interno. Los contadores lo largo de la ruta a la raíz se actualizan en consecuencia.
+% Para calcular la estimación de P (σ | s) se parte de la raíz y recorrer el árbol de acuerdo con s. Si llegamos a una hoja antes de "consumir" s seguimos este recorrido desde la raíz, etc. Al finalizar este recorrido (en algún nodo interno, o una hoja) la predicción para = S '0' es el '0' (izquierda ) contador dividido por la suma de '0' y contadores '1' en ese nodo, etc.
+% Para alfabetos más grandes, el algoritmo se extiende, naturalmente, de tal manera que las frases son
+% almacenada en un árbol de múltiples vías y cada nodo interno ha exactamente k = | Σ | niños. En adición,
+% cada nodo tiene k contadores, uno para cada símbolo sea posible. En la Figura 1 que representan la resultante
+% árbol de la secuencia de entrenamiento q11 = abracadabra y calcular la probabilidad P (b | ab), 1
+% suponiendo Σ = {a, b, c, d, r}.
+% Varios garantías de rendimiento fueron probados para la compresión LZ78 (y predicción)
+% algoritmo. Dentro de un entorno probabilístico (véase la sección 2), cuando la fuente desconocida es Markov estacionario y ergódico de orden finito, la redundancia se acotado superiormente por (1 / ln n), donde n es la longitud de la secuencia de entrenamiento (Savari, 1997). Por lo tanto, el algoritmo LZ78 es un algoritmo de predicción universal con respecto a la gran clase de fuentes estacionarias y ergódicos de Markov de orden finito.
 
 
 % Genero toda las referencias para demostrar el uso de la bibliografía
