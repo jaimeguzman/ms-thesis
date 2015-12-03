@@ -13,6 +13,44 @@
 
 
 
+
+% Si ... osea ya tengo un container en dockers corriendo con prediction.io,
+% he estado aprendiendo scala, y retomando un poco java para ver su SDK.
+
+% PIO, tiene practicamente todo armadao, ello no hicieron nada nuevo ... solo juntaron  todo...
+% MLIB,SPARK, HBASE,SPRAY hadoop etc...
+
+% bueno el tema es que ellos aun no tienen la posibilidad de poner algoritmos custom, he ahi porque trabajar en scala, 
+% por lo que he leido es bien similar a java y mas funcional como lenguaje.
+
+
+% Ellos ocuapan algo que se llama DASE: https://docs.prediction.io/customize/
+
+% [D] Data Source and Data Preparator
+% [A] Algorithm
+% [S] Serving
+% [E] Evaluation Metrics
+
+% He estado investigando y revisando documentación, Yelp, Skype, Hubot de github y otras implementaciones tienen usando prediction.io
+
+
+% Ahora todo esto esta usando ML, ahora mi enredo es el siguiente: ellos ocupan toda la logica e ML, hacer que eso funcione con un LZ 78, será una propuesta hibrida ?
+
+% La otra opción es meterle a este "DASE" un algoritmo  que mezcle una representación de cadenas de markov mezclado con LZ78. no se en que punto mezclarlo en el diccionario, o la verdad es como hacer el compresor sea "mas inteligente", encontré un papaer que te adjunto en el cual usan lz78 y lzw, esta interesante ya que le hacen un acercamiento mas al tema de de ser un predictor online.
+
+
+% Ahora entiendo que la cadenas de markov son y se han ocupado para las predicciones, pero no veo la necesidad de ocuparlas mayormente. Adin me inisiste en que le de una vuelta.... pero mi sensación  es que tengo separada las ideas en dos extremos. 
+% Ya revise Suffix Tree para predicciones LZ77 y LZW, también PPM y HMM.
+
+% Ahora entiendo lo que me dijsite de espantanamiento, como que en la literatura no hay mezcla directa de estas dos areas, he leido "invitaciones a colaborar", pero como que funcionan a la par.
+
+% El otro tema que estoy un poco asustado son el dataset de prisa, ya que no estoy seguro que el formato me sirva 100% con predicction.IO, al fin y al cabo es como medio loco "entrenar a un compresor para que sea inteligente o no" ????
+
+% Bueno todo eso es lo que queria compartir contigo en el cafe...
+
+
+
+
   \subsection{Modelamiento de Eventos}
 
 %https://docs.prediction.io/datacollection/eventmodel/
