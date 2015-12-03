@@ -16,7 +16,10 @@ Son los registros que se almacenan en un servidor, los cuales dependiendo de sis
 
 
 
-\subsection{Arboles Trie}
+\subsection{Árboles Trie}
+
+%%%%% Gueniche_Fournier-Viger_Raman_Tseng
+%Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
 
 
 Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de muy fácil la recuperación de información de estos mismo. Sus características generales es ser un conjunto de llaves las cuales se representan en el arbol y sus nodos internos representan la información, en nuestro caso una caracter o string de tamaño 1.
@@ -27,7 +30,7 @@ Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de 
 \subsection{Alfabeto}
 
 Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de un nodo de contenido de un sitio web.
-Donde $A $, puede ser definido como la página inical. Este alfabeto es finito y acotoda por la mineria de datos de uso web.
+Donde $A$, puede ser definido como la página inical. Este alfabeto es finito y acotoda por la mineria de datos de uso web.
 
 
 
@@ -50,7 +53,7 @@ Definimos una secuencia de accesos discreta y finita, dado los acccesos que tien
 
 
 
-\subsection{ Resilient Distributed Datasets }
+\subsection{Resilient Distributed Datasets }
 
 	Los RDD, permiten que en un servidor de Machine Learning sea puedea mantener un modelo o motor de aprendizaje persitente sin importan el flujo en que se encuentre.
 

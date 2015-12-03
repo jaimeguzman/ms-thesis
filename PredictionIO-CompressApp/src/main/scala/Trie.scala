@@ -42,6 +42,8 @@ class TrieNode(val char: Option[Char] = None,
         val char      = key.charAt(currentIndex).toLower
         val result    = node.children.getOrElseUpdate(char, { new TrieNode(Some(char)) })
 
+        node.counter  += 1
+
         //node.counter  += 1
         //System.out.println("char "+char+"\t"+result+"\t "+node.counter )
         //System.out.println( "EL "+currentIndex+" == "+key.length+" - "+node.word+"\t "+node.counter )
@@ -151,7 +153,7 @@ class TrieNode(val char: Option[Char] = None,
     helper(new ListBuffer[TrieNode](), 0, this)
   }
 
-  override def  toString() : String = s"Trie(char=${char},\t\tpage= ${word},\tcounter= ${counter}})"
+  override def  toString() : String = s"Trie(char=${char},   \tpage= ${word},\tcounter= ${counter}}) chidls= ${this.children.size}} "
 
   def printTree[U](f: String => U): Unit = {
     println("epsilon");

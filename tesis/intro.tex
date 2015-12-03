@@ -11,6 +11,19 @@
   El momento en que un usuario entre a un web se establece una conexión cliente-servidor. Una gran cantidad de servicios proporcionan datos de accesos de los usuarios que acceden, sobre estos mismos se puede realizar variadas investigaciones sobre como predecir cual es la siguiente página que podrá visitar.
   }
 
+%%%%%%Moghaddam_Kabir
+%Web access prediction has attracted significant attention in recent years. Web prefetching and some personalization systems use prediction algorithms. Most current applications that predict the next user web page have an offline component that does the data preparation task and an online section that provides personalized content to the users based on their current navigational activities. In this paper we present an online prediction model that does not have an offline component and fit in the memory with good prediction accuracy. Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. Our model decreases computational complexities which is a serious problem in developing online prediction systems. A performance evaluation is presented using real web logs. This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
+
+%Web mining has become an important research area in recent years. It can be used to improve the web cache performance[1, 2], Detecting the user interests and so recommending related pages or goods for e-commerce web sites [3], improving search engines results [4] , and personalizing the web content as the users like [5]. In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem. With a reliable prediction system we can see the next action of web users.
+
+
+
+
+%In recent years the content of many web sites are dynamic and new pages are also added to site dynamically. So we need a model that can be online and consider the changes of web site and user behavior. The memory efficiency is an important factor for an online algorithm. Most of the current models proposed for prediction are not online [8, 9] and need an offline component for processing tasks and online models such as model that proposed in [7] may soon become too big to fit in memory.
+
+%When user requests inserted and deleted incrementally the online models are desirable. In this paper we present efficient techniques for modeling user navigation behavior. Our model is online so changes in user request patterns will update our prediction model incrementally.
+%%%%%%%%%%%%%%%%
+
 % 
 
 % Nuestro intere es hacer que las rpecicciones sean modeladas por un compresaor de datos basado en Lempel ziv
@@ -55,13 +68,20 @@
 \input{predictionio}
 
 %Se consideran y ex- plican detalladamen- te todos los concep- tos, teor ́ıas, y aspec- tos pertinentes al te- ma tratado.
-El marco teo ́rico con- cuerda con los ob jeti- vos y el tipo de traba- jo.
+%El marco teo ́rico con- cuerda con los ob jeti- vos y el tipo de traba- jo.
 
 
 %@TODO:
 % Este tema debería detallarse en las siguientes secciones
-\section{Literatura}
-En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por varios autores. Tenemos los siguientes trabajos de interés:
+\section{Trabajos Relacionados}
+
+En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente, y ha sido abarcado por 
+varios autores. Tenemos los siguientes trabajos de interés:
+
+%%%%%%%Moghaddam_Kabir
+%Various models have been proposed for modeling the user navigation behavior and predicting the next requests of users. According to [12], association rules, sequential pattern discovery, clustering, and classification are most popular methods for web usage mining. Collaborative filtering is another method for modeling users' behaviors. Association rules [6] were proposed to capture the co- occurrences of buying different items in a supermarket shopping. Association rules indicate groups that are related together. Methods that use association rules can be found in [6, 7]. Collaborative filtering techniques are often based on matching the current user's profile against similar data obtained by the system over time from other users. It tries to make useful recommendations users based on discovered cluster of similar categories. But for web sites where the number of web pages is quite large it can be quite inefficient.
+
+
 
 \begin{enumerate}
   \item Dongshan y Junyi~\cite{Dongshan2002} destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).

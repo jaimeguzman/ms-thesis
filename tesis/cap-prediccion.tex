@@ -1,6 +1,28 @@
 \chapter[Predicciones sobre Web Access]{Predicciones sobre Web Access} \label{ch:tema}
 
-%w Predicciones sobre Web AccessPredicciones sobre Web AccessPredicciones sobre Web Access
+
+
+%Cita a @Gopalratnam&Cook
+Dado los nuevos sistemas es cada vez más común conocer sistemas Inteligentes y diversos en variadas áreas, una de estas cualidades de los nuevos sistemas este tener las posibilidad de predecir ocurrencia de eventos para poder adaptarse y tener versatilidad al tomar decisiones en variadas situaciones. Aún mas necesaria es esta propieda en problemas que requieren predicciones secuenciales, es decir dada una secuencia de eventos, como poder predecir el siguiente evento basado en nuestro conocimiento histórico limitado.
+
+Para cualquier secuencia de eventos, estas se pueden modelar como proceso estocásticos, esto algoritmos emplean Modelos de Markov para optimizar las predicciones del siguiente simbolo, en cualquier secuencia estocástica. Otros escenarios requieren que algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
+
+El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de simbolos $x_{1}, x_{2}.....x_{n}$, ¿Cúal es el siguiente simbolo $x_{i+1}$? Señalado el problema la literura converge a que gracias Risseman y Langodom
+ %Falta cita
+un buen compresor, o mejor dicho que cualquier compresor de datos sin pérdida se aproxima a un $predictor$.
+
+Para poder crear un predictor acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía aproxima a la de la fuente de datos, consigue una mayor precisión predictiva.
+
+
+%Also, it has been shown that a predictor with an order that grows at a rate approximating the entropy rate of the source is an optimal predictor. Another motivation to look to the field of text compression is that such algorithms are essentially incremental parsing algorithms, which is an extremely desirable quality in our search for an online predictor. Active LeZi is a predictor addressing this prediction problem, and is based on the above-mentioned motivations.
+
+
+%CITED Gueniche_Fournier-Viger_Raman_Tseng
+%Sequence prediction is an important task with many applications [1, 11]. Let be an alphabet of items (symbols) Z = {e1, e2, ..., em}. A sequence s is an ordered list of items s = ⟨i1,i2,...in⟩, where ik ∈ Z (1 ≤ k ≤ n). A prediction model is trained with a set of training sequences. Once trained, the model is used to perform sequence predictions. A prediction consists in predicting the next items of a sequence. This task has numerous applications such as web page prefetching, consumer product recommendation, weather forecasting and stock market prediction [1, 3, 8, 11].
+
+
+%% ¿Por que predicciones en web access?
+
 
 
 
@@ -16,7 +38,7 @@ Nos enfocaremos en el caso del los accesso que un usuario realiza a un sitio web
 
 
 
-Nuestro real interés se presetna en dada un sequencia accesso, si un usuario entra accede a la web, dado sus accesos web cual será la predicción de su sesión.  Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{request} que ha realizado el usuario mas su \emph{session} nos da la información necesaria para poder crear un modelo predictivo.
+Nuestro interés se presetna en dada un sequencia accesso, un usuario entra accede a la web, dado sus accesos web cual será la predicción de su sesión.  Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{request} que ha realizado el usuario mas su \emph{session} nos da la información necesaria para poder crear un modelo predictivo.
 
 Dado lo anterior podemos hacer minería de los datos que un servidor ha recolectado durante un periodo de tiempo, de lo anterior  podemos mencionar que existen varias técnicas para poder hacer \emph{Web Access Pattern } y también  "Web Usage Minning", de sus siglas en ingles es minería del uso de una \emph{web}. Nuestro interés no es abordar este tema pero si explicarlo para poder realizar un estudio predictivo de secuencias de acceso, con el objetivo de poder predecir el siguiente comportamiento que tiene un usuario al momento de visitar un sitio web.
 
@@ -30,7 +52,22 @@ Dado lo anterior podemos hacer minería de los datos que un servidor ha recolect
 \section{Predictores de Estado finito}
 
 
-Si se tiene un secuencia estocástica, $x n = x , x ,.....x .  $, en un tiempo $t$ el predictor debe saber cual es el siguiente simbolo, basdo en su historia o la frecuencia de ocurrencia que se vaya entrenando.
+% %%%%%%% Esto deberia en la seccion de Machine Learning Compress %%%%%%%%%%%%%
+% Let Σ be a finite alphabet. A learner is given a training sequence q1n = q1q2 · · · qn, where qi ∈ Σ and qiqi+1 is the concatenation of qi and qi+1. Based on q1n, the goal is to learn a model Pˆ that provides a probability assignment for any future outcome given some past. Specifically, for any “context” s ∈ Σ∗ and symbol σ ∈ Σ the learner should generate a conditional probability distribution Pˆ(σ|s).
+% Prediction performance is measured via the average log-loss l(Pˆ,xT1) of Pˆ(·|·), with respect to a test sequence xT1 = x1 ···xT,
+% 1 􏰍T
+% l(Pˆ,xT1 ) = −T logPˆ(xi|x1 ···xi−1), (1)
+% i=1
+% where the logarithm is taken to base 2. Clearly, the average log-loss is directly related to the likelihood Pˆ(xT1 ) = 􏰏Ti=1 Pˆ(xi|x1 · · · xi−1) and minimizing the average log-loss is completely equivalent to maximizing a probability assignment for the entire test sequence.
+% ￼Note that the converse is also true. A consistent probability assignment Pˆ(xT1 ), for the entire sequence, which satisfies Pˆ(xt−1) = 􏰌 Pˆ(x1 ···xt−1xt), for all t = 1,...,T,
+% 1 xt∈Σ induces conditional probability assignments,
+% Pˆ(xt|xt−1) = Pˆ(xt1)/Pˆ(xt−1), t = 1, . . . , T. 11
+% Therefore, in the rest of the paper we interchangeably consider Pˆ as a conditional distribu- tion or as a complete (consistent) distribution of the test sequence xT1 .
+% The log-loss has various meanings. Perhaps the most important one is found in its equivalence to lossless compression. The quantity − log Pˆ(xi|x1 · · · xi−1), which is also called the ‘self-information’, is the ideal compression or “code length” of xi, in bits per symbol, with respect to the conditional distribution Pˆ(X|x1 · · · xi−1), and can be implemented online (with arbitrarily small redundancy) using arithmetic encoding (Rissanen & Langdon, 1979).
+
+
+
+Si se tiene un secuencia estocástica, $x_{n} = x , x ,.....x .  $, en un tiempo $t$ el predictor debe saber cual es el siguiente simbolo, basdo en su historia o la frecuencia de ocurrencia que se vaya entrenando.
 
 Si llamamos al siguiente simbolo $b_{t}$, diremos que el resultado de nuestro predictor es entregar este valor. Dado esto, existe una función de perdida asociada $L( b_{t},x_{t} )$ para cada predicción realizada. 
 
@@ -60,7 +97,8 @@ muchas limitaciones técnicas que permiten que se usen.
 %explicar los jodidos de Markov y su matemática
 Los modelos de  
 
-
+%CITED Moghaddam_Kabir
+%The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. Association rules were proposed to capture the co-occurrence of buying different items in a supermarket shopping [11]. Association rules indicate groups that are presented together. In [12] study on different kinds of sequential association rules for web document prediction is proposed. It shows how to construct the association rule based prediction models for web log data.
 
 
 

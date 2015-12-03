@@ -1,5 +1,5 @@
 \chapter[Experimental]{Experimental}
-\label{ch:tema}
+
 %Los ob jetivos no esta ́n diferenciados entre generales y espec ́ıficos.
 
 %e presentan proce- sos que validan el tra- ba jo comparando con otros m ́etodos del es- tado del arte. Se pre- senta una validacio ́n depara ́metros,yto- das las dimensiones que fueron plantea- das son exploradas en profundidad.
@@ -10,9 +10,9 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 
 
-Lo que se busca es usar como un modelo de predicción un algoritmo de la familia de compresores de Lempel Ziv. Se usará para predecir secuencias finitas discretas de accesos web. Al momento de generar el arbol este creará una represetnación trie de un diccionario de simbolos, el cual no utilizaremos para poder hacer predicciones.
+Lo que se busca es usar como un modelo de predicción un algoritmo de la familia de compresores de Lempel Ziv. Se usará para predecir secuencias finitas discretas de accesos web. Al momento de generar el arbol este creará una represetnación trie de un diccionario de símbolos, el cual no utilizaremos para poder hacer predicciones.
 
-En base a lo anterior y teniendo funciando el algoritmo para crear un modelo de predicción, la integraremos con el servidor de Machine Learning, Prediction.IO que ya se ha explicado anteriormente.
+En base a lo anterior y teniendo funcionando el algoritmo para crear un modelo de predicción, la integraremos con el servidor de Machine Learning, Prediction.IO que ya se ha explicado anteriormente.
 
 
 
@@ -55,21 +55,35 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 %Las conclusiones muestran el logro de los ob jetivos.
 %Se presentan proyec- ciones va ́lidas y valio- sas a partir del traba- jo realizado.
 %Se detallan claramen- te las limitaciones del traba jo realizado.
+
+
+
+\subsection{Metodologías}
+
+	%- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
+	% of the total dataset) and testing (10 % of the total data).
+	%-Learning the model: We accomplished the learning step using different learning algorithms depending on
+
+
 \section{Conclusiones y Resultados}
 
 
 
+%In this paper we studied the empirical performance of a number of prominent prediction algorithms. We focused on prediction settings that are more closely related to those required
 
+%%%%%%%%% On Prediction Using Variable Order Markov Models
 
- 
- 
- 
-
-
-
-
- 
-
+%$%%%%%%%%
+%%n this paper we studied the empirical performance of a number of prominent prediction algorithms. We focused on prediction settings that are more closely related to those required
+%On Prediction Using Variable Order Markov Models
+%by machine learning practitioners dealing with discrete sequences.
+%However, somewhat surprisingly, the best predictor under the log-loss is not the best classifier. On the contrary, the consistently best protein classifier is based on the mediocre lz-ms predictor! This algo- rithm is a simple modification of the well-known Lempel-Ziv-78 (lz78) prediction algorithm, which can capture VMMs with large contexts. The surprisingly good classification accuracy achieved by this algorithm may be of independent interest to protein analysis research and clearly deserves further investigatio 
 % Genero toda las referencias para demostrar el uso de la bibliografía
-% No es necesario que utilice este comando en su documento.
-% \nocite{*}
+% No es necesario que utilice este comando en su document
+%
+%Conclusion of this paper Gopalratnam Cook
+%alz effectively models sequential processes, and is extremely useful for prediction of processes where events are dependent on the previous event history. This is because of the ability of the algorithm to build an accurate model of the source of the events being generated, a feature inherited from its information theoretic background and the LZ78 text compression algorithm. 
+%The effectiveness of the method for learning a measure of time can also be attributed to fact that ALZ is a strong sequential predictor. The sound theoretical principles on which ALZ is founded also mean that ALZ is an optimal Universal Predictor, and can be used in a variety of prediction scenarios.
+%conclusion lcoa
+%Dado que la myora de los predictores funcionan de 
+%manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de prediccion en linea.

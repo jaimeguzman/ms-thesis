@@ -5,6 +5,10 @@
 
 
 
+%%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
+%Moreover, machine learning algorithms such as neural networks and sequential rule mining have been applied to perform sequence prediction [6, 11].
+
+
 
 % @TODO Cita pendiente
 % Compression and Machine Learning:
@@ -50,13 +54,25 @@ Learning of sequential data continues to be a fundamental task and a challenge i
 
 
 
+%%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
 
+%Therefore, an important research problem is to propose strategies to reduce the size and prediction time of CPT. Reducing the spatial complexity is a very challenging task. An effective compression strategy should provide a huge spatial gain while providing a minimum overhead in terms of training time and prediction time
 
 
 
 
 %Sintetis de paper: Using Compresion models for filtering troll comments
 \section{Modelos de Compresión}
+
+%%%%%Moghaddam_Kabir
+%These algorithms are compression algorithms and also are used in sequence mining. We use these algorithms for modeling the user navigation history.
+%%%%%%%%
+
+
+%Gueniche_Fournier-Viger_Raman_Tseng
+%However, these models suffer from some important limitations [5]. First, most of them assume the Markovian hypothesis that each event solely depends on the previous events. If this hypothesis does not hold, prediction accuracy using these models can severely decrease [5, 3]. Second, all these models are built using only part of the information contained in training sequences. Thus, these models do not use all the information contained in training sequences to perform predic- tions, and this can severely reduce their accuracy. For instance, Markov models typically considers only the last k items of training sequences to perform a pre- diction, where k is the order of the model. One may think that a solution to this problem is to increase the order of Markov models. However, increasing the order of Markov models often induces a very high state complexity, thus making them impractical for many real-life applications [3].
+
+
  
  \subsection{Prediction by Partial Match (PPM)}
  
@@ -67,6 +83,11 @@ Learning of sequential data continues to be a fundamental task and a challenge i
 		\item Escape
 		\item Exclusion
 	\end{itemize}
+	
+For a method that considers different orders of models, we turn once again to data compression and the Prediction by Partial Match (PPM) family of predictors. This has been used to great effect in (Ref. 4), for a predictive framework based on LZ78.
+PPM algorithms consider different-order Markov models in order to build a probability distribution by weighting different-order models appropriately. In our predictive scenario, Active LeZi builds an order-k Markov model. We now employ the PPM strategy of exclusion (Ref. 7) to gather information from models of order 1 through k to assign the next symbol its probability value. This method is illustrated by considering the example sequence used in the previous sections: “aaababbbbbaabccddcbaaaa”.
+The window maintained by Active LeZi represents the set of contexts used to compute the probability of the next symbol. In our example, the last phrase “aaa” (which is also the current ALZ window) is used. Within this phrase, the contexts that can be used are all suffixes within the phrase, except the window itself (i.e. “aa”, “a”, and the null context).	
+	
 	
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
 
@@ -87,7 +108,47 @@ Learning of sequential data continues to be a fundamental task and a challenge i
  ser actualizada usando \emph{state cloning method}.
  
  
+\subsection{Lempel \& Ziv}
+
+%Moghaddam_Kabir
+LZ78 algorithm is proposed by Jacob Ziv and Abraham Lempel in 1977 [15].
+An online prediction method needs not rely on time-consuming preprocessing of the available historical data in order to build a prediction model. The preprocessing is done when we have a new request. LZW and LZ78 basically are lossless data compression algorithms with good functionality. The most important part of these algorithms is the dictionary construction algorithm that we use it for creating the prediction model.
+
+
+\begin{verbatim}
+initialize dictionary := null 
+initialize phrase w := null 
+loop
+	wait for next symbol v 
+	if ((w.v) in dictionary):
+		w := w.v 
+	else
+		add (w.v) to dictionary
+		w := null
+		increment frequency for every possible prefix of phrase
+
+endif 
+forever
+
+\end{verbatim}
+
+%%%%%%%Moghaddam_Kabir
+LZ78 is a lossless compression algorithm. Fig.2 shows that how the dictionary constructed from sequences using LZ78. In web environment we use user web page requests sequence as input sequence of LZ78 algorithm. Fig.3 shows how prediction tree is constructed. In Fig.2 and 3 variable w is sequence that is saved in each user session. This algorithm can insert sequences with long length, but generally total number of sequences that inserted in tree is less than PPM algorithm. We explain this algorithm with an example. Suppose the user requests the pages ABABCBC sequentially. If we use the LZ78 algorithm, then the A, B, AB, C and BC should be inserted in the tree. In Table 1 the first row shows the user requests. The second row shows the sequences inserted in the tree and the third row shows the sequences that maintained in active user session. When a sequence is inserted in the tree the weights of edges that represent the pass from the root to the last request of sequence is incremented. Now assume that user B requests the sequence of pages ABCABCD. Table 2 shows the results. If user A requests ABABCBC
+
+%%%%%%
+
+
+
+
+Problems in LZ78 parsing
+Any practical implementation of LZ78 suffers from the following two drawbacks:
+i. In any LZ parsing of an input string, all the information crossing phrase boundaries is lost. In many situations, there will be significant patterns crossing phrase boundaries, and these patterns will affect the next symbol in the sequence.
+ii. The convergence rate of LZ78 to the optimal predictability as defined above is slow. The results outlined in (Ref. 1) by Feder, et al state that LZ78 asymptotically approaches optimal predictability.
+
+
+
+
 
 % Genero toda las referencias para demostrar el uso de la bibliografía
 % No es necesario que utilice este comando en su documento.
-\nocite{*}
+%\nocite{*}

@@ -112,64 +112,77 @@ class Algorithm(val ap: AlgorithmParams)
 
     /**
      * TEST
-     * INPUT:  “AAABABBBBBAABCCDDCBAAAA”
+     * INPUT:  “A A A B A B B B B B A A B C C D D C B A A A A”
      * OUTPUT: “A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA”.
      * */
 
     // Read each session from users on EventServer
-    for( it <- webaccessGrouped ){
-      val userSession =  Stack[String]()
+    for (it <- webaccessGrouped) {
+      val userSession = Stack[String]()
       val sizeOfTrieMap = it._2.length
 
-          // This is a temporal stack to
-      for(  i <- 0 until  sizeOfTrieMap ){
-             userSession.push( it._2.apply(i)
-                                  .last.get.asInstanceOf[String] )
-           }
+      // This is a temporal stack to
+      for (i <- 0 until sizeOfTrieMap) {
+        userSession.push(it._2.apply(i)
+          .last.get.asInstanceOf[String])
+      }
 
 
 
-          for(  j <- 0 until  sizeOfTrieMap ){
+      val userSessionReverse= userSession.reverse
 
-            var tmpStr = ""
+      breakable {
+        for (j <- 0 to userSessionReverse.size - 1) {
 
+          print(".")
 
+      var pattern = userSessionReverse(j)
+      //print(">>>>>\t j: "+j+"\t" )
 
-            breakable {
-              for (j <- 0 to userSession.size - 1) {
+      if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
 
-
-                if (trie.contains(userSession(j)) == true) {
-
-                    //Thread sleep  100
-
-                    //stop looking forward to prevent index overflow
-                    if ((j + 1) >= userSession.size) {
-
-                      
-                      break
-                    }
-                    //Aca puedo ir concatennando all lo que vea en el futuro
-                    tmpStr += userSession.apply(j).concat(userSession.apply(j+1))//.concat(userSession.apply(j+2)) //+ userSession(i + 1)
+        pattern = pattern.concat(userSessionReverse(j+1) )
+        var patternAux = pattern //this var see two symbols
+        //println(">>>>>\t MATCH con j+1 \t "+pattern )
 
 
+        trie.append( pattern )
+        j+1
+        pattern = pattern.concat(userSessionReverse(j+1) )
+        //new patter move more
+      //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
+        if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
+      //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
+          trie.append( pattern )
+          pattern =""
+          userSessionReverse(j+1)= ""
+
+        }
 
 
-                    if (tmpStr.length > 1) trie.append(tmpStr)
+        pattern =""
+        userSessionReverse(j+1)= ""
 
-                    // println(":::::::"+ trie.toString() )
 
-                    //reset tmp
-                    tmpStr = ""
 
-                } else {
-                  trie.append( userSession(j) )
-                  tmpStr = ""
-                }
-                //println()
-              }
-            }
-          }
+
+
+      }else{
+        //println(">>> NO ESTA \t"+pattern )
+
+        trie.append( pattern )
+        pattern =""
+      }
+
+
+
+
+
+
+        }
+        println()
+      }//breakable
+
     }
 
     trie.printTree( p => print(p))
