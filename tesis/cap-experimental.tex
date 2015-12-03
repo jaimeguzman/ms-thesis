@@ -1,16 +1,16 @@
 \chapter[Experimental]{Experimental}
 
-%Los ob jetivos no esta ́n diferenciados entre generales y espec ́ıficos.
+%Los ob jetivos no estan diferenciados entre generales y especıficos.
 
-%e presentan proce- sos que validan el tra- ba jo comparando con otros m ́etodos del es- tado del arte. Se pre- senta una validacio ́n depara ́metros,yto- das las dimensiones que fueron plantea- das son exploradas en profundidad.
+%e presentan proce- sos que validan el tra- ba jo comparando con otros metodos del es- tado del arte. Se pre- senta una validacion deparametros,yto- das las dimensiones que fueron plantea- das son exploradas en profundidad.
 
 
-%Se detalla y explica la recoleccio ́n (de apli- car) y ana ́lisis de da- tos y resultados.
-%Se distinguen los re- sultados segu ́n las va- riables investigadas, y se examinan en virtud de lo explicado en el marco te ́orico.
+%Se detalla y explica la recoleccion (de apli- car) y analisis de da- tos y resultados.
+%Se distinguen los re- sultados segun las va- riables investigadas, y se examinan en virtud de lo explicado en el marco teorico.
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 
 
-Lo que se busca es usar como un modelo de predicción un algoritmo de la familia de compresores de Lempel Ziv. Se usará para predecir secuencias finitas discretas de accesos web. Al momento de generar el arbol este creará una represetnación trie de un diccionario de símbolos, el cual no utilizaremos para poder hacer predicciones.
+Lo que se busca es usar como un modelo de predicción un algoritmo de la familia de compresores de Lempel Ziv. Se usará para predecir secuencias finitas discretas de accesos web. Al momento de generar el árbol este creará una representación trie de un diccionario de símbolos, el cual no utilizaremos para poder hacer predicciones.
 
 En base a lo anterior y teniendo funcionando el algoritmo para crear un modelo de predicción, la integraremos con el servidor de Machine Learning, Prediction.IO que ya se ha explicado anteriormente.
 
@@ -31,13 +31,13 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 \begin{itemize}
 	\item C++11
 	\item Java  1.8
-%	\item Java(TM) SE Runtime Environment (build 1.8.0_51-b16)
-%	\item Java HotSpot(TM) 64-Bit Server VM (build 25.51-b03, mixed mode)
+	\item Java(TM) SE Runtime Environment (build 1.8)
+	\item Java HotSpot(TM) 64-Bit Server VM (build $25.51-b03$, mixed mode)
 	\item Scala code runner version 2.11.7 -- Copyright 2002-2013, LAMP/EPFL
 	\item SBT 0.13.9 
 	\item Python 2.7.10
 	\item Prediction.IO 0.9.4
-	\item elasticsearch 1.4.4	
+	\item Elasticsearch 1.4.4	
 	\item Apache Spark-1.4.1
 	\item Hbase 1.0.0
 	\item Zookeeper 
@@ -48,24 +48,77 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 \subsection{Datos Experimentales}
 % Cita a Rkonow Claude & Navarro
 
-Se usará las secuencias disponibles de acceso web pública de los sitios Msnbc, Kosarak, and Spanish datasets. 
-
-Los dataset de Msnbc provienen de los registros de un servidor IIS (Internet Information Services) msnbc.com de un día completo de la fecha  28 de Septiembre de 1999. 
-
+Se usará las secuencias disponibles de acceso web pública de los sitios Msnbc. El set de datos provienen de los registros de un servidor IIS (Internet Information Services) msnbc.com de un día completo de la fecha  28 de Septiembre de 1999. 
 Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7  categorías Página web visitas por secuencia, el tamaño de letras de este conjunto de datos es $\sigma \ = 17$.
 
-% The Kosarak dataset contains the click-stream data obtained from a Hungarian on-line news portal. It contains sequences of 990,000 users with an average of 8.1 web page visits per sequence and an alphabet size σ = 41,270. 
 
-% Finally, the Spanish dataset contains the visitors’ click-stream obtained from a Spanish on-line news portal during September 2012. This dataset consists of 9, 606, 228 sequences of news-categories that were visited, with an average of 12.3 categories visited per sequence and an alphabet size of σ = 42.
+Ejemplo de estructura de Dataset MSNBC :
+\vspace{1cm}
+
+\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+% Different categories found in input file:
+
+frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
+
+
+% Sequences:
+
+A A 
+B 
+C B B D B B B C C 
+E 
+A 
+F 
+A A 
+F 
+F G G G F F H H H H 
+F I D D D J C J E J D D D 
+A A A K A A A 
+L L 
+A A 
+H H H H H H 
+\end{lstlisting}
 
 
 
 
 
+\begin{table}[]
+	\centering
+	\caption{Para poder interpretar la entrada anterior se debe tener esta relación de símbolos con respecto a las páginas}
+	\label{my-label}
+	\begin{tabular}{cl}
+		Page       & Symbol \\ \cline{1-2}
+		frontpage  & A      \\
+		news       & B      \\
+		tech       & C      \\
+		local      & D      \\
+		opinion    & E      \\
+		on-air     & F      \\
+		misc       & G      \\
+		weather    & H      \\
+		msn-news   & I      \\
+		health     & J      \\
+		living     & K      \\
+		business   & L      \\
+		msn-sports & M      \\
+		sports     & N      \\
+		summary    & O      \\
+		bbs        & P      \\
+		travel     & Q      \\ 
+	\end{tabular}
+\end{table}
 
-%Las conclusiones son deducidas lo ́gicamen- te de los resultados obtenidos y de la interpretacio ́npresen- tada, adema ́s esta ́n conectadas al marco teo ́rico.
+
+ 
+
+
+
+
+
+%Las conclusiones son deducidas logicamen- te de los resultados obtenidos y de la interpretacionpresen- tada, ademas estan conectadas al marco teorico.
 %Las conclusiones muestran el logro de los ob jetivos.
-%Se presentan proyec- ciones va ́lidas y valio- sas a partir del traba- jo realizado.
+%Se presentan proyec- ciones validas y valio- sas a partir del traba- jo realizado.
 %Se detallan claramen- te las limitaciones del traba jo realizado.
 
 
@@ -84,7 +137,7 @@ Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7  ca
 
 \begin{enumerate}
 	
-	\item Experimento con Largo de Ventana 
+	\item \textbf{ Experimento con Largo de Ventana} 
 	
 	Cual podria ser el optimo de la ventana
 	Que ventana o cual corre mejor
@@ -93,6 +146,7 @@ Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7  ca
 	
 	\item Experimento con el Tamaño del Set de datos de Entrenamiento
 	
+	\item Experimento con Predicciones con Ruido
 	
 	\item Cross Validation
 	

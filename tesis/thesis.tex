@@ -12,6 +12,7 @@
 \usepackage[utf8]{inputenc}% input
 \usepackage{lmodern}
 \usepackage{listings}
+\usepackage{tikz}
 % Leyendas
 \usepackage[font=footnotesize,labelfont=bf,labelsep=period]{caption}
 
@@ -28,6 +29,34 @@
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \renewcommand\thesubtable{(\alph{subtable})}
 \newcommand{\subfigureautorefname}{\figureautorefname}
+
+
+\lstset{
+ % language=[LaTeX]TeX,
+ breaklines=true,
+ basicstyle=\tt\scriptsize,
+ keywordstyle=\color{blue},
+ identifierstyle=\color{black},
+ commentstyle=\color{green!40!black},
+ % frame 
+ frame=tb,
+ captionpos=t,
+ xleftmargin=1em,
+ numbersep=0.3em,
+ % numbers=left,
+ framexleftmargin=1.1em,
+ framexrightmargin=0pt,
+ % additional letters for accents in spanish
+ literate=%
+   {á}{{\'{a}}}1
+   {é}{{\'{e}}}1
+   {í}{{\'{i}}}1
+   {ó}{{\'{o}}}1
+   {ú}{{\'{u}}}1
+   {ñ}{{\~{n}}}1
+   {Ñ}{{\~{N}}}1
+}
+
 
 % Código
 % Para generar código fuente usar listings.sty
