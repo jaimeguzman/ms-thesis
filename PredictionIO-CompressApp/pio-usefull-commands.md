@@ -29,4 +29,8 @@ pio deploy -- --driver-memory 2G --executor-memory 2G --verbose
 
 http://localhost:7070/events.json?accessKey=nHpUz1bTdXY9b9Mi3VNWZYfTz5lA1G9hka8uGXaJHGMF1c15vUWkSePfONONhxDD
 
+
+
+ pio eval cl.jguzman.piocompressapp.AccuracyEvaluation cl.jguzman.piocompressapp.EngineParamsList -- --driver-memory 1g
+
 ```

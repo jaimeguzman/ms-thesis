@@ -1,6 +1,7 @@
 package cl.jguzman.piocompressapp
 
-import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader}
+import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader,EmptyEvaluationInfo}
+
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
 import grizzled.slf4j.Logger
 import scala.collection.mutable.Stack
@@ -92,7 +93,7 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
-    println("\n.... Training .....\n")
+    //println("\n.... Training .....\n")
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[WebAccess]  PreparedData no puede estar vacio." +
@@ -100,96 +101,141 @@ class Algorithm(val ap: AlgorithmParams)
         " y Preprator genera PreparedData correctamente.")
 
     val webaccessLoad: RDD[WebAccess] = data.labeledPoints
-
     val trie = lztrie.trie
 
     val lastUserWebAccess = webaccessLoad.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
+    val webaccessMap      = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
+    val webaccessGrouped  = webaccessMap.groupBy(_.head).toList
 
-    val webaccessMap = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
-
-    val webaccessGrouped = webaccessMap.groupBy(_.head).toList
-    //test2.sortBy( _._1.get.asInstanceOf[Int] )
 
     /**
      * TEST
      * INPUT:  “A A A B A B B B B B A A B C C D D C B A A A A”
      * OUTPUT: “A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA”.
+     *
+     * 	A	AA	AB	ABB	B	BB	AAB	C	CD	D	CB	AAA
+
      * */
+
+    //For checking if the trie is constructed well
+
+
+    /*  trie.append("A" )
+      trie.append("AA" )
+      trie.append("B" )
+      trie.append("AB" )
+      trie.append("BB" )
+      trie.append("BBA" )
+      trie.append("ABC" )
+      trie.append("C" )
+      trie.append("D" )
+      trie.append("D" )
+      trie.append("DC" )
+      trie.append("BA" )
+      trie.append("AAA" )
+     */
+
+
+    // this is for iterate all the session of all the users
+    for( wg   <- webaccessGrouped  ){
+
+      val user_session  = Stack[String]()
+      val num_pages     = wg._2.length
+      val dictionary    = Stack[String]()
+      var phrase:String = ""
+
+      // Restore the user session from RDD
+      for (i <- 0 until num_pages ) {
+        val c = wg._2.apply(i).last.get.asInstanceOf[String]
+        user_session.push(c)
+        phrase += c
+      }
+
+
+      val phraseCharArray = phrase.toCharArray
+
+      // Add the root symbol
+      if( phrase.length >0 ) dictionary.push( phraseCharArray(0).toString  )
+
+
+
+      // Here is the Lempel Ziv 78 algorithm
+      var w:String =""
+
+      for( x <- 0 until phraseCharArray.length   ){
+        val ch = phraseCharArray(x)
+        w = w.concat(ch.toString)
+
+        if( ! dictionary.contains( w )  ){
+          dictionary.push(  w  )
+          w=""
+        }
+
+
+      }
+
+
+      // Add to the trie
+      for(   r <- dictionary.reverse   )  trie.append(r) //print ("\t"+ r )
+
+
+    }
+
+
+
+    /*
 
     // Read each session from users on EventServer
     for (it <- webaccessGrouped) {
+
+
       val userSession = Stack[String]()
       val sizeOfTrieMap = it._2.length
 
       // This is a temporal stack to
-      for (i <- 0 until sizeOfTrieMap) {
-        userSession.push(it._2.apply(i)
-          .last.get.asInstanceOf[String])
-      }
-
-
+      for (i <- 0 until sizeOfTrieMap) userSession.push(it._2.apply(i).last.get.asInstanceOf[String])
 
       val userSessionReverse= userSession.reverse
 
+
       breakable {
-        for (j <- 0 to userSessionReverse.size - 1) {
+        for( j <- 0 to userSessionReverse.size - 1) {
+          // print(".")
+          var pattern = userSessionReverse(j)
 
-          print(".")
+          if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
 
-      var pattern = userSessionReverse(j)
-      //print(">>>>>\t j: "+j+"\t" )
+              pattern = pattern.concat(userSessionReverse(j+1) )
+              var patternAux = pattern //this var see two symbols
+              trie.append( pattern )
 
-      if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
+              /*
+                j+1
+                pattern = pattern.concat(userSessionReverse(j+1) )
+                //new patter move more
+                //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
+                if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
+                //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
+                  trie.append( pattern )
+                  pattern =""
+                  userSessionReverse(j+1)= ""
 
-        pattern = pattern.concat(userSessionReverse(j+1) )
-        var patternAux = pattern //this var see two symbols
-        //println(">>>>>\t MATCH con j+1 \t "+pattern )
+              }*/
+              pattern =""
+              userSessionReverse(j+1)= ""
 
-
-        trie.append( pattern )
-        j+1
-        pattern = pattern.concat(userSessionReverse(j+1) )
-        //new patter move more
-      //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
-        if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
-      //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
-          trie.append( pattern )
-          pattern =""
-          userSessionReverse(j+1)= ""
-
+          }else{
+              trie.append( pattern )
+              pattern =""
+          }
         }
-
-
-        pattern =""
-        userSessionReverse(j+1)= ""
-
-
-
-
-
-      }else{
-        //println(">>> NO ESTA \t"+pattern )
-
-        trie.append( pattern )
-        pattern =""
       }
-
-
-
-
-
-
-        }
-        println()
-      }//breakable
-
     }
-
-    trie.printTree( p => print(p))
-    println()
+    */
 
 
-    //create new LZ Model
+   // lzResult.printTree( t => print( t ) ); println();
+
     new LZModel(trie)
   }
 
@@ -197,38 +243,19 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def predict(model: LZModel, query: Query): PredictedResult = {
-     val lzResult =      lztrie.trie
+    val lzResult =      lztrie.trie
 
 
-
-     //val tester = lzResult.findByPrefix("EJ")
-     //println("la ruta hasta EJ es :\t"+ tester.seq )
-     //for( t <- tester)    println(t)
-
-     //print(":::::::DEBUG::::::::"+" La query hecha es\t ")
-     //print( query.webaccess + "\t "+ query.num )
-     //println("::::::DEBUG:::::::: end query")
-
-
-     println  ("Next page....\t" )
-
-
-    //lzResult.predictNextPage( query.webaccess )
-
-
-
-    // Working on it
-    //lzResult.updateCounters(c => print(c))
-    //println()
-
-    lzResult.printTree( t => print( t ) )
-    println()
 
     new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
 
-
-
   }
+
+
+
+
+
+
 
 
 

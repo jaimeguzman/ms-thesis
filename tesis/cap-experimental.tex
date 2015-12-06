@@ -90,8 +90,6 @@ H H H H H H
 
 
 
-
-
 \begin{table}[]
 	\centering
 	\caption{Para poder interpretar la entrada anterior se debe tener esta relación de símbolos con respecto a las páginas}
@@ -119,32 +117,76 @@ H H H H H H
 \end{table}
 
 
+
+
+
+
+
+\textbf{Experimento numero 1:} 
+\newline
+
+Hacemos el cross validation para una muestra de data de 100, para probar como se comporta el algoritmo con muestras de pruebas de multiplos de 10  
+
+
 \begin{tikzpicture}
 \begin{axis}[
-xlabel=Cost,
-ylabel=Error]
-\addplot[color=red,mark=x] coordinates {
-	(2,-2.8559703)
-	(3,-3.5301677)
-	(4,-4.3050655)
-	(5,-5.1413136)
-	(6,-6.0322865)
-	(7,-6.9675052)
-	(8,-7.9377747)
-};
+xlabel= Numero de Sesiones,
+ylabel=Accurracy en \% ]
+	\addplot[color=red,mark=x] coordinates {
+		(10, 51.77777778)
+		(20, 38.44444444)
+		(30, 20.03448276)
+		(40, 26.87179487)
+		(50, 23.28)
+		(60, 18.66666667)
+		(70, 12.1)
+		(80, 24.5875)
+		(90, 34.43333333)
+	};
 \end{axis}
 \end{tikzpicture}
 
 
-\begin{forest} 
-	[VP
-	[DP]
-	[V’
-	[V]
-	[DP]
-	]
-	]
-\end{forest}
+
+Lo que se busca es ver como se comporta el algoritmo con datos discretos de cinco simbolos o más, es decir sesiones de usuarios que por lo menos han visitado cinco secciones de una web. Aqui se mide también lo estócastico de cada evento. 
+
+
+
+
+
+\begin{tikzpicture}
+\begin{axis}[
+xlabel= Numero de Sesiones,
+ylabel=Accurracy en \% ]
+	\addplot[color=red,mark=x] coordinates {
+		(10, 51.77777778)
+		(20, 38.44444444)
+		(30, 20.03448276)
+		(40, 26.87179487)
+		(50, 23.28)
+		(60, 18.66666667)
+		(70, 12.1)
+		(80, 24.5875)
+		(90, 34.43333333)
+	};
+\end{axis}
+\end{tikzpicture}
+
+
+
+
+
+
+
+% \begin{forest} 
+% 	[VP
+% 	[DP]
+% 	[V’
+% 	[V]
+% 	[DP]
+% 	]
+% 	]
+% \end{forest}
 
 
 
@@ -280,13 +322,11 @@ Dentro del set de datos que se posee, haremos variadas pruebas para ver métrica
 	 
 	 %x PredictionIO provides a helper class OptionAverageMetric allows user to specify don't care values as None. It only aggregates the non-None values. Lines 3 to 4 is the method signature of calcuate method. The key difference is that the return value is a Option[Double], in contrast to Double for AverageMetric. This class only computes the average of Some(.) results. Lines 5 to 13 are the actual logic. The first if factors out the positively predicted case, and the computation is simliar to the accuracy metric. The negatively predicted case are the don't cares, which we return None.
 	 
-	 \subsection{Experimento comparativo con Frequente Sequency Pattern}
+	 \subsection{Experimento comparativo con Frequent Sequency Pattern}
 	 
 	 
 	 %\subsection{Decission Tree}
-	
-	
-	%\subsection{Asociation Rulz}
+	 %\subsection{Asociation Rulz}
 	
 
 

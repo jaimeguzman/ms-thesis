@@ -1,6 +1,103 @@
 \chapter{Primer anexo}
 \label{ch:anexo-a}
 
+
+Configuraciones para hacer correr IntelliJ con Apache SPARK y Prediction.IO 0.94
+
+
+\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+Main class: io.prediction.workflow.CreateWorkflow
+
+VM options: -Dspark.master=local -Dlog4j.configuration=file:/Users/jguzman/PredictionIO/conf/log4j.properties
+
+
+Program arguments: --engine-id dummy --engine-version dummy --engine-variant engine.json
+
+
+io.prediction.workflow.CreateWorkflow
+-Dspark.master=local -Dlog4j.configuration=file:/Users/jguzman/PredictionIO/conf/log4j.properties -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib 
+--engine-id dummy --engine-version dummy --engine-variant engine.json
+
+
+
+SPARK_HOME=/Users/jguzman/PredictionIO/vendors/spark-1.4.1/bin
+PIO_FS_BASEDIR=/Users/jguzman/.pio_store
+PIO_FS_ENGINESDIR=/Users/jguzman/.pio_store/engines
+PIO_FS_TMPDIR=/Users/jguzman/.pio_store/tmp
+PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta
+PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH
+PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model
+PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS
+PIO_STORAGE_REPOSITORIES_APPDATA_NAME=pio_appdata
+PIO_STORAGE_REPOSITORIES_APPDATA_SOURCE=ELASTICSEARCH
+PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event
+PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE
+PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch
+PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost
+PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300
+PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+PIO_STORAGE_SOURCES_LOCALFS_HOSTS=/Users/jguzman/.pio_store/models
+PIO_STORAGE_SOURCES_LOCALFS_PORTS=0
+PIO_STORAGE_SOURCES_HBASE_TYPE=hbase
+PIO_STORAGE_SOURCES_HBASE_HOSTS=0
+PIO_STORAGE_SOURCES_HBASE_PORTS=0
+
+
+Main class: io.prediction.workflow.CreateServer
+Program Arguments: --engineInstanceId **replace_with_the_id_from_pio_train**
+
+
+
+
+Try -- for more information.
+Usage: pio train [--batch <value>] [--skip-sanity-check]
+                 [--stop-after-read] [--stop-after-prepare]
+                 [--engine-factory <value>] [--engine-params-key <value>]
+                 [--scratch-uri <value>]
+                 [common options...]
+
+Kick off a training using an engine (variant) to produce an engine instance.
+This command will pass all pass-through arguments to its underlying spark-submit
+command.
+
+  --batch <value>
+      Batch label of the run.
+  --skip-sanity-check
+      Disable all data sanity check. Useful for speeding up training in
+      production.
+  --stop-after-read
+      Stop the training process after DataSource.read(). Useful for debugging.
+  --stop-after-prepare
+      Stop the training process after Preparator.prepare(). Useful for
+      debugging.
+  --engine-factory
+      Override engine factory class.
+  --engine-params-key
+      Retrieve engine parameters programmatically from the engine factory class.
+  --scratch-uri
+      URI of the working scratch space. Specify this when you want to have all
+      necessary files transferred to a remote location. You will usually want to
+      specify this when you use --deploy-mode cluster.
+
+\end{lstlisting}
+
+\vspace{1cm}
+
+Como hacer llamadas curl desde la consola o terminal Linux
+
+
+\begin{lstlisting}
+
+curl -H "Content-Type: application/json"  -d '{"webaccess" : "AC","num" : 10}' http://52.33.180.212:8000/queries.json
+
+
+
+\end{lstlisting}
+
+
+
+
+
 %\blindtext[5]
 
 

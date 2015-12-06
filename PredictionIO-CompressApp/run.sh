@@ -18,7 +18,7 @@ echo $'\e[31mTRAINING PROCESS.... please be patience.\e[39m'
 echo '\n'
 
 # /Users/jguzman/PredictionIO/bin/pio train -- --driver-memory 8G --executor-memory 8G --verbose
-/Users/jguzman/PredictionIO/bin/pio train -- --driver-memory 8G --executor-memory 8G
+/Users/jguzman/PredictionIO/bin/pio train -- --driver-memory 10G --executor-memory 10G
 wait
 
 echo '\n'
@@ -26,4 +26,4 @@ echo $'Third Command Execute \e[33m PIO DEPLOY'
 echo $'\e[31mREADY TO ROCK !.... please wait to start the server.\e[39m'
 echo '\n\n'
 # /Users/jguzman/PredictionIO/bin/pio deploy -- --driver-memory 2G --executor-memory 2G --verbose
-/Users/jguzman/PredictionIO/bin/pio deploy -- --driver-memory 4G --executor-memory 4G
+/Users/jguzman/PredictionIO/bin/pio deploy -- --driver-memory 10G --executor-memory 10G

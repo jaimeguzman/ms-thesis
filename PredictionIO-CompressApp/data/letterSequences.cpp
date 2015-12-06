@@ -30,25 +30,25 @@ int main()
 {
    map<string, int> mapCategories;
     // Inserting data in map
-	/*
-		mapCategories.insert(make_pair("frontpage", 1));
-	    mapCategories.insert(make_pair("news", 		2));
-	    mapCategories.insert(make_pair("tech", 		3));
-	    mapCategories.insert(make_pair("local", 	4));
-	    mapCategories.insert(make_pair("opinion", 	5));
-	    mapCategories.insert(make_pair("on-air", 	6));
-	    mapCategories.insert(make_pair("misc", 		7));
-	    mapCategories.insert(make_pair("weather", 	8));
-	    mapCategories.insert(make_pair("msn-news", 	9));
-	    mapCategories.insert(make_pair("health", 	10));
-	    mapCategories.insert(make_pair("living", 	11));
-	    mapCategories.insert(make_pair("business", 	12));
-	    mapCategories.insert(make_pair("msn-sports",13));
-	    mapCategories.insert(make_pair("sports", 	14));
-	    mapCategories.insert(make_pair("summary", 	15));
-	    mapCategories.insert(make_pair("bbs", 		16));
-	    mapCategories.insert(make_pair("travel", 	17));
-    */
+	
+	mapCategories.insert(make_pair("frontpage", 1));
+    mapCategories.insert(make_pair("news", 		2));
+    mapCategories.insert(make_pair("tech", 		3));
+    mapCategories.insert(make_pair("local", 	4));
+    mapCategories.insert(make_pair("opinion", 	5));
+    mapCategories.insert(make_pair("on-air", 	6));
+    mapCategories.insert(make_pair("misc", 		7));
+    mapCategories.insert(make_pair("weather", 	8));
+    mapCategories.insert(make_pair("msn-news", 	9));
+    mapCategories.insert(make_pair("health", 	10));
+    mapCategories.insert(make_pair("living", 	11));
+    mapCategories.insert(make_pair("business", 	12));
+    mapCategories.insert(make_pair("msn-sports",13));
+    mapCategories.insert(make_pair("sports", 	14));
+    mapCategories.insert(make_pair("summary", 	15));
+    mapCategories.insert(make_pair("bbs", 		16));
+    mapCategories.insert(make_pair("travel", 	17));
+    
 
    vector<char> alphabet = { 'A','B','C','D','E','F','G',
 							  'H','I','J','K','L','M','N','O',
@@ -60,6 +60,9 @@ int main()
 
    ifstream  fin("msnbc990928.seq");
    string    file_line;
+
+   int fold = 0 ;
+
    while(getline(fin, file_line))
    {
 
@@ -69,10 +72,22 @@ int main()
 	  
 	  while (ss >> buf) tokens.push_back(buf);
 
-	  for (int i = 0; i < tokens.size(); ++i){
-		string tmp = tokens.at(i); 
-		cout << alphabet.at( stoi(tmp) - 1) << " ";
-	  }cout<< endl;
+
+	  if( tokens.size() < 6 ){
+	  		  ++fold;
+
+		  for (int i = 0; i < tokens.size(); ++i){
+			string tmp = tokens.at(i); 
+			cout << alphabet.at( stoi(tmp) - 1) << " ";
+		  }cout<< endl;
+
+	  }
+
+
+
+
+	  if( fold == 1000000 ) break;
+
    }
     return 0;
 }
