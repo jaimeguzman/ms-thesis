@@ -13,7 +13,7 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es usar como un modelo de navegación creado con algoritmo de compresión basado en Lempel Ziv  y usarlo como un modelo  predicción. Se usará para predecir secuencias finitas discretas de accesos webs. Al momento de generar el árbol este creará una representación Trie de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
+Lo que se busca es un modelo de navegación de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  y usarlo como un modelo  predicción. Se usará para predecir secuencias finitas discretas de accesos webs. Al momento de generar el árbol este creará una representación Trie de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
 
 En base a lo anterior y teniendo funcionando el algoritmo para crear un modelo de predicción, se integrará con el servidor de Machine Learning Prediction.IO que ya se ha explicado anteriormente.
 
@@ -86,7 +86,7 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
 	Este caso es uno de los más sencillos ya que nuestro modelo al no tener más secuencias para poder hacer las operaciones, se proyectará el árbol para todos los posibles accesos dentro de nuestro alfabeto. Para el caso $\Sigma = \{A,B,C,D \} $ y la probabilidad para cada acceso representado por símbolos es de $25\%$.
 	
 	
-	Dada la probabilidad $P( x ) $
+	Dada la probabilidad $P( x ) $ al momento de retornar a la raiz, la siguiente secuencia es absorvida por $\epsilon$.
 	
 
 \end{enumerate}

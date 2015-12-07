@@ -3,38 +3,22 @@
 \section{Predicción }
 
   	
-  En esta sección se presenta formalmente la librería y framework Prediction.IO, %@TODO: colocar referencia web
-  es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite
-  crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente esta construido en Apache Spark, HBase y Spray.
+  En esta sección se presenta formalmente framework que se utilizará durante este trabajo. %@TODO: colocar referencia web
+  PredictionIO es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente esta construido en Apache Spark, HBase y Spray.
 
-  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer
-  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algorimtos sean utilizados para solucionar problemas reales.
+  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algorimtos sean utilizados para solucionar problemas reales.
 
 
-
-
-
-% Si ... osea ya tengo un container en dockers corriendo con prediction.io,
-% he estado aprendiendo scala, y retomando un poco java para ver su SDK.
 
 % PIO, tiene practicamente todo armadao, ello no hicieron nada nuevo ... solo juntaron  todo...
 % MLIB,SPARK, HBASE,SPRAY hadoop etc...
-
-% bueno el tema es que ellos aun no tienen la posibilidad de poner algoritmos custom, he ahi porque trabajar en scala, 
 % por lo que he leido es bien similar a java y mas funcional como lenguaje.
 
-
-% Ellos ocuapan algo que se llama DASE: https://docs.prediction.io/customize/
-
-% [D] Data Source and Data Preparator
-% [A] Algorithm
-% [S] Serving
-% [E] Evaluation Metrics
 
 % He estado investigando y revisando documentación, Yelp, Skype, Hubot de github y otras implementaciones tienen usando prediction.io
 
 
-% Ahora todo esto esta usando ML, ahora mi enredo es el siguiente: ellos ocupan toda la logica e ML, hacer que eso funcione con un LZ 78, será una propuesta hibrida ?
+
 
 % La otra opción es meterle a este "DASE" un algoritmo  que mezcle una representación de cadenas de markov mezclado con LZ78. no se en que punto mezclarlo en el diccionario, o la verdad es como hacer el compresor sea "mas inteligente", encontré un papaer que te adjunto en el cual usan lz78 y lzw, esta interesante ya que le hacen un acercamiento mas al tema de de ser un predictor online.
 
@@ -46,7 +30,71 @@
 
 % El otro tema que estoy un poco asustado son el dataset de prisa, ya que no estoy seguro que el formato me sirva 100% con predicction.IO, al fin y al cabo es como medio loco "entrenar a un compresor para que sea inteligente o no" ????
 
-% Bueno todo eso es lo que queria compartir contigo en el cafe...
+
+
+
+\subsection{Arquitectura DASE}
+
+
+Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una arquitectura de tipo \emph{DASE}, contendríamos los siguientes componentes.
+
+
+
+\begin{itemize}
+
+  \item \textbf{ $[D]$ Data Source y Data Preparator }\\
+  Los Data Sources leen la data desde la entrada original y la tansforma en un formato deseado para hacer analisis de estos. En cambio \emph{Data Preparator} prepocesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
+
+
+    \item \textbf{ $[A]$ Algoritmo}\\
+  Los componentes de algoritmos inclueyen algoritmos de Machine Learning, estos por los componentes que son de predicitionIO pueden ser provistos por Apache Spark ó se pueden incluir algortimos propios como también de terceros.
+  Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el modelo predictivo.
+
+
+
+    \item \textbf{ $[S]$ Servicio}\\
+  The Serving component takes prediction queries and returns prediction results. If the engine has multiple algorithms, Serving will combine the results into one. Additionally, business-specific logic can be added in Serving to further customize the final returned results.
+
+    \item \textbf{ $[E]$ Evaluación de Metricas}\\
+  Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
+
+
+\end{itemize}
+
+
+
+PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se puedan construir modelos de predicción de manera mas facil y poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
+
+
+
+
+\textbf{Despliegue de Engines}
+
+  Un engine pone todos los componentes DASE en un estado especifico de despliegue
+
+  \begin{enumerate}
+    \item Data Source
+    \item Data Preparator
+    \item Un o más Algoritmos
+    \item Un Servicio
+
+  \end{enumerate}
+
+  Si se especifica más de un algoritmo, cada uno de los resultados de los modelos de predicción se entregará para ser consumido por cualquier cliente.
+  Cada \emph{Engine} procesa los datos y construye modelos predictivos de forma independiente. Por lo tanto, todos los engine sirven a su propio conjunto de resultados de predicción. Por ejemplo, puede desplegar dos engine para su aplicación móvil: uno para recomendar noticias para los usuarios y otro para sugerir nuevos amigos a los usuarios.
+
+
+
+\textbf{Evaluación del Engine }
+
+  Para evaluar el accurracy de un Engine, solo se debe especificar la metrica cuando se corre el motor de evaluación, en los capitulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
+
+
+
+
+
+
+
 
 
 
@@ -54,6 +102,9 @@
   \subsection{Modelamiento de Eventos}
 
 %https://docs.prediction.io/datacollection/eventmodel/
+
+
+\textbf{Modelamiento de Eventos}
 
 El modelamiento de eventos, es simplemente el hecho de poder llevar un feature  que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
 
@@ -64,10 +115,7 @@ Como ya se ha mencionado en sección anteriores esta información esta totalment
 
 %Poner algo mas matematico.
 % EVENT API 
-
 % https://docs.prediction.io/datacollection/eventapi/
-
-
 
   El modelamiento que se realizará contempla que el usuario :
 
@@ -91,31 +139,46 @@ Como ya se ha mencionado en sección anteriores esta información esta totalment
     - Persistencia en el modelo
 
 
-  \subsection{Ventajas }
-
-El crecimiento de este tipo de arquitectura es tanto horizontal como vertical
+\subsection{Ventajas }
 
 
-  Mix in and implement this trait if your model cannot be persisted by PredictionIO automatically. A companion object extending IPersistentModelLoader is required for PredictionIO to load the persisted model automatically during deployment.
+  Es posible mezclar y aplicar distintas característica si el modelo no puede ser ser persistido por PredictionIO automáticamente. Se requiere un objeto acompañante heredada de una clase que permite lograr la persistencia en memoria (IPersistentModelLoader ), esto permite PredictionIO  cargar el modelo PERSISTED automáticamente durante la implementación.
 
-Notice that models generated by PAlgorithm cannot be persisted automatically by nature and must implement these traits if model persistence is desired.
-
-
-
-Comentar sobre DASE
-Data Source
-Algortim
-Serving
-Engine
+  % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-A Resilient Distributed Dataset (RDD), the basic abstraction in Spark. Represents an immutable, partitioned collection of elements that can be operated on in parallel. This class contains the basic operations available on all RDDs, such as map, filter, and persist. In addition, org.apache.spark.rdd.PairRDDFunctions contains operations available only on RDDs of key-value pairs, such as groupByKey and join; org.apache.spark.rdd.DoubleRDDFunctions contains operations available only on RDDs of Doubles; and org.apache.spark.rdd.SequenceFileRDDFunctions contains operations available on RDDs that can be saved as SequenceFiles. All operations are automatically available on any RDD of the right type (e.g. RDD[(Int, Int)] through implicit.
+  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de un máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite gracias a sus componentes poder hacer un cluster para lograr entregar mayor eficiencia acorde a los datos o algoritmo a implmenentar.  Esta propiedades
 
-Internally, each RDD is characterized by five main properties:
+  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es un representación immutable, una coleción particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco prinicipales propiedades:
 
-A list of partitions
-A function for computing each split
-A list of dependencies on other RDDs
-Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
-Optionally, a list of preferred locations to compute each split on (e.g. block locations for an HDFS file)
-All of the scheduling and execution in Spark is done based on these methods, allowing each RDD to implement its own way of com
+
+  \begin{enumerate}
+    \item Una lista de particiones.
+    \item Una función para procesar cada split de datos.
+    \item Una lista de dependencias en otros RDD's. 
+    \item Opcionalmente una partición de un RDD puede ser representada como $\{llave,valor\}$ }
+
+    \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo HDFS), para procesamiento en clustering.
+
+  \end{enumerate}
+
+
+
+
+% https://docs.prediction.io/templates/recommendation/customize-serving/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
