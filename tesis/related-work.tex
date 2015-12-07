@@ -1,0 +1,74 @@
+\begin{enumerate}
+
+
+
+  \item \textbf{Prediction Algorithms for User Actions} ( Hartmann \& Schreiber,2007  \etal~\cite{hartmann2007}) , 
+
+% Proactive User Interface
+Se requiere la predicción de la siguiente acción del usuario basada en la historia de interacción que ha tenido con una interfaz. 
+En su trabajo dan una revisión a los algoritmos de predicción Discreta (SPA) y desarrollan dos propuestas de algoritmos basadas en Modelos de Markov que convinan distintos orden de Markov. Y desarrollan una librería en PERL para su propuesta y evaluación.
+
+% NOTAS MIAS
+
+%Acorde a lo que Hartman propone nuestro trabajo esta totalmente alineado, debido a que optimizar o predecir el siguiente acción/acceso puede ayudar enormemente a el problema de PUI Proactive User Interfaces que el plantea
+
+% Ellos comparan comparan el mejor rendimiento del algoritmo acorde a los requerimientos de memoria y tiempo de procesamiento
+
+%Hartman en su paper dice que las Interfaces de Usuario Intelignente(Intelligent User Interfaces) tb dan uso y son un campo de aplicación para las predicciones secuenciales 
+
+% Algo significativo que menciona es que muchos de los algoritmos toman k- elementos de una secuencia para hacer una predicción, en mi caso yo tomo la secunecia completa en base a un entrenamiento
+
+% Plantea que hay dos maneras de hacer predicciones secuenciales On-Demand or Live, en mi caso es Live y OnDemand la implementación que ofrezco cumple ambos campos.
+% Online Learning Algorithm -> Muy similar a mi modelo hibirido ML y LDC
+% Mi Propuesta podría ayudar mucho en PUI para caso como el desarrollo movil,esto es obiviamente por las limitaciones de pantalla que presenta 
+
+% Modelos/Algortimos propuestos   ONISI y IPAM Jacobs Blockeel, ActiveLeZi
+
+
+  \item \textbf{ActiveLezi} ( Gopalratnam \& Cook,2007 \etal\cite{Gopalratnam2007}) 
+  
+  Proponen un Algoritmo \emph{On-Demand} que considera varios modelos de Markov.  
+  El funcionamiento es basado en almacenar la frecuencia del patrón de \emph{input} en un \emph{Trie} acorde al algoritmo de compresión de \emph{LZ78} para superar algunos de los problemas que surgen con \emph{LZ78}, se usa una ventana de largo variable de los simbolos previamente usados en la construcción del \emph{Trie}. El tamaño de la ventana crece con el numero de las diferentes subsecuencias que se van viendo en la entrada de cada secuencia nueva que ingresa.  Sea $suff_{l}$  el sufijo de largo $l+1$ el sufijo de longitud l 1 de las inmediatamente historial de interacción a, que es un hacha .... la probabilidad se define de la siguiente forma recursiva.:
+
+
+
+
+
+  \item Dongshan y Junyi~\cite{Dongshan2002} 
+  
+  Destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones .  Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
+  Su modelo fue presentado en 2002, y da una importancia a conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
+
+  \item Domenech \etal~\cite{Domenech2006}
+  
+  Muestran un estudio de los rendimientos de técnicas de recuperación de datos.
+  Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
+  Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
+  Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como predicciones genéricas o específicas, variables de uso de recursos a nivel de red ó nivel procesamiento.
+  Finalmente, se presenta un modelo predictivo que puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y \emph{QoS}.
+
+
+  % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn del punto de vista que de los docuentos 
+  % como los autores antteriores.
+
+  \item Chen \etal~\cite{Chen2011} 
+  
+  Dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
+  El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.
+
+  \item Rajimol y Raju~\cite{Rajimol2012} 
+  
+  Minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
+  La literatura presenta un interés para poder anticipar el patrón de comportamiento de la web.
+  % @TODO reflexionar mas sobre este paper
+
+  \item Kewen~\cite{kewen2012} realizó un análisis más profundo del \emph{web usage minning}.
+  Parte de la importancia de este trabajo, es que después de minar los registros de accesos, logran reducir la ``\emph{bad data}''.
+  %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
+
+  \item Poornalatha y Raghavendra~\cite{Poornalatha2012} establecen que se pueden utilizar máquinas de aprendizaje para predecir basándose en distintas entre clusters. Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
+
+  \item Claude \etal~\cite{Claude2014} presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
+  
+\end{enumerate}
+

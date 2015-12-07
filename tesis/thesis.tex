@@ -22,12 +22,11 @@
 \usepackage[font=footnotesize,labelfont=bf,labelsep=period]{caption}
 
 % Agregue acá otros paquetes que le sean de utilidad
-% Matemáticas
-\usepackage{amsmath}
 
-% Gráficos
-\usepackage{graphicx}
+\usepackage{amsmath}	% Matemáticas
+\usepackage{graphicx}	% Gráficos
 \usepackage[font=footnotesize,labelformat=simple]{subfig}
+
 % Cambiamos el formato de las leyendas: finalizan en punto, y en negrita.
 \captionsetup{labelsep=period,labelfont=bf}
 % Habilitamos el uso de paréntesis al citar las figuras con subfiguras dentro, e.g., Fig. 1(a)
@@ -104,7 +103,6 @@
 %\renewcommand{\ALG@name}{Algoritmo}% Algorithm -> Algoritmo
 %\makeatother
 %\captionsetup[algorithm]{font=footnotesize,labelsep=period}
-
 % Referencias (este paquete ordena y comprime las referencias)
 \usepackage{cite}
 
@@ -112,16 +110,13 @@
 \usepackage{blindtext}
 
 
-% Establecemos el tema a utilizar. 
-% Debe existir el archivo udpthesisEIT.sty en su sistema TeX para poder utilizarlo.
-% Por ejemplo, para utilizar el tema de magíster de la EIT deben de utilizar
-% \udptheme{EIT-MS}
+
 \udptheme{EIT}
 
 
 \begin{document}
-%% Inicio de la portada
-\frontmatter
+
+\frontmatter		%% Inicio de la portada
 
 
 
@@ -130,13 +125,13 @@
 % para precisar aún más su tema, use un subtítulo
 %\subtitle{Subtítulo explicativo del tema}
 
-% El autor(es) de la tesis
+
 \author{Jaime Guzmán}
 \email{mail@jguzman.cl}
 
 
 
-% Fecha a aparecer en la tesis
+
 \date{2015}
 
 % Profesor guía
@@ -167,13 +162,13 @@ Hoy existe variadas tipos de web, redes sociales, microbloging, web informativas
 Este trabajo busca predecir el comportamiento de un usuario dentro de una web, usando técnicas de aprendizaje y algoritmo de compresión. Con este propósito se trabajará para crear un modelo híbrido.
 }
 
-% Generamos la portada
-\makecover
+
+\makecover			% Generamos la portada
 
 % Indices y listas
-\tableofcontents% tabla de contenido
-\listoftables%    índice de tablas
-\listoffigures%   índice de figuras
+\tableofcontents	% tabla de contenido
+\listoftables		%    índice de tablas
+\listoffigures		%   índice de figuras
 % puede agregar otras listas o índices acá de ser necesario
 
 
@@ -190,14 +185,13 @@ Este trabajo busca predecir el comportamiento de un usuario dentro de una web, u
 
 
 
-
 % Iniciamos el resto de secciones adicionales al contenido: referencias y apendices
 \backmatter
 
-%%Se presenta una re- visio ́n bibliogra ́fica acertada, actual, y exhaustiva (se consul- ta toda la literatura relevante).
+%%Se presenta una revision bibliografica acertada, actual, y exhaustiva (se consulta toda la literatura relevante).
 
 
-%Presenta y redacta los ob jetivos, el traba jo realizado, y la valida- cio ́n de manera deta- llada. Presenta discu- siones detalladas, ar- ticuladas, claras, y un buen uso del lengua je t ́ecnico.
+%Presenta y redacta los objetivos, el trabajo realizado, y la validacion de manera deta-llada. Presenta discusiones detalladas, articuladas, claras, y un buen uso del lengua je tecnico.
 
 
 % Bibliografía
@@ -216,14 +210,15 @@ Este trabajo busca predecir el comportamiento de un usuario dentro de una web, u
 % Por ejemplo: nomencl (http://texdoc.net/pkg/nomencl)
 
 
+
+
 % Anexos
 \appendix
 
 % Aca se incluyen los archivos con el texto de los anexos
-% Por ejemplo, anexo.tex
 \input{anexo}
-% puede incluir más archivos de anexos
-% \input{anexo-dos}
+
+
+
 
 \end{document}
-% that's all folks
