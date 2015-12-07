@@ -65,7 +65,7 @@ object EngineParamsList extends EngineParamsGenerator {
   // First, we define the base engine params. It specifies the appId from which
   // the data is read, and a evalK parameter is used to define the
   // cross-validation.
-  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 1))
+  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 39 ))
 
 
    //println( baseEP.dataSourceParams._1 )

@@ -4,7 +4,7 @@
   "engineFactory": "cl.jguzman.piocompressapp.LempelZivEngine",
   "datasource": {
     "params": {
-      "appId": 1
+      "appId": 39
     }
   },
   "algorithms": [

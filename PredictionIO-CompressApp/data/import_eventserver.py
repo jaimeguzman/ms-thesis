@@ -57,6 +57,6 @@ if __name__ == '__main__':
     access_key=args.access_key,
     url=args.url,
     threads=1000,
-    qsize=10000)
+    qsize=100000)
 
   import_events(client, args.file)
