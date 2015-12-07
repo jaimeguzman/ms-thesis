@@ -32,6 +32,8 @@ Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nu
 % - hablar mas de que LZ78 es basado en un diccicionario.
 
 
+%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context ‘a’ occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
+
 
 %empezar habalr sibre lempel ziv
 

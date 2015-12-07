@@ -105,12 +105,12 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
 
 
 \textbf{Modelamiento de Eventos}
+  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature  que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
 
-El modelamiento de eventos, es simplemente el hecho de poder llevar un feature  que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
+  Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
 
-Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
-
-Como ya se ha mencionado en sección anteriores esta información esta totalmente depurada y entregada por los access log, los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+  Como ya se ha mencionado en sección anteriores esta información esta totalmente depurada y entregada por los access log, los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+  
 
 
 %Poner algo mas matematico.
@@ -135,8 +135,6 @@ Como ya se ha mencionado en sección anteriores esta información esta totalment
 
     El interés de tener un modelo totalmente atómico es poder contemplar la información que nos entrega, destacando sus variables y propiedades como restricciones.
 
-
-    - Persistencia en el modelo
 
 
 \subsection{Ventajas }
