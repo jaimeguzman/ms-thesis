@@ -2,6 +2,8 @@
 
 
 
+
+
 {
 % Los objetivos no estan diferenciados entre generales y especıficos.
 % Se presentan procesos que validan el trabajo comparando con otros metodos del estado del arte. 
@@ -11,7 +13,7 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es usar como un modelo de navegación creado con algoritmo de compresión basado en Lempel Ziv  y usarlo como un modelo  predicción. Se usará para predecir secuencias finitas discretas de accesos web. Al momento de generar el árbol este creará una representación Trie de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
+Lo que se busca es usar como un modelo de navegación creado con algoritmo de compresión basado en Lempel Ziv  y usarlo como un modelo  predicción. Se usará para predecir secuencias finitas discretas de accesos webs. Al momento de generar el árbol este creará una representación Trie de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
 
 En base a lo anterior y teniendo funcionando el algoritmo para crear un modelo de predicción, se integrará con el servidor de Machine Learning Prediction.IO que ya se ha explicado anteriormente.
 
@@ -19,14 +21,75 @@ En base a lo anterior y teniendo funcionando el algoritmo para crear un modelo d
 
 Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos.
 
-	%- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
-	% of the total dataset) and testing (10 % of the total data).
-	%-Learning the model: We accomplished the learning step using different learning algorithms depending on
+%- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
+% of the total dataset) and testing (10 % of the total data).
+%-Learning the model: We accomplished the learning step using different learning algorithms depending on
 
 
 Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios.
 
 
+\subsection{Nuestro Modelo de Predicción ML-LDC}
+
+Basados en un servidor de Machine Learning, hemos desarrollado un motor de predicción con un algoritmo basado en Lempel Ziv 78. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
+\{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
+\end{equation}, la cual representaremos con nuestro modelo de predicción
+
+
+	\begin{forest} 
+	[ $\epsilon$
+		[A
+			[AA
+				[AAA]	
+			]
+			[AB
+				[ABC]
+			]
+		]
+		[B
+			[BA]
+			[BB
+				[BBA]
+			]
+		]
+		[C]
+		[D
+			[DC]
+		]
+	]
+	\end{forest}
+
+Dado nuestro modelo de predicción podemos determinar que nuestra salida resultante será:
+
+\begin{equation}
+\{ A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA \}
+\end{equation}
+
+
+Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
+
+
+\begin{enumerate}
+	\item \textbf{Nodos Intermedios probabilidad Equivalente}
+	
+	Dada la $P( x | A\epsilon  )$, siendo $x$ la probabilidad de encontrar el siguiente símbolo. Este caso nos muestra que tenemos dos secuencias posibles $\{A,AB\}$, por lo cual podemos hacer la función $arc_max(AA,AB)$ ó calcular una función $random(AA,AB)$, al ser un caso con solamente dos posibilidades tenemos solo un $50\%$ de éxito.
+	
+	
+	\item \textbf{Nodos intermedios con un nodo hijo }
+	
+	Dada la $P( x | AB  )  = ABC$, ya que  el nodo $C$, es el único hijo por tanto tiene toda la certeza de ser la predicción acorde al árbol de entrenamiento.
+		
+		
+		
+	\item \textbf{Nodo hoja y vuelta a la raíz}	
+	
+	Este caso es uno de los más sencillos ya que nuestro modelo al no tener más secuencias para poder hacer las operaciones, se proyectará el árbol para todos los posibles accesos dentro de nuestro alfabeto. Para el caso $\Sigma = \{A,B,C,D \} $ y la probabilidad para cada acceso representado por símbolos es de $25\%$.
+	
+	
+	Dada la probabilidad $P( x ) $
+	
+
+\end{enumerate}
 
 
 
@@ -39,6 +102,9 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 		\item Procesador 2,8 GHz Intel Core i7, 16 GB de Memoria RAM y Sistema Operativo OSX
 		\item Procesadores Intel Xeon E5-2670 v2 (Ivy Bridge) de alta frecuencia 32 vCPU, 244 GB de Memoria RAM y Sistema Operativo Ubuntu 14.14 
 	\end{itemize}
+	
+Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se usará la máquina con 16GB y para experimentos con sesiones mayores a 1000 sesiones de usuarios se usará la máquina 240GB.	
+	
 
 \subsubsection{Software}
 
@@ -66,12 +132,35 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 
 
 
-El motor de predicción es Prediction.IO, como se ha señalado anteriormente  es un framework para deployar servidor con algoritmos de Maquians de Aprendizaje, Decission Tree, K-Means, RNN y todos los algortimos ofrecidos por la suite de Apache Spark y MLib. % Colocar unos lindos links para hacer publicidad a esto
+El motor de predicción es Prediction.IO, como se ha señalado anteriormente  es un framework para desplegar servidores con algoritmos de Maquinas de Aprendizaje, Decission Tree, K-Means, RNN y todos los algoritmos ofrecidos por la suite de Apache Spark y MLib. % Colocar unos lindos links para hacer publicidad a esto
 
-Para desarrollar un motor que se intrege con \emph{PIO} se deberá seguir el patrón \emph{DASE} y crear un modelo con persistencia en memoria que nos permita un acceso rápido a las consultas a las predicciones.
+Para desarrollar un motor que se acople con \emph{PIO} se deberá seguir el patrón \emph{DASE} y crear un modelo con persistencia en memoria RAM que nos permita un acceso rápido a las predicciones por consultar.
 
 
-Usaremos \emph{SBT} para orequestar todas las liberias que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la Java Virtual Machine. Prediction.IO no solo ocupa Scala, adicionalmente provee el uso de Apache Spark con sus librerías de MLIB (Machine Learning Library), Zookeeper, Hbase (Hadoop) y Elasticsearch. Hemos utilizado Python para realizar un cliente por linea de comando en el cual poder hacer pruebas y adicionalmente hacer un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes python ver los fuentes en los anexos.
+Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la Java Virtual Machine. Prediction.IO no solo ocupa Scala, adicionalmente provee el uso de Apache Spark con sus librerías de MLIB (Machine Learning Library), Zookeeper, Hbase (Hadoop) y Elasticsearch. Hemos utilizado Python para realizar un cliente por linea de comando en el cual poder hacer pruebas y adicionalmente hacer un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes python ver los fuentes en los anexos.
+
+
+
+
+
+% Es una métrica que captura una porición correcta de toda la data a probar. 
+% Una manera de modelar esto es para cada consulta que hacemos al predictor, damos un score de 1 y 0, luego podemos tomar el promedio de este score.
+
+
+
+% PredictionIO has a [[AverageMetric]] helper class which provides this feature. This class takes 4 type parameters, [[EvalInfo]], [[Query]], [[PredictedResult]], and [[ActualResult]], these types can be found from the engine's signature. Line 5 below is the custom calculation.
+
+%Precision is a metric for binary classifier capturing the portion of correction prediction among all positive predictions. We don't care about the cases where the QPA-tuple gives a negative prediction. (Recall that a binary classifier only provide two output values: positive and negative.) The following table illustrates all four cases:
+
+%Calculating the precision metric is a slightly more involved procedure than calculating the accuracy metric as we have to specially handle the don't care negative cases.
+
+%x PredictionIO provides a helper class OptionAverageMetric allows user to specify don't care values as None. It only aggregates the non-None values. Lines 3 to 4 is the method signature of calcuate method. The key difference is that the return value is a Option[Double], in contrast to Double for AverageMetric. This class only computes the average of Some(.) results. Lines 5 to 13 are the actual logic. The first if factors out the positively predicted case, and the computation is simliar to the accuracy metric. The negatively predicted case are the don't cares, which we return None.
+
+% \subsection{Experimento comparativo con Frequent Sequency Pattern}
+
+
+%\subsection{Decission Tree}
+%\subsection{Asociation Rulz}
 
 
 
@@ -115,7 +204,8 @@ H H H H H H
 
 
 
-Utilizaremos un simple programa en C++ para filtrar y listar los dataset y transformarlos a símbolos, caracteres en mayúscula, por ejemplo:
+Utilizaremos un simple programa en C++ para filtrar y listar los dataset y transformarlos a símbolos, caracteres en mayúscula, por ejemplo: 
+\footnote{Este programa se encuentra junto en el anexo de la memoria}
 
 	
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
@@ -200,8 +290,6 @@ Es importante señalar que la división de nuestro set de datos es debido a que 
 
 
 \subsection{Experimentos con Nuestro Modelo}
-
-
 \subsubsection{Sesiones con un valor mínimo de visitas a secciones}
 
 Dentro de nuestro experimentos para probar la exactitud de nuestro modelo podemos demostrar que al tener una menor cantidad de secciones visitadas, la probabilidad de no acertar crece considerablemente.
@@ -401,10 +489,25 @@ Lo que se busca es ver como se comporta el algoritmo con datos discretos de cinc
 
 
 
+\subsection{Detección de Ruido en sesiones}
+
+Al modelar una navegación de usuario mediante un trie basado en un algoritmo como LZ78, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
+
+Sea la secuencia $\{A,A,A,A,A,A,A,A,A,A,A,A \}$ a la cual llamaremos secuencia $R$, si $A$ es representado por el \emph{home} ó página de inicio, esto da a interpretación que existe un usuario en su sesión $R$ que se encuentra accediendo constantemente a esta sección. Podemos señalar que esta es una sesión ruidosa si:
+
+\begin{equation}
+	P( x | AAAAAAA)= A	
+\end{equation}, pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
+
+En el siguiente experimento veremos como se comporta nuestro modelo dado entradas \emph{Ruidosas}. Además se mostrará como el árbol suele perder su balance a medida que va creciendo los niveles de altura. 
 
 
 
+Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}
 
+
+
+%\subsection{Tamaños inferiores de }
 
 
 
@@ -414,48 +517,6 @@ Lo que se busca es ver como se comporta el algoritmo con datos discretos de cinc
 
 \subsection{Experimento con Largo de Ventana}
 
-	Cual podria ser el optimo de la ventana
-	Que ventana o cual corre mejor
-
-
-
-\subsection{Experimento con el Tamaño del Set de datos de Entrenamiento}
-
-
-\subsection{Experimento con Predicciones con Ruido}
-
-
-
-
-\subsection{Cross Validation}
-
-
-\subsection{Accurracy}
-
-
-
-\subsection{Precisión}
-
-
-	% Es una métrica que captura una porición correcta de toda la data a probar. 
-	% Una manera de modelar esto es para cada consulta que hacemos al predictor, damos un score de 1 y 0, luego podemos tomar el promedio de este score.
-	
-	
-	
-	% PredictionIO has a [[AverageMetric]] helper class which provides this feature. This class takes 4 type parameters, [[EvalInfo]], [[Query]], [[PredictedResult]], and [[ActualResult]], these types can be found from the engine's signature. Line 5 below is the custom calculation.
-	
-	 %Precision is a metric for binary classifier capturing the portion of correction prediction among all positive predictions. We don't care about the cases where the QPA-tuple gives a negative prediction. (Recall that a binary classifier only provide two output values: positive and negative.) The following table illustrates all four cases:
-	 
-	 %Calculating the precision metric is a slightly more involved procedure than calculating the accuracy metric as we have to specially handle the don't care negative cases.
-	 
-	 %x PredictionIO provides a helper class OptionAverageMetric allows user to specify don't care values as None. It only aggregates the non-None values. Lines 3 to 4 is the method signature of calcuate method. The key difference is that the return value is a Option[Double], in contrast to Double for AverageMetric. This class only computes the average of Some(.) results. Lines 5 to 13 are the actual logic. The first if factors out the positively predicted case, and the computation is simliar to the accuracy metric. The negatively predicted case are the don't cares, which we return None.
-	 
-	 % \subsection{Experimento comparativo con Frequent Sequency Pattern}
-	 
-	 
-	 %\subsection{Decission Tree}
-	 %\subsection{Asociation Rulz}
-	
 
 
 
@@ -464,7 +525,12 @@ Lo que se busca es ver como se comporta el algoritmo con datos discretos de cinc
 
 
 
-\section{Conclusiones y Resultados}
+
+
+
+
+
+\section{Conclusiones}
 
 
 

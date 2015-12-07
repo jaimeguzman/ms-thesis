@@ -2,8 +2,74 @@
 \label{ch:anexo-a}
 
 
-Configuraciones para hacer correr IntelliJ con Apache SPARK y Prediction.IO 0.94
+\section{Uso de linea de Comando Prediction.IO}
 
+
+La interación con \emph{PIO} es a través de una interface de linea de comando, esta sigue el siguiente formato de uso:
+
+ 
+
+\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+pio <command> [options] <args>...
+\end{lstlisting}
+
+En caso de tener duda usted al igual que los comandos de bash puede ejecutar
+
+\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+pio help <command> 
+\end{lstlisting}, para ver mas detalles de cada detalle de los comandos disponibles.
+
+
+Los comandos de PredictionIO se pueden separar en tres categorías:
+
+\begin{itemize}
+	\item \textbf{help} Muestra un resumen del uso  \emph{pio help <command>} para leer sobre un sub comando
+	
+	\item \textbf{Version} Muestra la version instalada de PredictionIO
+	
+	
+	\item \textbf{Status} Muesta la ruta de instalación y el estatus de ejecución de sistema, como también sus dependencias
+	
+\end{itemize}
+
+Comandos del servidor de eventos
+
+
+
+\begin{itemize}
+	\item \textbf{app} Muestra un resumen del uso  \emph{pio help <command>} para leer sobre un sub comando
+	
+	\item \textbf{Version} Muestra la version instalada de PredictionIO
+	
+	
+	\item \textbf{app }  Administra todas las aplicaciones que usa el servidor de eventos
+	\item \textbf{pio app data-delete <name> } Borra toda la data contenida por una aplicación específica
+	\item \textbf{pio app delete <name> }  Borra una aplicación completa
+	\item \textbf{eventserver }  Lanza el servidor de eventos
+	\item \textbf{ --ip <value> } Une la IP seleccionada, el valor por defecto es \emph{localhost}
+	\item \textbf{accesskey} Administra todas las llaves de acceso al servidor de eventos ó app
+	
+\end{itemize}
+
+
+Comandos del Motor de Predicción\\
+
+Es requerido que estos comandos se ejecuten desde la misma carpeta que contiene el proyecto ó aplicación desplegada.
+
+Las opciones  --debug y --verbose  muestran información detallada sobre los conectoes de las aplicaciones complementarias a las que esta compuesta PredictionIO
+
+\begin{itemize}
+	\item \textbf{build} Construye y compila el proyecto completo desde la carpeta fuente, tiene un flag adicional \emph{-- clean}, para una compilación limpia.
+
+	\item \textbf{train} Ejecuta el entrenamiento declarado en el motor 
+
+	\item \textbf{deploy} Despliega el motor para ser usado meiante REST como Algoritmo como Servicio. Si no existe ninguna nueva instancia  desplegada, por defecto usará la última creada.
+	
+\end{itemize}
+
+
+
+\section{Configuraciones para hacer correr IntelliJ con Apache SPARK y Prediction.IO 0.94}
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 Main class: io.prediction.workflow.CreateWorkflow
