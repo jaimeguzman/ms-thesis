@@ -1,7 +1,3 @@
-% Ejemplo del uso de la template para escribir tesis/memorias de la Universidad Diego Portales.
-%
-% Eviar bugs a: Adín Ramírez, adin.ramirez (at) mail.udp.cl
-
 % Puede generar borradores si omite la opción "final" de la clase.
 % \documentclass{udpthesis}
 \documentclass[final]{udpthesis}
@@ -14,7 +10,6 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots} % fuer plots
-
 \usepackage[external]{forest}
 
 
@@ -29,6 +24,7 @@
 
 % Cambiamos el formato de las leyendas: finalizan en punto, y en negrita.
 \captionsetup{labelsep=period,labelfont=bf}
+
 % Habilitamos el uso de paréntesis al citar las figuras con subfiguras dentro, e.g., Fig. 1(a)
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \renewcommand\thesubtable{(\alph{subtable})}
@@ -97,32 +93,29 @@
 %\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,position=bottom}
 
 % O para generar algoritmos en pseudocódigo usar algpseudocode.sty
-%\usepackage{algorithm}
-%\usepackage{algpseudocode}
+\usepackage{algorithm}
 \usepackage{algpseudocode}
+
+
 %\makeatletter
 %\renewcommand{\ALG@name}{Algoritmo}% Algorithm -> Algoritmo
 %\makeatother
 %\captionsetup[algorithm]{font=footnotesize,labelsep=period}
-% Referencias (este paquete ordena y comprime las referencias)
-\usepackage{cite}
 
-
+\usepackage{cite}% Referencias (este paquete ordena y comprime las referencias)
 \usepackage{blindtext}
-
-
 
 \udptheme{EIT}
 
 
 \begin{document}
 
-\frontmatter		%% Inicio de la portada
+\frontmatter %% Inicio de la portada
 
 
 
-% Título del tema (no más de 12 palabras)
-\title{Modelo de Predicción Secuencial de Web Access Log basado en Algoritmos de Compresión y Machine Learning}
+\title{Modelo de Predicción Secuencial de Web Access Log basado en Algoritmo de Compresión y Machine Learning}
+
 % para precisar aún más su tema, use un subtítulo
 %\subtitle{Subtítulo explicativo del tema}
 
@@ -165,12 +158,10 @@ Este trabajo busca predecir la siguiente página que un usuario pueda acceder de
 
 
 \makecover			% Generamos la portada
-
-% Indices y listas
 \tableofcontents	% tabla de contenido
 \listoftables		%    índice de tablas
 \listoffigures		%   índice de figuras
-% puede agregar otras listas o índices acá de ser necesario
+
 
 
 
@@ -190,13 +181,10 @@ Este trabajo busca predecir la siguiente página que un usuario pueda acceder de
 \backmatter
 
 %%Se presenta una revision bibliografica acertada, actual, y exhaustiva (se consulta toda la literatura relevante).
-
-
 %Presenta y redacta los objetivos, el trabajo realizado, y la validacion de manera deta-llada. Presenta discusiones detalladas, articuladas, claras, y un buen uso del lengua je tecnico.
 
 
-% Bibliografía
-% El estilo por defecto es IEEE Transactions
+% Bibliografía - El estilo por defecto es IEEE Transactions
 \bibliographystyle{ieeetr}
 \bibliography{IEEEabrv,referencias}
 
