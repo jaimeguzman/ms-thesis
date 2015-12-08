@@ -2,16 +2,29 @@
 
 
 
+%Las Predicciones en los registros webaccess ha atraido mucha atencion en los últimos años
+
+%In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem.
+
 %Cita a @Gopalratnam&Cook
 Dado los nuevos sistemas es cada vez más común conocer sistemas Inteligentes y diversos en variadas áreas, una de estas cualidades de los nuevos sistemas este tener las posibilidad de predecir ocurrencia de eventos para poder adaptarse y tener versatilidad al tomar decisiones en variadas situaciones. Aún mas necesaria es esta propieda en problemas que requieren predicciones secuenciales, es decir dada una secuencia de eventos, como poder predecir el siguiente evento basado en nuestro conocimiento histórico limitado.
 
-Para cualquier secuencia de eventos, estas se pueden modelar como proceso estocásticos, esto algoritmos emplean Modelos de Markov para optimizar las predicciones del siguiente simbolo, en cualquier secuencia estocástica. Otros escenarios requieren que algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
+En los últimos años el contenido de muchos sitios web son dinámicos y nuevas páginas también se añaden al sitio de forma dinámica. Por lo cual un modelo predictivo que pueda servir como un modelo predictivo \emph{online} e ir considerando los cambios web que se van produciendo, como también el comportamiento de los usuarios que interactúan con ella.
 
-El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de simbolos $x_{1}, x_{2}.....x_{n}$, ¿Cúal es el siguiente simbolo $x_{i+1}$? Señalado el problema la literura converge a que gracias Risseman y Langodom
+En \cite{Moghaddam2009} proponen un modelo predictivo online que cubre la eficiencia de la memoria como un factor importante para un algoritmo en línea. 
+
+
+
+Para cualquier secuencia de eventos, estas se pueden modelar como proceso estocásticos, esto algoritmos emplean Modelos de Markov para optimizar las predicciones del siguiente símbolo, en cualquier secuencia estocástica. Otros escenarios requieren que algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
+
+El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de simbolos $x_{1}, x_{2}.....x_{n}$, ¿Cúal es el siguiente simbolo $x_{i+1}$? Señalado el problema la literatura converge a que gracias Risseman y Langodom
  %Falta cita
 un buen compresor, o mejor dicho que cualquier compresor de datos sin pérdida se aproxima a un $predictor$.
 
-Para poder crear un predictor acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía aproxima a la de la fuente de datos, consigue una mayor precisión predictiva.
+Para poder crear un modelo predictivo acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía se aproxima a la de la fuente de datos, consigue una mayor precisión predictiva.
+
+
+
 
 
 %Also, it has been shown that a predictor with an order that grows at a rate approximating the entropy rate of the source is an optimal predictor. Another motivation to look to the field of text compression is that such algorithms are essentially incremental parsing algorithms, which is an extremely desirable quality in our search for an online predictor. Active LeZi is a predictor addressing this prediction problem, and is based on the above-mentioned motivations.
@@ -31,7 +44,7 @@ Para poder crear un predictor acorde a la Teoría de la Información, un predict
 
 
 
-Las predicciones son un area importante dentro del dominio de las Machine Learning y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un optimio desempeño, también ayudan a dar información para la elección de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que por lo general se puede modelar como un proceso estocástico. 
+Las predicciones son un área importante dentro del dominio de las Machine Learning y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un optimio desempeño, también ayudan a dar información para la elección de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que por lo general se puede modelar como un proceso estocástico. 
 
 Nuestro interés se focaliza en las predicciones de sequencias discretas, en el cual queremos demostrar la convergencia en el cual un modelo de compresión, como el caso de LZ78 que se explicará mas detalladamente en el capitulo posterior. La eficiencia de un algoritmo de compresión ofrece una nueva perspectiva a las predicciones, la cual ha despertado un interés en investigadores.
 % @TODO: hacer cita

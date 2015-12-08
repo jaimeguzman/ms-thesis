@@ -29,7 +29,7 @@ Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluacio
 Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios.
 
 
-\subsection{Nuestro Modelo de Predicción ML-LDC}
+\subsection{Nuestro Modelo de Predicción MLLDC}
 
 Basados en un servidor de Machine Learning, hemos desarrollado un motor de predicción con un algoritmo basado en Lempel Ziv 78. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
 \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
@@ -627,6 +627,14 @@ un compresor-predictor  ``menos tonto''
 
 \section{Conclusiones}
 
+
+
+Aún cuando se presenta varios antecedentes, podemos decir que nuestro modelo ocupa bastante menos memoria pero esto va directamente relacionado el tamaño del trieNode de predicción generado.
+
+%
+Aun cuando el trieNode que representa totalmente el modelo de navegación del los usuarios de un sitio web, este no puede generalizar completamente el comportamiento estocástico de los usuarios y/o agentes que acceden a los recursos de MSNBC o un cualquier web en general.
+
+Una de las mayores ventajas de nuestro modelo es que al estar embebido en un servidor de Machine Learning, cada nuevo evento que ingresa para la siguiente nueva ejecución esta estará mejor preparado, podríamos decir que la recolección de data de cada evento en particular nos ayudaría a que nuestro modelo en futuros trabajos vaya aprendiendo mas y más precisamente.
 
 
 %In this paper we studied the empirical performance of a number of prominent prediction algorithms. We focused on prediction settings that are more closely related to those required

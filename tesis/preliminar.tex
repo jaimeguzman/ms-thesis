@@ -3,7 +3,7 @@
 
 % Idealmente aca explicar el problema
 
-  La Web crece constantemente y por ende su infraestructura, también la información que podemos obtener de los  usuarios y  concurrencia de los sistemas, la cual para usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
+  La Web crece constantemente y por ende su infraestructura, también la información que podemos obtener de los  usuarios y  concurrencia de los sistemas, la cual para los usuario finales se traduce en latencia y una mejor o peor experiencia de usuario. Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que el no tener mayores recursos mejorará el rendimiento ni tampoco será lo óptimo para dar una calidad de servicio web, ya que el ancho de banda de Internet no crecerá a la misma proporción.
    
   Adicionalmente, las tecnologías para la creación de web dinámicas e asíncronas han evolucionado a favor de traspasar la carga cliente.
   Hoy en día ya se poseen lenguajes y framework que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos grandes es requerido tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a los servicios web.
@@ -16,11 +16,11 @@
 
   El interés en hacer un estudio sobre esto es poder hacer integraciones en áreas como compresión y la áreas que se dedican a completamente a hacer estudios sobre maquinas de aprendizaje. De por sí solas cada una se abordado independientemente lo cual es un interés converge en un problema en común que se puede resolver de manera eficiente.
 
-  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de Machine Learning. Adicionalmente toda la experimentación se llevará acabo disponibilizando los algoritmos y modelos como servicio REST, el cual se explicará mas adelante, ya mencionado lo anterior este trabajo es implementable en áreas productivas las cuales pueden presentar interés.
+  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de Machine Learning. Adicionalmente toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio REST, el cual se explicará mas adelante, ya mencionado lo anterior este trabajo es implementable en áreas productivas las cuales pueden presentar interés.
 
   Definiremos que un usuarios es un la que se conecta a un servicio web, estos pueden ser paginas web informativas, redes sociales, etc. Este usuario establece una conexión directa con una pagina al momento de realizar esta operación, es posible almacenar datos los cuales vamos a llamar "access log" ó registros de accesos, durante el texto se mantendrán las referencias en ingles.
 
-  Un ejemplo de access log es el siguiente:
+  Un ejemplo de \emph{access log} es el siguiente:
 
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
@@ -47,4 +47,4 @@ SamsungBrowser/3.2 Chrome/38.0.2125.102 Mobile Safari/537.36"
   	
   \end{lstlisting}
 
-  El ejemplo anterior nos da mucha información interesante como la IP desde donde se conecta, el tipo de navegador, el dispositivo si es un telefono inteligente o un navegador de escritorio, la fecha en que se realizo el acceso y también lo mas relevante el destino del usuario.
+  El ejemplo anterior nos da mucha información interesante como la IP desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizo el acceso y también lo mas relevante el destino del usuario.
