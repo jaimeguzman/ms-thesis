@@ -511,6 +511,101 @@ Por otro lado teniendo la noción de como es el funcionamiento de un servidor II
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APUNTES
+%%%%%%%%  haciendo prubeas con crosss validate con  80 t y 20 de eval, consigo peor predicción que con menos data 
+%%%%%%%%  Además el arbol  al tener mmás információn, comienza a crecer desmensuaradmente
+%%%%%%%% de hecho las mejores predicciones son cunado hay ruido o sesiones repetitivas DATASOURCE >>>penultimate page= A  last page= A  session= AAAAAAAA
+%%%%%%%%
+
+% 100 datos
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 22% con 80t y 20 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 16% con 70t y 30 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 18% con 55t y 50 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 22% con 50t y 50 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 30% con 30t y 70 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 23% con 20t y 80 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 22% con 15t y 85 eval
+% Con sequencias de igual tamaño (sesiones con de 10 accesos) llego a una accurracy del 18% con 10t y 90 eval
+%%%%%%%%
+%%%%%%%%
+%%%%%%%%
+
+
+%%%%%%%%
+
+% 100 datos
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 28.3% con 10t y 90 eval
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 19.2% con 20t y 80 eval
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 18.4% con 30t y 70 eval
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 21.3% con 40t y 60 eval
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 17.1% con 50t y 50 eval
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 14.23% con 70t y 30 eval
+
+% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 18.3% con 90t y 10 eval
+
+
+
+% En donde mayor se tienen problemas para las predicciones son en los nodos hojas y nodos intermedios 
+% los cuales tienen mas de 3 hijos con probabibilidades equiprobables de acierto
+
+
+% Los otros casos donde se generan una gran cantidad de errores en las predicciones son secuencias de acceso que son equivalentes a 1 acceso.
+% Dado que no hay un historial de la sesión este cae un random dentro de un subconjunto de posibles accesos equiprobables.
+
+
+%%%%%%%%
+%%%%%%%%
+
+Hacemos un experimento con datos totalmente aleatorios de una muestra de 100 acceso
+aparte de darle mas diveridad a las sessiones acotamos también a sesiones que por lo menos tengan
+3 webaccess 
+
+
+% 100 Sesiones
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 30.1% con 10t y 90 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 30.2% con 20t y 80 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 35.2% con 30t y 70 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 32.3% con 40t y 60 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 26.8% con 50t y 50 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 25.7% con 60t y 40 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 22%   con 70t y 30 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 22.4% con 80t y 20 eval
+% Con sequencias aleatorias (sesiones con un número mínimo de accesos > 3 ) llego a una accurracy del 21%   con 90t y 10 eval
+
+
+El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo LZ Trie,
+por lo cual es un factor ya que es como un FIFO al momento de crear, lo primero que lee es lo primero que entrena
+por lo cual se debise tener un criterior para ordenar los webaccess antes de poder pasarlos al entrenador
+
+@Discusión: Como LZ Trie, es en sí un compresor este no toma decisión, una posible mejora
+sería implementar intrinsicamente un Decission tree dentro de subarboles dentro del trie para
+poder elegir el más optimo acorde a los criterios historicos, asi podría darse el caso de ser
+un compresor-predictor  ``menos tonto''
+
+
+@Pregunta : ¿Porque se presenta el patron que a menos datos de que tenga el trie mayor es accurracy?
+
+%%%%%%%%
+%%%%%%%%
+
+
+
+% Idea de experimento con disminución del tamaño del alfabeto
+
+
+% Idea de experimento con cantidad acotada de nodos
+
+
+% Idea de experimento con altura paramaetrizada del trieNode
+
+
+
+% Gráficos de crecimiento del arbol medida en tiempo ms
+
+%%%%%%%%
+%%%%%%%%
+
+
 
 
 

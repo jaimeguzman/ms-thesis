@@ -19,7 +19,7 @@ echo '\n'
 
 # /Users/jguzman/PredictionIO/bin/pio train -- --driver-memory 8G --executor-memory 8G --verbose
 # /Users/jguzman/PredictionIO/bin/pio train -- --driver-memory 8G --executor-memory 8G
-/Users/jguzman/PredictionIO/bin/pio  eval cl.jguzman.piocompressapp.AccuracyEvaluation cl.jguzman.piocompressapp.EngineParamsList -- --driver-memory 8G 
+/Users/jguzman/PredictionIO/bin/pio  eval cl.jguzman.piocompressapp.AccuracyEvaluation cl.jguzman.piocompressapp.EngineParamsList -- --driver-memory 8G --executor-memory 8G 
 # --verbose
 
 wait

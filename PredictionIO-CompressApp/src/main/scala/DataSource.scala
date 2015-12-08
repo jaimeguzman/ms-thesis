@@ -132,7 +132,7 @@ class DataSource(val dsp: DataSourceParams)
 
 
     /**Folds Limits**/
-    val foldTraining: Int = 100
+    val foldTraining: Int =  90
     val foldTesting:  Int = foldTraining
 
     /**Training**/
@@ -162,9 +162,8 @@ class DataSource(val dsp: DataSourceParams)
                 penultima = tmp.charAt(tmp.length-2 ).toString
                 ultima    = tmp.charAt(tmp.length-1 ).toString
               }
-
-              // println(  "DATASOURCE >>>penultimate page= "+ penultima + "  last page= "+ ultima
-              //                       +"  session= "+tmp)
+              println(  "DATASOURCE >>> penultimate page= "+ penultima + "  last page= "+ ultima+"  session= "+tmp)
+              
               tmp = ""
 
 

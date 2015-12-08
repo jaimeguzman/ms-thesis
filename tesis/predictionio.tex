@@ -3,10 +3,10 @@
 \section{Predicción }
 
   	
-  En esta sección se presenta formalmente framework que se utilizará durante este trabajo. %@TODO: colocar referencia web
+  En esta sección se presenta formalmente framework que se utilizará durante este trabajo. %@todo: colocar referencia web
   PredictionIO es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente esta construido en Apache Spark, HBase y Spray.
 
-  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algorimtos sean utilizados para solucionar problemas reales.
+  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos sean utilizados para solucionar problemas reales.
 
 
 
@@ -36,7 +36,7 @@
 \subsection{Arquitectura DASE}
 
 
-Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una arquitectura de tipo \emph{DASE}, contendríamos los siguientes componentes.
+Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una arquitectura de tipo {DASE}, contendríamos los siguientes componentes.
 
 
 
@@ -87,7 +87,7 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
 
 \textbf{Evaluación del Engine }
 
-  Para evaluar el accurracy de un Engine, solo se debe especificar la metrica cuando se corre el motor de evaluación, en los capitulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
+  Para evaluar el Accurracy de un Engine, solo se debe especificar la métrica cuando se corre el motor de evaluación, en los capítulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
 
 
 
@@ -99,13 +99,13 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
 
 
 
-  \subsection{Modelamiento de Eventos}
+\subsection{Modelamiento de Eventos}
 
 %https://docs.prediction.io/datacollection/eventmodel/
 
 
 \textbf{Modelamiento de Eventos}
-  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature  que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
+  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
 
@@ -154,7 +154,7 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
     \item Una lista de particiones.
     \item Una función para procesar cada split de datos.
     \item Una lista de dependencias en otros RDD's. 
-    \item Opcionalmente una partición de un RDD puede ser representada como $\{llave,valor\}$ }
+    \item Opcionalmente una partición de un RDD puede ser representada como $\{llave,valor\}$ 
 
     \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo HDFS), para procesamiento en clustering.
 
