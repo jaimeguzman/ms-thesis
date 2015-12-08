@@ -69,24 +69,65 @@ Dado lo anterior podemos hacer minería de los datos que un servidor ha recolect
 \section{Predictores de Estado finito}
 
 
-% %%%%%%% Esto deberia en la seccion de Machine Learning Compress %%%%%%%%%%%%%
-% Let Σ be a finite alphabet. A learner is given a training sequence q1n = q1q2 · · · qn, where qi ∈ Σ and qiqi+1 is the concatenation of qi and qi+1. Based on q1n, the goal is to learn a model Pˆ that provides a probability assignment for any future outcome given some past. Specifically, for any “context” s ∈ Σ∗ and symbol σ ∈ Σ the learner should generate a conditional probability distribution Pˆ(σ|s).
-% Prediction performance is measured via the average log-loss l(Pˆ,xT1) of Pˆ(·|·), with respect to a test sequence xT1 = x1 ···xT,
-% 1 􏰍T
-% l(Pˆ,xT1 ) = −T logPˆ(xi|x1 ···xi−1), (1)
-% i=1
-% where the logarithm is taken to base 2. Clearly, the average log-loss is directly related to the likelihood Pˆ(xT1 ) = 􏰏Ti=1 Pˆ(xi|x1 · · · xi−1) and minimizing the average log-loss is completely equivalent to maximizing a probability assignment for the entire test sequence.
-% ￼Note that the converse is also true. A consistent probability assignment Pˆ(xT1 ), for the entire sequence, which satisfies Pˆ(xt−1) = 􏰌 Pˆ(x1 ···xt−1xt), for all t = 1,...,T,
-% 1 xt∈Σ induces conditional probability assignments,
-% Pˆ(xt|xt−1) = Pˆ(xt1)/Pˆ(xt−1), t = 1, . . . , T. 11
-% Therefore, in the rest of the paper we interchangeably consider Pˆ as a conditional distribu- tion or as a complete (consistent) distribution of the test sequence xT1 .
-% The log-loss has various meanings. Perhaps the most important one is found in its equivalence to lossless compression. The quantity − log Pˆ(xi|x1 · · · xi−1), which is also called the ‘self-information’, is the ideal compression or “code length” of xi, in bits per symbol, with respect to the conditional distribution Pˆ(X|x1 · · · xi−1), and can be implemented online (with arbitrarily small redundancy) using arithmetic encoding (Rissanen & Langdon, 1979).
+ 
+
+Sea $\Sigma$ un alfabeto finito. Para poder entrenar un secuencia $q_{1}^{n}=q_{1}q_{2} \dots q_{n}$, donde $q_{i} \in \Sigma$ y $q_{i}q_{i+1}$ es la concatenación de los símbolos $q_{i}$ y $q_{i+1}$. Dado lo anterior el objetivo es poder entrenar un modelo $M$ que entregue como resultado la probabilidad respectiva de cualquier futuro símbolo dado algún pasado. Específicamente, para cualquier contexto de secuencia $s \ \in \Sigma^{*} $ y un símbolo $\sigma \in \Sigma$, el aprendizaje de la secuencia dado por el entrenamiento debe dar una distribución de probabilidad $M(\sigma | s )$.
+El rendimiento del modelo predictivo se puede medir mediante una función del promedio de registro de errores $L(M,x_{1}^{T})$ de $M (\cdot | \cdot )$, con respecto a una secuencia $s = x_{1}^{T}$ con $x_{1}^{T}= x_{1},x_{2},....,x_{n} $%, al acierto del siguiente símbolo $q_{i}$ de la secuencia $s$
+por lo tanto podemos definir $L$ como
+
+\begin{equation} L( M , x_{1}^{T} ) = 
+- \dfrac{1}{T} 
+\sum _{i=1}^{T} \log{ M(x_{i} | x_{i} \cdots x_{i-1}} )\end{equation},
+donde el logaritmo es en base 2. 
+
+El promedio de $L$ es directamente relacionado a $M(x_{1}^{R}) = \prod_{i=1}^{T} M(x_{i} | x_{i} \cdots x_{i-1} ) $ y minimizar el promedio de $L$ es completamente equivalente a maximizar la asignación de probabilidades a una secuencia de pruebas $x_{1}^{T}= x_{1},x_{2},....,x_{n} $, teniendo en cuenta que esta equivalencia es totalmente válida. Sea $M(x_{1}^{T})$ una asignación de probabilidad consistente para una secuencia completa, la cual satisface que \begin{equation}
+M(x_{1}^{t-1}) = \sum_{\mbox{$x_t$} \in \Sigma}^{T} M(x_{1} \cdots x_{t-1}x_{t} )
+\end{equation}, para todo $t=1,...,T$, induce la asignación de probabilidad,
+
+\begin{equation}
+M(x_{t} | x_{1}^{t-1} ) = M(x_{1}^{t}) / M(x_{1}^{t1}),\ t=1,...,T 
+\end{equation}.
+
+
+El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a la compresión sin pérdidas \emph{LDC}. La cantidad $- \log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la $auto-información$, puede ser la de compresión ideal o "largo de secuencia" de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1})\end{equation}, esta puede ser implementado \emph{online} (con  pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979} .
+
+
+Por lo tanto, el promedio de $L$ también mide la tasa de compresión media de una secuencia de prueba, cuando se utilizan las predicciones generadas por $M$, es decir un bajo promedio de $L$%log-loss function
+sobre la secuencia $x_{1}^{T}$ puede implicar una buena compresión de esta secuencia \cite{Begleiter2004}.
+
+Suponiendo que los entrenamiento y las secuencias de pruebas fueron generados de una fuente desconocida\footnote{Mas adelante usaremos el término en ingles Data Source, para referirnos a fuentes de datos , tanto conocidas como desconocidas.} $P$. Sea una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es
+
+\begin{equation}
+P = arg\ min_{M} \{ - E_{P} \{\log M( X_{1}^{T} )\}   \}
+\end{equation}
+
+
+Dada la equivalencia de \emph{log-loss} y la compresión, como se ha visto anteriomente, el significado de \emph{log-loss} de $P$ logra la mejor compresión posible, ó logra una entropía 
+\begin{equation}
+	H_{T}(P) = - E \log P( X_{1}^{T} )
+\end{equation}. Aún no conociendo realmente cual es la distribución de probabilidad de $P$, un entrenamiento genera una aproximación a $M$ usando una secuencia de entrenamiento. La pérdida extra que podemos obtener la llamaremos \emph{Redundancia} y esta dada por el valor de
+
+\begin{equation}
+D_{T} ( P || M ) = E_{P} \{ - \log M(X_{1}^{T} - (- \log P(X_{1^{T}})   )  )       \} 
+\end{equation}.
+ 
+
+Para normalizar la \emph{redundancia} $D_{T} ( P || M ) / T $, de una secuencia de largo $T$, da los  \emph{bits} extra por símbolo (sobre la tasa de la entropía) al comprimir una secuencia utilizando $P$.  
+
+Este ajuste probabilístico motiva un objetivo deseable, al entregar un algoritmo de propósito general para la predicción: minimizar la redundancia de manera uniforme, con respecto a todas las posibles distribuciones. Un algoritmo de predicción el cual pueda acotar la redundancia de manera uniforme, con respecto a todas las distribuciones dada una clase.
+
+Una cota inferior de la redundancia para cualquier \emph{Predictor Universal} y \emph{Compresor Universal} \begin{equation}
+\Omega( K \dfrac{\log T}{2 T } )
+\end{equation}, donde $K$ es (más o menos) el número de parámetros del modelo que codifica la distribución $P$ (Rissanen \cite{Rissanen1984}, 1984).
 
 
 
-Si se tiene un secuencia estocástica, $x_{n} = x , x ,.....x .  $, en un tiempo $t$ el predictor debe saber cual es el siguiente simbolo, basdo en su historia o la frecuencia de ocurrencia que se vaya entrenando.
 
-Si llamamos al siguiente simbolo $b_{t}$, diremos que el resultado de nuestro predictor es entregar este valor. Dado esto, existe una función de perdida asociada $L( b_{t},x_{t} )$ para cada predicción realizada. 
+
+
+ 
+
+Si llamamos al siguiente símbolo $b_{t}$, diremos que el resultado de nuestro predictor es entregar este valor. Dado esto, existe una función de perdida asociada $L( b_{t},x_{t} )$ para cada predicción realizada. 
 
 El objetivo de cada predictor es tener una función de minimización tal que minimize la fracción de predicciones erroneas, a lo anterior lo llamaremos $T$ que será:
 
@@ -160,7 +201,6 @@ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{
  \end{equation}
 
 
- 
  
  
  Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resultaran de alta complejidad en espacio de estado y cobertura.

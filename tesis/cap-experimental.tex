@@ -29,7 +29,15 @@ Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluacio
 Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios.
 
 
-\subsection{Nuestro Modelo de Predicción MLLDC}
+\subsection{Nuestro Modelo de Predicción ML-LDC}
+
+
+%%%%%%% \cite{Moghaddam2009}
+
+%The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. 
+
+
+%There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
 
 Basados en un servidor de Machine Learning, hemos desarrollado un motor de predicción con un algoritmo basado en Lempel Ziv 78. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
 \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
