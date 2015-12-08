@@ -139,6 +139,34 @@ An online prediction method needs not rely on time-consuming preprocessing of th
 %LZW compression has its roots in the work of Jacob Ziv and Abraham Lempel. In 1977, they published a paper on "sliding-window" compression, and followed it with another paper in 1978 on "dictionary" based compression. These algorithms were named LZ77 and LZ78, respectively. Then in 1984, Terry Welch made a modification to LZ78 which became very popular and was dubbed LZW (guess why). The LZW algorithm is what we are going to talk about here.
 
 
+%%%%%%% \cite{Begleiter2004}
+%El algoritmo LZ78 es uno de los algoritmos de compresión sin pérdidas más populares (Ziv y Lem- pel, 1978). Se utiliza como la base de la utilidad de Unix comprimir y otras utilidades de archivado populares para PC. También cuenta con garantías de rendimiento dentro de varios modelos de análisis. Este algoritmo (junto con el método de compresión LZ77) atrajo una enorme atención e inspiró el área de compresión sin pérdidas y la secuencia de predicción.
+%El componente de predicción de este algoritmo se discutió por primera Langdon (1983) y Rissanen (1983). La presentación de este algoritmo se simplifica después del algoritmo de compresión LZ78 conocido, que funciona de la siguiente manera, se entiende. Dada una secuencia de Q1n ∈ Σn, LZ78 incrementalmente analiza Q1n en 'frases' adyacentes que no se solapan, que se recogen en una frase "diccionario". El algoritmo comienza con un diccionario que contiene el ǫ frase vacía. En cada paso del algoritmo analiza una nueva frase, que es la frase más corta que todavía no está en el diccionario. Claramente, la frase recién analizada s 'se extiende una ya existente
+
+%frase diccionario por un símbolo; es decir, s '= sσ, donde s ya está en el diccionario
+%(s puede ser la frase vacía). Para la compresión, el algoritmo codifica el índice de s '
+%(entre todas las frases analizadas), seguido de un código fijo para σ. Tenga en cuenta que los problemas de codificación no lo hará
+%nos concierne en este trabajo. También observe que LZ78 comprime secuencias sin explícita
+%estimaciones probabilísticas. He aquí un ejemplo de este análisis LZ78: si = Q11 abracadabra, 1
+%a continuación, las frases son analizados se a | b | r | ac | anuncio | ab | ra. Observe que el vacío secuencia ǫ siempre está en el diccionario y se omite en nuestras discusiones.
+%Un algoritmo de predicción basado en LZ78 fue propuesto por Langdon (1983) y Rissanen (1983). Se describen por separado el aprendizaje y la predicción phases.6 Por simplicidad primera discutimos el caso binario, donde Σ = {0, 1}, pero el algoritmo se puede extender naturalmente a alfabetos de cualquier tamaño (y en los experimentos discutidos a continuación hacemos uso de la algoritmo multi-alfabeto). En la fase de aprendizaje el algoritmo construye a partir de la secuencia de entrenamiento Q1n un árbol binario (trie) que registra las frases analizados se (como se mencionó anteriormente). En el árbol también mantenemos contadores que mantienen estadísticas de Q1n. El árbol inicial contiene una raíz y dos (izquierda y derecha) se va. El hijo izquierdo de un nodo corresponde a un análisis de '0' y el hijo derecho corresponde a un análisis de '1'. Cada nodo mantiene un contador. El contador en una hoja siempre se establece en 1. El contador en un nodo interno se mantiene siempre por lo que es igual a la suma de sus izquierdo y derecho contadores niño. Dada una frase recién analizada s ', empezamos en la raíz y recorrer el árbol de acuerdo a s' (claramente el árbol contiene una ruta correspondiente, que termina en una hoja). Al llegar a una hoja, el árbol se expande haciendo que esta hoja de un nodo interno y la adición de dos foliares hijos a este nuevo nodo interno. Los contadores lo largo de la ruta a la raíz se actualizan en consecuencia.
+%Para calcular la estimación de P (σ | s) se parte de la raíz y recorrer el árbol de acuerdo con s. Si llegamos a una hoja antes de "consumir" s seguimos este recorrido desde la raíz, etc. Al finalizar este recorrido (en algún nodo interno, o una hoja) la predicción para = S '0' es el '0' (izquierda ) contador dividido por la suma de '0' y contadores '1' en ese nodo, etc.
+%Para alfabetos más grandes, el algoritmo se extiende, naturalmente, de tal manera que las frases son
+%almacenada en un árbol de múltiples vías y cada nodo interno ha exactamente k = | Σ | niños. En adición,
+%cada nodo tiene k contadores, uno para cada símbolo sea posible. En la Figura 1 que representan la resultante
+%árbol de la secuencia de entrenamiento q11 = abracadabra y calcular la probabilidad P (b | ab), 1
+%suponiendo Σ = {a, b, c, d, r}.
+%Varios garantías de rendimiento fueron probados para la compresión LZ78 (y predicción)
+%algoritmo. Dentro de un entorno probabilístico (véase la sección 2), cuando la fuente desconocida es Markov estacionario y ergódico de orden finito, la redundancia se acotado superiormente por (1 / ln n), donde n es la longitud de la secuencia de entrenamiento (Savari, 1997). Por lo tanto, el algoritmo LZ78 es un algoritmo de predicción universal con respecto a la gran clase de fuentes estacionarias y ergódicos de Markov de orden finito.
+
+%%%%%%%%%
+
+
+
+
+
+
+
 \begin{verbatim}
 initialize dictionary := null 
 initialize phrase w := null 
@@ -195,6 +223,4 @@ ii. The convergence rate of LZ78 to the optimal predictability as defined above 
 % algoritmo. Dentro de un entorno probabilístico (véase la sección 2), cuando la fuente desconocida es Markov estacionario y ergódico de orden finito, la redundancia se acotado superiormente por (1 / ln n), donde n es la longitud de la secuencia de entrenamiento (Savari, 1997). Por lo tanto, el algoritmo LZ78 es un algoritmo de predicción universal con respecto a la gran clase de fuentes estacionarias y ergódicos de Markov de orden finito.
 
 
-% Genero toda las referencias para demostrar el uso de la bibliografía
-% No es necesario que utilice este comando en su documento.
-%\nocite{*}
+ 

@@ -43,11 +43,11 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 \begin{itemize}
 
   \item \textbf{ $[D]$ Data Source y Data Preparator }\\
-  Los Data Sources leen la data desde la entrada original y la tansforma en un formato deseado para hacer analisis de estos. En cambio \emph{Data Preparator} prepocesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
+  Los Data Source leen la data desde la entrada original y la transforma en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
 
 
     \item \textbf{ $[A]$ Algoritmo}\\
-  Los componentes de algoritmos inclueyen algoritmos de Machine Learning, estos por los componentes que son de predicitionIO pueden ser provistos por Apache Spark ó se pueden incluir algortimos propios como también de terceros.
+  Los componentes de algoritmos incluyen algoritmos de Machine Learning, estos por los componentes que son de predicitionIO pueden ser provistos por Apache Spark ó se pueden incluir algoritmos propios como también de terceros.
   Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el modelo predictivo.
 
 
@@ -55,7 +55,7 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
     \item \textbf{ $[S]$ Servicio}\\
   The Serving component takes prediction queries and returns prediction results. If the engine has multiple algorithms, Serving will combine the results into one. Additionally, business-specific logic can be added in Serving to further customize the final returned results.
 
-    \item \textbf{ $[E]$ Evaluación de Metricas}\\
+    \item \textbf{ $[E]$ Evaluación de Métricas}\\
   Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
 
 
@@ -63,14 +63,14 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 
 
 
-PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se puedan construir modelos de predicción de manera mas facil y poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
+PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descrito  para que se puedan construir modelos de predicción de manera mas sencilla, también poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
 
 
-\textbf{Despliegue de Engines}
+\textbf{Despliegue de Engine}
 
-  Un engine pone todos los componentes DASE en un estado especifico de despliegue
+  Un Engine pone todos los componentes DASE en un estado especifico de despliegue
 
   \begin{enumerate}
     \item Data Source
@@ -81,7 +81,7 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
   \end{enumerate}
 
   Si se especifica más de un algoritmo, cada uno de los resultados de los modelos de predicción se entregará para ser consumido por cualquier cliente.
-  Cada \emph{Engine} procesa los datos y construye modelos predictivos de forma independiente. Por lo tanto, todos los engine sirven a su propio conjunto de resultados de predicción. Por ejemplo, puede desplegar dos engine para su aplicación móvil: uno para recomendar noticias para los usuarios y otro para sugerir nuevos amigos a los usuarios.
+  Cada \emph{Engine} procesa los datos y construye modelos predictivos de forma independiente. Por lo tanto, todos los Engine sirven a su propio conjunto de resultados de predicción. Por ejemplo, puede desplegar dos Engine para su aplicación móvil: uno para recomendar noticias para los usuarios y otro para sugerir nuevos amigos a los usuarios.
 
 
 
@@ -105,7 +105,8 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
 
 
 \textbf{Modelamiento de Eventos}
-  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD par apoder acceder a ella posteriormente 
+
+  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD para poder acceder a ella posteriormente. 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
 
@@ -140,14 +141,14 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
 \subsection{Ventajas }
 
 
-  Es posible mezclar y aplicar distintas característica si el modelo no puede ser ser persistido por PredictionIO automáticamente. Se requiere un objeto acompañante heredada de una clase que permite lograr la persistencia en memoria (IPersistentModelLoader ), esto permite PredictionIO  cargar el modelo PERSISTED automáticamente durante la implementación.
+  Es posible mezclar y aplicar distintas característica si el modelo no puede ser ser persistido por PredictionIO automáticamente. Se requiere un objeto acompañante heredada de una clase que permite lograr la persistencia en memoria (IPersistentModelLoader ), esto permite PredictionIO  cargar el modelo persistentemente y automáticamente durante la implementación.
 
   % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de un máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite gracias a sus componentes poder hacer un cluster para lograr entregar mayor eficiencia acorde a los datos o algoritmo a implmenentar.  Esta propiedades
+  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de un máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite gracias a sus componentes poder hacer un cluster para lograr entregar mayor eficiencia acorde a los datos o algoritmo a implementar.  Esta propiedades
 
-  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es un representación immutable, una coleción particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco prinicipales propiedades:
+  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es un representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco principales propiedades:
 
 
   \begin{enumerate}
@@ -156,7 +157,7 @@ PredictionIO ayuda a modularizar los componentes que hemos descrito  para que se
     \item Una lista de dependencias en otros RDD's. 
     \item Opcionalmente una partición de un RDD puede ser representada como $\{llave,valor\}$ 
 
-    \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo HDFS), para procesamiento en clustering.
+    \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo HDFS), para procesamiento en Clustering.
 
   \end{enumerate}
 
