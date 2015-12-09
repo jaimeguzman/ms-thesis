@@ -63,6 +63,58 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 
 
 
+
+\tikzstyle{decision} = [diamond, draw,text width=4.5em, text badly centered, node distance=2.5cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw,text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, very thick, color=black!50, -latex']
+\tikzstyle{cloud} = [draw, ellipse, node distance=2.5cm,
+    minimum height=2em]
+
+\begin{tikzpicture}[scale=1, node distance = 2.5cm, auto]
+    % Place nodes
+
+    \node [block] (init) {Data de la Aplicación};
+    
+\draw [color=gray,thick](2,-1) rectangle (4,1);    
+    \node [block, right of=init] (datasource) {Data Source};
+    \node [block, right of=datasource] (datapreparator) {Data Preparator};
+
+
+    \node [block,right of=datapreparator] (alg1) {Algoritmo };
+
+    \node [block,right of=alg1] (serving) {Serving};
+
+    \node [block,below of=serving] (resultpredict) {Resultado de  Predicción};
+    \node [block,below of=resultpredict] (resulteval) {Resultado  de Evaluación};
+
+
+    % \node [cloud, left of=init] (expert) {expert};
+    % \node [cloud, right of=init] (system) {system};
+
+    % \node [block, below of=init] (identify) {identify candidate models};
+    % \node [block, below of=identify] (evaluate) {evaluate candidate models};
+    % \node [block, left of=evaluate, node distance=2.5cm] (update) {update model};
+    % \node [decision, below of=evaluate] (decide) {is best candidate better?};
+    % \node [block, below of=decide, node distance=2.5cm] (stop) {stop};
+    
+
+    % Draw edges
+    % \path [line] (init) -- (identify);
+    % \path [line] (identify) -- (evaluate);
+    % \path [line] (evaluate) -- (decide);
+    % \path [line] (decide) -| node [near start, color=black] {yes} (update);
+    % \path [line] (update) |- (identify);
+    % \path [line] (decide) -- node [, color=black] {no}(stop);
+    % \path [line,dashed] (expert) -- (init);
+    % \path [line,dashed] (system) -- (init);
+    % \path [line,dashed] (system) |- (evaluate);
+
+
+\end{tikzpicture}
+
+
+
+
 PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descrito  para que se puedan construir modelos de predicción de manera mas sencilla, también poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
@@ -70,14 +122,13 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
 
 \textbf{Despliegue de Engine}
 
-  Un Engine pone todos los componentes DASE en un estado especifico de despliegue
+  Un Engine pone todos los componentes \emph{text}{DASE} en un estado especifico de despliegue
 
   \begin{enumerate}
     \item Data Source
     \item Data Preparator
     \item Un o más Algoritmos
     \item Un Servicio
-
   \end{enumerate}
 
   Si se especifica más de un algoritmo, cada uno de los resultados de los modelos de predicción se entregará para ser consumido por cualquier cliente.

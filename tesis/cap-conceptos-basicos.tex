@@ -23,7 +23,7 @@ Son los registros que se almacenan en un servidor, los cuales dependiendo de sis
 
 Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de muy fácil la recuperación de información de estos mismo. Sus características generales es ser un conjunto de llaves las cuales se representan en el arbol y sus nodos internos representan la información, en nuestro caso una caracter o string de tamaño 1.
 
-Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol de equilibrado. Un Trie es una especie de árbol, conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de \'trie\').
+Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol de equilibrado. Un Trie es una especie de árbol, conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ''trie'').
 
 Cada especie de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser hash). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar un solo artículo. Otras estructuras de árbol, como árbol de equilibrado son similares en principio.
 
@@ -46,9 +46,10 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 
 \subsection{Alfabeto}
 
-Un alfabeto discreto $A$ consiste en $M > 1$ simbolos.
-Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de un nodo de contenido de un sitio web.
-Donde $A$, puede ser definido como la página inical. Este alfabeto es finito y acotoda por la mineria de datos de uso web.
+Un alfabeto discreto lo representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en simbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17 \mbox{símbolos}$.
+
+Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de varios nodos contenido en un \emph{Trie} que modela la navegación de usuarios para un sitio web.
+Donde $\sigma_{1}$, puede ser definido como la página inical de una cierta secuencia  ó sesión de usuario. Este alfabeto es finito y acotoda por una mineria de datos ya realizada por. % Referencia al trabajo de claud
 
 %Let A be a discrete alphabet consisting of M  2 symbols; x = x ; : : : ; x ; x 2 A
 % be rst n symbols of message; jj be the length of sequence  or the cardinality of
@@ -72,13 +73,19 @@ Donde $A$, puede ser definido como la página inical. Este alfabeto es finito y 
 
 \subsection{Secuencias discretas}
 
-Definimos una secuencia de accesos discreta y finita, dado los acccesos que tiene un usuario frente a una web, lo anterio es acotado por el concepto de sesión, el cual es desde que se inicia la navegación, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamalo no superior a un alfabeto $A$.
+Definimos una secuencia de accesos discreta y finita, dado los acccesos que tiene un usuario frente a una web, lo anterio es acotado por el concepto de sesión, el cual es desde que se inicia la navegación, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamalo no superior a un alfabeto $\Sigma$.
+
+
+
 
 
 % Compresor tonto o Machine Learning lento para predecir
 \subsection{Lossless Data Compression}
 
 La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir tener la posibilidad de codificar y decodificar. En capitulos posteriores introduciremos mas el tema compresión y como este ayuda a crear un modelo de predicción.
+
+
+
 
 
 \subsection{Motor de Predicción}
@@ -147,10 +154,6 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 
 En la literatura, el tema de la predicción en la web se ha presentado como un tema concurrente tomando bastante atención durante los último años y ha sido abarcado por 
 varios autores. Tenemos los siguientes trabajos de interés:
-
-%%%%%%%Moghaddam_Kabir
-%Various models have been proposed for modeling the user navigation behavior and predicting the next requests of users. According to [12], association rules, sequential pattern discovery, clustering, and classification are most popular methods for web usage mining. Collaborative filtering is another method for modeling users' behaviors. Association rules [6] were proposed to capture the co- occurrences of buying different items in a supermarket shopping. Association rules indicate groups that are related together. Methods that use association rules can be found in [6, 7]. Collaborative filtering techniques are often based on matching the current user's profile against similar data obtained by the system over time from other users. It tries to make useful recommendations users based on discovered cluster of similar categories. But for web sites where the number of web pages is quite large it can be quite inefficient.
-
 
 
 \input{related-work}
