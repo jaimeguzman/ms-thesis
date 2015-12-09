@@ -89,6 +89,16 @@ Nuestro algoritmo se basa en algoritmos LZ78 que están adaptados para modelar  
 
 \section{Descripción del Contenido}
 
+Este trabajo esta organizado de la siguiente manera, En el capitulo 1 describiremos el contexto preliminar y definermos el problemos de la predicción de secuencias discretas para webaccess log. Veremos como poder dar un inducción a un framework llamada \emph{PredictionIO} el cual nos ayudará a entregar los algoritmos como servicios consumibles por cualquier aplicación cliente que pueda comunicarse con un servidor.
+En capitulo 2 explicaremos todos los conceptos básicos para el entendiemiento sobre esta investigación, como también conceptos para el uso de \emph{PredictionIO} y cerraremos con todos los trabajos  realcionados mas recientes que involucran nuestra investigación de interés. En capitulo 3 veremos las predicciones sobre webaccess log, los modelos propuesto por varios investigadores y sus limitaciones, daremos una revisión del trabajo realizado por Rissanen\cite{Rissanen1984} que da el inicio a esta área de Investigación.
+En el capitulo 4 veremos los temas de \emph{Machine Learning} y \emph{Lossless Compression Data} y como pretendemos crear un modelo de predicción con recursos de ambas áreas. Para cerrar este capitulo explicaremos el uso de del algoritmo Lempel \& Ziv, el uso para secuencias discretas su convergencia a un modelo de predidcción eficiente y exacto. 
+
+Finalmente el capitulo 5, presentará nuestros experimentos realizados sobre la implementación de un algoritmo de compresión en un servidor de \emph{Machine Learning} como es \emph{PredictionIO}, analizaremos el comportamiento del algoritmo y como se desempeña en este ambiente, propondremos discusiones de como mejorar nuestra implementación y los trabajos a futuros que puede presentar esta investigación.
+
+Se deja como anexo una guía básica de uso para \emph{PredictionIO}, todos los datos y nuestra implementación se puede encontrar en nuestro repositorio git público \footnote{\url{https://github.com/jaimeguzman/PredictionIO-LZmodel}}, en donde usted encontrará todos los datos para replicar las experiencias experimentales que hemos realizado. 
+
+
+
 %Ejemplo :
 
 %This paper is organized as follows. We begin in Section 2 with some preliminary defi- nitions. In Section 3, we present six VMM prediction algorithms. In Section 4, we present the experimental setup. In Sections 5-6, we discuss the experimental results. Part of the experimental related details are discussed in Appendices A-C. In Section 7, we discuss the related work. In Section 8, we conclude by introducing a number of open problems raised by this research. Note that the source code of all the algorithms we consider is available at http://www.cs.technion.ac.il/~ronbeg/vmm.
