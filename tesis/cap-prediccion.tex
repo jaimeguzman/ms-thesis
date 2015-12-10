@@ -7,22 +7,16 @@
 %In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem.
 
 %Cita a @Gopalratnam&Cook
-Dado los nuevos sistemas es cada vez más común conocer sistemas Inteligentes y diversos en variadas áreas, una de estas cualidades de los nuevos sistemas este tener las posibilidad de predecir ocurrencia de eventos para poder adaptarse y tener versatilidad al tomar decisiones en variadas situaciones. Aún mas necesaria es esta propieda en problemas que requieren predicciones secuenciales, es decir dada una secuencia de eventos, como poder predecir el siguiente evento basado en nuestro conocimiento histórico limitado.
+Dado que en los nuevos sistemas es cada vez más común conocer sistemas Inteligentes y diversos en variadas áreas, sistemas que tienen cualidades como tener la posibilidad de predecir ocurrencia de eventos para así adaptarse y tener versatilidad al tomar decisiones en variadas situaciones. Aún más necesaria es esta propiedad en problemas que requieren predicciones secuenciales, es decir, dada una secuencia de eventos,  predecir el siguiente evento basado en nuestro conocimiento histórico limitado.
+En los últimos años se ha observado observado que  los contenido de muchos sitios web son dinámicos y nuevas páginas también se añaden al sitio de forma dinámica. Así es como  se hace necesario un modelo predictivo que pueda servir como un modelo predictivo online,  que considere tanto los cambios web que se van produciendo, como también el comportamiento de los usuarios que interactúan con ella. 
+Moghaddam \etal~\cite{Moghaddam2009} proponen un modelo predictivo online que cubre la eficiencia de la memoria como un factor importante para un algoritmo en línea. 
 
-En los últimos años el contenido de muchos sitios web son dinámicos y nuevas páginas también se añaden al sitio de forma dinámica. Por lo cual un modelo predictivo que pueda servir como un modelo predictivo \emph{online} e ir considerando los cambios web que se van produciendo, como también el comportamiento de los usuarios que interactúan con ella.
+Para cualquier secuencia de eventos, estas se pueden modelar como procesos estocásticos, estos algoritmos emplean Modelos de Markov para optimizar las predicciones del siguiente símbolo, en cualquier secuencia estocástica. Otros escenarios requieren que un algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
 
-En \cite{Moghaddam2009} proponen un modelo predictivo online que cubre la eficiencia de la memoria como un factor importante para un algoritmo en línea. 
+El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de símbolos $x_{1}, x_{2}.....x_{n}$, ¿Cual es el siguiente símbolo $x_{i+1}$? Este problema ha sido formulado gracias al trabajo de  Risseman\cite{Rissanen1983} y Langdom\cite{Langdon1983}.  %Falta cita
+un buen compresor es aquel que al comprimir datos sin pérdida se aproxima a un \emph{predictor}.
 
-
-
-Para cualquier secuencia de eventos, estas se pueden modelar como proceso estocásticos, esto algoritmos emplean Modelos de Markov para optimizar las predicciones del siguiente símbolo, en cualquier secuencia estocástica. Otros escenarios requieren que algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
-
-El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de simbolos $x_{1}, x_{2}.....x_{n}$, ¿Cúal es el siguiente simbolo $x_{i+1}$? Señalado el problema la literatura converge a que gracias Risseman y Langodom
- %Falta cita
-un buen compresor, o mejor dicho que cualquier compresor de datos sin pérdida se aproxima a un $predictor$.
-
-Para poder crear un modelo predictivo acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía se aproxima a la de la fuente de datos, consigue una mayor precisión predictiva.
-
+ 
 
 
 
@@ -41,21 +35,18 @@ Para poder crear un modelo predictivo acorde a la Teoría de la Información, un
 
 % Un string S = S1,n = S[1, n] = s1, s2, . . . , s es una secuencia de s ımbolos, donde cada s ımbolo pertenece al alfabeto Σ de taman ̃o σ. Un substring de S se escribe Si,j = S[i,j] = sisi+1...sj Un prefijo de S es un substring de la forma S1,j y un sufijo es un substring de la forma Si,n. Si i > j entonces Si,j = ε, el string vac ıo, de largo |ε| = 0. Un texto T = T1,n es un string terminado con un s ımbolo especial tn = $ ̸∈ Σ, lexicogr aficamente menor que cualquier otro s ımbolo en Σ. El orden lexicogr afico (<) entre strings se define como aX < bY si a < b ∨ (a = b ∧ X < Y ), donde a, b son s ımbolos y X, Y son strings sobre Σ.
 
+Para poder crear un modelo predictivo acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía se aproxima a la de la fuente de datos, consigue una mayor precisión predictiva. 
 
 
+Las predicciones son un área importante dentro del dominio de las Machine Learning y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un óptimo desempeño, también ayudan a dar información para la elección de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que por lo general se pueden modelar como un proceso estocástico. 
+Nuestro interés se centra en las predicciones de secuencias discretas, y en este punto demostrar la convergencia en la  cual un modelo de compresión (como el caso de LZ78 que se explicará más detalladamente en el Capítulo 4) y la eficiencia de un algoritmo de compresión, ofrece una nueva perspectiva a las predicciones. 
 
-Las predicciones son un área importante dentro del dominio de las Machine Learning y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un optimio desempeño, también ayudan a dar información para la elección de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que por lo general se puede modelar como un proceso estocástico. 
 
-Nuestro interés se focaliza en las predicciones de sequencias discretas, en el cual queremos demostrar la convergencia en el cual un modelo de compresión, como el caso de LZ78 que se explicará mas detalladamente en el capitulo posterior. La eficiencia de un algoritmo de compresión ofrece una nueva perspectiva a las predicciones, la cual ha despertado un interés en investigadores.
 % @TODO: hacer cita
 % ACTIVE LEZI: AN INCREMENTAL PARSING ALGORITHM FOR SEQUENTIAL PREDICTION
 
-Nos enfocaremos en el caso del los accesso que un usuario realiza a un sitio web, el tiempo en el que pasa en este es registrado por el servidor, en esta investigación no se requiere indagar en temas de Information Retrieval, ya que se entrega una colección de datos ya procesada, la cual es representa secuencias de acceso por parte de usuarios.
-
-
-
-
-Nuestro interés se presetna en dada un sequencia accesso, un usuario entra accede a la web, dado sus accesos web cual será la predicción de su sesión.  Dentro de los registros existen respaldo de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo podemos interpretar que el \emph{request} que ha realizado el usuario mas su \emph{session} nos da la información necesaria para poder crear un modelo predictivo.
+Nos enfocaremos en el caso de los acceso que un usuario realiza a un sitio web, el tiempo en el que pasa en este es registrado por el servidor, en esta investigación no se requiere indagar en temas de \emph{Information Retrieval}, ya que se entrega una colección de datos ya procesada, la cual es representa secuencias de acceso por parte de usuarios. 
+Dicho de otro modo, dada una secuencia de acceso por un usuario que entra a la web, sus accesos web determinarán cual será la predicción de su sesión. Dentro de los registros existen respaldos de sesiones de usuarios, páginas no encontradas, accesos denegados y otra información en relación al funcionamiento. Sin importar el tipo de servidor que utilicemos podemos identificar a usuarios con distintas técnicas y/o combinaciones, por ejemplo, podemos interpretar que el \emph{request} que ha realizado el usuario más su sesión, nos da la información necesaria para poder crear un modelo predictivo. 
 
 Dado lo anterior podemos hacer minería de los datos que un servidor ha recolectado durante un periodo de tiempo, de lo anterior  podemos mencionar que existen varias técnicas para poder hacer \emph{Web Access Pattern } y también  "Web Usage Minning", de sus siglas en ingles es minería del uso de una \emph{web}. Nuestro interés no es abordar este tema pero si explicarlo para poder realizar un estudio predictivo de secuencias de acceso, con el objetivo de poder predecir el siguiente comportamiento que tiene un usuario al momento de visitar un sitio web.
 
@@ -155,10 +146,9 @@ El objetivo de cada predictor es tener una función de minimización tal que min
 %Primero asumimos que cada evento por si 
 En esta secciones anteriores se ha hablado de como los eventos secuenciales se pueden modelar como un proceso estocástico.
 
-Ciertamente el uso de reconocer frecuencia patrones secuenciales, reglas de asociación puede requerir mucha  información y entregar mejor precisión en la información de los usuarios y su comportamiento en la web. Pero un enfoque en que la temporalidad de los datos se debe modelar con un modelo de Markov es la clave para poder realizar esto, y estos ya han ayudado a predecir los accesos de los usuarios, como señala %Referencia a DONGSHAN
-pero en la práctica existen muchas limitaciones técnicas que permiten que se implementen. 
+Ciertamente el uso de reconocer frecuencia en patrones secuenciales, reglas de asociación puede requerir mucha  información y entregar mejor precisión en la información de los usuarios y su comportamiento en la web. Pero un enfoque en que la temporalidad de los datos se debe modelar con un modelo de Markov es la clave para poder realizar esto, y estos datos ya han ayudado a predecir los accesos de los usuarios, como señala Dongshan \etal~\cite{Dongshan2002} pero en la práctica existen muchas limitaciones técnicas que permiten que se implementen. 
 
-%explicar los jodidos de Markov y su matemática
+
  
 
 %CITED Moghaddam_Kabir
@@ -174,10 +164,10 @@ pero en la práctica existen muchas limitaciones técnicas que permiten que se i
  
  %%%%% Cita pagina 2 Dongshan2002 %%%%%%%%
  
- Los modelos tradicionales de Markov predicen la siguiente página Web que un usuario puede acceder considerando el acceso más probable, iterando coincidir su secuencia de acceso actual con secuencias de acceso Web histórica.
+ Los modelos tradicionales de Markov predicen la siguiente página Web que un usuario puede acceder considerando el acceso más probable, se itera para  coincidir su secuencia de acceso actual con secuencias de accesos Web históricas.
  
  
- Usando estos modelos se ha comparado los investigadores comparan el máximo de elementos  prefijos de cada secuencia histórica de web access con los elementos sufijos de la  misma longitud de secuencia de web access actual del usuario y obteniendo secuencias históricas con la probabilidad más alta de elementos que coinciden.
+ Usando estos modelos los investigadores como  Dongshan \etal~\cite{Dongshan2002} han comparado  el máximo de elementos  prefijos de cada secuencia histórica de webaccess,  con los elementos sufijos de la  misma longitud de secuencia de webaccess actual del usuario y obteniendo secuencias dado su secuencia históricas con la probabilidad más alta en la cual el elementos coinciden.
  
  El modelo de Markov de orden cero es la tasa base de probabilidad incondicional, la cual es la probabilidad de la página visitada, dada por
  \begin{equation}
@@ -200,15 +190,8 @@ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{
 
  
  
- Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los web access log, ya que no se ven lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios tanto requiere de buenas predicciones los cuales a su vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resultaran de alta complejidad en espacio de estado y cobertura.
+ Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los webaccess log, ya que no van lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios requiere de buenas predicciones, las que a la vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resultan de alta complejidad en espacio de estado y cobertura. 
  
-Modelos con mayor Orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el numero de estados tiende a crecer exponencial-mente al igual que el Orden del modelo.
-
+Modelos con mayor orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces el número de estados tiende a crecer exponencialmente al igual que el orden del modelo. 
 Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los test podrían no tener estados correspondientes en los modelos de Markov de mayor orden, por lo que reduciría su alcance.
- 
-  %%%%% fin Cita parafraseo pagina 2 Dongshan2002 %%%%%%%%
- 
 
-% Genero toda las referencias para demostrar el uso de la bibliografía
-% No es necesario que utilice este comando en su documento.
-\nocite{*}
