@@ -15,13 +15,10 @@
 % A New Perspective on Feature Space Vectors
 % D. Sculley and Carla E. Brodley
 
-El uso de Algoritmos de compresión en tareas de Machine Learning como clusterización y clasificacación ha tenido presencia en variados campos, con la intención de reducir problemas de selección explícita de ciertas características que se usan en estudios y algoritmos de Machine Learning.
+El uso de algoritmos de compresión en tareas de Machine Learning como clusterización y clasificación ha tenido presencia en variados campos de las ciencias de la computación. La intención de reducir problemas de selección explícita de ciertas características que se usan en estudios y algoritmos de Machine Learning.
+Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente string en representaciones vectoriales de dichas características, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissman han sido claves para determinar la comprensibilidad de un algoritmo y la predictivilidad que poseen los modelos de compresión. Con estos modelos pueden realizar predicciones  y ésta ha sido un área de gran interés en el área de Machine Learning.
 
-Un punto de vista de esta inclusión de areas muestra que los algoritmos de compresión mapean implícitamente string en representaciones vectoriales de dichas características las cuales son cotas superirores. Podemos señalar que los trabajos como Langdon y Rissman han sido claves para determinar que modelos de compresión pueden usarse para realizar predicciones y esto ha sido una área de gran interés en Machine Learning.
-
-Un punto de vista alternativo muestra algoritmos de compresión mapa implícitamente cuerdas en vectores implícitas espacio de características, y por compresión similitud medidas basadas computan similitud dentro de estos espacios de características. 
-
-Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
+%Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
 
 % The fundamental idea that data compression can be used to perform machine learning tasks has surfaced in a several areas of research, including data compression (Witten et al., 1999a; Frank et al., 2000), machine learning and data mining (Cilibrasi and Vitanyi, 2005; Keogh et al., 2004; Chen et al., 2004), information theory, (Li et al., 2004), bioinformatics (Chen et al., 1999; Hagenauer et al., 2004), spam filtering (Bratko and Filipic, 2005), and even physics (Benedetto et al., 2002). The principle at work is that if strings x and y compress more effectively together than they do apart, then they must share similar information.
 
@@ -37,22 +34,22 @@ Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nu
 
 %empezar habalr sibre lempel ziv
 
-Los algoritmos de compresión han sido estudiados e investigados por durante varios años, la motivación fundamental es poder optimizar el espacio, para mayor uso o almacenamiento de datos. Estos algoritmos se encuentran sin saberlo en nuestro día a día, desde el nucleo de un sistema operativo como linux hasta por ejemplo los formatos \emph{zip}, \emph{rar},\emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar en dispositivos físicos, etc.
+Desde otro punto de vista, los algoritmos de compresión mapean implícitamente strings en espacios vectoriales implícitos por features de un cierto dominio, y debido a las propiedades que usa la  compresión basadas, podemos usarlos para los dominios de predicción y aprendizaje de ciertas características que nos entrega un entrenamiento típico de algoritmos de Machine Learning.
+% colocar cita a paper de ML con LDC
 
-La motivación de profundizar en el área de compresión de datos se debe a una de la razones mencionadas con anterioridad, Internet. Esta red de redes, constante crea nuevos contenidos, registros, imágenes etc. los cuales no es conveniente mover de un lugar a otro mediante un transferencia directa, estos archivos crecen innumerablemente y aquí es uno de los mayores aporte que poseen los algoritmos de compresión con relación a nuestra red de redes. 
+Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido mayormente explorada. Los algoritmos de compresión han sido estudiados e investigados durante varios años, la motivación fundamental es poder optimizar el espacio generado por ambas áreas, para un uso eficiente o mayor almacenamiento de datos. Estos algoritmos se encuentran, sin saberlo, en nuestro día a día, desde el núcleo de un sistema operativo como Linux hasta por ejemplo los formatos \emph{zip}, \emph{rar},\emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar, por ejemplo, en dispositivos físicos. 
 
-A diferencia del volúmenes de datos las infraestructura de redes y su velocidad no crece directamente proporcional, que esto genera un sin fin de problemas para los usuarios e industria web. La latencia  es el tiempo de respuesta que demora un usuario en solicitar, hacer un \emph{REQUEST}, a un servidor, simplemente es un el tiempo de respuesta desde iniciada una acción demandada. 
-Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos multimedia, texto, etc.
+La motivación de profundizar en el área de compresión de datos se debe a una de las razones mencionadas con anterioridad, Internet. Esta red de redes, constantemente crea nuevos contenidos, registros, imágenes, entre otros tipos de datos,  los cuales sin tener buenos recursos red y/o Infraestructura cargar en un lugar a otro mediante una transferencia directa implicaría un demora exponencial en un escenario típico de una web. Dichos archivos crecen innumerablemente(mayormente generados por usuarios) y he aquí uno de los mayores aportes que poseen los algoritmos de compresión con relación a nuestra red de redes, precisamente la compresión de datos optimiza la transferencia de archivos como la carga de archivos en el lado del cliente.
 
-Las propiedades de estos algoritmo no solo permiten juntar un set de archivos y lograr un tasa de compresión optima para ser transmitido por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés debido a ya las antes mencionadas similitudes que poseen un algoritmo de compresión y un modelo variable de Markov.
+A diferencia del volúmenes de datos las infraestructura de redes y su velocidad no crece directamente proporcional, que esto genera un sin fin de problemas para los usuarios e industria web. La latencia  es el tiempo de respuesta que demora un usuario en solicitar, hacer un \emph{request}, a un servidor, simplemente es un el tiempo de respuesta desde iniciada una acción demandada. 
+Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo, audio, video, imágen, texto, etc.
+
+Las propiedades de estos algoritmo no solo permiten juntar un set de archivos y lograr un tasa de compresión optima para ser transmitido por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés, las predicciones de la siguientes webaccess de una determinada web. Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia Lempel Ziv. Estos son en sí modelos variables de Markov lo cual nos ayudará en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
 
 Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}, algoritmos de compresión sin pérdida.
 
 
-
-
-
-Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.
+El aprender acerca de la secuencia de datos continúa sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y aprendizaje automático.
 
 
 
@@ -95,17 +92,20 @@ Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los 
 		\item Exclusion
 	\end{itemize}
 	
-For a method that considers different orders of models, we turn once again to data compression and the Prediction by Partial Match (PPM) family of predictors. This has been used to great effect in (Ref. 4), for a predictive framework based on LZ78.
-PPM algorithms consider different-order Markov models in order to build a probability distribution by weighting different-order models appropriately. In our predictive scenario, Active LeZi builds an order-k Markov model. We now employ the PPM strategy of exclusion (Ref. 7) to gather information from models of order 1 through k to assign the next symbol its probability value. This method is illustrated by considering the example sequence used in the previous sections: “aaababbbbbaabccddcbaaaa”.
-The window maintained by Active LeZi represents the set of contexts used to compute the probability of the next symbol. In our example, the last phrase “aaa” (which is also the current ALZ window) is used. Within this phrase, the contexts that can be used are all suffixes within the phrase, except the window itself (i.e. “aa”, “a”, and the null context).	
-	
+Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores PPM  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en LZ78. 
+
+Algoritmos PPM consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, Active LeZi construye un orden-k del modelo de Markov. Ahora empleamos la estrategia PPM de exclusión para reunir información de los modelos de orden 1 a k para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: ''aaababbbbbaabccddcbaaaa''.
+
+% FATLA una CITA a ACTILEZI
+La ventana mantenida por Active Lezi representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase ''AAA''. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, $aa$ , $a$, y el contexto nulo).
+
 	
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
 
 
  \subsection{Probabilistic Suffix Tree (PST)}
  
- Los arboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor VMM con limite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un limite superior a la orden de Markov de un "fuente certera" es conocida como \emph{learner}.
+ Los arboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor \emph{VMM} con limite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un limite superior a la orden de Markov de un ''fuente certer'' es conocida como \emph{learner}.
  
  %@TODO: explayar mas aca
  
@@ -113,17 +113,15 @@ The window maintained by Active LeZi represents the set of contexts used to comp
  \subsection{Cadenas de Markov Dinámicas}
  
  
- Los Algoritmos DMC ó \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los simbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los simbolos en el alfabeto. 
+ Los Algoritmos DMC ó \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
  Esta distribución de probabilidad es usada para predecir el siguiente digito binario. 
- Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo simbolo entra. La estructura puede también 
- ser actualizada usando \emph{state cloning method}.
+ Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo símbolo entra. La estructura puede también ser actualizada usando \emph{state cloning method}.
  
  
-\subsection{Lempel \& Ziv \cite{ZivLempel1977}}
+\subsection{Lempel \& Ziv }
 
-%Moghaddam_Kabir
-LZ78 algorithm is proposed by Jacob Ziv and Abraham Lempel in 1977.
-An online prediction method needs not rely on time-consuming preprocessing of the available historical data in order to build a prediction model. The preprocessing is done when we have a new request. LZW and LZ78 basically are lossless data compression algorithms with good functionality. The most important part of these algorithms is the dictionary construction algorithm that we use it for creating the prediction model.
+
+El algoritmo LZ78 es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. LZW y LZ78 básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
 
 
 
@@ -208,7 +206,10 @@ forever
 \end{verbatim}
 
 %%%%%%%Moghaddam_Kabir
-LZ78 is a lossless compression algorithm. Fig.2 shows that how the dictionary constructed from sequences using LZ78. In web environment we use user web page requests sequence as input sequence of LZ78 algorithm. Fig.3 shows how prediction tree is constructed. In Fig.2 and 3 variable w is sequence that is saved in each user session. This algorithm can insert sequences with long length, but generally total number of sequences that inserted in tree is less than PPM algorithm. We explain this algorithm with an example. Suppose the user requests the pages ABABCBC sequentially. If we use the LZ78 algorithm, then the A, B, AB, C and BC should be inserted in the tree. In Table 1 the first row shows the user requests. The second row shows the sequences inserted in the tree and the third row shows the sequences that maintained in active user session. When a sequence is inserted in the tree the weights of edges that represent the pass from the root to the last request of sequence is incremented. Now assume that user B requests the sequence of pages ABCABCD. Table 2 shows the results. If user A requests ABABCBC
+LZ78 es un algoritmo de compresión sin pérdidas, el algoritmo anteriormente muestra  cómo el diccionario es construido  a partir de secuencias, utilizando LZ78. En el entorno web utilizamos frecuencia de webaccess de páginas web del usuario como secuencia de entrada al algoritmo LZ78. La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en árbol es menos de algoritmo PPM. Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas $ABABCBC$ secuencialmente. Si utilizamos el algoritmo LZ78, entonces generaríamos un trie con nodos  A, B, AB, BC y C, que deberán insertar. 
+%En la Tabla 1 la primera fila muestra las peticiones de los usuarios. El segundo muestra la fila las secuencias insertadas en el árbol y la tercera fila muestra las secuencias que mantiene en la sesión del usuario activo. 
+Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. Supongamos ahora que el usuario B pide a la secuencia de páginas $ABCABCD$, estos generaría cambios en el trie y de cumplir las condiciones se incrementarían los contadores. 
+%Tabla 2 muestra los resultados. Si el usuario A solicita ABABCBC.
 
 %%%%%%
 
@@ -218,10 +219,19 @@ LZ78 is a lossless compression algorithm. Fig.2 shows that how the dictionary co
 
 
 
-Problems in LZ78 parsing
-Any practical implementation of LZ78 suffers from the following two drawbacks:
-i. In any LZ parsing of an input string, all the information crossing phrase boundaries is lost. In many situations, there will be significant patterns crossing phrase boundaries, and these patterns will affect the next symbol in the sequence.
-ii. The convergence rate of LZ78 to the optimal predictability as defined above is slow. The results outlined in (Ref. 1) by Feder, et al state that LZ78 asymptotically approaches optimal predictability.
+Sin embargo se presentan ciertos problemas de análisis con LZ78. Cualquier aplicación práctica de LZ78 sufre a partir de los siguientes inconvenientes: 
+
+\begin{itemize}
+	\item En cualquier análisis LZ  una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían el siguiente símbolo en la secuencia.
+	
+	\item La tasa de convergencia de LZ78 a la previsibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \emph{lz78} se acerca asintóticamente a un óptima previsible.
+	%en (Ref. 1) por Feder et al,	
+	
+	
+	
+\end{itemize}
+
+
 
 
 % Begleiter, El-Yaniv y YonaBegleiter, El-Yaniv y Yona
