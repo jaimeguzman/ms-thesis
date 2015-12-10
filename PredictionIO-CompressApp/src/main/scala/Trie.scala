@@ -262,6 +262,7 @@ class TrieNode(val char: Option[Char] = None,
     var countPosibility:Int = 0
     val stack               = Stack[String]()
     val alphabet            = Stack[String]()
+    var maxProbability:Int      = 0
 
 
     //,"R","S","T", "U","V","W","X","Y","Z")
@@ -279,6 +280,7 @@ class TrieNode(val char: Option[Char] = None,
       // Si es nodo hoja o nodo intermedio con un solo jhijo
       if( t > 0  ) {
         if( param.length > 1 ) {
+          println(">>>> NODO INTERMEDIO CON MAS DE UN HIJO")
 
           countPosibility+=1
           //println( "t \t\t"+ resultFindBP(t) )
@@ -287,33 +289,59 @@ class TrieNode(val char: Option[Char] = None,
           //nextSymbol = resultFindBP(t).stripPrefix(param)
           nextSymbol = stack(random.nextInt(stack.length))
 
-        }else{
-          // Aqui cuando es un query de length 1 busca el prefijo
 
+
+        }else{
+        // Aqui cuando es un query de length 1 busca el prefijo
          //print(">>else" )
+          println(">>>> EL NODO TIENE MAS DE DOS HIJO, ES UN NODO INTERMEDIO, Y LA SECUENCIA ES DE LARGO 1 ")
 
           stack.push( resultFindBP(t).stripPrefix( param )  )
 
+          /**cuando los leo todos**/
           if( param.length +1 == resultFindBP(t).length  ){
            // println(">>>"+ nextSymbol  + "\t "+ resultFindBP(t)  )
+            //nextSymbol = stack(random.nextInt(stack.length) )
+          }
 
 
-            nextSymbol = stack(random.nextInt(stack.length) )
+          var word:String = param
+
+          pathTo(word) match {
+
+            case Some(path) => {
+              var index        =  0
+              var continue     = true
+              path(index).word = None
+
+              while (  continue ) {
+                val current = path(index) // current node
+
+
+                if( current.counter > maxProbability  && current.word.isDefined){
+
+                  nextSymbol = current.word.get
+                  continue = false
+                }
+
+                index += 1
+              }
+
+            }
           }
 
 
 
+
+
+
         }
-
       }
-
-
-
-
     }
 
     // Caso de nodo hoja sin hijo y sin simbolo siguiente
-    // lo que sucede aca es que epsilon se come el siguiente simbolo y despues todos los eventos son equiporbables
+    // lo que sucede aca es que epsilon se come el siguiente
+    // simbolo y despues todos los eventos son equiporbables
     // por lo cual es un random de 1/17 o 1/alphabet
     if( resultFindBP==""   ){
       nextSymbol = alphabet(random.nextInt(alphabet.length))
@@ -321,25 +349,7 @@ class TrieNode(val char: Option[Char] = None,
 
 
 
-    if( stack.length  > 0 ){
-      //println( "stack.length "+ stack.length  )
-      //println( "random number "+ random.nextInt(stack.length)  )
-      //println( "random result "+ stack(random.nextInt(stack.length)   ) )
-    }
-
-
     stack.clear()
-
-
-
-
-    /**
-     - Interesantemente si el length que retonrar finbyprefix es 2
-      significa que el n-1 es la predicción
-
-      - Pero si es 3 significa que por lo menos hay dos nodos hijos que puedes ser la predicción
-     * -
-     * */
 
 
 
@@ -383,10 +393,83 @@ class TrieNode(val char: Option[Char] = None,
     //currentIndex += 1
     predictHelper(this)
     //println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
-    println(  "TRIE \t\t>>>  what's the nextsymbol ?: "+ param+ "\t ResultPredict= "+ nextSymbol+ "\t" )
+    //println(  "TRIE \t\t>>>  what's the nextsymbol ?: "+ param+ "\t ResultPredict= "+ nextSymbol+ "\t" )
 
     nextSymbol
   }
+
+
+  // Retornar el siguiente simbolo con mayor probabilidad
+
+  def getNodeBySymbol( word : String )  = {
+    println("--------------------------- getNodeBySymbo: "+word+" -------------------" )
+
+    var aux:Int = 0
+    var nextNode:TrieNode = null
+    val random            = new Random
+
+
+    pathTo(word) match {
+
+      case Some(path) => {
+        var index        =  path.length - 1
+        var continue     = true
+        path(index).word = None
+
+        while ( index > 0 && continue ) {
+          val current = path(index) // current node
+
+
+          //Necesito verificar si el nodo contiene un simbolo ono
+          if (current.word.isDefined) {
+             println(".>>>> current word IF  para iteracion en ??  "+ current  )
+            continue = false
+
+          } else {
+
+            val parent = path(index - 1) // El Padre del nodo con mayo probabilidad
+
+
+              //actualizo al que tenga el mejor counter
+              if (current.counter > aux  ){
+                //aux = current.counter // actualizo al actual
+                nextNode = current
+                //println("Siguiente simbolo con mayor probabilidad dado "+word + " es: \t"+ current.toString() )
+
+
+                // Cuando tengo mas de un hijo con probabilidades equiprobables o
+                if( current.children.size > 0 ){
+                    //recorro todos los nodos
+                    for( i <- 0 until current.children.size ){
+                      if( current.children.toList(i)._2.counter > aux   ){
+
+                        aux = current.children.toList(i)._2.counter
+                        nextNode = current.children.toList(i)._2
+                        println ("urrent.children(0)    >>< "+  current.children.toList(i)  )
+                      }
+
+                    }
+                }
+
+
+              }
+
+
+            index -= 1
+          }
+        }
+
+        true
+      }
+      case None => false
+    }
+
+    println( "\n\n\nEl siguiente nodo acorde a la función es: "+ nextNode )
+
+  }
+
+
+  // Tendria que hacer un metodo que dado Epsilon me retorne el siguiente simbolo con mayor probabilidad.
 
 
 

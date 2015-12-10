@@ -132,7 +132,7 @@ class DataSource(val dsp: DataSourceParams)
 
 
     /**Folds Limits**/
-    val foldTraining: Int =  90
+    val foldTraining: Int =  10
     val foldTesting:  Int = foldTraining
 
     /**Training**/
