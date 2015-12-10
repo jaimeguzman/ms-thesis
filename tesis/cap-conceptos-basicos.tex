@@ -21,21 +21,30 @@ Son los registros que se almacenan en un servidor, los cuales dependiendo de sis
 %Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
 
 
-Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de muy fácil la recuperación de información de estos mismo. Sus características generales es ser un conjunto de llaves las cuales se representan en el arbol y sus nodos internos representan la información, en nuestro caso una caracter o string de tamaño 1.
+Son estructuras de datos de tipo de árbol que almacenan datos en nodos y es de muy fácil la recuperación de información de estos mismos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una carácter o string de largo 1. 
 
 Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol de equilibrado. Un Trie es una especie de árbol, conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ''trie'').
 
-Cada especie de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser hash). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar un solo artículo. Otras estructuras de árbol, como árbol de equilibrado son similares en principio.
+Cada especie de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser hash). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al trie que se implementará en la etapa experimental.
 
-Un trie representa una secuencia en su estructura (ver el artículo de wiki). Es muy diferente en que la almacena secuencias de valores en lugar de valores individuales individuales. Cada nivel de recursividad dice 
+Un trie representa una secuencia  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
+Es muy diferente en que la almacena secuencias de valores en lugar de valores individuales. Cada nivel representa un incremento en la altura del árbol.
 %'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
 
 
 Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{Trie}, para representan un diccionario, en los cuales podemos señar la siguientes operaciones disponibles:
 
 	\begin{itemize}
-	\item 
-
+	
+		\item \textbf{findByPrefix(x) :}  Retornar una una lista de todos los nodos hasta llegar a un nodo que posea un string de parámetro equivalente a $x$.
+		
+		\item \textbf{contains(x) :} Retornar una lista de nodos intermedios hasta que el contenido del nodo final sea hoja o intermedio corresponda a valor de la secuencia string $x$.
+		
+		\item \textbf{remove(x) :} Retorna \emph{true} ó \emph{false} cuando es posible remover el nodo con la contenido equivalente a $x$.
+		
+		\item \textbf{pathTo(x) :} Retorna una lista de nodos hasta llegar a un nodo que posea de contenido el valor $x$.
+		
+	
 	\end{itemize}
 
 
@@ -46,10 +55,12 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 
 \subsection{Alfabeto}
 
-Un alfabeto discreto lo representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en simbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17 \mbox{símbolos}$.
+Un alfabeto discreto lo representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en símbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17 \mbox{símbolos}$.
+
+
 
 Dado un volumen de datos experimental, nuestro alfabeto es representado simbólicamente como la representación de varios nodos contenido en un \emph{Trie} que modela la navegación de usuarios para un sitio web.
-Donde $\sigma_{1}$, puede ser definido como la página inical de una cierta secuencia  ó sesión de usuario. Este alfabeto es finito y acotoda por una mineria de datos ya realizada por. % Referencia al trabajo de claud
+Donde $\sigma_{1}$, puede ser definido como la página inical de una cierta secuencia  ó sesión de usuario. Este alfabeto es finito y acotado por una minería de datos ya realizada por \cite{Claude2014} en \emph{Efficient Indexing and Representation of Web Access Logs}. % Referencia al trabajo de claud
 
 %Let A be a discrete alphabet consisting of M  2 symbols; x = x ; : : : ; x ; x 2 A
 % be rst n symbols of message; jj be the length of sequence  or the cardinality of
@@ -73,16 +84,14 @@ Donde $\sigma_{1}$, puede ser definido como la página inical de una cierta secu
 
 \subsection{Secuencias discretas}
 
-Definimos una secuencia de accesos discreta y finita, dado los acccesos que tiene un usuario frente a una web, lo anterio es acotado por el concepto de sesión, el cual es desde que se inicia la navegación, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamalo no superior a un alfabeto $\Sigma$.
-
-
+Definimos una secuencia de accesos discreta y finita, dado los accesos que tiene un usuario frente a una web, lo anterior es acotado por el concepto de sesión, el cual es desde que se inicia la navegación por parte de un usuario, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamaño no superior a un alfabeto $\Sigma$.
 
 
 
 % Compresor tonto o Machine Learning lento para predecir
-\subsection{Lossless Data Compression}
+\subsection{Lossless Data Compression(LDC)}
 
-La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir tener la posibilidad de codificar y decodificar. En capitulos posteriores introduciremos mas el tema compresión y como este ayuda a crear un modelo de predicción.
+La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se introducirá más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
 
 
 
@@ -90,33 +99,36 @@ La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder ha
 
 \subsection{Motor de Predicción}
 
-Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección URL o una sección en particular de un cierta web. 
+Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección \emph{url} o una sección en particular de un cierta web. 
 % que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
 
+ 
 
 
 \subsection{Resilient Distributed Datasets }
 
-	Los RDD, permiten que en un servidor de Machine Learning pueda mantener un modelo o motor de aprendizaje persitente sin importan el flujo en que se encuentre.
+	Los RDD, permiten que en un servidor de Machine Learning pueda mantener un modelo o motor de aprendizaje persistente sin importan el flujo en que se encuentre.
 
-	Esta estructura es fundamental dentro de la libería que se introducirá mas adelante, Apache Spark. Esta estructura es una colección distribuida de objetos Inmutable, cada 
-	set de datos en un RDD es divido en particiones lógicas, las cuales puedes ser computdadas en distintos Clusters. Los RDD pueden contener cualquier tipo de objeto de los siguientes lenguajes: Python, Scala y Java, incluyendo clases definidas por el usuario. 
+	Esta estructura es fundamental dentro de la libera que se introducirá mas adelante, Apache Spark. Esta estructura es una colección distribuida de objetos Inmutable, cada 
+	set de datos en un RDD es divido en particiones lógicas, las cuales puedes ser computadas en distintos Clusters. Los RDD pueden contener cualquier tipo de objeto de los siguientes lenguajes: Python, Scala y Java, incluyendo clases definidas por el usuario. 
 
-	Formalmente los RDD son solo de lectura, una colección de objetos particionada. Estos pueden ser creados através de  operaciones determinstisticas en una cierta tabla o un almacenamiento externo ó otra RDD.
-	Otra de las carácteristicas de los RDD, es que son colecciones de elementos toleantes a fallas que puede ser operadas en si mismas o en paralelo.
-	Apache Spark hace el uso del concepto de RDD para lograr rapidez y efecienciencia en las operaciones de MapReduce, de ser requeridas. Destacamos la escabilidad de esta libería para un gran nivel de computo, pero en este trabajo no se explicará el uso de Spark, pero si se utilizarán algunos conceptos como RDD y otros.
+	Formalmente los RDD son solo de lectura, una colección de objetos divididos. Estos pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo ó otra RDD.
+	Otra de las características de los RDD, es que son colecciones de elementos tolerantes a fallas que puede ser operadas en si mismas o en paralelo.
+	Apache Spark hace el uso del concepto de RDD para lograr rapidez y eficiencia en las operaciones de MapReduce, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de computo, pero en este trabajo no se explicará el uso de Spark, pero si se utilizarán algunos conceptos como RDD y otros.
 
 
 
 
 \subsection{Data Source y Dataset }
 
-	Ambos conceptos están focalizados en  proveer información tanto para el servidor de Machine Learning, como para el procesamiento y analisis.
+	Ambos conceptos están enfocados a proveer información tanto para el servidor de Machine Learning, como para el procesamiento y análisis.
 	En este trabajo los dataset a estudiar son un los registros de accesos de la web española Prisa, los cuales representan 1.000.000 de registros correspondientes.
 
-	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 17 
+	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 17, el cual como antes ya se ha señalado será nuestro alfabeto. 
 
-	frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
+
+
+ 
 
 
 

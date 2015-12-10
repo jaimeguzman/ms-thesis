@@ -134,8 +134,13 @@ Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se u
 
 
 
+% Selección de la métrica
 
+% https://docs.prediction.io/evaluation/metricchoose/
 
+% Explicación de evaluación
+
+% https://docs.prediction.io/templates/recommendation/evaluation/#evaluation-data-generation
 
 
 
@@ -154,6 +159,7 @@ Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como de
 % Es una métrica que captura una porición correcta de toda la data a probar. 
 % Una manera de modelar esto es para cada consulta que hacemos al predictor, damos un score de 1 y 0, luego podemos tomar el promedio de este score.
 
+% PredictionIO sobre métricas
 
 
 % PredictionIO has a [[AverageMetric]] helper class which provides this feature. This class takes 4 type parameters, [[EvalInfo]], [[Query]], [[PredictedResult]], and [[ActualResult]], these types can be found from the engine's signature. Line 5 below is the custom calculation.
@@ -188,7 +194,6 @@ Ejemplo de estructura de Dataset MSNBC :
 % Different categories found in input file:
 
 frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
-
 
 % Sequences:
 
@@ -297,7 +302,8 @@ Es importante señalar que la división de nuestro set de datos es debido a que 
 
 
 
-\subsection{Experimentos con Nuestro Modelo}
+\subsection{Experimentos}
+\vspace{1cm}
 \subsubsection{Sesiones con un valor mínimo de visitas a secciones}
 
 Dentro de nuestro experimentos para probar la exactitud de nuestro modelo podemos demostrar que al tener una menor cantidad de secciones visitadas, la probabilidad de no acertar crece considerablemente.
@@ -645,12 +651,31 @@ Aun cuando el trieNode que representa totalmente el modelo de navegación del lo
 Una de las mayores ventajas de nuestro modelo es que al estar embebido en un servidor de Machine Learning, cada nuevo evento que ingresa para la siguiente nueva ejecución esta estará mejor preparado, podríamos decir que la recolección de data de cada evento en particular nos ayudaría a que nuestro modelo en futuros trabajos vaya aprendiendo mas y más precisamente.
 
 
+A medida que la altura del árbol va creciendo este genera mayor demora en cuanto a la creación del \emph{LZTrie}
+% Pero a mayor altura hay mayor precisión.
+
+Hemos validado que hacer un modelo de navegación de usuarios es un perfecta implementación para el uso de un árbol de la familia de Lempel \& Ziv.
+
+A nuestro modelo le es afectado secuencias de menor tamaño, por lo cual se debe trabajar para hacer un aprendizaje de que momento omitirlo o no. Estas sesiones de bajo número de secuencias genera un bajo porcetaje de accurracy. 
+
+
+% Cual es el minimo entrenamiento para lograr a Predecir ?
+
+Hemos presentado un modelo liviano el cual puede ser utilizado para predecir secuencias de webaccess en demanda.
+
+
+
+
+
+
 %In this paper we studied the empirical performance of a number of prominent prediction algorithms. We focused on prediction settings that are more closely related to those required
 
 %%%%%%%%% On Prediction Using Variable Order Markov Models
 
 %$%%%%%%%%
 %%n this paper we studied the empirical performance of a number of prominent prediction algorithms. We focused on prediction settings that are more closely related to those required
+
+
 %On Prediction Using Variable Order Markov Models
 %by machine learning practitioners dealing with discrete sequences.
 %However, somewhat surprisingly, the best predictor under the log-loss is not the best classifier. On the contrary, the consistently best protein classifier is based on the mediocre lz-ms predictor! This algo- rithm is a simple modification of the well-known Lempel-Ziv-78 (lz78) prediction algorithm, which can capture VMMs with large contexts. The surprisingly good classification accuracy achieved by this algorithm may be of independent interest to protein analysis research and clearly deserves further investigatio 
@@ -658,8 +683,13 @@ Una de las mayores ventajas de nuestro modelo es que al estar embebido en un ser
 % No es necesario que utilice este comando en su document
 %
 %Conclusion of this paper Gopalratnam Cook
-%alz effectively models sequential processes, and is extremely useful for prediction of processes where events are dependent on the previous event history. This is because of the ability of the algorithm to build an accurate model of the source of the events being generated, a feature inherited from its information theoretic background and the LZ78 text compression algorithm. 
-%The effectiveness of the method for learning a measure of time can also be attributed to fact that ALZ is a strong sequential predictor. The sound theoretical principles on which ALZ is founded also mean that ALZ is an optimal Universal Predictor, and can be used in a variety of prediction scenarios.
+%a
+
+lz effectively models sequential processes, and is extremely useful for prediction of processes where events are dependent on the previous event history. This is because of the ability of the algorithm to build an accurate model of the source of the events being generated, a feature inherited from its information theoretic background and the LZ78 text compression algorithm. 
+%
+The effectiveness of the method for learning a measure of time can also be attributed to fact that ALZ is a strong sequential predictor. The sound theoretical principles on which ALZ is founded also mean that ALZ is an optimal Universal Predictor, and can be used in a variety of prediction scenarios.
 %conclusion lcoa
-%Dado que la myora de los predictores funcionan de 
-%manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de prediccion en linea.
+%
+
+Dado que la myora de los predictores funcionan de 
+manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de prediccion en linea.

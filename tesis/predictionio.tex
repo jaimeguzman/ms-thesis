@@ -3,10 +3,9 @@
 \section{Predicción }
 
   	
-  En esta sección se presenta formalmente framework que se utilizará durante este trabajo. %@todo: colocar referencia web
-  PredictionIO es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente esta construido en Apache Spark, HBase y Spray.
+En esta sección se presenta formalmente el framework que se utilizará durante este trabajo. PredictionIO es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente está construido en Apache Spark, HBase y Spray. 
 
-  Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer  servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos sean utilizados para solucionar problemas reales.
+Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos sean utilizados para solucionar problemas reales.
 
 
 
@@ -53,10 +52,12 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 
 
     \item \textbf{ $[S]$ Servicio}\\
-  The Serving component takes prediction queries and returns prediction results. If the engine has multiple algorithms, Serving will combine the results into one. Additionally, business-specific logic can be added in Serving to further customize the final returned results.
-
+    
+    El componente servicio toma los consultas ó \emph{querys} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
+    Si el motor de predicción tiene múltiples algoritmos, combinara los resultados en uno. Adicionalmente, lógica específica de negocios puede ser añadida para especificar aun mas el resultado final. 
+ 
     \item \textbf{ $[E]$ Evaluación de Métricas}\\
-  Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
+Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
 
 
 \end{itemize}
@@ -75,7 +76,7 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 
     \node [block] (init) {Data de la Aplicación};
     
-\draw [color=gray,thick](2,-1) rectangle (4,1);    
+\draw [color=gray,thick](1.3,1) rectangle (11.2,-3.5);    
     \node [block, right of=init] (datasource) {Data Source};
     \node [block, right of=datasource] (datapreparator) {Data Preparator};
 
@@ -83,43 +84,31 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
     \node [block,right of=datapreparator] (alg1) {Algoritmo };
 
     \node [block,right of=alg1] (serving) {Serving};
+    \node [block,below of=serving] (evalmetric) {Evaluación Métrica};
 
-    \node [block,below of=serving] (resultpredict) {Resultado de  Predicción};
-    \node [block,below of=resultpredict] (resulteval) {Resultado  de Evaluación};
+    \node [block,right of=serving] (resultpredict) {Resultado Predicción};
+    \node [block,below of=resultpredict] (resulteval) {Resultado Evaluación};
 
-
-    % \node [cloud, left of=init] (expert) {expert};
-    % \node [cloud, right of=init] (system) {system};
-
-    % \node [block, below of=init] (identify) {identify candidate models};
-    % \node [block, below of=identify] (evaluate) {evaluate candidate models};
-    % \node [block, left of=evaluate, node distance=2.5cm] (update) {update model};
-    % \node [decision, below of=evaluate] (decide) {is best candidate better?};
-    % \node [block, below of=decide, node distance=2.5cm] (stop) {stop};
-    
-
-    % Draw edges
-    % \path [line] (init) -- (identify);
-    % \path [line] (identify) -- (evaluate);
-    % \path [line] (evaluate) -- (decide);
-    % \path [line] (decide) -| node [near start, color=black] {yes} (update);
-    % \path [line] (update) |- (identify);
-    % \path [line] (decide) -- node [, color=black] {no}(stop);
-    % \path [line,dashed] (expert) -- (init);
-    % \path [line,dashed] (system) -- (init);
-    % \path [line,dashed] (system) |- (evaluate);
-
-
+    \path [line] (init) -- (datasource);
+    \path [line] (datasource) -- (datapreparator);
+   
+    \path [line] (datapreparator) -- (alg1);
+    \path [line] (alg1) -- (serving);
+ 
+    \path [line] (serving) -- (evalmetric);
+    \path [line] (serving) -- (resultpredict);
+    \path [line] (evalmetric) -- (resulteval);    
+ 
 \end{tikzpicture}
 
 
-
+\vspace{1cm}
 
 PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descrito  para que se puedan construir modelos de predicción de manera mas sencilla, también poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
 
-
+\vspace{1cm}
 \textbf{Despliegue de Engine}
 
   Un Engine pone todos los componentes \emph{text}{DASE} en un estado especifico de despliegue
@@ -135,7 +124,7 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
   Cada \emph{Engine} procesa los datos y construye modelos predictivos de forma independiente. Por lo tanto, todos los Engine sirven a su propio conjunto de resultados de predicción. Por ejemplo, puede desplegar dos Engine para su aplicación móvil: uno para recomendar noticias para los usuarios y otro para sugerir nuevos amigos a los usuarios.
 
 
-
+\vspace{1cm}
 \textbf{Evaluación del Engine }
 
   Para evaluar el Accurracy de un Engine, solo se debe especificar la métrica cuando se corre el motor de evaluación, en los capítulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
