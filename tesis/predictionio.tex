@@ -42,19 +42,18 @@ Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una
 \begin{itemize}
 
   \item \textbf{ $[D]$ Data Source y Data Preparator }\\
-  Los Data Source leen la data desde la entrada original y la transforma en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
+  Los Data Source leen la data desde la entrada original y la transforman en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
 
 
     \item \textbf{ $[A]$ Algoritmo}\\
-  Los componentes de algoritmos incluyen algoritmos de Machine Learning, estos por los componentes que son de predicitionIO pueden ser provistos por Apache Spark ó se pueden incluir algoritmos propios como también de terceros.
+  Los componentes de algoritmos incluyen algoritmos de Machine Learning, estos, por los componentes que son de predicitionIO pueden ser provistos por Apache Spark o se pueden incluir algoritmos propios como también de terceros.
   Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el modelo predictivo.
 
 
 
     \item \textbf{ $[S]$ Servicio}\\
-    
-    El componente servicio toma los consultas ó \emph{querys} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
-    Si el motor de predicción tiene múltiples algoritmos, combinara los resultados en uno. Adicionalmente, lógica específica de negocios puede ser añadida para especificar aun mas el resultado final. 
+    El componente servicio toma las consultas ó \emph{querys} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
+    Si el motor de predicción tiene múltiples algoritmos, combinará los resultados en uno. Adicionalmente, lógica específica de negocios puede ser añadida para especificar aún más el resultado final. 
  
     \item \textbf{ $[E]$ Evaluación de Métricas}\\
 Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
@@ -104,7 +103,7 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 \vspace{1cm}
 
-PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descrito  para que se puedan construir modelos de predicción de manera mas sencilla, también poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
+PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descrito  para que se puedan construir modelos de predicción de manera más sencilla, también poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
 
@@ -116,7 +115,7 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
   \begin{enumerate}
     \item Data Source
     \item Data Preparator
-    \item Un o más Algoritmos
+    \item Uno o más Algoritmos
     \item Un Servicio
   \end{enumerate}
 
@@ -146,11 +145,11 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
 
 \textbf{Modelamiento de Eventos}
 
-  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en fin una representación de como se debe tener la data de manera RDD para poder acceder a ella posteriormente. 
+  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en realidad una representación de como se debe tener la data de manera RDD para poder acceder a ella posteriormente. 
 
-  Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información la cual será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera un sesión, la cual es desde que que llega hasta que abandona la web.
+  Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información que será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera una sesión, desde que que llega hasta que abandona la web.
 
-  Como ya se ha mencionado en sección anteriores esta información esta totalmente depurada y entregada por los access log, los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+  Usaremos un \emph{Dataset} con información que esta totalmente depurada y recuperada de los access log( Provista por Claude \etal~\cite{Claude2014} ), los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
   
 
 
@@ -166,8 +165,8 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
       \item Entidad que ejecuta el evento: Usuario
       \item Propiedades:
           \begin{enumerate}
-            \item Pagina actual
-            \item Pagina siguiente
+            \item Página actual
+            \item Página siguiente
             \item Cierre de Sesión
           \end{enumerate}
     \end{itemize}
@@ -181,14 +180,14 @@ PredictionIO ayuda a tener  componentes modulares de fácil uso, que hemos descr
 \subsection{Ventajas }
 
 
-  Es posible mezclar y aplicar distintas característica si el modelo no puede ser ser persistido por PredictionIO automáticamente. Se requiere un objeto acompañante heredada de una clase que permite lograr la persistencia en memoria (IPersistentModelLoader ), esto permite PredictionIO  cargar el modelo persistentemente y automáticamente durante la implementación.
+  Es posible mezclar y aplicar distintas característica si el modelo no puede ser ser persistido por PredictionIO automáticamente. Se requiere un objeto acompañante heredado de una clase que permite lograr la persistencia en memoria (IPersistentModelLoader ), esto permite PredictionIO  cargar el modelo persistentemente y automáticamente durante la implementación.
 
   % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de un máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite gracias a sus componentes poder hacer un cluster para lograr entregar mayor eficiencia acorde a los datos o algoritmo a implementar.  Esta propiedades
+  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
 
-  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es un representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco principales propiedades:
+  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es una representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco principales propiedades:
 
 
   \begin{enumerate}
