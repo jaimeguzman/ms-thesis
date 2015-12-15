@@ -27,27 +27,20 @@ case class Accuracy() extends
     counter+=1.0
 
 
-    // if(  predicted.result == actual.actualRes ){
-    //   value2 +=1.0
-    //   value =1.0
-    // }
-    // else{
-    //   value = 0.0;
-    //   error +=1.0;
-    // }
+     if(  predicted.result == actual.actualRes ){
+       value2 +=1.0;
+     }else{
+       error +=1
+     }
+    print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
+    print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
+    print("\tValue= "+value2.round )
+    print("\tError= "+ error.round )
+    print("\t# pruebas= "+counter.round)
+
 
     if(  predicted.result == actual.actualRes ) 1.0 else 0.0
 
-
-
-    // print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
-    // print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
-    // print("\tValue= "+value2.round )
-    // print("\tError= "+ error.round )
-    // print("\t# pruebas= "+counter.round)
-
-
-    // value
   }
 
 

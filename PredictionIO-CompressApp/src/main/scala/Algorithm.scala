@@ -234,10 +234,9 @@ class Algorithm(val ap: AlgorithmParams)
     */
 
 
-   // lzResult.printTree( t => print( t ) ); println();
 
 
-    trie.printTree( t => print( t ) ); println();
+   // trie.printTree( t => print( t ) ); println();
 
     new LZModel(trie)
   }
@@ -248,7 +247,9 @@ class Algorithm(val ap: AlgorithmParams)
   def predict(model: LZModel, query: Query): PredictedResult = {
     val lzResult =      lztrie.trie
 
-    //lzResult.getNodeBySymbol(query.webaccess);
+    lzResult.printTree( t => print( t ) ); println();
+    lzResult.numberOfNodes()
+    lzResult.printHeigthTrieNode(h => print(h)); println();
 
     new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
 

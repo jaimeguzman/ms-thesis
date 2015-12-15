@@ -9,7 +9,7 @@ echo $'First Command Execute \e[33m PIO BUILD'
 echo $'\e[31mBUILDING PROCESS.... please wait... \e[0m \e[39m'
 echo '\n'
 
-/Users/jguzman/PredictionIO/bin/pio build 
+/Users/jguzman/PredictionIO/bin/pio build --clean
 wait
 
 echo '\n'
