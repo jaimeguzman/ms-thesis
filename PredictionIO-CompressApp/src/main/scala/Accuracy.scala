@@ -32,11 +32,11 @@ case class Accuracy() extends
      }else{
        error +=1
      }
-    print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
-    print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
-    print("\tValue= "+value2.round )
-    print("\tError= "+ error.round )
-    print("\t# pruebas= "+counter.round)
+    // print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
+    // print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
+    // print("\tValue= "+value2.round )
+    // print("\tError= "+ error.round )
+    // print("\t# pruebas= "+counter.round)
 
 
     if(  predicted.result == actual.actualRes ) 1.0 else 0.0
@@ -58,7 +58,7 @@ object EngineParamsList extends EngineParamsGenerator {
   // First, we define the base engine params. It specifies the appId from which
   // the data is read, and a evalK parameter is used to define the
   // cross-validation.
-  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 1 ))
+  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 6 ))
 
 
    //println( baseEP.dataSourceParams._1 )
