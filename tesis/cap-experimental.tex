@@ -619,6 +619,9 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	\item \label{exp5}
 	\textbf{Secuencias de accesos con limite inferior 100 símbolos }
 	
+	Este experimento busca validar las condiciones necesarias que debe tener una secuencia de entrada para que el algoritmo LDC pueda optimizar al momento de ser construido para una predicción online, dado esto utilizaremos sesiones largas que entreguen redundancia en los accesos que permita al modelo de navegación ser más comprimido sin perder una métrica considerable para funcionar, según lo anterior realizamos las siguientes iteraciones con las particiones de data que cumplen: 
+	
+	
 	\begin{tikzpicture}
 	\begin{axis}[
 	xlabel= Numero de Sesiones,
@@ -635,6 +638,10 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	\end{axis}
 	\end{tikzpicture}
 	
+	Sean la sesiones de entrenamiento de tamaño $T$, con un valor en $T(100) = 49 \% $ sobre un set de evaluación $E(100) = 900 \mbox{ sesiones}$ , nuestro modelo propuesto al igual que en el experimento \ref{exp1}, entrega un punto mínimo el cual al menos da un $50\%$ de acierto sobre el total de 535 sesiones de usuarios, con una secuencia mínima de 100 símbolos. Planteado de otra forma, sólo con el $20\%$ del total de datos de entrenamiento nuestro motor de predicción ya alcanza un \emph{Accurracy} que es mucho mejor que un predictor aleatorio sobre el alfabeto. Siendo este valor bastante optimista acorde a los puntos óptimos del predictor que use la menor cantidad de recursos.
+	
+	
+
 	\begin{tikzpicture}
 	\begin{axis}[
 	xlabel= Sesiones de Entrenamiento ,
@@ -651,6 +658,10 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	\end{axis}
 	\end{tikzpicture}
 
+	Congruento con lo anterior podemos ver que sin tener un margen de erro superior al split de datos seleccionado logramos un latencia de consulta predictiva en línea de alrededor de 70 \emph{seg}. el cual para ser implementado y consumido como ya se había mencionado antes como un algoritmo predictivo como servicio REST, esta dentro del promedio aceptable.
+
+
+
 	\begin{tikzpicture}
 	\begin{axis}[
 	xlabel= Cantidad de Nodos,
@@ -665,9 +676,11 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 		(5038,520 )	
 	};
 	
- 	
 	\end{axis}
 	\end{tikzpicture}	
+
+	Otro de los puntos  considerado aceptable, es que dado un set de entrenamiento $T(100)$, solo necesitaremos menos de la mitad de nodos que se requieren para llegar a un valor de predicción bueno, a diferencia de una partición de entrenamiento que requiere más del $90\%$ de nodos del total del set de datos.\\
+	
 
 
 	\begin{tikzpicture}
@@ -687,8 +700,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	\end{axis}
 	\end{tikzpicture}
 
-	
-	
+	Finalmente podemos señalar que la tasa de Accurracy, aún  subiendo al doble la cantidad de nodos para construir un \emph{LZTrie}, con mayor información  para predecir alcanza un rendimiento aceptable respecto de la compresión realizada. De todas maneras también se cumple que la cantidad de nodos del entrenamiento es directamente proporcional a la métrica seleccionada.
 	
 	
 	\item \label{exp6}	
