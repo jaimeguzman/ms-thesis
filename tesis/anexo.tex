@@ -1,4 +1,4 @@
-\chapter{Primer anexo}
+\chapter{Anexos técnicos}
 \label{ch:anexo-a}
 
 
@@ -49,7 +49,7 @@ Comandos del servidor de eventos
 	\item \textbf{pio app delete <name> }  Borra una aplicación completa
 	\item \textbf{eventserver }  Lanza el servidor de eventos
 	\item \textbf{ --ip <value> } Une la IP seleccionada, el valor por defecto es \emph{localhost}
-	\item \textbf{accesskey} Administra todas las llaves de acceso al servidor de eventos ó app
+	\item \textbf{access\_key} Administra todas las llaves de acceso al servidor de eventos ó app
 	
 \end{itemize}
 
@@ -70,7 +70,7 @@ Las opciones  --debug y --verbose  muestran información detallada sobre los con
 \end{itemize}
 
 
-
+\newpage
 \section{Configuraciones para hacer correr IntelliJ con Apache SPARK y Prediction.IO 0.94}
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
@@ -174,20 +174,18 @@ Si se tiene pip instalado correctamente se puede utilizar
 \begin{verbatim}
 pip install predictionio
 \end{verbatim}
-
 ó
-
 \begin{verbatim}
 $ easy_install predictionio
 \end{verbatim}
 
 
-Es recomendable tener acceso sudo para evitar problemas con permisos
+Es recomendable tener acceso sudo para evitar problemas con permisos al momento de usar \emph{pip} o \emph{easy\_install} {(ie. sudo pip install predictionio)}.
 
-\begin{verbatim}
-(ie. sudo pip install predictionio)
-\end{verbatim}
 
+
+
+El siguiente script, permite hacer una sola consulta la cual puede ser ejecutada desde el \emph{cli} de python ó llamando directamente al archivo ejecutable. ( {python test.py})
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 import predictionio
@@ -198,6 +196,9 @@ print engine_client.send_query({"webaccess": "A", "num": 10})
 \end{lstlisting}
 
 
+
+\newpage
+A diferencia del script explicado anteriomente este permite enviar secuencias desde la terminal \emph{cli}, la cual puede seguir en ejecución hasta que el usuario finalice el proceso.
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 """

@@ -10,12 +10,12 @@ En este capitulo se introducirá los conceptos principales que se trabajarán en
 
 
 
-\subsection{Access Log}
+\section{Access Log}
 
 Son los registros que se almacenan en un servidor, los cuales dependiendo del sistema operativo pueden tener mayor o menor información. Cuando los usuarios acceden a los sitios web, estos  suelen dejar una gran cantidad de información de acceso, la cual si es extraída en forma razonable puede ayudar a los administradores de sitio web para obtener acceso a los patrones de los usuarios. 
 
 
-\subsection{Árboles Trie}
+\section{Árboles Trie}
 
 %%%%% Gueniche_Fournier-Viger_Raman_Tseng
 %Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
@@ -53,7 +53,7 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 
 
 
-\subsection{Alfabeto}
+\section{Alfabeto}
 
 Un alfabeto discreto lo representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en símbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17\  \mbox{símbolos}$.
 
@@ -82,14 +82,14 @@ Donde $\sigma_{1}$, puede ser definido como la página inical de una cierta secu
 
 
 
-\subsection{Secuencias discretas}
+\section{Secuencias discretas}
 
 Definimos una secuencia de accesos discreta y finita, dado los accesos que tiene un usuario frente a una web, lo anterior es acotado por el concepto de sesión, el cual es desde que se inicia la navegación por parte de un usuario, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamaño no superior a un alfabeto $\Sigma$.
 
 
 
 % Compresor tonto o Machine Learning lento para predecir
-\subsection{Lossless Data Compression(LDC)}
+\section{Lossless Data Compression(LDC)}
 
 La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
 
@@ -97,7 +97,7 @@ La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder ha
 
 
 
-\subsection{Motor de Predicción}
+\section{Motor de Predicción}
 
 Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta web. 
 % que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
@@ -105,7 +105,7 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
  
 
 
-\subsection{Resilient Distributed Datasets }
+\section{Resilient Distributed Datasets }
 
 	Los RDD, permiten que en un servidor de Machine Learning pueda mantener un modelo o motor de aprendizaje persistente sin importar en el flujo que se encuentre.
 
@@ -119,7 +119,7 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 
 
 
-\subsection{Data Source y Dataset }
+\section{Data Source y Dataset }
 
 	Ambos conceptos están enfocados a proveer información tanto para el servidor de Machine Learning, como para el procesamiento y análisis.
 	En este trabajo el dataset con que realizaremos nuestro estudio son los registros de accesos de la web española \emph{msnbc}\cite{Claude2014}, los cuales representan 1.000.000 de registros correspondientes.

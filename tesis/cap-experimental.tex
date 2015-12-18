@@ -13,23 +13,19 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  y usarlo como un modelo  predicción. Se usará para predecir secuencias finitas discretas de accesos webs. Al momento de generar el árbol este creará una representación Trie de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{Trie} de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
 
-En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de Machine Learning Prediction.IO que ya se ha explicado anteriormente.
-
-
-
-Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos.
+En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de Machine Learning Prediction.IO que ya se ha explicado anteriormente. Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
 %- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
 % of the total dataset) and testing (10 % of the total data).
 %-Learning the model: We accomplished the learning step using different learning algorithms depending on
 
 
-Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios.
 
 
-\subsection{Nuestro Modelo de Predicción ML-LDC}
+
+\section{Nuestro Modelo de Predicción ML-LDC}
 
 
 %%%%%%% \cite{Moghaddam2009}
@@ -101,7 +97,7 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
 
 
 
-\subsection{Ambientes Experimental}
+\section{Ambientes Experimental}
 
 Para los ambientes experimentales se han dispuestos dos máquinas para realizar las pruebas. 
 
@@ -180,7 +176,7 @@ Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como de
 
 
 
-\subsection{Datos Experimentales}
+\section{Datos Experimentales}
 % Cita a Rkonow Claude & Navarro
 
 Se usarán las secuencias disponibles de \emph{webaccess logs} pública del sitio MSNBC. El set de datos provienen de los registros de un servidor IIS (Internet Information Services) msnbc.com de un día completo de la fecha  28 de Septiembre de 1999. 
@@ -200,9 +196,6 @@ frontpage news tech local opinion on-air misc weather msn-news health living bus
 A A 
 B 
 C B B D B B B C C 
-E 
-A 
-F 
 A A 
 F 
 F G G G F F H H H H 
@@ -340,7 +333,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 
-
+\vspace{1cm}
 \begin{enumerate}
 	% Idea de experimento con disminución del tamaño del alfabeto
 	\item \label{exp1} \textbf{Experimento con sesiones de usuarios con datos generados de forma sintética}
@@ -370,7 +363,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	En el gráfico anterior usamos como mínimo 10 sesiones de las 80 de disponibles que se usaron par este experimento. Dado a que en este caso la cantidad de sesiones es bien reducida y cada símbolo posee una gran frecuencia existe mayor redundancia de datos y nuestro modelo se comporta como espera que lo haga un algoritmo de compresión de datos. Entre mayor es la cantidad de símbolos iguales
 	que van entrenando al \emph{LZtrie}, hay una aglomeración de frecuencia en ciertos nodos, pero estos son minimizados por los niveles que genera al momento de la construcción del árbol.
 	
-	La tasa de frecuencia de un símbolo converge a predicciones de secuencias evaluadas que caen en el nodo con mejor probabilidad dado $\epsilon$ (Raiz del \emph{trie}).
+	La tasa de frecuencia de un símbolo converge a predicciones de secuencias evaluadas que caen en el nodo con mejor probabilidad dado $\epsilon$ (Raíz del \emph{trie}).
 	
 
 
@@ -417,8 +410,8 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	
 	
 	
-
-	\item 
+	\newpage
+	\item \label{exp2}
 	\textbf{Sesiones con menor redundancia y secuencias de largo variable }
 	
 
@@ -443,9 +436,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 		\end{axis}
 	\end{tikzpicture}
 		
-
-	En este caso si existe una menor redundancia a diferencia del experimento \ref{exp1} lo que produce que el modelo tengo un rendimiento bajo, aún así dada sigue siendo en el mejor de los casos seis veces mejor que la probabilidad aleatoria de predecir. En este experimento usamos un $|\sigma| =15$, por ende tenemos que dado nuestro modelo, 
-	
+	En este caso si existe una menor redundancia a diferencia del experimento \ref{exp1} lo que produce que el modelo tengo un rendimiento bajo, aún así dada sigue siendo en el mejor de los casos seis veces mejor que la probabilidad aleatoria de predecir. En este experimento usamos un $|\sigma| =15$, por ende tenemos que dado nuestro modelo,
 	\begin{equation}\label{expResult2}
 		M( x | \mbox{90\% train}  ) = 33 \% \geq M( x | \mbox{random}  ) = 6.66\% 
 	\end{equation}, como hemos visto en (\ref{expResult2}) nuestro modelo sigue siendo válido en un escenario en que los datos se dispersan considerablemente. 
@@ -546,9 +537,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 	Como podemos ver en el comportamiento de inicio del modelo el criterio de partida en el escenario descrito es compartido por ambos experimentos.
 
-
-
-	También dado a que este no es uno de los casos más favorables para nuestro modelo de predictivo, podriamos tener un diferencial en los tiempos de construcción del Trienode acorde a la cantidad de nodos necesarios para los criterios de entrenamiento, 
+	También dado a que este no es uno de los casos más favorables para nuestro modelo de predictivo, podríamos tener un diferencial en los tiempos de construcción del Trienode acorde a la cantidad de nodos necesarios para los criterios de entrenamiento, 
 
 
 	\begin{tikzpicture}
@@ -567,17 +556,19 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	};
 	\end{axis}
 	\end{tikzpicture}
-
-
-
+	
+	Como podemos ver en el gráfico anterior podemos buscar un dataset optimo el cual puede encontrarse dentro del intervalo $ [ 300,400 ]$ sesiones de usuario, equivalente a la mejores resultados de \emph{Accurracy} y menor cantidad de secuencias de entrenamiento
 
 
 	\item \label{exp4}	
 	\textbf{Sesiones con tamaño de secuencia constante}
 
+	En este experimentos queremos lograr el mismo comportamiento que tuvimos en el experimento [\ref{exp1}]. Haciendo un filtrado simple de los \emph{webaccess log } que hemos estado analizando podemos llegar a mejores valores que las predicciones de resultado aleatorio.
+
+
 	\begin{tikzpicture}
 	\begin{axis}[
-	xlabel= Numero de Sesiones,
+	xlabel= Numero de Sesiones de entrenamiento,
 	ylabel=Accurracy en \% ]
 	\addplot[color=black,mark=x] coordinates {
 			(100, 39.3259176863181 )
@@ -592,7 +583,12 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	};
 	\end{axis}
 	\end{tikzpicture}
+	
+	La cantidad total de sesiones usadas fueron 1000 y las cuales como en el gráfico anterior se señala a mayor cantidad entrenamiento existe al menos un punto de la curva que se vuelve un máximo.
 
+
+	Seguido a esto podemos ver el tiempo de construcción del \emph{LZTrie} que nuestro modelo demora en generar:
+	
 	\begin{tikzpicture}
 	\begin{axis}[
 	xlabel= Sesiones de Entrenamiento ,
@@ -611,13 +607,17 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	\end{axis}
 	\end{tikzpicture}
 
+	Al igual que en el gráfico anterior podemos ver que existe al menos una mínima cantidad sesiones las cuales generar un rendimiento sobre las evaluaciones a realizar. 
+
+
+
+
 
 
 
 
 	\item \label{exp5}
-		
-	\textbf{Sesiones de acceso con cota inferior 100 símbolos }
+	\textbf{Secuencias de accesos con limite inferior 100 símbolos }
 	
 	\begin{tikzpicture}
 	\begin{axis}[
@@ -672,7 +672,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 	\begin{tikzpicture}
 	\begin{axis}[
-	xlabel=Cantidad de Nodos,
+	xlabel=Cantidad de Nodos para LZTrie predictivo,
 	ylabel=Accurracy en \%  ]
  
 	\addplot[color=black,mark=x] coordinates {
@@ -692,7 +692,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	
 	
 	\item \label{exp6}	
-	\textbf{Sesiones con menos de 5 webaccess para generar el Trie}
+	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{LZTrie}}
 	
 	
 	
@@ -836,7 +836,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 
-\subsection{Detección de Ruido en sesiones}
+\subsection{Detección de Ruido en secuencias de acceso}
 
 Al modelar una navegación de usuario mediante un trie basado en un algoritmo como LZ78, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
 
@@ -959,7 +959,7 @@ A medida que la altura del árbol va creciendo este genera mayor demora en cuant
 
 Hemos validado que hacer un modelo de navegación de usuarios es un perfecta implementación para el uso de un árbol de la familia de Lempel \& Ziv.
 
-A nuestro modelo le es afectado secuencias de menor tamaño, por lo cual se debe trabajar para hacer un aprendizaje de que momento omitirlo o no. Estas sesiones de bajo número de secuencias genera un bajo porcetaje de accurracy. 
+A nuestro modelo le es afectado secuencias de menor tamaño, por lo cual se debe trabajar para hacer un aprendizaje de que momento omitirlo o no. Estas sesiones de bajo número de secuencias genera un bajo porcentaje de accurracy. 
 
 
 % Cual es el minimo entrenamiento para lograr a Predecir ?
@@ -988,17 +988,52 @@ Hemos presentado un modelo liviano el cual puede ser utilizado para predecir sec
 %Conclusion of this paper Gopalratnam Cook
 %a
 
-lz effectively models sequential processes, and is extremely useful for prediction of processes where events are dependent on the previous event history. This is because of the ability of the algorithm to build an accurate model of the source of the events being generated, a feature inherited from its information theoretic background and the LZ78 text compression algorithm. 
+lz modelos eficazmente procesos secuenciales, y es extremadamente útil para la predicción de los procesos donde los eventos son dependientes de la historia evento anterior. Esto es debido a la capacidad del algoritmo para construir un modelo preciso de la fuente de los eventos que se generan, una característica heredada de su información de fondo teórico y el algoritmo de compresión de texto LZ78.
 %
-The effectiveness of the method for learning a measure of time can also be attributed to fact that ALZ is a strong sequential predictor. The sound theoretical principles on which ALZ is founded also mean that ALZ is an optimal Universal Predictor, and can be used in a variety of prediction scenarios.
+La eficacia del método para el aprendizaje de una medida de tiempo también se puede atribuir a hecho de que ALZ es un fuerte predictor secuencial. Los principios teóricos de sonido en el que ALZ se fundamenta también significan que ALZ es un universal Quiniela óptima, y se puede utilizar en una variedad de escenarios de predicción.
 %conclusion lcoa
 %
 
-Dado que la myora de los predictores funcionan de 
-manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de prediccion en linea.
+Dado que la mayoría de los predictores funcionan de 
+manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de predicción en linea.
 
 
 
 
 
-\section{Trabajo Futuro}
+\section{Trabajos Futuro}
+
+Esta memoria forma parte del plan de continuidad para la continuación en el postgrado de la Escuela de Ingeniería Informática y telecomunicaciones, por lo cual se desea profundizar este trabajo en las discusiones realizadas. Los temas deseados por abarcar:
+
+\begin{itemize}
+
+\item Crear un estudio comparativo con Modelos de Machine Learning como RNN, Redes Neuronales, Reglas de Asociación, Deep Learning y algoritmo de tipo Frequent Pattern Growth.
+
+\item Mejorar la implementación de Lempel Ziv 78, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel.(C++)
+
+
+\item Crear técnicas como la usada por Claude \etal~\cite{Claude2014}, para crear representaciones eficientes en función de este modelo predictivo.
+
+
+\item Investigar los factores teóricos y técnicos para poder mejorar la exactitud de la predicción.
+
+\item Ambiciosamente a realizar un estudio comparativo para encontrar puntos en común de estas áreas de la ciencia de la computación, se desea crear un nuevo algoritmo basado en la familia de \emph{Lempel Ziv}, el cual pueda tener un complemento para la selección de sesiones antes ser ingresadas en el modelo de navegación predictivo. 
+
+
+	
+\end{itemize}	
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
