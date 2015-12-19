@@ -740,7 +740,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	
 	
 	
-	\item  Dataset uniformes de largo acotado inferiormente y volumenes de alto tamaño.
+	%	\item  Dataset uniformes de largo acotado inferiormente y volumenes de alto tamaño.
 
 
 	
@@ -769,75 +769,75 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 
-	\begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
-	\node [circle,draw] (z){$n$}
-	child {node [circle,draw] (a) {$\frac{n}{2}$}
-		child {node [circle,draw] (b) {$\frac{n}{2^2}$}
-			child {node {$\vdots$}
-				child {node [circle,draw] (d) {$\frac{n}{2^k}$}}
-				child {node [circle,draw] (e) {$\frac{n}{2^k}$}}
-			} 
-			child {node {$\vdots$}}
-		}
-		child {node [circle,draw] (g) {$\frac{n}{2^2}$}
-			child {node {$\vdots$}}
-			child {node {$\vdots$}}
-		}
-	}
-	child {node [circle,draw] (j) {$\frac{n}{2}$}
-		child {node [circle,draw] (k) {$\frac{n}{2^2}$}
-			child {node {$\vdots$}}
-			child {node {$\vdots$}}
-		}
-		child {node [circle,draw] (l) {$\frac{n}{2^2}$}
-			child {node {$\vdots$}}
-			child {node (c){$\vdots$}
-				child {node [circle,draw] (o) {$\frac{n}{2^k}$}}
-				child {node [circle,draw] (p) {$\frac{n}{2^k}$}
-					child [grow=right] {node (q) {$=$} edge from parent[draw=none]
-						child [grow=right] {node (q) {$O_{k = \lg n}(n)$} edge from parent[draw=none]
-							child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
-								child [grow=up] {node (s) {$O_2(n)$} edge from parent[draw=none]
-									child [grow=up] {node (t) {$O_1(n)$} edge from parent[draw=none]
-										child [grow=up] {node (u) {$O_0(n)$} edge from parent[draw=none]}
-									}
-								}
-							}
-							child [grow=down] {node (v) {$O(n \cdot \lg n)$}edge from parent[draw=none]}
-						}
-					}
-				}
-			}
-		}
-	};
-	\path (a) -- (j) node [midway] {+};
-	\path (b) -- (g) node [midway] {+};
-	\path (k) -- (l) node [midway] {+};
-	\path (k) -- (g) node [midway] {+};
-	\path (d) -- (e) node [midway] {+};
-	\path (o) -- (p) node [midway] {+};
-	\path (o) -- (e) node (x) [midway] {$\cdots$}
-	child [grow=down] {
-		node (y) {$O\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)$}
-		edge from parent[draw=none]
-	};
-	\path (q) -- (r) node [midway] {+};
-	\path (s) -- (r) node [midway] {+};
-	\path (s) -- (t) node [midway] {+};
-	\path (s) -- (l) node [midway] {=};
-	\path (t) -- (u) node [midway] {+};
-	\path (z) -- (u) node [midway] {=};
-	\path (j) -- (t) node [midway] {=};
-	\path (y) -- (x) node [midway] {$\Downarrow$};
-	\path (v) -- (y)
-	node (w) [midway] {$O\left(\displaystyle\sum_{i = 0}^k n\right) = O(k \cdot n)$};
-	\path (q) -- (v) node [midway] {=};
-	\path (e) -- (x) node [midway] {+};
-	\path (o) -- (x) node [midway] {+};
-	\path (y) -- (w) node [midway] {$=$};
-	\path (v) -- (w) node [midway] {$\Leftrightarrow$};
-	\path (r) -- (c) node [midway] {$\cdots$};
-	\end{tikzpicture}
+	% \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+	% \node [circle,draw] (z){$n$}
+	% child {node [circle,draw] (a) {$\frac{n}{2}$}
+	% 	child {node [circle,draw] (b) {$\frac{n}{2^2}$}
+	% 		child {node {$\vdots$}
+	% 			child {node [circle,draw] (d) {$\frac{n}{2^k}$}}
+	% 			child {node [circle,draw] (e) {$\frac{n}{2^k}$}}
+	% 		} 
+	% 		child {node {$\vdots$}}
+	% 	}
+	% 	child {node [circle,draw] (g) {$\frac{n}{2^2}$}
+	% 		child {node {$\vdots$}}
+	% 		child {node {$\vdots$}}
+	% 	}
+	% }
+	% child {node [circle,draw] (j) {$\frac{n}{2}$}
+	% 	child {node [circle,draw] (k) {$\frac{n}{2^2}$}
+	% 		child {node {$\vdots$}}
+	% 		child {node {$\vdots$}}
+	% 	}
+	% 	child {node [circle,draw] (l) {$\frac{n}{2^2}$}
+	% 		child {node {$\vdots$}}
+	% 		child {node (c){$\vdots$}
+	% 			child {node [circle,draw] (o) {$\frac{n}{2^k}$}}
+	% 			child {node [circle,draw] (p) {$\frac{n}{2^k}$}
+	% 				child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+	% 					child [grow=right] {node (q) {$O_{k = \lg n}(n)$} edge from parent[draw=none]
+	% 						child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+	% 							child [grow=up] {node (s) {$O_2(n)$} edge from parent[draw=none]
+	% 								child [grow=up] {node (t) {$O_1(n)$} edge from parent[draw=none]
+	% 									child [grow=up] {node (u) {$O_0(n)$} edge from parent[draw=none]}
+	% 								}
+	% 							}
+	% 						}
+	% 						child [grow=down] {node (v) {$O(n \cdot \lg n)$}edge from parent[draw=none]}
+	% 					}
+	% 				}
+	% 			}
+	% 		}
+	% 	}
+	% };
+	% \path (a) -- (j) node [midway] {+};
+	% \path (b) -- (g) node [midway] {+};
+	% \path (k) -- (l) node [midway] {+};
+	% \path (k) -- (g) node [midway] {+};
+	% \path (d) -- (e) node [midway] {+};
+	% \path (o) -- (p) node [midway] {+};
+	% \path (o) -- (e) node (x) [midway] {$\cdots$}
+	% child [grow=down] {
+	% 	node (y) {$O\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)$}
+	% 	edge from parent[draw=none]
+	% };
+	% \path (q) -- (r) node [midway] {+};
+	% \path (s) -- (r) node [midway] {+};
+	% \path (s) -- (t) node [midway] {+};
+	% \path (s) -- (l) node [midway] {=};
+	% \path (t) -- (u) node [midway] {+};
+	% \path (z) -- (u) node [midway] {=};
+	% \path (j) -- (t) node [midway] {=};
+	% \path (y) -- (x) node [midway] {$\Downarrow$};
+	% \path (v) -- (y)
+	% node (w) [midway] {$O\left(\displaystyle\sum_{i = 0}^k n\right) = O(k \cdot n)$};
+	% \path (q) -- (v) node [midway] {=};
+	% \path (e) -- (x) node [midway] {+};
+	% \path (o) -- (x) node [midway] {+};
+	% \path (y) -- (w) node [midway] {$=$};
+	% \path (v) -- (w) node [midway] {$\Leftrightarrow$};
+	% \path (r) -- (c) node [midway] {$\cdots$};
+	% \end{tikzpicture}
 
 
 
@@ -867,40 +867,10 @@ Por otro lado teniendo la noción de como es el funcionamiento de un servidor II
 
 
  
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APUNTES
-%%%%%%%%  haciendo prubeas con crosss validate con  80 t y 20 de eval, consigo peor predicción que con menos data 
-%%%%%%%%  Además el arbol  al tener mmás információn, comienza a crecer desmensuaradmente
-%%%%%%%% de hecho las mejores predicciones son cunado hay ruido o sesiones repetitivas DATASOURCE >>>penultimate page= A  last page= A  session= AAAAAAAA
-%%%%%%%%
-
  
 
 
-%%%%%%%%
-
-% 100 datos
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 28.3% con 10t y 90 eval
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 19.2% con 20t y 80 eval
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 18.4% con 30t y 70 eval
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 21.3% con 40t y 60 eval
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 17.1% con 50t y 50 eval
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 14.23% con 70t y 30 eval
-
-% Con sequencias de igual tamaño (sesiones con un número de accesos > 5 ) llego a una accurracy del 18.3% con 90t y 10 eval
-
-
-
-% En donde mayor se tienen problemas para las predicciones son en los nodos hojas y nodos intermedios 
-% los cuales tienen mas de 3 hijos con probabibilidades equiprobables de acierto
-
-
-% Los otros casos donde se generan una gran cantidad de errores en las predicciones son secuencias de acceso que son equivalentes a 1 acceso.
-% Dado que no hay un historial de la sesión este cae un random dentro de un subconjunto de posibles accesos equiprobables.
-
-
+ 
 %%%%%%%%
 %%%%%%%%
 
@@ -1008,6 +978,13 @@ La eficacia del método para el aprendizaje de una medida de tiempo también se 
 
 Dado que la mayoría de los predictores funcionan de 
 manera offline, uno de los aporte de tener estar estructura de algoritmos como servicios es poder tener un motor de predicción en linea.
+
+\subsection{Contribución ML-LDC}
+
+
+En este trabajo,  nuestra principal contribución es el desarrollo del primer servidor de predicción de secuencias discretas con funcionalidad online y offline para secuencias de  sitios web. Adicionalmente nuestro modelo en conjunto \emph{PredictionIO}, es el primer servidor de Machine Learning usando un modelo de predicción con un algoritmo de \emph{Lossless Data Compression}. Hay varios temas propuestos en el que este trabajo pueda tener iteraciones  futuras de estas sistema. 
+
+
 
 
 
