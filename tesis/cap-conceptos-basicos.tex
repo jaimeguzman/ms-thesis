@@ -34,8 +34,7 @@ Es muy diferente cuando almacena secuencias de valores en lugar de valores indiv
 
 Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{Trie}, para representar un diccionario, en los cuales podemos señalar las siguientes operaciones disponibles:
 
-	\begin{itemize}
-	
+	\begin{itemize}	
 		\item \textbf{findByPrefix(x) :}  Retornar una una lista de todos los nodos hasta llegar a un nodo que posea un \emph{String} de parámetro equivalente a $x$.
 		
 		\item \textbf{contains(x) :} Retornar una lista de nodos intermedios hasta que el contenido del nodo final sea hoja o el intermedio corresponda a valor de la secuencia \emph{String} $x$.
@@ -43,8 +42,6 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 		\item \textbf{remove(x) :} Retorna \emph{true} ó \emph{false} cuando es posible remover el nodo con el contenido equivalente a $x$.
 		
 		\item \textbf{pathTo(x) :} Retorna una lista de nodos hasta llegar a un nodo que posea el contenido equivalente del valor $x$.
-		
-	
 	\end{itemize}
 
 
@@ -91,7 +88,7 @@ Definimos una secuencia de accesos discreta y finita, dado los accesos que tiene
 % Compresor tonto o Machine Learning lento para predecir
 \section{Lossless Data Compression(LDC)}
 
-La compresión sin pérdida o LDC, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
+La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir bits y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
 
 
 
@@ -157,10 +154,11 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 
 
 
-%\subsection{Transferencia de Estado Representacional}
+\subsection{Transferencia de Estado Representacional}
 
-% REST es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web. El término se originó en el año 2000, en una tesis doctoral sobre la web escrita por Roy Fielding, uno de los principales autores de la especificación del protocolo HTTP y ha pasado a ser ampliamente utilizado por la comunidad de 
-%@TODO: poner una sucia referencia a wiki o algun paper mas sensato
+Es un estilo de desarrollo de software para sistemas distribuidos mediante Internet. El uso de REST, de sus siglas en ingles, ha sido adoptado mucho más adoptado que  \emph{Simple Object Access Protocol}, ya que los servicios \emph{REST} aprovechan mayor cantidad el ancho de banda, lo que hace que sea una mejor opción para su uso a través de Internet, los mensajes tanto originados por el servidor o cliente puede ser enviados en formato \emph{xml} o \emph{json}. 
+
+
 
 %@TODO:
 % Este tema debería detallarse en las siguientes secciones

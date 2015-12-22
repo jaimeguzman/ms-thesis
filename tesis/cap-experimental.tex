@@ -13,9 +13,9 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{Trie} de un diccionario de símbolos, el cual utilizaremos para poder hacer predicciones.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{Trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
 
-En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de Machine Learning Prediction.IO que ya se ha explicado anteriormente. Usaremos la misma API que ofrece Prediction.IO para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
+En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning Prediction.IO} que ya se ha explicado anteriormente. Usaremos la misma API que ofrece \emph{Prediction.IO} para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
 %- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
 % of the total dataset) and testing (10 % of the total data).
@@ -36,10 +36,13 @@ En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un mo
 %There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
 
 Basados en un servidor de Machine Learning, hemos desarrollado un motor de predicción con un algoritmo basado en Lempel Ziv 78. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
-\{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
+Input = \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
 \end{equation}, la cual representaremos con nuestro modelo de predicción
 
 
+
+\begin{figure}[h] 
+	\centering
 	\begin{forest} 
 	[ $\epsilon$
 		[A
@@ -62,11 +65,14 @@ Basados en un servidor de Machine Learning, hemos desarrollado un motor de predi
 		]
 	]
 	\end{forest}
+	\caption{Ejemplod de Árbol de Predicción basado en LZ78.}
+	\label{fig:lztrie1}
+\end{figure}
 
 Dado nuestro modelo de predicción podemos determinar que nuestra salida resultante será:
 
 \begin{equation}
-\{ A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA \}
+Output = \{ A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA \}
 \end{equation}
 
 
@@ -97,6 +103,10 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
 
 
 
+
+
+
+
 \section{Ambientes Experimental}
 
 Para los ambientes experimentales se han dispuestos dos máquinas para realizar las pruebas. 
@@ -110,9 +120,12 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se usará la máquina con 16GB y para experimentos con sesiones mayores a 1000 sesiones de usuarios se usará la máquina 240GB.	
 	
 
-\subsubsection{Software}
+\subsubsection{Software utilizado}
 
 	\begin{itemize}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
 		\item C++11
 		\item Java  1.8
 		\item Java(TM) SE Runtime Environment (build 1.8)
@@ -131,11 +144,8 @@ Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se u
 
 
 % Selección de la métrica
-
 % https://docs.prediction.io/evaluation/metricchoose/
-
 % Explicación de evaluación
-
 % https://docs.prediction.io/templates/recommendation/evaluation/#evaluation-data-generation
 
 
@@ -143,7 +153,7 @@ Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se u
 
 El motor de predicción es Prediction.IO, como se ha señalado anteriormente  es un framework para desplegar servidores con algoritmos de Maquinas de Aprendizaje, Decission Tree, K-Means, RNN y todos los algoritmos ofrecidos por la suite de Apache Spark y MLib. % Colocar unos lindos links para hacer publicidad a esto
 
-Para desarrollar un motor que se acople con \emph{PIO} se deberá seguir el patrón \emph{DASE} y crear un modelo con persistencia en memoria RAM que nos permita un acceso rápido a las predicciones por consultar.
+Para desarrollar un motor que se acople con \emph{PredictionIO} se deberá seguir el patrón \emph{DASE} y crear un modelo con persistencia en memoria RAM que nos permita un acceso rápido a las predicciones por consultar.
 
 
 Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la Java Virtual Machine. Prediction.IO no solo ocupa Scala, adicionalmente provee el uso de Apache Spark con sus librerías de MLIB (Machine Learning Library), Zookeeper, Hbase (Hadoop) y Elasticsearch. Hemos utilizado Python para realizar un cliente por línea de comando en el cual poder hacer pruebas y adicionalmente incluir un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes python ver los fuentes en los anexos.
@@ -180,40 +190,16 @@ Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como de
 % Cita a Rkonow Claude & Navarro
 
 Se usarán las secuencias disponibles de \emph{webaccess logs} pública del sitio MSNBC. El set de datos provienen de los registros de un servidor IIS (Internet Information Services) msnbc.com de un día completo de la fecha  28 de Septiembre de 1999. 
-Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7  categorías Página web visitas por secuencia, el tamaño de letras de este conjunto de datos es $\sigma \ = 17$.
-
-
-Ejemplo de estructura de Dataset MSNBC :
-\vspace{0.5cm}
-
-\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
-% Different categories found in input file:
-
-frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
-
-% Sequences:
-
-A A 
-B 
-C B B D B B B C C 
-A A 
-F 
-F G G G F F H H H H 
-F I D D D J C J E J D D D 
-A A A K A A A 
-L L 
-A A 
-H H H H H H 
-\end{lstlisting}
+Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7 categorías web visitas por secuencia, el tamaño del alfabeto de este conjunto de datos es, $\sigma \ = 17$.
 
 
 
 
+Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el anexo de la memoria} en C++ para filtrar las sesiones de los usuarios, creando nuevos set de datos y transformarlos a símbolos, caracteres en mayúscula, por ejemplo en la figura \ref{fig:sesiones-ds-msbc-num}  y figura \ref{fig:sesiones-ds-basicos} se encuentra una muestra de las entradas que disponemos para trabajar. El set de datos de la figura \ref{fig:sesiones-ds-basicos}, es el formato que utilizaremos para generar el modelo.
 
-Utilizaremos un simple programa en C++ para filtrar las sesiones de los usuarios, creando nuevos set de datos y transformarlos a símbolos, caracteres en mayúscula, por ejemplo: 
-\footnote{Este programa se encuentra junto en el anexo de la memoria}
 
-	
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 	1 1 
 	2 
@@ -225,13 +211,49 @@ Utilizaremos un simple programa en C++ para filtrar las sesiones de los usuarios
 	6 
 	6 7 7 7 6 6 8 8 8 8 
 	6 9 4 4 4 10 3 10 5 10 4 4 4 
+	\end{lstlisting}	
+	\caption{Secuencia de datos con indices numéricos del set de datos MSNBC}\label{fig:sesiones-ds-msbc-num}
+\end{figure}
+
+
+
+
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
+	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+	% Different categories found in input file:
+	
+	frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
+	
+	% Sequences:
+	A A 
+	B 
+	C B B D B B B C C 
+	A A 
+	F 
+	F G G G F F H H H H 
+	F I D D D J C J E J D D D 
+	A A A K A A A 
+	L L 
+	A A 
+	H H H H H H 
 	\end{lstlisting}
+	\caption{Ejemplo de sesiones de usuarios en símbolos dataset MSNBC.}
+	\label{fig:sesiones-ds-basicos}
+\end{figure}
 
 
- Ejemplo de sub-dataset creados:
+
+
+
+
+{ Ejemplo de sub-dataset creados:}
 
 %@TODO: Ver como hacer mas pequeño el dataset.
 \begin{itemize}
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
 	\item Secuencias de webaccess con sesiones de con un umbral mínimo.
 	\item Secuencias de webaccess con sesiones de largo equivalente.
 	\item Secuencias de webaccess con sesiones de más de 100 secciones web visitadas.
@@ -243,21 +265,21 @@ Utilizaremos un simple programa en C++ para filtrar las sesiones de los usuarios
 Trabajaremos con 1.000.000 de registros de los cuales hemos realizados distintos subconjuntos para hacer una validación cruzada:
 
 \begin{itemize}
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
 	\item 10 Sesiones de usuarios
 	\item 100 Sesiones de usuarios
-%	\item 500 Sesiones de usuarios
 	\item 1.000 Sesiones de usuarios
-%	\item 5.000 Sesiones de usuarios
 	\item 10.000 Sesiones de usuarios
 	\item 50.000 Sesiones de usuarios
 	\item 100.000 Sesiones de usuarios
 	\item 500.000 Sesiones de usuarios
-%	\item 750.000 Sesiones de usuarios
 	\item 1.000.000 Sesiones de usuarios
 \end{itemize}
 
 
-Es importante señalar que la división de nuestro set de datos es debido a que no conocemos la naturaleza de los mismo, pero con nuestro modelo podemos hacer un estudio para ir detectando patrones que puedan ser claves para medir el rendimiento en función a los criterios de volumen de datos versus el Accurracy(Exactitud).
+Es importante señalar que la división de nuestro set de datos es debido a que no conocemos la naturaleza de los mismo, pero con nuestro modelo podemos hacer un estudio para ir detectando patrones que puedan ser claves para medir el rendimiento en función a los criterios de volumen de datos versus el \emph{Accurracy} (Exactitud).
 
 
 
@@ -266,7 +288,6 @@ Es importante señalar que la división de nuestro set de datos es debido a que 
 
 \begin{table}[]
 	\centering
-
 	\label{table-list-symbol}
 	\begin{tabular}{cl}
 		Page       & Symbol \\ \cline{1-2}
@@ -288,7 +309,7 @@ Es importante señalar que la división de nuestro set de datos es debido a que 
 		bbs        & P      \\
 		travel     & Q      \\ 
 	\end{tabular}
-%	\caption{Para poder interpretar la entrada anterior se debe tener esta relación de símbolos con respecto a las páginas}
+	\caption{Equivalencia secciones msnbc y símbolo representativo.}
 \end{table}
 
 
@@ -312,18 +333,27 @@ Sea la siguiente sesión de un usuario
 $\{A , B , A  \}  $ para un alfabeto $\Sigma=\{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q \} $
 
 
-	\begin{tikzpicture}[level/.style={sibling distance=40mm/#1}]
-	\node [circle,draw] (epsilon){$\varepsilon$}
+
+
+
+\begin{figure}[h] 
+	\centering
+	 \begin{tikzpicture}[level/.style={sibling distance=40mm/#1}]
+		\node [circle,draw] (epsilon){$\varepsilon$}
 		child { node [circle,draw] (A) {$A$} 
-				child { node[circle,draw](AA){$AA$}  }
-			}
+			child { node[circle,draw](AA){$AA$}  }
+		}
 		child {node [circle,draw] (B) {$B$} }
-	;
-	
-	\end{tikzpicture}
+		;
+		
+		\end{tikzpicture}
+	\caption{Ejemplo de Modelo de predicción basado en un \emph{Trie} con LZ78.}
+	\label{fig:sim}
+\end{figure}
 
 
-Como usted puede ver a menor cantidad de símbolos en la sesión estos generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un webaccess posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
+
+Como usted puede ver a menor cantidad de símbolos en la sesión generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un webaccess posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
 
 Dado el evento $x$  a predecir que pertenece a una secuencia discreta, la probabilidad de $P( x| AB  ) = A $, es el resultado de esta sesión de entrenamiento, pero la probabilidad $P(x | AAB) = ?$, es desconocida.  Si extendemos los símbolos de este nodo cada nodo hijo tendría un probabilidad de $ \dfrac{1}{\Sigma} = \dfrac{1}{17} = 0.0588 $ o bien sería  $\dfrac{1}{ |\sigma| }$, siendo $|\sigma|$ el total de símbolos que se encuentran en el alfabeto. 
 
@@ -336,414 +366,30 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 \vspace{1cm}
 \begin{enumerate}
 	% Idea de experimento con disminución del tamaño del alfabeto
-	\item \label{exp1} \textbf{Experimento con sesiones de usuarios con datos generados de forma sintética}
-	
-	
-	Creamos un set de datos en el cual pudiesemos esperar valores conocidos. Además acotamos a un diccionario de solo tres elementos, el Accurracy obtenido es:
-	
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Numero de Sesiones,
-	ylabel=Accurracy en \% ]
-	\addplot[color=black,mark=x] coordinates {
-		(10, 66.6666666666666)
-		(20, 73.6842105263157)
-		(30, 75.8620689655172)
-		(40, 76.9230769230769)
-		(50, 73.469387755102)
-		(60, 74.5762711864406)
-		(70, 75.3623188405797)
-	};
-	\end{axis}
-	\end{tikzpicture}
-	
- 
-	
-	En el gráfico anterior usamos como mínimo 10 sesiones de las 80 de disponibles que se usaron par este experimento. Dado a que en este caso la cantidad de sesiones es bien reducida y cada símbolo posee una gran frecuencia existe mayor redundancia de datos y nuestro modelo se comporta como espera que lo haga un algoritmo de compresión de datos. Entre mayor es la cantidad de símbolos iguales
-	que van entrenando al \emph{LZtrie}, hay una aglomeración de frecuencia en ciertos nodos, pero estos son minimizados por los niveles que genera al momento de la construcción del árbol.
-	
-	La tasa de frecuencia de un símbolo converge a predicciones de secuencias evaluadas que caen en el nodo con mejor probabilidad dado $\epsilon$ (Raíz del \emph{trie}).
-	
-
-
-	\newcommand{\slice}[4]{
-		\pgfmathparse{0.5*#1+0.5*#2}
-		\let\midangle\pgfmathresult
-		
-		% slice
-		\draw[thick,fill=black!10] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
-		
-		% outer label
-		\node[label=\midangle:#4] at (\midangle:1) {};
-		
-		% inner label
-		\pgfmathparse{min((#2-#1-10)/110*(-0.3),0)}
-		\let\temp\pgfmathresult
-		\pgfmathparse{max(\temp,-0.5) + 0.8}
-		\let\innerpos\pgfmathresult
-		\node at (\midangle:\innerpos) {#3};
-	}
-	
-	\begin{center}
-	\begin{tikzpicture}[scale=1.5]
-	
-	\newcounter{a}
-	\newcounter{b}
-	\foreach \p/\t in {61.5/page A, 35.9/page B, 12.8/type C }
-	{
-		\setcounter{a}{\value{b}}
-		\addtocounter{b}{\p}
-		\slice{\thea/100*360}
-		{\theb/100*360}
-		{\p\%}{\t}
-	}
-	
-	\end{tikzpicture}
-	\end{center}
-	
-
-	Tal como se puede ver en el gráfico anterior existe un gran probabilidad de que dado una secuencia de accesos después de $\epsilon$ la próxima sección a acceder sea la página A.
-	Esto es adicionalmente es consistente a el tipo de set de datos que hemos ocupado ya que con esto podemos delimitar a que nuestro modelo al tener símbolos bastante frecuente no crea un trie desbalanceado, para este caso solo acota constantemente a un altura de 5 niveles y una variación mínima entre la exactitud, que posee el entrenamiento versus set de evaluaciones, incluso podemos solo podemos usar un entrenamiento de por lo menos 30 sesiones para predecir 50 sesiones con un Accurracy con un margen de error máximo de $10\%$ en el peor de los casos. 
-	Lo anterior si lo comparamos con un evento aleatorio como resultado nos daría que nuestro modelo es bastante mejor que una predicción aleatoria, es decir $ 66.7\%  \geq 33\%$, siendo esta una comparativa optimista de que al menos nuestro modelo dado un set de datos artificial.
-	
-	
+	\item\label{exp1} \textbf{Experimento con sesiones de usuarios con datos generados de forma sintética}
+	\input{cap-experimental-exp1}
 	
 	
 	\newpage
-	\item \label{exp2}
-	\textbf{Sesiones con menor redundancia y secuencias de largo variable }
-	
-
-	Validaremos ahora el comportamiento de nuestro modelo con datos reales con secuencias discretas distribuidas no uniformemente.
-	
-	
-	\begin{tikzpicture}
-		\begin{axis}[
-		xlabel= Numero de Sesiones,
-		ylabel=Accurracy en \% ]
-		\addplot[color=black,mark=x] coordinates {
-			(10, 22.2471910112359)
-			(20, 16.7088607594936)
-			(30, 27.6328502415459)
-			(40, 21.6949152542372)
-			(50, 25.469387755102)
-			(60, 24.7435897435897)
-			(70, 25.5665024630541)
-			(80, 26.3157894736842)
-			(90, 33.3333333333333)
-		};
-		\end{axis}
-	\end{tikzpicture}
-		
-	En este caso si existe una menor redundancia a diferencia del experimento \ref{exp1} lo que produce que el modelo tengo un rendimiento bajo, aún así dada sigue siendo en el mejor de los casos seis veces mejor que la probabilidad aleatoria de predecir. En este experimento usamos un $|\sigma| =15$, por ende tenemos que dado nuestro modelo,
-	\begin{equation}\label{expResult2}
-		M( x | \mbox{90\% train}  ) = 33 \% \geq M( x | \mbox{random}  ) = 6.66\% 
-	\end{equation}, como hemos visto en (\ref{expResult2}) nuestro modelo sigue siendo válido en un escenario en que los datos se dispersan considerablemente. 
-	Adicionalmente en este tipo de caso existe un comportamiento de nuestro modelo en el cual hace el mejor esfuerzo por mantener la compresibilidad de los datos mayor o igual a la predictibilidad del mismo, peor al tener mayor dispersión la altura para una cantidad similar de sesiones en (\label{expResult2}) sigue siendo 5. Pero la cantidad de nodos sufre un gran incremento, podemos verlo en:
-	
-	
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel=$\mbox{Sesiones de Entrenamiento}$,
-	ylabel=$\mbox{Acurracy en \%}$]
-	\addplot[smooth,mark=*,black] plot coordinates {
-			(10, 22.2471910112359)
-			(20, 16.7088607594936)
-			(30, 27.6328502415459)
-			(40, 21.6949152542372)
-			(50, 25.469387755102)
-			(60, 24.7435897435897)
-			(70, 25.5665024630541)
-			(80, 26.3157894736842)
-			(90, 33.3333333333333)
-	};
-
-	
-%	\addplot[smooth,color=red,mark=x]
-%	plot coordinates {
-%			(10, 10)
-%			(20, 10)
-%			(30, 10)
-%			(40, 10)
-%			(50, 19)
-%			(60, 33)
-%			(70, 56)
-%			(80, 66)
-%			(90, 69)
-%	};
-%	\addlegendentry{Nodes/train}
-	\end{axis}
-	\end{tikzpicture}
+	\item \label{exp2} \textbf{Sesiones con menor redundancia y secuencias de largo variable }
+	\input{cap-experimental-exp2}
 
 
-	Acorde al gráfico anterior podemos señalar que al haber un incremento en la dispersión de los datos y menor redundancia, el crecimiento de nuestro árbol será horizontal, ya que para tanto como hemos en este experimento y en (\label{expResult2}), la altura del nodo no tiene una relación directa a la redundancia ó dispersión, pero si a la cantidad de sesiones evaluadas. 
-	
-	Además, al mayor esfuerzo que hace el predictor por lograr mejores resultados se construyen mas nodos, por lo que el modelo LDC, deja de comprimir por satisfacer las condiciones de predictibilidad necesarias para seguir siendo válido.
-
-	
-	Iteramos una nueva evaluación con las mismas condiciones pero subiendo el volumen de datos de 100 a 1000. Con este buscaremos ver encontrar el mismo comportamiento a un mayor nivel de datos.
-	
-
-
-	\begin{tikzpicture}
-		\begin{axis}[
-		xlabel=$\mbox{Sesiones de Entrenamiento}$,
-		ylabel=$\mbox{Acurracy en \%}$]
-		\addplot[smooth,mark=*,black] plot coordinates {
-			(100,  20.3715239154616)
-			(200,  21.2302878598247)
-			(300,  22.6490224129709)
-			(400,  24.3752086811352)
-			(500,  26.2308617234469)
-			(600,  25.8692564745196)
-			(700,  28.8423315814619)
-			(800,  28.929431438127)
-		};
-		\end{axis}
-	\end{tikzpicture}
-	
-	El modelo sigue siendo válido al ir aumentando el volumen de datos bajo las mismas circunstancias. Incluso para ambos experimentos anteriores podemos sacar la relación que nuestro modelo posee una tasa de error de $\pm4\%$ al aumentar 100 veces con respecto a la primera iteración de este escenario cuando se usa la  mayor cantidad de sesiones de entrenamiento posible.
-
-
-	Otra particularidad que ha demostrado el modelo gracias a las propiedades de compresibilidad de Lempel Ziv\cite{ZivLempel1977} es la Minimización de niveles requeridos aún cuando la cantidad de nodos va creciendo.
-	
-	
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel=$\mbox{Niveles del Trie}$,
-	ylabel=$\mbox{Número de nodos}$]
-	\addplot[smooth,mark=*,blue] plot coordinates {
-		( 10,5 )
-		(  28 ,5)
-		( 36 , 16)
-
-	};
-
-	\addlegendentry{ 1000 sesiones }
-
-	\addplot[smooth,mark=*,red] plot coordinates {
-		( 10,5 )
-		( 10,5 )
-		( 10,5 )
-	};
-	\addlegendentry{ 100 sesiones }
-	
-	\end{axis}
-	\end{tikzpicture}
-
-
-	Como podemos ver en el comportamiento de inicio del modelo el criterio de partida en el escenario descrito es compartido por ambos experimentos.
-
-	También dado a que este no es uno de los casos más favorables para nuestro modelo de predictivo, podríamos tener un diferencial en los tiempos de construcción del Trienode acorde a la cantidad de nodos necesarios para los criterios de entrenamiento, 
-
-
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Sesiones de Entrenamiento ,
-	ylabel=Tiempo en \emph{seg} ]
-	\addplot[color=black,mark=x] coordinates {
-			(100, 45 )
-			(200, 87 )
-			(300, 94 )
-			(400, 75 )
-			(500, 84 )
-			(600, 76 )
-			(700, 67)
-			(800, 72 )
-	};
-	\end{axis}
-	\end{tikzpicture}
-	
-	Como podemos ver en el gráfico anterior podemos buscar un dataset optimo el cual puede encontrarse dentro del intervalo $ [ 300,400 ]$ sesiones de usuario, equivalente a la mejores resultados de \emph{Accurracy} y menor cantidad de secuencias de entrenamiento
-
-
-	\item \label{exp4}	
+	\item \label{exp3}	
 	\textbf{Sesiones con tamaño de secuencia constante}
-
-	En este experimentos queremos lograr el mismo comportamiento que tuvimos en el experimento [\ref{exp1}]. Haciendo un filtrado simple de los \emph{webaccess log } que hemos estado analizando podemos llegar a mejores valores que las predicciones de resultado aleatorio.
-
-
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Numero de Sesiones de entrenamiento,
-	ylabel=Accurracy en \% ]
-	\addplot[color=black,mark=x] coordinates {
-			(100, 39.3259176863181 )
-			(200, 41.8698372966207 )
-			(300, 42.1454458750596 )
-			(400, 42.6323038397328 )
-			(500, 41.9799599198396 )
-			(600, 45.3634085213033 )
-			(700, 44.7892976588628)
-			(800, 43.9736180904522 )
-			(900, 42.9539842873176 )
-	};
-	\end{axis}
-	\end{tikzpicture}
-	
-	La cantidad total de sesiones usadas fueron 1000 y las cuales como en el gráfico anterior se señala a mayor cantidad entrenamiento existe al menos un punto de la curva que se vuelve un máximo.
-
-
-	Seguido a esto podemos ver el tiempo de construcción del \emph{LZTrie} que nuestro modelo demora en generar:
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Sesiones de Entrenamiento ,
-	ylabel=Tiempo en \emph{seg} ]
-	\addplot[color=black,mark=x] coordinates {
-			(100, 20)
-			(200, 35)
-			(300, 44)
-			(400, 49)
-			(500, 60)
-			(600, 65)
-			(700, 58)
-			(800, 62)
-			(900, 57 )
-	};
-	\end{axis}
-	\end{tikzpicture}
-
-	Al igual que en el gráfico anterior podemos ver que existe al menos una mínima cantidad sesiones las cuales generar un rendimiento sobre las evaluaciones a realizar. 
-
-
-
-
-
-
-
-
-	\item \label{exp5}
-	\textbf{Secuencias de accesos con limite inferior 100 símbolos }
-	
-	Este experimento busca validar las condiciones necesarias que debe tener una secuencia de entrada para que el algoritmo LDC pueda optimizar al momento de ser construido para una predicción online, dado esto utilizaremos sesiones largas que entreguen redundancia en los accesos que permita al modelo de navegación ser más comprimido sin perder una métrica considerable para funcionar, según lo anterior realizamos las siguientes iteraciones con las particiones de data que cumplen: 
-	
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Numero de Sesiones,
-	ylabel=Accurracy en \% ]
-	\addplot[color=black,mark=x] coordinates {
-		(10 ,  42.5190839694656 )
-		(50 ,  44.595041322314 )
- 		(100 , 49.089861751152 )
- 		(200 , 56.7230538922155 )
- 		(300 , 60.6837606837608 )
- 		(400 , 64.9253731343282 )
- 		(520 , 71.4285714285715 )			
-	};
-	\end{axis}
-	\end{tikzpicture}
-	
-	Sean la sesiones de entrenamiento de tamaño $T$, con un valor en $T(100) = 49 \% $ sobre un set de evaluación $E(100) = 900 \mbox{ sesiones}$ , nuestro modelo propuesto al igual que en el experimento \ref{exp1}, entrega un punto mínimo el cual al menos da un $50\%$ de acierto sobre el total de 535 sesiones de usuarios, con una secuencia mínima de 100 símbolos. Planteado de otra forma, sólo con el $20\%$ del total de datos de entrenamiento nuestro motor de predicción ya alcanza un \emph{Accurracy} que es mucho mejor que un predictor aleatorio sobre el alfabeto. Siendo este valor bastante optimista acorde a los puntos óptimos del predictor que use la menor cantidad de recursos.
-	
+	\input{cap-experimental-exp3}
 	
 
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Sesiones de Entrenamiento ,
-	ylabel=Tiempo en \emph{seg} ]
-	\addplot[color=black,mark=x] coordinates {
-		(10 ,  18.4)
-		(50 ,  41.5)
-		(100 , 69.46)
-		(200 , 110)
-		(300 , 134)
-		(400 , 213)
-		(520 , 222)	
-	};
-	\end{axis}
-	\end{tikzpicture}
-
-	Congruento con lo anterior podemos ver que sin tener un margen de erro superior al split de datos seleccionado logramos un latencia de consulta predictiva en línea de alrededor de 70 \emph{seg}. el cual para ser implementado y consumido como ya se había mencionado antes como un algoritmo predictivo como servicio REST, esta dentro del promedio aceptable.
+	\item \label{exp4} \textbf{Secuencias de accesos con limite inferior 100 símbolos }
+	\input{cap-experimental-exp4}
 
 
-
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Cantidad de Nodos,
-	ylabel=Sesiones de Entrenamiento  ]
-	\addplot[color=black,mark=x] coordinates {
-		(1012,10 )
-		(1428,50 )
-		(2481,100 )
-		(3288,200 )
-		(3919,300 )
-		(4683,400 )
-		(5038,520 )	
-	};
-	
-	\end{axis}
-	\end{tikzpicture}	
-
-	Otro de los puntos  considerado aceptable, es que dado un set de entrenamiento $T(100)$, solo necesitaremos menos de la mitad de nodos que se requieren para llegar a un valor de predicción bueno, a diferencia de una partición de entrenamiento que requiere más del $90\%$ de nodos del total del set de datos.\\
-	
-
-
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel=Cantidad de Nodos para LZTrie predictivo,
-	ylabel=Accurracy en \%  ]
- 
-	\addplot[color=black,mark=x] coordinates {
-		(1012,42.5190839694656 )
-		(1428,44.595041322314 )
-		(2481,49.089861751152 )
-		(3288,56.7230538922155 )
-		(3919,60.6837606837608 )
-		(4683,64.9253731343282 )
-		(5038,71.4285714285715 )	
-	};	
-	\end{axis}
-	\end{tikzpicture}
-
-	Finalmente podemos señalar que la tasa de Accurracy, aún  subiendo al doble la cantidad de nodos para construir un \emph{LZTrie}, con mayor información  para predecir alcanza un rendimiento aceptable respecto de la compresión realizada. De todas maneras también se cumple que la cantidad de nodos del entrenamiento es directamente proporcional a la métrica seleccionada.
-	
-	
-	\item \label{exp6}	
+	\item \label{exp5}	
 	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{LZTrie}}
-	
-	
-	
-	Hacemos una validación cruzada para una muestra de data de 906130 sesiones de usuarios para probar como se comporta con cross validation.
-	
-	\begin{tikzpicture}
-	\begin{axis}[
-	xlabel= Numero de Sesiones de Entrenamiento,
-	ylabel=Accurracy en \% ]
-	\addplot[color=red,mark=x] coordinates {
-		(100, 29.9674371114825)
-		(200, 44.9237667712101)
-		(1000, 56.519572924979)
-		(2500, 68.9237667712101)
- 
-	};
-	\end{axis}
-	\end{tikzpicture}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	\input{cap-experimental-exp5}	
 	
 	
 	%	\item  Dataset uniformes de largo acotado inferiormente y volumenes de alto tamaño.
-
-
-	
 \end{enumerate}
 
 
@@ -989,7 +635,7 @@ En este trabajo,  nuestra principal contribución es el desarrollo del primer se
 
 
 
-
+\newpage
 \section{Trabajos Futuro}
 
 Esta memoria forma parte del plan de continuidad para la continuación en el postgrado de la Escuela de Ingeniería Informática y telecomunicaciones, por lo cual se desea profundizar este trabajo en las discusiones realizadas. Los temas deseados por abarcar:

@@ -90,6 +90,9 @@ Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los 
 	PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
 	
 	\begin{itemize}
+			\setlength{\itemsep}{1pt}
+			\setlength{\parskip}{0pt}
+			\setlength{\parsep}{0pt}
 		\item Escape
 		\item Exclusion
 	\end{itemize}
@@ -190,22 +193,34 @@ El algoritmo LZ78 es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel19
 % \end{algorithm}
 
 
-\begin{verbatim}
-initialize dictionary := null 
-initialize phrase w := null 
-loop
-	wait for next symbol v 
-	if ((w.v) in dictionary):
-		w := w.v 
-	else
-		add (w.v) to dictionary
-		w := null
-		increment frequency for every possible prefix of phrase
 
-endif 
-forever
+\begin{algorithm}[t]
+	\caption{Seudocódigo para Algoritmo de LZ78.}
+	\label{alg:pseudocode-lz78}
+	\begin{algorithmic}[1]
+		\State {initialize} \textbf{dictionary  }{:= null}
+		\State {initialize} \textbf{phrase w  }{:= null}
+		
+		\While{wait for next symbol v }
+			\If { ((w.v) in dictionary):}
+				\State  \textbf{ w  }{:= w.v}	
+			\Else 
+				\State 	{add (w.v) to dictionary}
+				\State {w := null}
+				\State {increment frequency for every possible prefix of phrase}
+				
+			\EndIf	
+		\EndWhile
+	\end{algorithmic}
+\end{algorithm}
 
-\end{verbatim}
+
+
+
+
+
+ 
+
 
 %%%%%%%Moghaddam_Kabir
 LZ78 es un algoritmo de compresión sin pérdidas, el algoritmo anteriormente muestra  como el diccionario es construido  a partir de secuencias, utilizando LZ78. En el entorno web utilizamos frecuencia de webaccess de páginas web del usuario como secuencia de entrada al algoritmo LZ78. La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo PPM. Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas $ABABCBC$ secuencialmente. Si utilizamos el algoritmo LZ78, entonces generaríamos un trie con nodos  A, B, AB, BC y C, que deberán insertar. 

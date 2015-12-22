@@ -1,0 +1,76 @@
+
+	Creamos un set de datos en el cual pudiesemos esperar valores conocidos. Además acotamos a un diccionario de solo tres element+os, el Accurracy obtenido es:
+	
+	
+	
+	\begin{figure}[h] 
+		\centering
+			\begin{tikzpicture}
+			\begin{axis}[
+			xlabel= Número de Sesiones,
+			ylabel=Accurracy en \% ]
+			\addplot[color=black,mark=x] coordinates {
+				(10, 66.6666666666666)
+				(20, 73.6842105263157)
+				(30, 75.8620689655172)
+				(40, 76.9230769230769)
+				(50, 73.469387755102)
+				(60, 74.5762711864406)
+				(70, 75.3623188405797)
+			};
+			\end{axis}
+			\end{tikzpicture}	
+		\caption{Experimento con set de datos sintéticos.}
+		\label{fig:graph-exp1}
+	\end{figure}
+	
+
+	
+ 
+	
+	En el gráfico \ref{fig:graph-exp1} usamos como mínimo 10 sesiones de las 80 de disponibles que se usaron par este experimento. Dado a que en este caso la cantidad de sesiones es bien reducida y cada símbolo posee una gran frecuencia existe mayor redundancia de datos y nuestro modelo se comporta como espera que lo haga un algoritmo de compresión de datos. Entre mayor es la cantidad de símbolos iguales
+	que van entrenando al \emph{LZtrie}, hay una aglomeración de frecuencia en ciertos nodos, pero estos son minimizados por los niveles que genera al momento de la construcción del árbol.
+	
+	La tasa de frecuencia de un símbolo converge a predicciones de secuencias evaluadas que caen en el nodo con mejor probabilidad dado $\epsilon$ (Raíz del \emph{trie}).
+	
+
+
+	\newcommand{\slice}[4]{
+		\pgfmathparse{0.5*#1+0.5*#2}
+		\let\midangle\pgfmathresult
+		
+		% slice
+		\draw[thick,fill=black!10] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
+		% outer label
+		\node[label=\midangle:#4] at (\midangle:1) {};
+		% inner label
+		\pgfmathparse{min((#2-#1-10)/110*(-0.3),0)}
+		\let\temp\pgfmathresult
+		\pgfmathparse{max(\temp,-0.5) + 0.8}
+		\let\innerpos\pgfmathresult
+		\node at (\midangle:\innerpos) {#3};
+	}
+	
+	\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+	
+	\newcounter{a}
+	\newcounter{b}
+	\foreach \p/\t in {61.5/page A, 35.9/page B, 12.8/type C }
+	{
+		\setcounter{a}{\value{b}}
+		\addtocounter{b}{\p}
+		\slice{\thea/100*360}
+		{\theb/100*360}
+		{\p\%}{\t}
+	}
+	
+	\end{tikzpicture}
+	\end{center}
+	
+
+	Tal como se puede ver en el gráfico anterior existe un gran probabilidad de que dado una secuencia de accesos después de $\epsilon$ la próxima sección a acceder sea la página A.
+	Esto es adicionalmente es consistente a el tipo de set de datos que hemos ocupado ya que con esto podemos delimitar a que nuestro modelo al tener símbolos bastante frecuente no crea un trie desbalanceado, para este caso solo acota constantemente a un altura de 5 niveles y una variación mínima entre la exactitud, que posee el entrenamiento versus set de evaluaciones, incluso podemos solo podemos usar un entrenamiento de por lo menos 30 sesiones para predecir 50 sesiones con un Accurracy con un margen de error máximo de $10\%$ en el peor de los casos. 
+	Lo anterior si lo comparamos con un evento aleatorio como resultado nos daría que nuestro modelo es bastante mejor que una predicción aleatoria, es decir $ 66.7\%  \geq 33\%$, siendo esta una comparativa optimista de que al menos nuestro modelo dado un set de datos artificial.
+	
+	

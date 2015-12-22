@@ -73,6 +73,12 @@ Las opciones  --debug y --verbose  muestran información detallada sobre los con
 \newpage
 \section{Configuraciones para hacer correr IntelliJ con Apache SPARK y Prediction.IO 0.94}
 
+
+
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
+	
+	
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 Main class: io.prediction.workflow.CreateWorkflow
 
@@ -119,35 +125,41 @@ Program Arguments: --engineInstanceId **replace_with_the_id_from_pio_train**
 
 Try -- for more information.
 Usage: pio train [--batch <value>] [--skip-sanity-check]
-                 [--stop-after-read] [--stop-after-prepare]
-                 [--engine-factory <value>] [--engine-params-key <value>]
-                 [--scratch-uri <value>]
-                 [common options...]
+[--stop-after-read] [--stop-after-prepare]
+[--engine-factory <value>] [--engine-params-key <value>]
+[--scratch-uri <value>]
+[common options...]
 
 Kick off a training using an engine (variant) to produce an engine instance.
 This command will pass all pass-through arguments to its underlying spark-submit
 command.
 
-  --batch <value>
-      Batch label of the run.
-  --skip-sanity-check
-      Disable all data sanity check. Useful for speeding up training in
-      production.
-  --stop-after-read
-      Stop the training process after DataSource.read(). Useful for debugging.
-  --stop-after-prepare
-      Stop the training process after Preparator.prepare(). Useful for
-      debugging.
-  --engine-factory
-      Override engine factory class.
-  --engine-params-key
-      Retrieve engine parameters programmatically from the engine factory class.
-  --scratch-uri
-      URI of the working scratch space. Specify this when you want to have all
-      necessary files transferred to a remote location. You will usually want to
-      specify this when you use --deploy-mode cluster.
+--batch <value>
+Batch label of the run.
+--skip-sanity-check
+Disable all data sanity check. Useful for speeding up training in
+production.
+--stop-after-read
+Stop the training process after DataSource.read(). Useful for debugging.
+--stop-after-prepare
+Stop the training process after Preparator.prepare(). Useful for
+debugging.
+--engine-factory
+Override engine factory class.
+--engine-params-key
+Retrieve engine parameters programmatically from the engine factory class.
+--scratch-uri
+URI of the working scratch space. Specify this when you want to have all
+necessary files transferred to a remote location. You will usually want to
+specify this when you use --deploy-mode cluster.
 
 \end{lstlisting}
+	
+	
+	
+
+\end{figure}
+
 
 \vspace{1cm}
 
@@ -200,11 +212,16 @@ print engine_client.send_query({"webaccess": "A", "num": 10})
 \newpage
 A diferencia del script explicado anteriomente este permite enviar secuencias desde la terminal \emph{cli}, la cual puede seguir en ejecución hasta que el usuario finalice el proceso.
 
+
+
+
+
+
+
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 """
 Send sample query to prediction engine
 """
-
 import predictionio
 import readline
 
@@ -212,7 +229,6 @@ engine_client = predictionio.EngineClient(url="http://localhost:8000")
 while True:
     word = raw_input('Enter a Sequences or a single page to predict the next user webaccess: \n')
     print engine_client.send_query({"webaccess": word, "num": 10})
-
 \end{lstlisting}
 
 
@@ -221,6 +237,13 @@ while True:
 
 \section{Programa C++ para hacer splits dentro del Dataset}
 Programa para poder pasar la data de msnbc a una representación de símbolos.
+
+
+
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
+	
+	
 
 \begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 #include <iostream>     // cout
@@ -237,79 +260,85 @@ Programa para poder pasar la data de msnbc a una representación de símbolos.
 using namespace std;
 
 /** 
-  alias lseq = g++ -std=c++11 letterSequences.cpp -o letterSequences 
-  ./letterSequences
+alias lseq = g++ -std=c++11 letterSequences.cpp -o letterSequences 
+./letterSequences
 
 % Different categories found in input file:
 
 frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
 **/
 
- 
+
 int main()
 {
-   map<string, int> mapCategories;
+map<string, int> mapCategories;
 
-  
-   // Inserting data in map
-  mapCategories.insert(make_pair("frontpage", 1));
-    mapCategories.insert(make_pair("news",    2));
-    mapCategories.insert(make_pair("tech",    3));
-    mapCategories.insert(make_pair("local",   4));
-    mapCategories.insert(make_pair("opinion",   5));
-    mapCategories.insert(make_pair("on-air",  6));
-    mapCategories.insert(make_pair("misc",    7));
-    mapCategories.insert(make_pair("weather",   8));
-    mapCategories.insert(make_pair("msn-news",  9));
-    mapCategories.insert(make_pair("health",  10));
-    mapCategories.insert(make_pair("living",  11));
-    mapCategories.insert(make_pair("business",  12));
-    mapCategories.insert(make_pair("msn-sports",13));
-    mapCategories.insert(make_pair("sports",  14));
-    mapCategories.insert(make_pair("summary",   15));
-    mapCategories.insert(make_pair("bbs",     16));
-    mapCategories.insert(make_pair("travel",  17));
-    
 
-   vector<char> alphabet = { 'A','B','C','D','E','F','G',
-                'H','I','J','K','L','M','N','O',
-                'P','Q','R','S','T','U','V','W',
-                'X','Y','Z'};
+// Inserting data in map
+mapCategories.insert(make_pair("frontpage", 1));
+mapCategories.insert(make_pair("news",    2));
+mapCategories.insert(make_pair("tech",    3));
+mapCategories.insert(make_pair("local",   4));
+mapCategories.insert(make_pair("opinion",   5));
+mapCategories.insert(make_pair("on-air",  6));
+mapCategories.insert(make_pair("misc",    7));
+mapCategories.insert(make_pair("weather",   8));
+mapCategories.insert(make_pair("msn-news",  9));
+mapCategories.insert(make_pair("health",  10));
+mapCategories.insert(make_pair("living",  11));
+mapCategories.insert(make_pair("business",  12));
+mapCategories.insert(make_pair("msn-sports",13));
+mapCategories.insert(make_pair("sports",  14));
+mapCategories.insert(make_pair("summary",   15));
+mapCategories.insert(make_pair("bbs",     16));
+mapCategories.insert(make_pair("travel",  17));
 
-   // Iterate through all elements in map
-   map<string, int>::iterator it = mapCategories.begin();
 
-   ifstream  fin("msnbc990928.seq");
-   string    file_line;
-   int fold = 0 ;
+vector<char> alphabet = { 'A','B','C','D','E','F','G',
+'H','I','J','K','L','M','N','O',
+'P','Q','R','S','T','U','V','W',
+'X','Y','Z'};
 
-   while(getline(fin, file_line)){
+// Iterate through all elements in map
+map<string, int>::iterator it = mapCategories.begin();
 
-    string    buf; // Have a buffer string
-    stringstream  ss(file_line); // Insert the string into a stream
-    vector<string> tokens; // Create vector to hold our words
-    
-    while (ss >> buf) tokens.push_back(buf);
+ifstream  fin("msnbc990928.seq");
+string    file_line;
+int fold = 0 ;
 
-    if( tokens.size() < 6 ){
-      ++fold;
-      for (int i = 0; i < tokens.size(); ++i){
-        string tmp = tokens.at(i); 
-        cout << alphabet.at( stoi(tmp) - 1) << " ";
-      }cout<< endl;
+while(getline(fin, file_line)){
 
-    }
+string    buf; // Have a buffer string
+stringstream  ss(file_line); // Insert the string into a stream
+vector<string> tokens; // Create vector to hold our words
 
-    //this value is for make the size of the folds of data
-    if( fold == 1000000 ) break;
+while (ss >> buf) tokens.push_back(buf);
 
-   }
-    return 0;
+if( tokens.size() < 6 ){
+++fold;
+for (int i = 0; i < tokens.size(); ++i){
+string tmp = tokens.at(i); 
+cout << alphabet.at( stoi(tmp) - 1) << " ";
+}cout<< endl;
+
+}
+
+//this value is for make the size of the folds of data
+if( fold == 1000000 ) break;
+
+}
+return 0;
 }
 \end{lstlisting}
 
 
 
+	
+	
+	
+%	\caption{Ejemplo de figura de una columna.}
+%	\label{fig:sim}
+\end{figure}
 
 
 

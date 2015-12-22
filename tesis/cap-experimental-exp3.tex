@@ -1,0 +1,65 @@
+En este experimentos queremos lograr el mismo comportamiento que tuvimos en el experimento [\ref{exp1}]. Haciendo un filtrado simple de los \emph{webaccess log } que hemos estado analizando podemos llegar a mejores valores que las predicciones de resultado aleatorio.
+
+
+
+
+
+	\begin{figure}[h] 
+		\centering
+			\begin{tikzpicture}
+			\begin{axis}[
+			xlabel=Sesiones de entrenamiento,
+			ylabel=Accurracy en \% ]
+			\addplot[color=black,mark=x] coordinates {
+				(100, 39.3259176863181 )
+				(200, 41.8698372966207 )
+				(300, 42.1454458750596 )
+				(400, 42.6323038397328 )
+				(500, 41.9799599198396 )
+				(600, 45.3634085213033 )
+				(700, 44.7892976588628)
+				(800, 43.9736180904522 )
+				(900, 42.9539842873176 )
+			};
+			\end{axis}
+			\end{tikzpicture}
+		\caption{Gráfico de Accuracy vs sesiones de largo constante}
+		\label{fig:sim}
+	\end{figure}
+
+
+
+	
+	La cantidad total de sesiones usadas fueron $1000$ y las cuales como en el gráfico anterior se señala a mayor cantidad entrenamiento existe al menos un punto de la curva que se vuelve un máximo.
+
+
+	Seguido a esto podemos ver el tiempo de construcción del \emph{Trie} que nuestro modelo demora en generar:
+	
+	
+	
+	\begin{figure}[h] 
+		\centering
+		\begin{tikzpicture}
+		\begin{axis}[
+		xlabel= Sesiones de Entrenamiento ,
+		ylabel=Tiempo en \emph{seg} ]
+		\addplot[color=black,mark=x] coordinates {
+			(100, 20)
+			(200, 35)
+			(300, 44)
+			(400, 49)
+			(500, 60)
+			(600, 65)
+			(700, 58)
+			(800, 62)
+			(900, 57 )
+		};
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Gráfico de Tiempo vs sesiones de largo constante}
+		\label{fig:sim}
+	\end{figure}
+	
+	
+
+	Al igual que en el gráfico anterior podemos ver que existe al menos una mínima cantidad sesiones las cuales generar un rendimiento sobre las evaluaciones a realizar. 
