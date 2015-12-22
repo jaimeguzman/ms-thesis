@@ -15,13 +15,14 @@
 
 Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{Trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
 
-En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning Prediction.IO} que ya se ha explicado anteriormente. Usaremos la misma API que ofrece \emph{Prediction.IO} para poder realizar las evaluaciones de nuestras métricas propuestas, dado el dominio de nuestro problema la métrica a usar será Accurracy (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos Cross Validation en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
+En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma API que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accurracy} (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
 %- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
 % of the total dataset) and testing (10 % of the total data).
 %-Learning the model: We accomplished the learning step using different learning algorithms depending on
 
-
+%%%%% Gueniche_Fournier-Viger_Raman_Tseng
+%Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
 
 
 
@@ -35,9 +36,9 @@ En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un mo
 
 %There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
 
-Basados en un servidor de Machine Learning, hemos desarrollado un motor de predicción con un algoritmo basado en Lempel Ziv 78. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
+Basados en un servidor de \emph{Machine Learning}, hemos desarrollado un motor de predicción con un algoritmo basado en \emph{Lempel} \& \emph{Ziv} \cite{ZivLempel1977}. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
 Input = \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
-\end{equation}, la cual representaremos con nuestro modelo de predicción
+\end{equation} la cual representaremos con nuestro modelo de predicción
 
 
 
@@ -82,7 +83,7 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
 \begin{enumerate}
 	\item \textbf{Nodos Intermedios probabilidad Equivalente}
 	
-	Dada la $P( x | A\epsilon  )$, siendo $x$ la probabilidad de encontrar el siguiente símbolo. Este caso nos muestra que tenemos dos secuencias posibles $\{A,AB\}$, por lo cual podemos hacer la función $arc_max(AA,AB)$ ó calcular una función $random(AA,AB)$, al ser un caso con solamente dos posibilidades tenemos solo un $50\%$ de éxito.
+	Dada la $P( x | A\epsilon  )$, siendo $x$ la probabilidad de encontrar el siguiente símbolo. Este caso nos muestra que tenemos dos secuencias posibles $\{A,AB\}$, por lo cual podemos hacer la función $arc max(AA,AB)$ ó calcular una función $random(AA,AB)$, al ser un caso con solamente dos posibilidades tenemos solo un $50\%$ de éxito.
 	
 	
 	\item \textbf{Nodos intermedios con un nodo hijo }
@@ -107,7 +108,7 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
 
 
 
-\section{Ambientes Experimental}
+\section{Ambientes experimental}
 
 Para los ambientes experimentales se han dispuestos dos máquinas para realizar las pruebas. 
 
@@ -151,9 +152,9 @@ Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se u
 
 
 
-El motor de predicción es Prediction.IO, como se ha señalado anteriormente  es un framework para desplegar servidores con algoritmos de Maquinas de Aprendizaje, Decission Tree, K-Means, RNN y todos los algoritmos ofrecidos por la suite de Apache Spark y MLib. % Colocar unos lindos links para hacer publicidad a esto
+El motor de predicción es \emph{PredictionIO}, como se ha señalado anteriormente  es un entorno de desarrollo para desplegar servidores con algoritmos de \emph{Machine Learning} como  \emph{Decission Tree, K-Means, RNN} y todos los algoritmos ofrecidos por la librería de \emph{Apache Spark} y \emph{MLib}. % Colocar unos lindos links para hacer publicidad a esto
 
-Para desarrollar un motor que se acople con \emph{PredictionIO} se deberá seguir el patrón \emph{DASE} y crear un modelo con persistencia en memoria RAM que nos permita un acceso rápido a las predicciones por consultar.
+Para desarrollar un motor que se acople con \emph{PredictionIO} se deberá seguir el patrón \emph{DASE}\ref{dase-algoritmo} y crear un modelo con persistencia en memoria que nos permita un acceso rápido a las predicciones por consulta.
 
 
 Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la {Java Virtual Machine}. {Prediction.IO} no solo ocupa {Scala}, adicionalmente provee el uso de {Apache Spark} con sus librerías de MLIB (Machine Learning Library), {Zookeeper}, {Hbase} (Hadoop) y {Elasticsearch}. Hemos utilizado Python para realizar un cliente por línea de comando en el cual poder hacer pruebas y adicionalmente incluir un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes python ver los fuentes en los anexos.
@@ -186,7 +187,7 @@ Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como de
 
 
 
-\section{Datos Experimentales}
+\section{Datos experimentales}
 	\input{cap-experimental-dataexp}
 
 
@@ -223,13 +224,13 @@ $\{A , B , A  \}  $ para un alfabeto $\Sigma=\{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q
 
 
 
-Como usted puede ver a menor cantidad de símbolos en la sesión generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un webaccess posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
+Podemos ver que a menor cantidad de símbolos en la sesión generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un webaccess posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
 
-Dado el evento $x$  a predecir que pertenece a una secuencia discreta, la probabilidad de $P( x| AB  ) = A $, es el resultado de esta sesión de entrenamiento, pero la probabilidad $P(x | AAB) = ?$, es desconocida.  Si extendemos los símbolos de este nodo cada nodo hijo tendría un probabilidad de $ \dfrac{1}{\Sigma} = \dfrac{1}{17} = 0.0588 $ o bien sería  $\dfrac{1}{ |\sigma| }$, siendo $|\sigma|$ el total de símbolos que se encuentran en el alfabeto. 
+Dado el evento $x$  a predecir que pertenece a una secuencia discreta, la probabilidad de $P( x| AB  ) = A $, es el resultado de esta sesión de entrenamiento, pero la probabilidad $P(x | AAB) $, es desconocida.  Si extendemos los símbolos de este nodo cada nodo hijo tendría un probabilidad de $ \dfrac{1}{\Sigma} = \dfrac{1}{17} = 0.0588 $ o bien sería  $\dfrac{1}{ |\sigma| }$, siendo $|\sigma|$ el total de símbolos que se encuentran en el alfabeto. 
 
-Para corroborar este comportamiento haremos distintos experimentos en distintos volúmenes de datos, usaremos una validación cruzada para medir el Accurracy, la cual será nuestra métrica a utilizar.
+Para corroborar este comportamiento haremos distintos experimentos en distintos volúmenes de datos, usaremos una validación cruzada para medir el \emph{Accurracy}, la cual será nuestra métrica a utilizar.
 
-Con esto demostraremos que secuencias con menores cantidad de símbolos generar un tipo de ruido a la métrica  que afecta en su a nuestra exactitud esperada, cuando hacemos iteraciones de evaluaciones sobre el mayor orden, por otra parte veremos como con una menor cantidad de sesiones de entrenamiento podemos lograr un Accurracy bastante optimista.
+Con esto demostraremos que secuencias con menores cantidad de símbolos generar un tipo de ruido a la métrica  que afecta en su a nuestra exactitud esperada, cuando hacemos iteraciones de evaluaciones sobre el mayor orden, por otra parte veremos como con una menor cantidad de sesiones de entrenamiento podemos lograr un \emph{Accurracy} bastante optimista.
 
 
 
@@ -371,14 +372,14 @@ Al modelar una navegación de usuario mediante un trie basado en un algoritmo co
 Sea la secuencia $\{A,A,A,A,A,A,A,A,A,A,A,A \}$ a la cual llamaremos secuencia $R$, si $A$ es representado por el \emph{home} ó página de inicio, esto da a interpretación que existe un usuario en su sesión $R$ que se encuentra accediendo constantemente a esta sección. Podemos señalar que esta es una sesión ruidosa si:
 
 \begin{equation}
-	P( x | AAAAAAA)= A	
-\end{equation}, pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
+	P( x | AAAAAAA)= A ,	
+\end{equation} pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
 
 En el siguiente experimento veremos como se comporta nuestro modelo dado entradas \emph{Ruidosas}. Además se mostrará como el árbol suele perder su balance a medida que va creciendo los niveles de altura. 
 
 
 
-Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}
+Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}.
 
 
 
@@ -390,38 +391,15 @@ Por otro lado teniendo la noción de como es el funcionamiento de un servidor II
 %%%%%%%%
 %%%%%%%%
 
-Hacemos un experimento con datos totalmente aleatorios de una muestra de 100 acceso
-aparte de darle mas diveridad a las sessiones acotamos también a sesiones que por lo menos tengan
-3 webaccess 
 
  
 
-El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo LZ Trie,
-por lo cual es un factor ya que es como un FIFO al momento de crear, lo primero que lee es lo primero que entrena
-por lo cual se debise tener un criterior para ordenar los webaccess antes de poder pasarlos al entrenador
+El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{Trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los webaccess antes de poder pasarlos al entrenador, que implica antes de la construcción.
 
-@Discusión: Como LZ Trie, es en sí un compresor este no toma decisión, una posible mejora
-sería implementar intrinsicamente un Decission tree dentro de subarboles dentro del trie para
-poder elegir el más optimo acorde a los criterios historicos, asi podría darse el caso de ser
-un compresor-predictor  ``menos tonto''
+El modelo propuesto, básicamente es un compresor el cual no toma decisiones, una posible mejora sería implementar un árbol de decisiones con algún criterior para decidir que entrenar y que no, estos árboles pueden estar dentro del \emph{trie} para
+poder elegir secuencias optimo acorde a los criterios históricos, asi podría darse el caso de ser un compresor-predictor  \emph{mas inteligente}.
 
 
-@Pregunta : ¿Porque se presenta el patron que a menos datos de que tenga el trie mayor es accurracy?
-
-%%%%%%%%
-%%%%%%%%
-
-
-
-
-
-
-% Idea de experimento con cantidad acotada de nodos
-% Idea de experimento con altura paramaetrizada del trieNode
-% Gráficos de crecimiento del arbol medida en tiempo ms
-
-%%%%%%%%
-%%%%%%%%
 
 
 
@@ -440,8 +418,7 @@ un compresor-predictor  ``menos tonto''
 
 
 \vspace{2cm}
-
-\section{Conclusiones y Contribuciones}
+\chapter{Conclusiones y Contribuciones}\label{ch:conlusion-contrib-all}
 	\input{contrib-conlusion}
 
 
@@ -456,9 +433,9 @@ Esta memoria forma parte del plan de continuidad para la continuación en el pos
 
 \begin{itemize}
 
-\item Crear un estudio comparativo con Modelos de Machine Learning como RNN, Redes Neuronales, Reglas de Asociación, Deep Learning y algoritmo de tipo Frequent Pattern Growth.
+\item Crear un estudio comparativo con Modelos de Machine Learning como RNN, Redes Neuronales, Reglas de Asociación, \emph{Deep Learning} y algoritmo de tipo \emph{Frequent Pattern Growth}.
 
-\item Mejorar la implementación de Lempel Ziv 78, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel.(C++)
+\item Mejorar la implementación de \texttt{LZ78}, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel.(C++)
 
 
 \item Crear técnicas como la usada por Claude \etal~\cite{Claude2014}, para crear representaciones eficientes en función de este modelo predictivo.

@@ -9,7 +9,7 @@ Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7 cat
 Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el anexo de la memoria} en {C++ }para filtrar las sesiones de los usuarios, creando nuevos set de datos y transformarlos a símbolos, caracteres en mayúscula, por ejemplo en la figura \ref{fig:sesiones-ds-msbc-num}  y figura \ref{fig:sesiones-ds-basicos} se encuentra una muestra de las entradas que disponemos para trabajar. El set de datos de la figura \ref{fig:sesiones-ds-basicos}, es el formato que utilizaremos para generar el modelo.
 
 
-\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+\begin{figure}[t] 
 	\centering
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 	1 1 
@@ -23,13 +23,14 @@ Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el 
 	6 7 7 7 6 6 8 8 8 8 
 	6 9 4 4 4 10 3 10 5 10 4 4 4 
 	\end{lstlisting}	
-	\caption{Secuencia de datos con indices numéricos del set de datos MSNBC}\label{fig:sesiones-ds-msbc-num}
+	\caption{Secuencia de datos con indices numéricos del set de datos MSNBC}
+	\label{fig:sesiones-ds-msbc-num}
 \end{figure}
 
 
 
 
-\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+\begin{figure}[t] 
 	\centering
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 	% Different categories found in input file:
@@ -58,9 +59,7 @@ Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el 
 
 
 
-{ Ejemplo de sub-dataset creados:}
-
-%@TODO: Ver como hacer mas pequeño el dataset.
+Ejemplo de sub-dataset creados
 \begin{itemize}
 	\setlength{\itemsep}{1pt}
 	\setlength{\parskip}{0pt}
@@ -69,11 +68,10 @@ Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el 
 	\item Secuencias de webaccess con sesiones de largo equivalente.
 	\item Secuencias de webaccess con sesiones de más de 100 secciones web visitadas.
 	\item Secuencias de webaccess con sesiones acotadas superiormente.
-	
 \end{itemize}
 
 
-Trabajaremos con 1.000.000 de registros de los cuales hemos realizados distintos subconjuntos para hacer una validación cruzada:
+Trabajaremos con aproximadamente 1.000.000 de registros de los cuales hemos realizados distintos subconjuntos para hacer una validación cruzada:
 
 \begin{itemize}
 	\setlength{\itemsep}{1pt}
@@ -90,7 +88,7 @@ Trabajaremos con 1.000.000 de registros de los cuales hemos realizados distintos
 \end{itemize}
 
 
-Es importante señalar que la división de nuestro set de datos es debido a que no conocemos la naturaleza de los mismo, pero con nuestro modelo podemos hacer un estudio para ir detectando patrones que puedan ser claves para medir el rendimiento en función a los criterios de volumen de datos versus el \emph{Accurracy}.
+Es importante señalar que la división de nuestro set de datos es debido a que no conocemos la naturaleza de los mismos, pero con nuestro modelo podemos estudiarlos para ir detectando patrones que puedan ser claves para medir el rendimiento en función a los criterios de volumen de datos versus \emph{Accurracy}.
 
 
 

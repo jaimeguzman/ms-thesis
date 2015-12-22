@@ -3,15 +3,14 @@
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Dynamic and memory efficient web page prediction model using LZ78 and LZW algorithms }
-
-	Moghaddam y Kabir~\cite{Moghaddam2009}  realizan una comparación de LZ78  y el algoritmo LZW, el cual es una derivación del anterior. La mayoría de las aplicaciones actuales que predicen el siguiente acceso a un página web posee un  componente offline que hace la tarea de preparar data y luego disponer una sección en línea que permite personalizar cierto contenido para un usuario en particular basado en las actividades de navegación.
+  \item \textbf{Dynamic and memory efficient web page prediction model using LZ78 and LZW algorithms } 
+  Moghaddam y Kabir~\cite{Moghaddam2009}  realizan una comparación de LZ78  y el algoritmo LZW, el cual es una derivación del anterior. La mayoría de las aplicaciones actuales que predicen el siguiente acceso a un página web posee un  componente offline que hace la tarea de preparar data y luego disponer una sección en línea que permite personalizar cierto contenido para un usuario en particular basado en las actividades de navegación.
 	
 	En la mayoría de las técnicas de \emph{Web Usage Mining}, las secuencias se utilizan, ya sea para producir las reglas de asociación o para producir estructuras de datos de tipo árbol o cadenas de Markov para representar patrones de navegación. Los  Modelos de Markov, se basan en una teoría bien establecida y son fáciles de entender.  
 	
 
 	La propuesta es no crear un modelo predictivo por usuarios.
-	Moghaddam y Kabir proponen modelar la navegación de usuarios mediante un Trie creado por un algoritmo de la familia LZ y usando muchas sesiones de usuarios, para tener un modelo predictivo de navegación.
+	Moghaddam y Kabir proponen modelar la navegación de usuarios mediante un \emph{Trie} creado por un algoritmo de la familia LZ y usando muchas sesiones de usuarios, para tener un modelo predictivo de navegación.
 
 
 
@@ -19,8 +18,7 @@
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Prediction Algorithms for User Actions} ( Hartmann \& Schreiber,2007  \etal~\cite{hartmann2007}) , 
-
+  \item \textbf{Prediction Algorithms for User Actions} (Hartmann \& Schreiber, 2007  \etal~\cite{hartmann2007}).
 	{
 		% Proactive User Interface
 	Se requiere la predicción de la siguiente acción del usuario basada en la historia de interacción que ha tenido con una interfaz. 
@@ -43,9 +41,9 @@
 	% Modelos/Algortimos propuestos   ONISI y IPAM Jacobs Blockeel, ActiveLeZi
 	}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{ActiveLezi} ( Gopalratnam \& Cook,2007 \etal\cite{Gopalratnam2007}) 
+  \item \textbf{ActiveLezi} 
   {  
-  Proponen un Algoritmo \emph{On-Demand} que considera varios modelos de Markov.  
+  Gopalratnam \& Cook,2007 \etal\cite{Gopalratnam2007} proponen un algoritmo \emph{On-Demand} que considera varios modelos de Markov.  
   El funcionamiento es basado en almacenar la frecuencia del patrón de \emph{input} en un \emph{Trie} acorde al algoritmo de compresión de \emph{LZ78} para superar algunos de los problemas que surgen con \emph{LZ78}, se usa una ventana de largo variable de los símbolos previamente usados en la construcción del \emph{Trie}. El tamaño de la ventana crece con el número de las diferentes subsecuencias que se van viendo en la entrada de cada secuencia nueva que ingresa.  Sea $suff_{l}$  el sufijo de largo $l+1$ el sufijo de longitud $l=1$ de las inmediatamente historial de interacción.% a, que es un hacha .... la probabilidad se define de la siguiente forma recursiva.:
  }
 
@@ -58,9 +56,7 @@
 	  Su modelo fue presentado en 2002, y es relevante conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
 	}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Domenech \etal~\cite{Domenech2006}}
-  
-	{  
+  \item \textbf{Domenech \etal~\cite{Domenech2006}}{  
   Muestran un estudio de los rendimientos de técnicas de recuperación de datos.
   Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
   Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
@@ -73,9 +69,7 @@
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Chen \etal~\cite{Chen2011}} 
-  
-	{  
+  \item \textbf{Chen \etal~\cite{Chen2011}}{  
 	Dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
 	El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,6 +105,15 @@
 %	presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
  % }
 \end{enumerate}
+
+
+
+
+%necesitas una sección acá para cerrar el capítulo
+%contale al lector porque leyó los conceptos, como los va a utilizar, un resumen estaría bien y que sacó del estado del arte
+%liga estas ideas con las que vienen en el siguiente capítulo
+
+
 
 %%%%%%%Moghaddam_Kabir
 %Various models have been proposed for modeling the user navigation behavior and predicting the next requests of users. According to [12], association rules, sequential pattern discovery, clustering, and classification are most popular methods for web usage mining. Collaborative filtering is another method for modeling users' behaviors. Association rules [6] were proposed to capture the co- occurrences of buying different items in a supermarket shopping. Association rules indicate groups that are related together. Methods that use association rules can be found in [6, 7]. Collaborative filtering techniques are often based on matching the current user's profile against similar data obtained by the system over time from other users. It tries to make useful recommendations users based on discovered cluster of similar categories. But for web sites where the number of web pages is quite large it can be quite inefficient.

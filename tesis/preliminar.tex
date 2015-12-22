@@ -26,14 +26,8 @@
 
 
 
-\begin{figure}[h]% prefiera la posición arriba (t) para las figuras
+\begin{figure}[h] 
 	\centering
-	% incluya las figuras utilizando el comando de abajo
-	% note que la extensión es asumida pro latex,
-	% y que .pdf será asumido por pdflatex; o cualquier otra cosa
-	% declarada vía \DeclareGraphicsExtensions.
-	% \includegraphics[width=0.8\linewidth]{myfigure}
-	
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 	172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "HTTP/1.1" 200 1784 "http://localhost/home" 
 	"Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-G920I Build/LMY47X) 
@@ -58,13 +52,8 @@
 	
 	
 	\caption{Ejemplo de un webaccess Log de un servidor Apache.}
-	% genere las etiquetas para referencias a las figuras
-	% utilice identificadores que le ayuden a diferenciar figuras, tablas,
-	% y otras entidades (por ejemplo, fig:)
 	\label{fig:accesslog-apache-teleton}
 \end{figure}
-
-
 
 
   El ejemplo \ref{fig:accesslog-apache-teleton} nos entrega mucha información interesante como la {IP} desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario.

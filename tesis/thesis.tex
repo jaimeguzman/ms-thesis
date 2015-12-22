@@ -13,13 +13,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usepackage{verbatim}
-
 \usepackage{nomencl}
-
-
-
-
-
 \usepackage{pgfplots} % fuer plots
 \usepackage[external]{forest}
 
@@ -29,16 +23,15 @@
 \usepackage[font=footnotesize,labelfont=bf,labelsep=period]{caption}
 
 % Agregue acá otros paquetes que le sean de utilidad
-
 \usepackage{amsmath}	% Matemáticas\bigtriangleup
 \usepackage{graphicx}	% Gráficos
 \usepackage[font=footnotesize,labelformat=simple]{subfig}
-
-
-
 \usepackage[acronym]{glossaries}
 
+
+
 \makeglossaries
+
 
 \newglossaryentry{latex}
 {
@@ -136,9 +129,8 @@
 %\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,position=bottom}
 
 % O para generar algoritmos en pseudocódigo usar algpseudocode.sty
-\usepackage{algorithm}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
 \usepackage{algpseudocode}
-
 
 
 
@@ -149,30 +141,26 @@
 %\captionsetup[algorithm]{font=footnotesize,labelsep=period}
 
 \usepackage{cite}% Referencias (este paquete ordena y comprime las referencias)
-\usepackage{blindtext}
+
 
 \udptheme{EIT}
 
 
 \begin{document}
 
+
+
+
 \frontmatter %% Inicio de la portada
 
-
-
-\title{Modelo de Predicción Secuencial de Web Access Log basado en Algoritmo de Compresión y Machine Learning}
+\title{Modelo de Predicción Secuencial de WebAccess Log basado en Algoritmos de Compresión y Machine Learning}
 
 % para precisar aún más su tema, use un subtítulo
 %\subtitle{Subtítulo explicativo del tema}
-
-
 \author{Jaime Guzmán}
 \email{mail@jguzman.cl}
-
-
-
-
 \date{2015}
+
 
 % Profesor guía
 \professor{Adin Ramirez}
@@ -183,7 +171,9 @@
 \dedicatory{Dedicado a mi hijo, mis Padres y las personas que no dejarón de apoyarme apesar de las adversidades.}
 
 % Agradecimientos
-\acknowledgment{Nota redactada sobriamente en la cual se agradece a quienes han colaborado en la elaboración del trabajo. No puede exceder más de una página.}
+\acknowledgment{
+  \input{thanks-to}
+}
 
 % Abstrat en inglés
 \abstract{ \input{abstract-en} }
@@ -194,8 +184,8 @@
 
 \makecover			% Generamos la portada
 \tableofcontents	% tabla de contenido
-\listoftables		%    índice de tablas
-\listoffigures		%   índice de figuras
+\listoftables		% Indice de tablas
+\listoffigures		% Indice de figuras
 \mainmatter			% Inicio del contenido
 
 
@@ -211,9 +201,7 @@
 \backmatter
 
 %%Se presenta una revision bibliografica acertada, actual, y exhaustiva (se consulta toda la literatura relevante).
-%Presenta y redacta los objetivos, el trabajo realizado, y la validacion de manera deta-llada. Presenta discusiones detalladas, articuladas, claras, y un buen uso del lengua je tecnico.
-
-
+%Presenta y redacta los objetivos, el trabajo realizado, y la validacion de manera detallada. Presenta discusiones detalladas, articuladas, claras, y un buen uso del lenguaje tecnico.
 % Bibliografía - El estilo por defecto es IEEE Transactions
 \bibliographystyle{ieeetr}
 \bibliography{IEEEabrv,referencias}

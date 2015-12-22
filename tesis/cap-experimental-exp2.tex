@@ -1,6 +1,4 @@
-Validaremos ahora el comportamiento de nuestro modelo con datos reales con secuencias discretas distribuidas no uniformemente.
-	
-	
+	Validaremos ahora el comportamiento de nuestro modelo con datos reales con secuencias discretas distribuidas no uniformemente.
 	
 	
 	
@@ -8,7 +6,7 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 		\centering
 			\begin{tikzpicture}
 			\begin{axis}[
-			xlabel= Numero de Sesiones,
+			xlabel= Número de Sesiones,
 			ylabel=Accurracy en \% ]
 			\addplot[color=black,mark=x] coordinates {
 				(10, 22.2471910112359)
@@ -27,14 +25,12 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 		\label{fig:experimento2}
 	\end{figure}
 	
-	
-
-		
+			
 	En este caso si existe una menor redundancia a diferencia del experimento \ref{exp1} lo que produce que el modelo $M$ tenga un bajo rendimiento, aún así dada sigue siendo en el mejor de los casos seis veces mejor que la probabilidad aleatoria de predecir. En este experimento usamos un $|\sigma| =15$, por ende tenemos que dado nuestro modelo,
 	\begin{equation}\label{expResult2}
-		M( x | \mbox{90\% train}  ) = 33 \% \geq M( x | \mbox{random}  ) = 6.66\% 
-	\end{equation}, como hemos visto en (\ref{expResult2}) nuestro modelo sigue siendo válido en un escenario en que los datos se dispersan considerablemente. 
-	Adicionalmente en este tipo de caso existe un comportamiento de nuestro modelo en el cual hace el mejor esfuerzo por mantener la \emph{compresibilidad} de los datos mayor o igual a la \emph{predictibilidad} del mismo, peor al tener mayor dispersión la altura para una cantidad similar de sesiones en (\label{expResult2}) sigue siendo $5$. Pero la cantidad de nodos sufre un gran incremento, podemos verlo en:
+		M( x | \mbox{90\% train}  ) = 33 \% \geq M( x | \mbox{random}  ) = 6.66 ,\% 
+	\end{equation} como hemos visto en el experimento \ref{exp1} nuestro modelo sigue siendo válido en un escenario en que los datos se dispersan considerablemente. 
+	Adicionalmente en este tipo de caso existe un comportamiento de nuestro modelo en el cual hace el mejor esfuerzo por mantener la \emph{compresibilidad} de los datos mayor o igual a la \emph{predictibilidad} del mismo, peor al tener mayor dispersión la altura para una cantidad similar de sesiones en \ref{exp1} sigue siendo $5$. Pero la cantidad de nodos sufre un gran incremento, podemos verlo en \ref{fig:exp-largo-variable-inf}
 	
 	
 	
@@ -42,8 +38,8 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 		\centering
 		\begin{tikzpicture}
 		\begin{axis}[
-		xlabel=$\mbox{Sesiones de Entrenamiento}$,
-		ylabel=$\mbox{Acurracy en \%}$]
+		xlabel=$\mbox{sesiones de entrenamiento}$,
+		ylabel=$\mbox{accuracy en \%}$]
 		\addplot[smooth,mark=*,black] plot coordinates {
 			(10, 22.2471910112359)
 			(20, 16.7088607594936)
@@ -82,8 +78,8 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 		\centering
 		\begin{tikzpicture}
 		\begin{axis}[
-		xlabel=$\mbox{Sesiones de Entrenamiento}$,
-		ylabel=$\mbox{Acurracy en \%}$]
+		xlabel=$\mbox{sesiones de entrenamiento}$,
+		ylabel=$\mbox{acurracy en \%}$]
 		\addplot[smooth,mark=*,black] plot coordinates {
 			(100,  20.3715239154616)
 			(200,  21.2302878598247)
@@ -100,26 +96,24 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 		\label{fig:sim}
 	\end{figure}
 	
-	El modelo sigue siendo válido al ir aumentando el volumen de datos bajo las mismas circunstancias. Incluso para ambos experimentos anteriores podemos sacar la relación que nuestro modelo posee una tasa de error de $\pm4\%$ al aumentar 100 veces con respecto a la primera iteración de este escenario cuando se usa la  mayor cantidad de sesiones de entrenamiento posible.
+	El modelo sigue siendo válido al ir aumentando el volumen de datos bajo las mismas circunstancias. Incluso para ambos experimentos anteriores podemos sacar la relación que nuestro modelo posee una tasa de error de $\pm4\%$ al aumentar $100$ veces con respecto a la primera iteración de este escenario cuando se usa la  mayor cantidad de sesiones de entrenamiento posible.
 
 
-	Otra particularidad que ha demostrado el modelo gracias a las propiedades de compresibilidad de Lempel Ziv\cite{ZivLempel1977} es la Minimización de niveles requeridos aún cuando la cantidad de nodos va creciendo.
+	Otra particularidad que ha demostrado el modelo gracias a las propiedades de compresibilidad expuestas por  \emph{Lempel} \& \emph{Ziv}\cite{ZivLempel1977} es la minimización de niveles requeridos aún cuando la cantidad de nodos va creciendo.
 	
 	
 	
 	
 	\begin{figure}[h] 
 		\centering
-		
 			\begin{tikzpicture}
 			\begin{axis}[
-			xlabel=$\mbox{Niveles del Trie}$,
-			ylabel=$\mbox{Número de nodos}$]
+			xlabel=$\mbox{niveles del trie}$,
+			ylabel=$\mbox{número de nodos}$]
 			\addplot[smooth,mark=*,blue] plot coordinates {
-				( 10,5 )
-				(  28 ,5)
+				( 10 , 5 )
+				( 28 , 5)
 				( 36 , 16)
-				
 			};
 			\addlegendentry{ 1000 sesiones }
 			\addplot[smooth,mark=*,red] plot coordinates {
@@ -130,25 +124,23 @@ Validaremos ahora el comportamiento de nuestro modelo con datos reales con secue
 			\addlegendentry{ 100 sesiones }
 			\end{axis}
 			\end{tikzpicture}
-		\caption{Ejemplo de figura de una columna.}
+		\caption{Gráfico comparativo para mismos niveles distinta cantidad de nodos.}
 		\label{fig:sim}
 	\end{figure}
 	
 	
-	
-
 
 
 	Como podemos ver en el comportamiento de inicio del modelo el criterio de partida en el escenario descrito es compartido por ambos experimentos.
 
-	También dado a que no es uno de los escenarios más favorables para nuestro modelo predictivo, podríamos tener un diferencial en los tiempos de construcción del \emph{Trie} respecto a la cantidad de nodos necesarios para el entrenamiento, 
+	También dado a que no es uno de los escenarios más favorables para nuestro modelo predictivo, podríamos tener un diferencial en los tiempos de construcción del \emph{trie} respecto a la cantidad de nodos necesarios para el entrenamiento, 
 
 	\begin{figure}[h] 
 	\centering
 	\begin{tikzpicture}
 	\begin{axis}[
-	xlabel= Sesiones de Entrenamiento ,
-	ylabel=Tiempo en \emph{seg} ]
+		xlabel= Sesiones de Entrenamiento ,
+		ylabel= Tiempo en \emph{seg} ]
 	\addplot[color=black,mark=x] coordinates {
 			(100, 45 )
 			(200, 87 )
