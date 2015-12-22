@@ -6,9 +6,9 @@
   La Web crece constantemente y por ende su infraestructura, también la información que podemos obtener de los  usuarios y  concurrencia de los sistemas, la cual para los usuarios finales se traduce en latencia y una mejor o peor experiencia de usuario. Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio (QoS). Podemos reflexionar, entonces, que tener mayores recursos no mejorará el rendimiento, ni tampoco será lo óptimo para dar una calidad de servicio web ya que el ancho de banda de Internet no crecerá en la misma proporción.
    
   Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas han evolucionado a favor de traspasar la carga cliente.
-  Hoy en día ya se posee lenguajes y framework que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos grandes es fundamental tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a los servicios web.
+  Hoy en día ya se posee lenguajes y {framework} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos grandes es fundamental tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a los servicios web.
 
-  Predecir los futuros accesos que un usuario tendrá en una determinada web. Interpretaremos que la manera en que un usuario navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{Webaccess Log}. 
+  Predecir los futuros accesos que un usuario tendrá en una determinada web. Interpretaremos que la manera en que un usuario navega es su comportamiento registrado en una web, y que se puede analizar, estudiar y registrar mediante \emph{webaccess Log}. 
 
   Sobre estos registros se puede hacer representaciones eficientes como las realizadas por Claude\etal~\cite{Claude2014} las de los registros y una minería de datos, \emph{Web Usage Mining} (WUM), el porque de hacer minería de datos es el hecho que cada día la web genera una innumerable cantidad de información, por lo cual usar un algoritmos que se puedan opera de manera comprimida presenta un interés ya que además de disminuir el espacio físico o recursos utilizados, se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
   
@@ -17,7 +17,7 @@
 
   Actualmente, las web no pueden ser simplemente dinámicas en contenidos, deben poseer una adaptabilidad a la demanda del usuario o proveer información que permita adaptarse a los eventos, por lo tanto, es de interés el hacer un estudio sobre ésto y poder hacer integraciones en áreas como compresión y maquinas de aprendizaje. Han sido abordadas independientemente para un problema en común que se puede resolver de manera eficiente. 
 
-  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de Machine Learning. Adicionalmente toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio REST (el cual se explicará más adelante) y así es posible implementarlo en áreas productivas las cuales pueden presentar interés.
+  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de \emph{Machine Learning}. Adicionalmente toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio \emph{REST} (el cual se explicará más adelante) y así es posible implementarlo en áreas productivas las cuales pueden presentar interés.
 
 
   Definiremos el concepto de sesión cuando el usuario se conecta a un servicio web, estas pueden ser páginas informativas, redes sociales, generalmente web dinámicas, contenido colaborativo, etc. Este usuario establece una conexión directa con una página al momento de realizar esta operación. Dado esto es posible almacenar datos muy relevantes los cuales vamos a llamar ''webaccess log'' ó registros de accesos web, durante el texto se mantendrán las referencias en inglés.
@@ -26,7 +26,7 @@
 
 
 
-\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+\begin{figure}[h]% prefiera la posición arriba (t) para las figuras
 	\centering
 	% incluya las figuras utilizando el comando de abajo
 	% note que la extensión es asumida pro latex,
@@ -57,17 +57,18 @@
 	
 	
 	
-	\caption{Ejemplo de un WebAccess Log de un servidor Apache.}
+	\caption{Ejemplo de un webaccess Log de un servidor Apache.}
 	% genere las etiquetas para referencias a las figuras
 	% utilice identificadores que le ayuden a diferenciar figuras, tablas,
 	% y otras entidades (por ejemplo, fig:)
-	\label{fig:sim}
+	\label{fig:accesslog-apache-teleton}
 \end{figure}
 
 
 
 
-
-
-
-  El ejemplo anterior nos da mucha información interesante como la IP desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario.
+  El ejemplo \ref{fig:accesslog-apache-teleton} nos entrega mucha información interesante como la {IP} desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario.
+  
+  
+  
+  

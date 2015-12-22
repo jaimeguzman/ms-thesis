@@ -5,14 +5,14 @@
 
 
 
-En este capitulo se introducirá los conceptos principales que se trabajarán en los siguientes capítulos:
+En este capítulo se introducirán los conceptos principales que se trabajarán en los siguientes capítulos:
 
 
 
 
 \section{Access Log}
 
-Son los registros que se almacenan en un servidor, los cuales dependiendo del sistema operativo pueden tener mayor o menor información. Cuando los usuarios acceden a los sitios web, estos  suelen dejar una gran cantidad de información de acceso, la cual si es extraída en forma razonable puede ayudar a los administradores de sitio web para obtener acceso a los patrones de los usuarios. 
+Los \emph{Access Log} son los registros que se almacenan en un servidor, los cuales dependiendo del sistema operativo y las configuraciones del ambiente pueden tener mayor o menor información. Cuando los usuarios acceden a los sitios web, estos  suelen dejar una gran cantidad de información de acceso, la cual si es extraída en forma correcta puede ayudar a obtener patrones de registros de los usuarios. 
 
 
 \section{Árboles Trie}
@@ -21,13 +21,13 @@ Son los registros que se almacenan en un servidor, los cuales dependiendo del si
 %Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
 
 
-Son estructuras de datos en forma de árbol que almacenan datos en nodos y muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso un carácter o \emph{String} de largo 1. 
+Los \emph{Trie} es un tipo de árbol de pre-fijos, son estructuras de datos en forma de árbol que almacenan datos en sus nodos y es muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una secuencia de acceso o un símbolo (secuencia de largo 1). 
 
-Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol de equilibrado. Un Trie es una especie de árbol, conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ''trie'').
+Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un Trie es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ''trie'', por la palabra del ingles recuperación, ''retrieval'').
 
-Cada especie de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser hash). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al trie que se implementará en la etapa experimental.
+Cada tipo de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser \emph{hash}). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al trie que se implementará en la etapa experimental.
 
-Un \emph{trie} representa una forma  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
+Un \emph{Trie} representa una forma  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
 Es muy diferente cuando almacena secuencias de valores en lugar de valores individuales. Cada nivel representa un incremento en la altura del árbol.
 %'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
 

@@ -3,9 +3,9 @@
 \section{Predicción }
 
   	
-En esta sección se presenta formalmente el framework que se utilizará durante este trabajo. PredictionIO es un servidor de Machine Learning Open Source para Cientistas de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente está construido en Apache Spark, HBase y Spray. 
+En esta sección se presenta formalmente el framework que se utilizará durante este trabajo. \emph{PredictionIO} es un servidor de \emph{Machine Learning} de código abierto para Científico de Datos y Desarrolladores que permite crear motores de predicción para ambientes de producción, con un bajo tiempo de entrenamiento y despliegue en ambientes productivos. Principalmente está construido en \emph{Apache Spark, HBase} y \emph{Spray}. 
 
-Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración completa que permite tanto disponer servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos sean utilizados para solucionar problemas reales.
+Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración estable y constante que permite tanto disponer servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos sean utilizados para solucionar problemas reales.
 
 
 
@@ -35,27 +35,24 @@ Como ya se ha señalado este ambiente de trabajo se encuentra en un maduración 
 \subsection{Arquitectura DASE}
 
 
-Un motor de predicción es un tipo de proceso en Machine Learning. Siguiendo una arquitectura de tipo {DASE}, contendríamos los siguientes componentes.
+Un motor de predicción es un tipo de proceso en \emph{Machine Learning}. Siguiendo una arquitectura de tipo \emph{DASE}, contendríamos los siguientes componentes.
 
 
 
 \begin{itemize}
 
-  \item\label{dase-datasource} \textbf{ $[D]$ Data Source y Data Preparator }\\
-  Los Data Source leen la data desde la entrada original y la transforman en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
+  \item\label{dase-datasource} \textbf{ $[D]$ Data Source y Data Preparator}. Los Data Source leen la data desde la entrada original y la transforman en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
 
 
-    \item\label{dase-algoritmo} \textbf{ $[A]$ Algoritmo}\\
-  Los componentes de algoritmos incluyen algoritmos de Machine Learning, estos, por los componentes que son de predicitionIO pueden ser provistos por Apache Spark o se pueden incluir algoritmos propios como también de terceros.
-  Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el modelo predictivo.
+  \item\label{dase-algoritmo} \textbf{ $[A]$ Algoritmo}. Los componentes de \emph{PredictionIO}, dada sus librerías incluyen algoritmos de \emph{Machine Learning}, estos, pueden ser provistos por \emph{Apache Spark} o se pueden incluir algoritmos propios como también de terceros.
+    Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el motor ó si es requerido para un cierto algoritmo.
 
 
 
-    \item\label{dase-servicio} \textbf{ $[S]$ Servicio}\\
-    El componente servicio toma las consultas ó \emph{querys} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
+    \item\label{dase-servicio} \textbf{ $[S]$ Servicio}. El componente servicio toma las consultas ó \emph{queries} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
     Si el motor de predicción tiene múltiples algoritmos, combinará los resultados en uno. Adicionalmente, la lógica específica de negocios puede ser añadida para especificar aún más el resultado final. 
  
-    \item\label{dase-eval} \textbf{ $[E]$ Evaluación de Métricas}\\
+    \item\label{dase-eval} \textbf{ $[E]$ Evaluación de Métricas}.
 Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
 \end{itemize}
 
@@ -113,10 +110,9 @@ minimum height=2em]
 
 
 \vspace{1cm}
-\subsection{Despliegue de Engine}
+\subsection{Despliegue de motor de predicción}
 
-  Un Engine pone todos los componentes \emph{text}{DASE} en un estado especifico de despliegue
-
+  Un \emph{Engine} pone todos los componentes \emph{DASE} en un estado especifico de despliegue
   \begin{enumerate}
   		\setlength{\itemsep}{1pt}
   		\setlength{\parskip}{0pt}
@@ -132,11 +128,9 @@ minimum height=2em]
 
 
 \vspace{1cm}
-\subsection{Evaluación del Engine }
+\subsection{Evaluación del motor de predicción }
 
-  Para evaluar el Accurracy de un Engine, solo se debe especificar la métrica cuando se corre el motor de evaluación, en los capítulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
-
-
+  Para evaluar el \emph{Accurracy} de un {Engine}, solo se debe especificar la métrica cuando se corre el motor de evaluación, en los capítulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
 
 
 
@@ -146,18 +140,20 @@ minimum height=2em]
 
 
 
-\subsection{Modelamiento de Eventos}
+
+
+\subsection{Modelamiento de eventos}
 
 %https://docs.prediction.io/datacollection/eventmodel/
 
 
 
 
-  El modelamiento de eventos, es simplemente el hecho de poder llevar un feature\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del ML, es en realidad una representación de como se debe tener la data de manera RDD para poder acceder a ella posteriormente. 
+  El modelamiento de eventos, es simplemente el hecho de poder llevar una característica\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del \emph{Machine Learning}, es en realidad una representación de como se debe tener la data de manera \emph{RDD} para poder acceder a ella posteriormente. 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información que será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera una sesión, desde que que llega hasta que abandona la web.
 
-  Usaremos un \emph{Dataset} con información que esta totalmente depurada y recuperada de los access log( Provista por Claude \etal~\cite{Claude2014} ), los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los access log (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
   
 
 
@@ -194,23 +190,22 @@ minimum height=2em]
 \subsection{Ventajas }
 
 
-  Es posible mezclar y aplicar distintas característica, si el modelo no puede ser persistido por PredictionIO automáticamente. Se requiere un objeto  heredado de una clase que permita lograr la persistencia en memoria, esto permite cargar el modelo persistentemente e instanciarlo automáticamente durante la ejecución de las predicciones.
+  Es posible mezclar y aplicar distintas característica, si el modelo no puede ser persistido por \emph{PredictionIO} automáticamente. Se requiere un objeto  heredado de una clase que permita lograr la persistencia en memoria, esto permite cargar el modelo persistentemente e instanciar automáticamente durante la ejecución del motor de predicciones.
 
   % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-  Comprendiendo el concepto de RDD, esta es la abstracción básica de Spark, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de Machine Learning permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
+  Comprendiendo el concepto de \emph{Resilient Distributed Dataset} (RDD), esta es la abstracción básica de \emph{Apache Spark}, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de \emph{Machine Learning} permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
 
   Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es una representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco principales propiedades:
 
 
   \begin{enumerate}
     \item Una lista de particiones.
-    \item Una función para procesar cada split de datos.
-    \item Una lista de dependencias en otros RDD's. 
-    \item Opcionalmente una partición de un RDD puede ser representada como $\{llave,valor\}$ 
-
-    \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo HDFS), para procesamiento en Clustering.
+    \item Una función para procesar cada porción de datos.
+    \item Una lista de dependencias en otros RDD. 
+    \item Opcionalmente una partición de un RDD puede ser representada como una combinación de llave y valor. 
+    \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo \emph{HDFS}), para procesamiento en \emph{Clustering}.
 
   \end{enumerate}
 

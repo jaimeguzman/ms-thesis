@@ -1,0 +1,124 @@
+% Cita a Rkonow Claude & Navarro
+
+Se usarán las secuencias disponibles de \emph{webaccess logs} pública del sitio MSNBC. El set de datos provienen de los registros de un servidor {IIS} (Internet Information Services) msnbc.com de un día completo de la fecha  28 de Septiembre de 1999. 
+Contiene secuencias de acceso web de 989,818 usuarios con un promedio de 5,7 categorías web visitas por secuencia, el tamaño del alfabeto de este conjunto de datos es, $\sigma \ = 17$.
+
+
+
+
+Utilizaremos un simple programa\footnote{Este programa se encuentra junto en el anexo de la memoria} en {C++ }para filtrar las sesiones de los usuarios, creando nuevos set de datos y transformarlos a símbolos, caracteres en mayúscula, por ejemplo en la figura \ref{fig:sesiones-ds-msbc-num}  y figura \ref{fig:sesiones-ds-basicos} se encuentra una muestra de las entradas que disponemos para trabajar. El set de datos de la figura \ref{fig:sesiones-ds-basicos}, es el formato que utilizaremos para generar el modelo.
+
+
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
+	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+	1 1 
+	2 
+	3 2 2 4 2 2 2 3 3 
+	5 
+	1 
+	6 
+	1 1 
+	6 
+	6 7 7 7 6 6 8 8 8 8 
+	6 9 4 4 4 10 3 10 5 10 4 4 4 
+	\end{lstlisting}	
+	\caption{Secuencia de datos con indices numéricos del set de datos MSNBC}\label{fig:sesiones-ds-msbc-num}
+\end{figure}
+
+
+
+
+\begin{figure}[t]% prefiera la posición arriba (t) para las figuras
+	\centering
+	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
+	% Different categories found in input file:
+	
+	frontpage news tech local opinion on-air misc weather msn-news health living business msn-sports sports summary bbs travel
+	
+	% Sequences:
+	A A 
+	B 
+	C B B D B B B C C 
+	A A 
+	F 
+	F G G G F F H H H H 
+	F I D D D J C J E J D D D 
+	A A A K A A A 
+	L L 
+	A A 
+	H H H H H H 
+	\end{lstlisting}
+	\caption{Ejemplo de sesiones de usuarios en símbolos dataset MSNBC.}
+	\label{fig:sesiones-ds-basicos}
+\end{figure}
+
+
+
+
+
+
+{ Ejemplo de sub-dataset creados:}
+
+%@TODO: Ver como hacer mas pequeño el dataset.
+\begin{itemize}
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	\item Secuencias de webaccess con sesiones de con un umbral mínimo.
+	\item Secuencias de webaccess con sesiones de largo equivalente.
+	\item Secuencias de webaccess con sesiones de más de 100 secciones web visitadas.
+	\item Secuencias de webaccess con sesiones acotadas superiormente.
+	
+\end{itemize}
+
+
+Trabajaremos con 1.000.000 de registros de los cuales hemos realizados distintos subconjuntos para hacer una validación cruzada:
+
+\begin{itemize}
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	\item 10 Sesiones de usuarios
+	\item 100 Sesiones de usuarios
+	\item 1.000 Sesiones de usuarios
+	\item 10.000 Sesiones de usuarios
+	\item 50.000 Sesiones de usuarios
+	\item 100.000 Sesiones de usuarios
+	\item 500.000 Sesiones de usuarios
+	\item 1.000.000 Sesiones de usuarios
+\end{itemize}
+
+
+Es importante señalar que la división de nuestro set de datos es debido a que no conocemos la naturaleza de los mismo, pero con nuestro modelo podemos hacer un estudio para ir detectando patrones que puedan ser claves para medir el rendimiento en función a los criterios de volumen de datos versus el \emph{Accurracy}.
+
+
+
+
+
+
+\begin{table}[]
+	\centering
+	\label{table-list-symbol}
+	\begin{tabular}{cl}
+		Page       & Symbol \\ \cline{1-2}
+		frontpage  & A      \\
+		news       & B      \\
+		tech       & C      \\
+		local      & D      \\
+		opinion    & E      \\
+		on-air     & F      \\
+		misc       & G      \\
+		weather    & H      \\
+		msn-news   & I      \\
+		health     & J      \\
+		living     & K      \\
+		business   & L      \\
+		msn-sports & M      \\
+		sports     & N      \\
+		summary    & O      \\
+		bbs        & P      \\
+		travel     & Q      \\ 
+	\end{tabular}
+	\caption{Equivalencia secciones msnbc y símbolo representativo.}
+\end{table}

@@ -1,16 +1,37 @@
-%chacharara
 {
-Los nuevos avances tecnológicos y la inclusión de la ciencia de la computación en distintas campos han permitido hacer colecciones de datos muy grandes, las cuales se deben procesar, clasificar y analizar. Encontrar información útil dentro de estos grandes volúmenes de datos significa poder mejorar las decisiones teniendo como premisa la base de conocimientos históricos que se van constantemente almacenando.
 
-La minería de datos basada en \emph{webaccess logs} se ha convertido en una área importante de investigación en los últimos años. Se puede utilizar para mejorar el rendimiento de la caché web, la detección de intereses de los usuarios y así recomendar páginas o bienes relacionados para los sitios web de comercio electrónico, mejorar los resultados de los motores de búsqueda y por ejemplo personalizar el contenido de la web con las preferencias deseadas para el usuario. En la predicción de navegación web logrando entender el patrón de navegación del usuario y luego la predicción de las páginas siguientes es el principal problema que buscamos solucionar. Con un sistema de predicciónofiable podemos ver la siguiente acción de los usuarios de Internet y tomar acciones. 
+Los nuevos avances tecnológicos y la inclusión de la ciencia de la computación en distintas campos han permitido hacer colecciones de datos muy grandes, las cuales se deben procesar, clasificar y analizar. Para poder encontrar información útil y relevante dentro de estos grandes volúmenes de datos, significa poder mejorar las decisiones teniendo como premisa la base de conocimientos históricos que se van constantemente almacenando.
 
+En el momento en que un usuario entra a una web se establece una conexión cliente--servidor, una gran cantidad de registros en el lado del servidor proporcionan datos de accesos de los usuarios que se encuentran activos en una \emph{web}, sobre estos mismos \emph{webaccess logs} y se pueden realizar variadas investigaciones sobre cómo predecir cuál es la siguiente página. 
+
+
+La minería de datos basada en \emph{webaccess logs} se ha convertido en una área importante de investigación en los últimos años. Se puede utilizar para mejorar el rendimiento de caché en navegadores web \etal~\cite{Moghaddam2009},  detección de intereses de usuarios y también recomendaciones de páginas o bienes relacionados para los sitios web de comercio electrónico, mejorar los resultados de los motores de búsqueda y por ejemplo personalizar el contenido de la web con las preferencias deseadas por el usuario a medida que va navegando.
+
+Predecir estos futuros accesos no es trivial, aún los modelos predictivos no logran dar con un patrón para la navegación del usuario. Dado que cada web tiene distintos perfiles de usuarios un modelo genérico no podría ser válido, pero si lo es un modelo predictivo que vaya aprendiendo acorde a los patrones que se van recopilando, esto da inicio a que se debe tener un modelo predictivo con componentes tanto \emph{online} como \emph{offline}. Este problema es el interés de nuestro trabajo, encontrar un modelo de predicción confiable en que podamos ver los siguiente accesos de los usuarios y tomar acciones. 
 
 Normalmente se ocupan muchos algoritmos de \emph{Machine Learning} para poder hacer predicciones en variadas áreas. Hoy en día las aplicaciones en que los usuarios se enfrentan no pueden ser estáticas y sin tener un comportamiento que ayuden a predecir la forma en que actúan los usuarios. Esta área toma mucha relevancia al encontrarnos en un auge de la información generada por usuarios, redes sociales y variadas plataformas. Podemos mencionar que ésta es una de las razones para poder disponer de herramientas para análisis y predicción que nos permitan saber cómo se comportan los usuarios dentro de una web, conocer la frecuencia en que se accede a un recurso en Internet, etc. 
 
-En el momento en que un usuario entra a una web se establece una conexión cliente-servidor, una gran cantidad de servicios proporcionan datos de accesos de los usuarios que se encuentran activos en una \emph{web}, sobre estos mismos \emph{webaccess logs} y se pueden realizar variadas investigaciones sobre cómo predecir cuál es la siguiente página que podrá visitar. 
+
+Las predicciones sobre \emph{webaccess logs} ha atraído una significativa atención de varios investigadores en los últimos años. Muchas técnicas de recuperación de datos y algunos sistemas de personalización usan algoritmos de predicción. La mayoría de las aplicaciones actuales que predicen la siguiente página web de un usuario tienen una componente  \emph{offline} que hace la tarea de preparación de datos y una sección en línea que proporciona contenido personalizado a los usuarios en función de sus actividades de navegación actuales. En este trabajo se presenta un modelo de predicción en línea que se puede consumir como una API de servicios, la cual da una integración ha variadas plataformas y sistemas que  no tenga un componente \emph{online} y con una buena exactitud de predicción. Nuestro modelo se basa en el algoritmo \emph{LZ78} que está adaptados para modelar y representar la navegación secuencial del usuario en una web. Nuestro modelo disminuye la complejidad computacional  y de implementación, que es un problema grave en el desarrollo de sistemas predictivos \emph{online}.
 
 
-Las predicciones en los registros de \emph{webaccess logs} ha atraído una significativa atención de varios investigadores en los últimos años. Muchas técnicas de recuperación de datos y algunos sistemas de personalización usan algoritmos de predicción. La mayoría de las aplicaciones actuales que predicen la siguiente página web de un usuario tienen una componente en línea que hace la tarea de preparación de datos y una sección en línea que proporciona contenido personalizado a los usuarios en función de sus actividades de navegación actuales. En este trabajo se presenta un modelo de predicción en línea que se puede consumir como un servicio de API el cual da una integración ha variadas plataformas y sistemas que no tenga un componente en línea y con una buena precisión de la predicción. Nuestro algoritmo se basa en algoritmos LZ78 que están adaptados para modelar y representar la navegación secuencia del usuario en una web. Nuestro modelo disminuye la complejidad computacional y de implementación, que es un problema grave en el desarrollo de sistemas predictivos en línea.
+
 
 
   }
+%%%%%%Moghaddam_Kabir
+%Web access prediction has attracted significant attention in recent years. Web prefetching and some personalization systems use prediction algorithms. Most current applications that predict the next user web page have an offline component that does the data preparation task and an online section that provides personalized content to the users based on their current navigational activities. In this paper we present an online prediction model that does not have an offline component and fit in the memory with good prediction accuracy. Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. Our model decreases computational complexities which is a serious problem in developing online prediction systems. A performance evaluation is presented using real web logs. This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
+
+%Web mining has become an important research area in recent years. It can be used to improve the web cache performance[1, 2], Detecting the user interests and so recommending related pages or goods for e-commerce web sites [3], improving search engines results [4] , and personalizing the web content as the users like [5]. In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem. With a reliable prediction system we can see the next action of web users.
+
+
+
+
+
+
+%When user requests inserted and deleted incrementally the online models are desirable. In this paper we present efficient techniques for modeling user navigation behavior. Our model is online so changes in user request patterns will update our prediction model incrementally.
+%%%%%%%%%%%%%%%%
+
+% 
+
+% Nuestro intere es hacer que las rpecicciones sean modeladas por un compresaor de datos basado en Lempel ziv
