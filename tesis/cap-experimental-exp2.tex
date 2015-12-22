@@ -4,6 +4,7 @@
 	
 	\begin{figure}[h] 
 		\centering
+				\resizebox{0.6\textwidth}{!}{% <------ Don't forget this %
 			\begin{tikzpicture}
 			\begin{axis}[
 			xlabel= Número de Sesiones,
@@ -21,10 +22,48 @@
 			};
 			\end{axis}
 			\end{tikzpicture}
+		}
 		\caption{Experimento con secuencias de largo variable}
 		\label{fig:experimento2}
 	\end{figure}
 	
+
+	\begin{table}[h]
+		\centering
+		\label{tabla-exp-1}
+		\begin{tabular}{ccccc}
+			\textbf{pruebas}     & \textbf{entrenamiento} & \textbf{accuracy}    & \textbf{nodos}       & \textbf{niveles}     \\
+			10                   & 90                     & 0,222471910112359    & 10                   & 5                    \\
+			20                   & 80                     & 0,167088607594936    & 10                   & 5                    \\
+			30                   & 70                     & 0,27632850241546     & 10                   & 5                    \\
+			40                   & 60                     & 0,21694915254237     & 10                   & 5                    \\
+			50                   & 50                     & 0,25469387755102     & 10                   & 5                    \\
+			60                   & 40                     & 0,24743589743590   	 & 10                   & 5                    \\
+			70                   & 30                     & 0,255665024630541    & 10                   & 5                    \\
+			80                   & 20                     & 0,263157894736842    & 10                   & 5                    \\
+			90                   & 10                     & 0,333333333333333    & 10                   & 5                    \\
+			&                        &                      &                      &                      \\
+			\multicolumn{1}{l}{} & \multicolumn{1}{l}{}   & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}
+		\end{tabular}
+		\caption{ Resumen de datos experimento 1}
+	\end{table}
+
+
+
+	\begin{table}[h] 	\label{tabl-exp-1-frec}
+		\centering
+		\resizebox{0.9\textwidth}{!}{% <------ Don't forget this %
+	
+		\begin{tabular}{lccccccccccccccccc}
+			\textbf{símbolo}    & A  & B  & C  & D  & E & F  & G  & H  & I  & J  & K & L  & M  & N  & O & P & Q \\
+			\textbf{frecuencia} & 64 & 19 & 18 & 29 & 4 & 36 & 20 & 65 & 20 & 11 & 4 & 15 & 42 & 31 & 2 & 0 & 0
+		\end{tabular}
+		
+	}
+		\caption{Tabla de frecuencia experimento 1}
+	\end{table}
+
+
 			
 	En este caso si existe una menor redundancia a diferencia del experimento \ref{exp1} lo que produce que el modelo $M$ tenga un bajo rendimiento, aún así dada sigue siendo en el mejor de los casos seis veces mejor que la probabilidad aleatoria de predecir. En este experimento usamos un $|\sigma| =15$, por ende tenemos que dado nuestro modelo,
 	\begin{equation}\label{expResult2}
