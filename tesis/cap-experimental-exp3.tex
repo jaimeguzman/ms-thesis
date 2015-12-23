@@ -4,7 +4,7 @@ En este experimentos queremos lograr el mismo comportamiento que tuvimos en el e
 
 
 
-	\begin{figure}[h] 
+	\begin{figure}[t] 
 		\centering
 			\begin{tikzpicture}
 			\begin{axis}[
@@ -28,9 +28,40 @@ En este experimentos queremos lograr el mismo comportamiento que tuvimos en el e
 	\end{figure}
 
 
+\begin{table}[h] \label{my-label}
+	\centering
+	\resizebox{1\textwidth}{!}{
+	\begin{tabular}{ccccc}
+		\textbf{pruebas}     & \textbf{entrenamiento} & \textbf{accuracy}    & \textbf{nodos}       & \textbf{niveles}     \\
+		800                  & 100                    & 0,203715239154616    & 150                  & 5                    \\
+		700                  & 200                    & 0,212302878598247    & 150                  & 5                    \\
+		600                  & 300                    & 0,226490224129709    & 300                  & 16                   \\
+		500                  & 400                    & 0,243752086811352    & 1005                 & 48                   \\
+		400                  & 500                    & 0,262308617234469    & 1005                 & 48                   \\
+		300                  & 600                    & 0,258692564745196    & 1015                 & 48                   \\
+		200                  & 700                    & 0,288423315814619    & 1023                 & 48                   \\
+		100                  & 800                    & 0,28829431438127     & 1023                 & 48                   \\
+		\multicolumn{1}{l}{} & \multicolumn{1}{l}{}   & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}
+	\end{tabular}
+	}
+		\caption{My caption}
+\end{table}
 
 	
-	La cantidad total de sesiones usadas fueron $1000$ y las cuales como en el gráfico anterior se señala a mayor cantidad entrenamiento existe al menos un punto de la curva que se vuelve un máximo.
+\begin{table}[]
+	\centering \label{freq:exp3}
+	\resizebox{1\textwidth}{!}{
+	\begin{tabular}{lccccccccccccccccc}
+		\textbf{símbolo}    & A   & B    & C   & D   & E   & F    & G   & H   & I   & J    & K   & L   & M   & N    & O  & P  & Q  \\
+		\textbf{frecuencia} & 861 & 1502 & 509 & 412 & 557 & 1163 & 557 & 626 & 272 & 2252 & 399 & 703 & 301 & 1889 & 67 & 57 & 98
+	\end{tabular}
+	}
+		\caption{Frecuencia de símbolos para experimentos con sesiones de largo constante.}	
+	
+\end{table}	
+	
+	
+	La cantidad total de sesiones usadas fueron $1.000$ y las cuales como en el gráfico anterior se señala a mayor cantidad entrenamiento existe al menos un punto de la curva que se vuelve un máximo.
 
 
 	Seguido a esto podemos ver el tiempo de construcción del \emph{Trie} que nuestro modelo demora en generar:

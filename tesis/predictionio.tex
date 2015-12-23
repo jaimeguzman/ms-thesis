@@ -107,25 +107,25 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 \vspace{1cm}
 \subsection{Despliegue de motor de predicción}
 
-  Un \emph{Engine} pone todos los componentes \emph{DASE} en un estado especifico de despliegue
+  Un \emph{Motor de predicción} pone todos los componentes del diseño de arquitectura \emph{DASE} en un estado especifico de despliegue 
   \begin{enumerate}
   		\setlength{\itemsep}{1pt}
   		\setlength{\parskip}{0pt}
   		\setlength{\parsep}{0pt}
     \item Data Source
     \item Data Preparator
-    \item Uno o más Algoritmos
-    \item Un Servicio
+    \item Uno o más Algoritmos generadores de Modelos
+    \item Un Servicio 
   \end{enumerate}
 
   Si se especifica más de un algoritmo, cada uno de los resultados de los modelos de predicción se entregará para ser consumido por cualquier cliente.
-  Cada \emph{Engine} procesa los datos y construye modelos predictivos de forma independiente. Por lo tanto, todos los Engine sirven a su propio conjunto de resultados de predicción. Por ejemplo, puede desplegar dos Engine para su aplicación móvil: uno para recomendar noticias para los usuarios y otro para sugerir nuevos amigos a los usuarios.
+  Cada \emph{motor de predicción} procesa los datos y construye un modelos de forma independiente. Por lo tanto, todos los motores de predicción que usaremos sirven a su propio conjunto de resultados. Por ejemplo, se puede desplegar dos \emph{motores predictivos} para una aplicación móvil: uno para recomendar noticias a los usuarios y otro para sugerir nuevos amigos a los usuarios.
 
 
 \vspace{1cm}
 \subsection{Evaluación del motor de predicción }
 
-  Para evaluar el \emph{Accurracy} de un {Engine}, solo se debe especificar la métrica cuando se corre el motor de evaluación, en los capítulos experimentales usted podrá ver como se generan estás métricas y como se usa este motor de predicción.
+  Para evaluar el \emph{Accuracy} de un motor de predicción, se debe especificar la métrica seleccionad cuando se corre el motor de evaluación, en los capítulos experimentales se verá como se generan métricas y como se desempeña esta métrica para ser evaluada.
 
 
 
@@ -144,11 +144,11 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 
 
-  El modelamiento de eventos, es simplemente el hecho de poder llevar una característica\footnote{Característica de un cierto dataset para entrenar.}   que es del mundo del \emph{Machine Learning}, es en realidad una representación de como se debe tener la data de manera \emph{RDD} para poder acceder a ella posteriormente. 
+  El modelamiento de eventos es fundamental para un predictor \emph{online}, el hecho de poder llevar un vector con ciertas propiedades característica\footnote{Característica de un cierto dataset para entrenar.} de una representación vectorial del mundo del \emph{Machine Learning} a un modelamiento secuencial, es en realidad el modelamiento que se debe realizar de como  tener las muestras de datos para generar \emph{Resilient Distributed Dataset} (RDD) que son un parte principal de nuestro ambiente de trabajo con \emph{PredictionIO} para poder acceder posterior o inmediatamente. 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información que será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera una sesión, desde que que llega hasta que abandona la web.
 
-  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los access log (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad nos interesa conocer la secuencialidad discreta de estos accesos.
+  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los access log (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
   
 
 
@@ -157,9 +157,7 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 % https://docs.prediction.io/datacollection/eventapi/
 
   El modelamiento que realizaremos contempla los siguientes campos :
-
-
-    \begin{itemize}
+  \begin{itemize}
     		\setlength{\itemsep}{1pt}
     		\setlength{\parskip}{0pt}
     		\setlength{\parsep}{0pt}

@@ -114,6 +114,9 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 
 \subsubsection{Máquinas}
 	\begin{itemize}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
 		\item Procesador 2,8 GHz Intel Core i7, 16 GB de Memoria RAM y Sistema Operativo OSX
 		\item Procesadores Intel Xeon E5-2670 v2 (Ivy Bridge) de alta frecuencia 32 vCPU, 244 GB de Memoria RAM y Sistema Operativo Ubuntu 14.14 
 	\end{itemize}
@@ -152,12 +155,10 @@ Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se u
 
 
 
-El motor de predicción es \emph{PredictionIO}, como se ha señalado anteriormente  es un entorno de desarrollo para desplegar servidores con algoritmos de \emph{Machine Learning} como  \emph{Decission Tree, K-Means, RNN} y todos los algoritmos ofrecidos por la librería de \emph{Apache Spark} y \emph{MLib}. % Colocar unos lindos links para hacer publicidad a esto
-
-Para desarrollar un motor que se acople con \emph{PredictionIO} se deberá seguir el patrón \emph{DASE}\ref{dase-algoritmo} y crear un modelo con persistencia en memoria que nos permita un acceso rápido a las predicciones por consulta.
+El motor de predicción es \emph{PredictionIO}, como se ha señalado anteriormente  es un entorno de desarrollo para desplegar servidores con algoritmos de \emph{Machine Learning} como  \emph{Decission Tree, K-Means, RNN} y todos los algoritmos ofrecidos por la librería de \emph{Apache Spark} y \emph{MLib}. Para desarrollar un motor que se acople con \emph{PredictionIO} se deberá seguir el patrón \emph{DASE}\ref{dase-algoritmo} y crear un modelo con persistencia en memoria que nos permita un acceso rápido a las predicciones por consulta.
 
 
-Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la {Java Virtual Machine}. {Prediction.IO} no solo ocupa {Scala}, adicionalmente provee el uso de {Apache Spark} con sus librerías de MLIB (Machine Learning Library), {Zookeeper}, {Hbase} (Hadoop) y {Elasticsearch}. Hemos utilizado Python para realizar un cliente por línea de comando en el cual poder hacer pruebas y adicionalmente incluir un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes python ver los fuentes en los anexos.
+Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como dependencia. Inherentemente usaremos Java, ya que el lenguaje Scala corre sobre la {Java Virtual Machine}. {Prediction.IO} no solo ocupa {Scala}, adicionalmente provee el uso de {Apache Spark} con sus librerías de \emph{MLIB} (\emph{Machine Learning Library}), \emph{Zookeeper}, \emph{Hbase} (Hadoop) y \emph{Elasticsearch}. Hemos utilizado Python para realizar un cliente por línea de comando en el cual poder hacer pruebas y adicionalmente incluir un cliente que realice la carga de eventos desde nuestro set de datos experimental. Para mayor referencia de los clientes ver los códigos en anexos.
 
 
 
@@ -218,7 +219,7 @@ $\{A , B , A  \}  $ para un alfabeto $\Sigma=\{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q
 		;
 		
 		\end{tikzpicture}
-	\caption{Ejemplo de Modelo de predicción basado en un \emph{Trie} con LZ78.}
+	\caption{Ejemplo de Modelo de predicción basado en un \emph{Trie} con \texttt{LZ78}.}
 	\label{fig:sim}
 \end{figure}
 
@@ -242,7 +243,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	
 	
 	\newpage
-	\item \label{exp2} \textbf{Sesiones con menor redundancia y secuencias de largo variable }
+	\item \label{exp2} \textbf{Sesiones con menor redundancia y  largo variable }
 	\input{cap-experimental-exp2}
 
 
@@ -256,9 +257,31 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 	\item \label{exp5}	
-	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{LZTrie}}
+	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{Trie}}
 	\input{cap-experimental-exp5}	
 	
+	
+	\item \label{exp6} 
+	\textbf{Detección de Ruido en secuencias de acceso}
+	
+	Al modelar una navegación de usuario mediante un trie basado en un algoritmo como LZ78, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
+	
+	Sea la secuencia $\{A,A,A,A,A,A,A,A,A,A,A,A \}$ a la cual llamaremos secuencia $R$, si $A$ es representado por el \emph{home} ó página de inicio, esto da a interpretación que existe un usuario en su sesión $R$ que se encuentra accediendo constantemente a esta sección. Podemos señalar que esta es una sesión ruidosa si:
+	
+	\begin{equation}
+		P( x | AAAAAAA)= A ,	
+	\end{equation} pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
+	
+	En el siguiente experimento veremos como se comporta nuestro modelo dado entradas \emph{Ruidosas}. Además se mostrará como el árbol suele perder su balance a medida que va creciendo los niveles de altura. 
+	
+	
+	
+	Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}.
+	
+	
+	
+	
+	 
 	
 	%	\item  Dataset uniformes de largo acotado inferiormente y volumenes de alto tamaño.
 \end{enumerate}
@@ -365,25 +388,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 
-\subsection{Detección de Ruido en secuencias de acceso}
 
-Al modelar una navegación de usuario mediante un trie basado en un algoritmo como LZ78, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
-
-Sea la secuencia $\{A,A,A,A,A,A,A,A,A,A,A,A \}$ a la cual llamaremos secuencia $R$, si $A$ es representado por el \emph{home} ó página de inicio, esto da a interpretación que existe un usuario en su sesión $R$ que se encuentra accediendo constantemente a esta sección. Podemos señalar que esta es una sesión ruidosa si:
-
-\begin{equation}
-	P( x | AAAAAAA)= A ,	
-\end{equation} pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
-
-En el siguiente experimento veremos como se comporta nuestro modelo dado entradas \emph{Ruidosas}. Además se mostrará como el árbol suele perder su balance a medida que va creciendo los niveles de altura. 
-
-
-
-Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}.
-
-
-
- 
  
 
 
