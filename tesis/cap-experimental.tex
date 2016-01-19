@@ -225,7 +225,7 @@ $\{A , B , A  \}  $ para un alfabeto $\Sigma=\{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q
 
 
 
-Podemos ver que a menor cantidad de símbolos en la sesión generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un webaccess posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
+Podemos ver que a menor cantidad de símbolos en la sesión generan un árbol de menor altura y menos nodos, cada nodo como se ha señalado en el capitulo 4 representa un visita a una sección en particular de la web de MSNBC. Cuando un \emph{webaccess} posee  pocas secciones o páginas visitadas, la proyección de probabilidades de los posibles símbolos en el alfabeto hace que la probabilidad del siguiente acceso sea equiprobable dentro del los símbolos de nuestro diccionario, de lo anterior convergemos en que mayor es el entrenamiento mejor será la predicción.
 
 Dado el evento $x$  a predecir que pertenece a una secuencia discreta, la probabilidad de $P( x| AB  ) = A $, es el resultado de esta sesión de entrenamiento, pero la probabilidad $P(x | AAB) $, es desconocida.  Si extendemos los símbolos de este nodo cada nodo hijo tendría un probabilidad de $ \dfrac{1}{\Sigma} = \dfrac{1}{17} = 0.0588 $ o bien sería  $\dfrac{1}{ |\sigma| }$, siendo $|\sigma|$ el total de símbolos que se encuentran en el alfabeto. 
 
@@ -257,7 +257,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 	\item \label{exp5}	
-	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{trie}}
+	\textbf{Sesiones con menos de 5 \emph{webaccess} para generar el \emph{trie}}
 	\input{cap-experimental-exp5}	
 	
 	
@@ -399,7 +399,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
  
 
-El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los webaccess antes de poder pasarlos al entrenador, que implica antes de la construcción.
+El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los \emph{webaccess} antes de poder pasarlos al entrenador, que implica antes de la construcción.
 
 El modelo propuesto, básicamente es un compresor el cual no toma decisiones, una posible mejora sería implementar un árbol de decisiones con algún criterior para decidir que entrenar y que no, estos árboles pueden estar dentro del \emph{trie} para
 poder elegir secuencias optimo acorde a los criterios históricos, asi podría darse el caso de ser un compresor-predictor  \emph{mas inteligente}.
