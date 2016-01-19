@@ -6,24 +6,24 @@
   La Web crece constantemente y por ende su infraestructura, también la información que podemos obtener de los  usuarios y  por consecuencia mayor concurrencia de los sistemas, la cual para los usuarios finales se traduce en un incremento de latencia y una mejor o peor experiencia de usuario. Paralelamente se suma un costo exponencial de recursos tanto en tecnologías de desarrollo como servicio que no son optimizados para poder dar una experiencia de usuario con calidad de servicio. Podemos reflexionar, entonces, que tener mayores recursos no mejorará el rendimiento, ni tampoco será lo óptimo para dar una calidad de servicio web ya que el ancho de banda de Internet no crecerá en la misma proporción.
    
   Adicionalmente, las tecnologías para la creación de web dinámicas y asíncronas han evolucionado a favor de traspasar la carga cliente.
-  Hoy en día ya se posee lenguajes y {framework} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un volumen de datos grandes es fundamental tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a servicios de la web.
+  Hoy en día ya se poseen lenguajes y {framework} que disminuyen considerablemente la carga de un servidor, por lo cual, un buen servicio web es proveer una balanceada carga dentro del cliente y el servidor, pero cuando se poseen un gran volumen de datos es fundamental tomar decisiones que los recursos y lenguajes no cubren, es ahí el interés de dar inteligencia a servicios de la web.
 
   %Predecir los futuros accesos que un usuario tendrá en una determinada web.
    Interpretaremos que la manera en que un usuario navega es su comportamiento o patrón registrado en \emph{webacces log}, y que se pueden analizar, estudiar y modelar con algoritmos que tengan enfoques predictivos. 
 
-  Sobre estos registros se puede hacer representaciones eficientes como las realizadas por Claude \etal~\cite{Claude2014},  minería de datos para buscar \emph{Web Usage Mining} (WUM), el porque de hacer minería de datos radica en que cada día la web genera una innumerable cantidad de información, por lo cual usar algoritmos que se puedan opera de manera comprimida o con una representación lo más liviana posible es de interés ya que además de disminuir el espacio físico o recursos utilizados, se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
+  Sobre estos registros se pueden hacer representaciones eficientes como las realizadas por Claude \etal~\cite{Claude2014},  minería de datos para buscar \emph{Web Usage Mining} (WUM), el porque de hacer minería de datos radica en que cada día la web genera una innumerable cantidad de información, por lo cual usar algoritmos que se puedan opera de manera comprimida o con una representación lo más liviana posible es de interés ya que además de disminuir el espacio físico o recursos utilizados, se puede usar como un algoritmo de predicción y trabajar con una mayor cantidad de datos.
   
   Teniendo el conocimiento que los \emph{webaccess logs} se pueden estudiar de manera procesada o pre-procesada, ayudaría a ingenieros de desarrollo web y diseñadores de experiencia de usuarios, como también en general a mejorar la experiencia de usuario final, también disminuyendo por ejemplo la latencia en respuestas por parte de cada petición realizada, con técnicas de \emph{pre-fetching predictivo} en el lado del cliente.
   
 
-  Actualmente, los sitios web han evolucionado de ser contenido estático a dinámico, también moderado por administradores a contenido orgánico creado por usuarios finales. Se debe poseer una adaptabilidad a la demanda o proveer información que permita adaptarse a los eventos, por lo tanto, hacer un estudio sobre ésto y poder hacer integraciones en áreas como uso de algoritmos de compresión y \emph{Machine Learning} presenta un gran desafío. Independientemente del área, el problema común  se puede resolver pero se busca encontrar las fortalezas de cada área y usarlas en conjunto. 
+  Actualmente, los sitios web han evolucionado de ser contenido estático a dinámico, también moderado por administradores a contenido orgánico creado por usuarios finales. Se debe poseer una adaptabilidad a la demanda o proveer información que permita adaptarse a los eventos, por lo tanto, hacer un estudio sobre esto y poder hacer integraciones en áreas como uso de algoritmos de compresión y \emph{Machine Learning} presenta un gran desafío. Independientemente del área, el problema común  se puede resolver pero se busca encontrar las fortalezas de cada área y usarlas en conjunto. 
 
-  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de \emph{Machine Learning}. Adicionalmente toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio \emph{REST} (el cual se explicará más adelante) y así es posible implementarlo en áreas productivas las cuales pueden presentar interés dando nuevos escenarios de estudio.
+  Durante este trabajo se usarán técnicas de compresión de datos, se utilizará una infraestructura y patrón de implementación para modelos de \emph{Machine Learning} como servicio. Adicionalmente toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio basado en una Transferencia de Estado Representacional (\emph{REST}~\ref{concept-rest}), y así implementarlo en áreas productivas las cuales pueden presentar interés dando nuevos escenarios de estudio.
 
 
-  La sesión de un usuario comienza cuando se conecta a un servicio web, estas pueden ser páginas informativas, redes sociales, web dinámicas, contenido colaborativo, etc. Estableciendo dicha conexión a una página, se crea en ese momento una sesión de navegación automáticamente. Dado esto es posible almacenar datos muy relevantes los cuales son ''webaccess log'' ó registros de accesos web, durante el texto se mantendrán las referencias en inglés. Un ejemplo de \emph{webaccess log} es:
+  La sesión de un usuario comienza cuando se conecta a un servicio web, éstas pueden ser páginas informativas, redes sociales, web dinámicas, contenido colaborativo, etc. Estableciendo dicha conexión a una página, se crea en ese momento una sesión de navegación automáticamente. Dado esto es posible almacenar datos muy relevantes los cuales son ''webaccess log'' ó registros de accesos web, durante el texto se mantendrán las referencias en inglés. Un ejemplo de \emph{webaccess log} es lo que se observa en la figura ~\ref{fig-ejemplo-webaccesslogbruto}:
 
-\begin{figure}[h] 
+\begin{figure}[tb]\label{fig-ejemplo-webaccesslogbruto} 
 	\centering
 	\begin{lstlisting}[frame=single,basicstyle=\ttfamily\tiny,]
 	172.31.33.116 - - [26/Nov/2015:00:12:12 +0000] "HTTP/1.1" 200 1784 "http://localhost/home" 
@@ -51,7 +51,7 @@
 \end{figure}
 
 
-  El ejemplo \ref{fig:accesslog-apache-teleton} nos entrega mucha información interesante como la \texttt{IP} desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario.
+  En la Figura \ref{fig-ejemplo-webaccesslogbruto} nos entrega mucha información interesante como la \texttt{IP} desde donde se conecta, el tipo de navegador, el dispositivo si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario.
   
   
   

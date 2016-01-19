@@ -100,7 +100,7 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 \vspace{1cm}
 
-\emph{PredictionIO} ayuda a tener componentes muy modulares, las que ya hemos descrito como  arquitectura \emph{DASE}(\ref{fig:arquitectura-dase})  que puede construir modelos de predicción de manera sencilla. También poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
+\emph{PredictionIO} ayuda a tener componentes muy modulares, las que ya hemos descrito como  arquitectura \emph{DASE} (\ref{fig:arquitectura-dase})  que puede construir modelos de predicción de manera sencilla. También poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
 
@@ -144,11 +144,11 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 
 
-  El modelamiento de eventos es fundamental para un predictor \emph{online}, el hecho de poder llevar un vector con ciertas propiedades característica\footnote{Característica de un cierto dataset para entrenar.} de una representación vectorial del mundo del \emph{Machine Learning} a un modelamiento secuencial, es en realidad el modelamiento que se debe realizar de como  tener las muestras de datos para generar \emph{Resilient Distributed Dataset} (RDD) que son un parte principal de nuestro ambiente de trabajo con \emph{PredictionIO} para poder acceder posterior o inmediatamente. 
+  El modelamiento de eventos es fundamental para un predictor \emph{online}, el hecho de poder llevar un vector con ciertas propiedades característica\footnote{Característica de un cierto dataset para entrenar.} de una representación vectorial del mundo del \emph{Machine Learning} a un modelamiento secuencial, es en realidad el modelamiento que se debe realizar de como  tener las muestras de datos para generar \emph{Resilient Distributed Dataset} (\texttt{RDD}) que son un parte principal de nuestro ambiente de trabajo con \emph{PredictionIO} para poder acceder posterior o inmediatamente. 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información que será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera una sesión, desde que que llega hasta que abandona la web.
 
-  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los access log (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
+  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los \emph{access log} (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
   
 
 
@@ -181,7 +181,7 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 
 
-\subsection{Ventajas }
+\subsection{Ventajas de PredictionIO }
 
 
   Es posible mezclar y aplicar distintas característica, si el modelo no puede ser persistido por \emph{PredictionIO} automáticamente. Se requiere un objeto  heredado de una clase que permita lograr la persistencia en memoria, esto permite cargar el modelo persistentemente e instanciar automáticamente durante la ejecución del motor de predicciones.
@@ -189,19 +189,20 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
   % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-  Comprendiendo el concepto de \emph{Resilient Distributed Dataset} (RDD), esta es la abstracción básica de \emph{Apache Spark}, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de \emph{Machine Learning} permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
+  Comprendiendo el concepto de \emph{Resilient Distributed Dataset} (\texttt{RDD} \ref{concept-RDD}), ésta es la abstracción básica de \emph{Apache Spark}, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de \emph{Machine Learning} permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
 
-  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (RDD) es una representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada RDD tiene cinco principales propiedades:
+  Ya hemos mencionado que un \emph{Resilient Distributed Dataset} (\texttt{RDD}) es una representación inmutable, una colección particionada de elementos que pueden ser operadas en paralelo. Internamente cada \texttt{RDD} tiene cinco principales propiedades:
 
 
   \begin{enumerate}
     \item Una lista de particiones.
     \item Una función para procesar cada porción de datos.
-    \item Una lista de dependencias en otros RDD. 
-    \item Opcionalmente una partición de un RDD puede ser representada como una combinación de llave y valor. 
+    \item Una lista de dependencias en otros \texttt{RDD}. 
+    \item Opcionalmente una partición de un \texttt{RDD} puede ser representada como una combinación de llave y valor. 
     \item Opcionalmente, una lista de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo \emph{HDFS}), para procesamiento en \emph{Clustering}.
 
   \end{enumerate}
+  
 
 
 

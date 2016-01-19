@@ -1,5 +1,4 @@
-\chapter[Conceptos Básicos]{Conceptos Básicos}
-\label{ch:Conceptos-Basicos}
+\chapter[Conceptos Básicos]{Conceptos Básicos} \label{ch:Conceptos-Basicos}
 
 
 
@@ -10,34 +9,34 @@ En este capítulo se introducirán y explicaremos los conceptos principales que 
 
 \section{Conceptos}
 
-\subsection{Access Log}
+\subsection{Access Log}\label{concept-accesslog}
 
 Los \emph{Access Log} son los registros que se almacenan en un servidor, los cuales dependiendo del servidor, sistema operativo y las configuraciones del ambiente pueda tener mayor o menor información. Cuando los usuarios acceden a los sitios web, estos registros dejan una gran cantidad de información de acceso, extrayendo en forma correcta esta  se puede obtener patrones de accesos de usuarios. 
 
 
-\subsection{Árboles Trie}
+\subsection{Árboles Trie} \label{concept-trie}
 
-Los \emph{Trie} es un tipo de árbol de pre-fijos, son estructuras de datos en forma de árbol que almacenan datos en sus nodos y es muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una secuencia de acceso o un símbolo (secuencia de largo 1). 
+Los \emph{Trie} son un tipo de árbol de prefijos, estructuras de datos en forma de árbol que almacenan datos en sus nodos y es muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una secuencia de acceso o un símbolo (secuencia de largo 1). 
 
-Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un Trie es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ''trie'', por la palabra del inglés recuperación, \emph{retrieval}).
+Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un \emph{trie} es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de \textquotedbl \emph{trie}\textquotedbl, por la palabra del inglés recuperación, \emph{retrieval}).
 
-Cada tipo de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser \emph{hash}). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al trie que se implementará en la etapa experimental.
+Cada tipo de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser \emph{hash}). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al \emph{trie} que se implementará en la etapa experimental.
 
-Un \emph{Trie} representa una forma  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
+Un \emph{trie} representa una forma  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
 Es muy diferente cuando almacena secuencias de valores en lugar de valores individuales. Cada nivel representa un incremento en la altura del árbol.
 %'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
 
 
-Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{Trie}, para representar un diccionario, en los cuales podemos señalar las siguientes operaciones disponibles:
+Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{trie}, para representar un diccionario, en los cuales podemos señalar las siguientes operaciones disponibles:
 
 	\begin{itemize}	
-		\item \textbf{findByPrefix(x) :}  Retornar una una lista de todos los nodos hasta llegar a un nodo que posea un \emph{String} de parámetro equivalente a $x$.
+		\item \textbf{findByPrefix(x):}  Retornar una una lista de todos los nodos hasta llegar a un nodo que posea un \emph{String} de parámetro equivalente a $x$.
 		
-		\item \textbf{contains(x) :} Retornar una lista de nodos intermedios hasta que el contenido del nodo final sea hoja o el intermedio corresponda a valor de la secuencia \emph{String} $x$.
+		\item \textbf{contains(x):} Retornar una lista de nodos intermedios hasta que el contenido del nodo final sea hoja o el intermedio corresponda a valor de la secuencia \emph{String} $x$.
 		
-		\item \textbf{remove(x) :} Retorna \emph{true} ó \emph{false} cuando es posible remover el nodo con el contenido equivalente a $x$.
+		\item \textbf{remove(x):} Retorna \emph{true} o \emph{false} cuando es posible remover el nodo con el contenido equivalente a $x$.
 		
-		\item \textbf{pathTo(x) :} Retorna una lista de nodos hasta llegar a un nodo que posea el contenido equivalente del valor $x$.
+		\item \textbf{pathTo(x):} Retorna una lista de nodos hasta llegar a un nodo que posea el contenido equivalente del valor $x$.
 	\end{itemize}
 
 
@@ -46,7 +45,7 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 
 
 
-\subsection{Alfabeto}
+\subsection{Alfabeto} \label{concept-alphabet}
 
 Un alfabeto discreto lo representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en símbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17\  \mbox{símbolos}$.
 
@@ -76,14 +75,14 @@ Dado un volumen de datos experimental, nuestro alfabeto es mostrado simbólicame
 
 
 
-\subsection{Secuencias discretas}
+\subsection{Secuencias discretas}\label{concept-discret-seq}
 
 Definimos una secuencia de accesos discreta y finita, dado los accesos que tiene un usuario frente a una web, lo anterior es acotado por el concepto de sesión, el cual es desde que se inicia la navegación por parte de un usuario, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamaño no superior a un alfabeto $\Sigma$.
 
 
 
 % Compresor tonto o Machine Learning lento para predecir
-\subsection{Lossless Data Compression (LDC)}
+\subsection{Lossless Data Compression (LDC)} \label{concept-LDC}
 
 La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
 
@@ -91,7 +90,7 @@ La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bi
 
 
 
-\subsection{Motor de Predicción}
+\subsection{Motor de Predicción}\label{concept-enginepredict}
 
 Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta web. 
 % que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
@@ -99,16 +98,16 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
  
 
 
-\subsection{Resilient Distributed Datasets }
+\subsection{Resilient Distributed Datasets }\label{concept-RDD}
 
-	Los RDD, permiten que en un servidor de Machine Learning pueda mantener un modelo o motor de aprendizaje persistente sin importar en el flujo que se encuentre.
+	Los \texttt{RDD}, permiten que en un servidor de \emph{Machine Learning } pueda mantener un modelo o motor de aprendizaje persistente sin importar en el flujo que se encuentre.
 
-	Esta estructura es fundamental dentro de la librería que se introducirá mas adelante, Apache Spark. Esta estructura es una colección distribuida de objetos inmutables, cada 
-	set de datos en un RDD es divido en particiones lógicas, las cuales puedes ser computadas en distintos Clusters. Los RDD pueden contener cualquier tipo de objeto de los siguientes lenguajes: Python, Scala y Java, incluyendo clases definidas por el usuario. 
+	Esta estructura es fundamental dentro de la librería que se introducirá mas adelante, \emph{Apache Spark}. Esta estructura es una colección distribuida de objetos inmutables, cada 
+	set de datos en un \texttt{RDD} es divido en particiones lógicas, las cuales puedes ser computadas en distintos cluster. Los \texttt{RDD} pueden contener cualquier tipo de objeto de los siguientes lenguajes: \emph{Python}, \emph{Scala} y \emph{Java}, incluyendo clases definidas por el usuario. 
 
-	Formalmente los RDD son solo de lectura, una colección de objetos divididos. Estos pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra RDD.
-	Otra de las características de los RDD, es que son colecciones de elementos tolerantes a fallas que pueden ser operadas en si mismas o en paralelo.
-	Apache Spark hace el uso del concepto de RDD para lograr rapidez y eficiencia en las operaciones de MapReduce, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el uso de Spark, pero si se utilizarán algunos conceptos como RDD y otros.
+	Formalmente los \texttt{RDD} son solo de lectura, una colección de objetos divididos. Estos pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra \texttt{RDD}.
+	Otra de las características de los \texttt{RDD}, es que son colecciones de elementos tolerantes a fallas que pueden ser operadas en si mismas o en paralelo.
+	\emph{Apache Spark} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{Map Reduce}, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el uso de \emph{Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} y otros.
 
 
 
@@ -151,7 +150,7 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 
 
 
-\subsection{Transferencia de Estado Representacional}
+\subsection{Transferencia de Estado Representacional}~\label{concept-rest}
 
 Es un estilo de desarrollo de software para sistemas distribuidos mediante Internet. El uso de REST, de sus siglas en ingles, ha sido adoptado mucho más adoptado que  \emph{Simple Object Access Protocol}, ya que los servicios \emph{REST} aprovechan mayor cantidad el ancho de banda, lo que hace que sea una mejor opción para su uso a través de Internet, los mensajes tanto originados por el servidor o cliente puede ser enviados en formato \emph{xml} o \emph{json}. 
 
@@ -161,7 +160,7 @@ Es un estilo de desarrollo de software para sistemas distribuidos mediante Inter
 % Este tema debería detallarse en las siguientes secciones
 \section{Trabajos relacionados}
 
-En la literatura, el tema de la predicción en la web se ha presentado como un tema recurrente provocando bastante atención durante los último años y ha sido tratado por varios autores de áreas de \emph{Machine Learning} y \emph{Lossless Compression Algorithm}. Tenemos los siguientes trabajos de interés:
+En la literatura, el tema de la predicción en la web se ha presentado como un tema recurrente provocando bastante atención durante los último años y ha sido tratado por varios autores de áreas de \emph{Machine Learning} y \emph{Lossless Data Compression}. Tenemos los siguientes trabajos de interés:
 
 
 \input{related-work}
