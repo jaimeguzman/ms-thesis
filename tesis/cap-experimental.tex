@@ -13,7 +13,7 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{Trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
 
 En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma API que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accurracy} (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
@@ -219,7 +219,7 @@ $\{A , B , A  \}  $ para un alfabeto $\Sigma=\{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q
 		;
 		
 		\end{tikzpicture}
-	\caption{Ejemplo de Modelo de predicción basado en un \emph{Trie} con \texttt{LZ78}.}
+	\caption{Ejemplo de Modelo de predicción basado en un \emph{trie} con \texttt{LZ78}.}
 	\label{fig:sim}
 \end{figure}
 
@@ -257,14 +257,14 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 
 	\item \label{exp5}	
-	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{Trie}}
+	\textbf{Sesiones con menos de 5 webaccess para generar el \emph{trie}}
 	\input{cap-experimental-exp5}	
 	
 	
 	\item \label{exp6} 
 	\textbf{Detección de Ruido en secuencias de acceso}
 	
-	Al modelar una navegación de usuario mediante un trie basado en un algoritmo como LZ78, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
+	Al modelar una navegación de usuario mediante un \emph{trie} basado en un algoritmo como \texttt{LZ78}, adoptamos un enfoque basado en la frecuencia por lo cual si realizamos experimentos para poder encontrar ruido veremos que que son secuencias de acceso comunes y estas no dan relevancia o aportan a la exactitud ó precisión del algoritmo.
 	
 	Sea la secuencia $\{A,A,A,A,A,A,A,A,A,A,A,A \}$ a la cual llamaremos secuencia $R$, si $A$ es representado por el \emph{home} ó página de inicio, esto da a interpretación que existe un usuario en su sesión $R$ que se encuentra accediendo constantemente a esta sección. Podemos señalar que esta es una sesión ruidosa si:
 	
@@ -399,7 +399,7 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
  
 
-El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{Trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los webaccess antes de poder pasarlos al entrenador, que implica antes de la construcción.
+El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los webaccess antes de poder pasarlos al entrenador, que implica antes de la construcción.
 
 El modelo propuesto, básicamente es un compresor el cual no toma decisiones, una posible mejora sería implementar un árbol de decisiones con algún criterior para decidir que entrenar y que no, estos árboles pueden estar dentro del \emph{trie} para
 poder elegir secuencias optimo acorde a los criterios históricos, asi podría darse el caso de ser un compresor-predictor  \emph{mas inteligente}.
