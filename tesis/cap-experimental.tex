@@ -15,7 +15,7 @@
 
 Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
 
-En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma API que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accurracy} (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
+En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning, PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma \texttt{API }que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accurracy} (Exactitud) frente a distintas porciones de datos. Con el dataset que tenemos haremos variadas pruebas para ver métricas como Accurracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
 %- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
 % of the total dataset) and testing (10 % of the total data).
@@ -66,7 +66,7 @@ Input = \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
 		]
 	]
 	\end{forest}
-	\caption{Ejemplod de Árbol de Predicción basado en LZ78.}
+	\caption{Ejemplod de Árbol de Predicción basado en \texttt{LZ78}.}
 	\label{fig:lztrie1}
 \end{figure}
 
@@ -77,7 +77,7 @@ Output = \{ A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA \}
 \end{equation}
 
 
-Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará
+Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará:
 
 
 \begin{enumerate}
@@ -438,7 +438,7 @@ Esta memoria forma parte del plan de continuidad para la continuación en el pos
 
 \begin{itemize}
 
-\item Crear un estudio comparativo con Modelos de Machine Learning como RNN, Redes Neuronales, Reglas de Asociación, \emph{Deep Learning} y algoritmo de tipo \emph{Frequent Pattern Growth}.
+\item Crear un estudio comparativo con Modelos de \emph{Machine Learning} como RNN, Redes Neuronales, Reglas de Asociación, \emph{Deep Learning} y algoritmo de tipo \emph{Frequent Pattern Growth}.
 
 \item Mejorar la implementación de \texttt{LZ78}, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel.(C++)
 

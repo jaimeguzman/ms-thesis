@@ -127,7 +127,7 @@ La ventana mantenida por Active Lezi representa el conjunto de contextos utiliza
 \subsection{Lempel \& Ziv }
 
 
-El algoritmo LZ78 es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. LZW y LZ78 básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
+El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \texttt{LZ78} básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
 
 
 
@@ -196,7 +196,7 @@ El algoritmo LZ78 es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel19
 
 
 \begin{algorithm}[t]
-	\caption{Seudocódigo para Algoritmo de LZ78.}
+	\caption{Seudocódigo para Algoritmo de \texttt{LZ78}.}
 	\label{alg:pseudocode-lz78}
 	\begin{algorithmic}[1]
 		\State {initialize} \textbf{dictionary  }{:= null}
@@ -237,12 +237,12 @@ Cuando se inserta una secuencia en el árbol los contadores de las aristas que r
 
 
 
-Sin embargo se presentan ciertos problemas de análisis con LZ78. Cualquier aplicación práctica de \emph{LZ78} sufre  los siguientes inconvenientes: 
+Sin embargo se presentan ciertos problemas de análisis con \texttt{LZ78}. Cualquier aplicación práctica de \texttt{LZ78} sufre  los siguientes inconvenientes: 
 
 \begin{itemize}
 	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
 	
-	\item La tasa de convergencia de \emph{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \emph{LZ78} se acerca de forma asintótica a un óptimo previsible.
+	\item La tasa de convergencia de \texttt{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \texttt{LZ78}se acerca de forma asintótica a un óptimo previsible.
 	%en (Ref. 1) por Feder et al,	
 	
 	
