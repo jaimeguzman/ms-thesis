@@ -103,7 +103,7 @@ Para un método que considera diferentes órdenes de modelos, retomamos una vez 
 Algoritmos PPM consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, Active LeZi construye un orden-k del modelo de Markov. Ahora empleamos la estrategia PPM de exclusión para reunir información de los modelos de orden 1 a k para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
 
 % FATLA una CITA a ACTILEZI
-La ventana mantenida por Active Lezi representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{AAA}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
+La ventana mantenida por Active Lezi representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
 
 	
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
@@ -120,7 +120,7 @@ La ventana mantenida por Active Lezi representa el conjunto de contextos utiliza
  
  
  Los Algoritmos DMC o \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
- Esta distribución de probabilidad es usada para predecir el siguiente digito binario. 
+ Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
  Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo símbolo entra. La estructura puede también ser actualizada usando \emph{state cloning method}.
  
  
