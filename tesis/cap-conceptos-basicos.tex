@@ -48,7 +48,7 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 \subsection{Alfabeto} \label{concept-alphabet}
 
 
-Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser de valores  discreto, representaremos por $\Sigma$ al alfabeto que usaremos y una de las características básica de este alfabeto posee $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n}, \sigma_{i} \in \Sigma$, donde $\sigma_{1}$, puede ser definido como la página inicial de una cierta secuencia  o sesión de usuario. Adicionalmente daremos como restricción que $|\Sigma| >= 2$ símbolos necesarios para realizar experimentos acotados de longitud de secuencia o la cardinalidad del alfabeto. Posteriormente en el capítulo experimental\ref{ch:experimetal-all} usaremos un conjunto de datos de tamaño $|\Sigma| =\ 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
+Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser de valores  discreto, representaremos por $\Sigma$ al alfabeto que usaremos y una de las características básica de este alfabeto posee $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n},\ \sigma_{i} \in \Sigma$, donde {$\sigma_{1}$}\label{concept-alphabet-homepage} es definido como la página inicial de una cierta secuencia  o sesión de usuario. Sea $|\Sigma|$ la longitud de secuencia o la cardinalidad del alfabeto daremos como restricción que $|\Sigma| \geq 2$ símbolos~\cite{Dmitry2002} necesarios para realizar experimentos acotados. Posteriormente en el capítulo experimental~(\ref{ch:experimetal-all}) usaremos un conjunto de datos de tamaño $|\Sigma| =\ 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
 
 El alfabeto sera utilizado simbólicamente como la representación de varios nodos contenido en un \emph{trie} que {modela la navegación de usuarios}~(\ref{sec:nuestromodelopredict-mlldc}) para un sitio \emph{web}.
 
@@ -58,7 +58,7 @@ El alfabeto sera utilizado simbólicamente como la representación de varios nod
 
 \subsection{Secuencias discretas}\label{concept-discret-seq}
 
-Definimos una secuencia de accesos discreta y finita, dado los accesos que tiene un usuario frente a una web, lo anterior es acotado por el concepto de sesión, el cual es desde que se inicia la navegación por parte de un usuario, es decir secuencia de tamaño $Seq\ \leq 1$ y de tamaño no superior a un alfabeto $\Sigma$.
+Definimos una secuencia de accesos discreta y finita  $S$ , dado ciertos accesos de usuarios que tiene una \emph{web}, lo anterior es acotado por el concepto de \emph{sesión de navegación}, que es desde que se inicia la el primer acceso, $\sigma_{1}$~(\ref{concept-alphabet-homepage}) por parte de un usuario hasta su que finaliza su navegación. Las secuencias de navegación serán de tamaño $S\ \leq 1$ y  no superior a la cardinalidad del alfabeto $|\Sigma|$.
 
 
 
