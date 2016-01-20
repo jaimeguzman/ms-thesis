@@ -107,7 +107,7 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 
 	Formalmente los \texttt{RDD} son solo de lectura, una colección de objetos divididos. Estos pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra \texttt{RDD}.
 	Otra de las características de los \texttt{RDD}, es que son colecciones de elementos tolerantes a fallas que pueden ser operadas en si mismas o en paralelo.
-	\emph{Apache Spark} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{Map Reduce}, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el uso de \emph{Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} y otros.
+	\emph{Apache Spark} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{MapReduce}, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el uso de \emph{Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} y otros.
 
 
 
@@ -115,7 +115,7 @@ Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un
 \subsection{Data Source y Dataset }
 
 	Los \emph{Data Source} son distintas fuentes de datos que podemos ir sacando set de datos (\emph{Dataset}). Ambos conceptos están enfocados a proveer información tanto para el servidor de \emph{Machine Learning}, como para el procesamiento y análisis.
-	En este trabajo el dataset con que realizaremos nuestro estudio son los registros de accesos de la web española \emph{MSNBC}\cite{Claude2014}, los cuales representan aproximadamente 1.000.000 de registros de accesos.
+	En este trabajo el dataset con que realizaremos nuestro estudio son los registros de accesos de la web española \emph{MSNBC}\cite{Claude2014}, los cuales representan aproximadamente 1.000.000 de registros de \emph{webaccess log}.
 
 	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 16, el cual como antes ya se ha señalado estará relacionado al concepto de alfabeto. También crearemos \emph{dataset} sintéticos para poder realizar depuraciones de nuestra implementación y casos de bordes.
 	
