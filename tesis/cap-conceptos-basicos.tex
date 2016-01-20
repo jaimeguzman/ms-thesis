@@ -47,31 +47,12 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 
 \subsection{Alfabeto} \label{concept-alphabet}
 
-Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser de valores  discreto, representaremos por $\Sigma$ y una de las características básica de este alfabeto es consiste en símbolos $\sigma$ que pertenecen a $\Sigma$, durante el resto de nuestra investigación usaremos solo un $\Sigma = \sigma_{i},\sigma_{i+1}\ =\ 17\  \mbox{símbolos}$.
+
+Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser de valores  discreto, representaremos por $\Sigma$ al alfabeto que usaremos y una de las características básica de este alfabeto posee $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n}, \sigma_{i} \in \Sigma$, donde $\sigma_{1}$, puede ser definido como la página inicial de una cierta secuencia  o sesión de usuario. Adicionalmente daremos como restricción que $|\Sigma| >= 2$ símbolos necesarios para realizar experimentos acotados de longitud de secuencia o la cardinalidad del alfabeto. Posteriormente en el capítulo experimental\ref{ch:experimetal-all} usaremos un conjunto de datos de tamaño $|\Sigma| =\ 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
+
+El alfabeto sera utilizado simbólicamente como la representación de varios nodos contenido en un \emph{trie} que {modela la navegación de usuarios}~(\ref{sec:nuestromodelopredict-mlldc}) para un sitio \emph{web}.
 
 
-
-Dado un volumen de datos experimental, nuestro alfabeto es mostrado simbólicamente como la representación de varios nodos contenido en un \emph{Trie} que modela la navegación de usuarios para un sitio web.
-
-%Donde $\sigma_{1}$, puede ser definido como la página inicial de una cierta secuencia  o sesión de usuario. Este alfabeto es finito y acotado por una minería de datos ya realizada por \cite{Claude2014} en \emph{Efficient Indexing and Representation of Web Access Logs}. % Referencia al trabajo de claud
-
-%Let A be a discrete alphabet consisting of M  2 symbols; x = x ; : : : ; x ; x 2 A
-% be rst n symbols of message; jj be the length of sequence  or the cardinality of
-% set . The probability of symbol x = a 2 A for a source with memory depends on
-% current context s = x ; : : : ; x 2 A ; d  D. The set of all possible contexts can
-% be presented as nodes in M -ary tree with depth D. Context (sequence) s describes a
-% path from tree root to the current node also denoted as s.
-% Usually the true conditional probabilities are unknown and the coding conditional
-% pr ob abilitiesq(ajs) depend on characteristics of one or sev eralsubsequences x (s),
-% x (s) is the subsequence of all symbols x such that x ; : : : ; x
-% = s . These
-% characteristics are: frequency f (ajs) = f (ajx (s)) of symbol a in x (s), alphabet
-% A(s) = A(s; x (s)) = fa : f (ajs) > 0g, its cardinality m(s) = jA(s)j etc. Even at
-% small D, the n umber of model states is big, subsequences x (s) are short ina verage,
-% and their statistics is insuÆcient for eective compression.
-% PPM algorithm [2] is based on an (implicit) assumption: the longer is the common initial part of contexts, the more (in average)similarity there is between their
-% conditional probability distributions. High PPM eÆciency means this assumption is
-% fair forthe majority of real sources.
 
 
 
