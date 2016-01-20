@@ -4,7 +4,7 @@
 
 
 
-En este capítulo se explicarán brevemente los conceptos principales que se usarán en los siguientes capítulos:
+En este capítulo se explicarán brevemente los conceptos principales que se usarán en los siguientes capítulos.
 
 
 \section{Conceptos}
@@ -18,7 +18,7 @@ Los \emph{Access Log} son registros que se almacenan en un servidor, los cuales 
 
 Los \emph{trie} son un tipo de árbol de prefijos, estructuras de datos en forma de árbol que almacenan datos en sus nodos y es muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una secuencia de acceso o un símbolo (secuencia de largo 1). 
 
-Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un \emph{trie} es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de \textquotedbl \emph{trie}\textquotedbl, por la palabra del inglés recuperación, \emph{retrieval}).
+Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un \emph{trie} es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ``\emph{trie}'', por la palabra del inglés recuperación, \emph{retrieval}).
 
 Cada tipo de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser \emph{hash}). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al \emph{trie} que se implementará en la etapa experimental.
 
@@ -65,15 +65,13 @@ Definimos una secuencia de accesos discreta y finita  $S$ , dado ciertos accesos
 % Compresor tonto o Machine Learning lento para predecir
 \subsection{Lossless Data Compression (LDC)} \label{concept-LDC}
 
-La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
-
-
+La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores (\ref{ch:Compresion-Machine-Learning}) se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
 
 
 
 \subsection{Motor de Predicción}\label{concept-enginepredict}
 
-Es la parte fundamental de un sistema dirigida a adivinar el futuro acceso de un usuario. La salida del motor de predicción es la siguiente página, que se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta web. 
+Los motores de Predicción son la parte fundamental de un sistema predictivo, dirigido a adivinar el futuro eventos dado un entrenamiento para un escenario o conjunto de datos en particular. La salida del motor de predicción es un evento siguiente. Para nuestro trabajo la salida se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta \emph{web}. 
 % que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
 
  

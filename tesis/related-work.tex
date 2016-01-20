@@ -1,123 +1,38 @@
 \vspace{1cm}
 \begin{enumerate}
 
+  \item \textbf{\emph{Dynamic and memory efficient web page prediction model using LZ78 and LZW algorithms}} (Moghaddam y Kabir~\cite{Moghaddam2009}). \input{relwork-moghaddam2009}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Dynamic and memory efficient web page prediction model using LZ78 and LZW algorithms } 
-  Moghaddam y Kabir~\cite{Moghaddam2009}  realizan una comparación de LZ78  y el algoritmo LZW, el cual es una derivación del anterior. La mayoría de las aplicaciones actuales que predicen el siguiente acceso a un página web posee un  componente offline que hace la tarea de preparar data y luego disponer una sección en línea que permite personalizar cierto contenido para un usuario en particular basado en las actividades de navegación.
+
+  \item \textbf{\emph{Prediction Algorithms for User Actions}} (Hartmann \& Schreiber, 2007  \etal~\cite{hartmann2007}). \input{relwork-hartmann2007}
 	
-	En la mayoría de las técnicas de \emph{Web Usage Mining}, las secuencias se utilizan, ya sea para producir las reglas de asociación o para producir estructuras de datos de tipo árbol o cadenas de Markov para representar patrones de navegación. Los  Modelos de Markov, se basan en una teoría bien establecida y son fáciles de entender.  
 	
-
-	La propuesta es no crear un modelo predictivo por usuarios.
-	Moghaddam y Kabir proponen modelar la navegación de usuarios mediante un \emph{Trie} creado por un algoritmo de la familia LZ y usando muchas sesiones de usuarios, para tener un modelo predictivo de navegación.
+  \item \textbf{\emph{ActiveLezi}} (Gopalratnam  \& Cook, 2007~\cite{Gopalratnam2007}).  \input{relwork-gopalratnam2007}
 
 
-
-
-
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Prediction Algorithms for User Actions} (Hartmann \& Schreiber, 2007  \etal~\cite{hartmann2007}).
-	{
-		% Proactive User Interface
-	Se requiere la predicción de la siguiente acción del usuario basada en la historia de interacción que ha tenido con una interfaz. 
-	En su trabajo dan una revisión a los algoritmos de predicción Discreta (SPA) y desarrollan dos propuestas de algoritmos basadas en Modelos de Markov que combinan distintos ordenes de Markov. Y desarrollan una librería en PERL para su propuesta y evaluación.
-	
-	% NOTAS MIAS
-	
-	%Acorde a lo que Hartman propone nuestro trabajo esta totalmente alineado, debido a que optimizar o predecir el siguiente acción/acceso puede ayudar enormemente a el problema de PUI Proactive User Interfaces que el plantea
-	
-	% Ellos comparan comparan el mejor rendimiento del algoritmo acorde a los requerimientos de memoria y tiempo de procesamiento
-	
-	%Hartman en su paper dice que las Interfaces de Usuario Intelignente(Intelligent User Interfaces) tb dan uso y son un campo de aplicación para las predicciones secuenciales 
-	
-	% Algo significativo que menciona es que muchos de los algoritmos toman k- elementos de una secuencia para hacer una predicción, en mi caso yo tomo la secunecia completa en base a un entrenamiento
-	
-	% Plantea que hay dos maneras de hacer predicciones secuenciales On-Demand or Live, en mi caso es Live y OnDemand la implementación que ofrezco cumple ambos campos.
-	% Online Learning Algorithm -> Muy similar a mi modelo hibirido ML y LDC
-	% Mi Propuesta podría ayudar mucho en PUI para caso como el desarrollo movil,esto es obiviamente por las limitaciones de pantalla que presenta 
-	
-	% Modelos/Algortimos propuestos   ONISI y IPAM Jacobs Blockeel, ActiveLeZi
-	}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{ActiveLezi} 
-  {
-
-  	  
-Existen áreas que para lograr su realización la predicción en secuencias de eventos que por lo general se puede modelar como procesos estocásticos.
-Acorde con su trabajo se concuerdadn que la predicción es una componente importante en una serie de ámbitos en Inteligencia Artificial y \emph{Machine Learning}, con el fin de que sistemas inteligentes puedan tomar decisiones cada vez más informadas y confiables.  Gopalratnam \etal\cite{Gopalratnam2007} estudian y dan un gran estudio al estado del arte de la predicciones secuencicales de eventos.
-
-Gopalratnam \& Cook, 2007 \etal\cite{Gopalratnam2007} proponen un algoritmo \emph{On-Demand} que considera varios modelos de Markov para su creación.  Este algoritmo de predicción secuencial se basa en un enfoque de teoría de la información, y se basa en \texttt{LZ78} de la fammilia de algoritmos de compresión de datos de \emph{Lempel Ziv}. La eficacia de este algoritmo en un típico {Ambiente Inteligente}, \emph{Smart Home} (la Casa Inteligente), es demostrada mediante el empleo de este algoritmo para predecir el uso de dispositivos en el hogar, este trabajo ha sido una incursión en el campo de \emph{Internet of Things},(\texttt{IoT}). El rendimiento de este algoritmo se probó en conjuntos de datos sintéticos que son representativos de las interacciones típicas entre una casa inteligente y sus habiantes. Además, para el ambiente de la Casa Inteligente, se introduce un método de aprendizaje de una medida del tiempo relativo entre las acciones usando \emph{ActiveLezi} (\texttt{ALZ})\label{acro-ActiveLezi}, y demostrar la eficacia de este enfoque en la síntesis de datos inteligente de la Casa Inteligente.
-
-El funcionamiento es basado en almacenar la frecuencia del patrón de \emph{input} en un \emph{trie} acorde al algoritmo de compresión de \texttt{LZ78} para superar algunos de los problemas que surgen con \texttt{LZ78}, se usa una ventana de largo variable de los símbolos previamente usados en la construcción del \emph{trie}. El tamaño de la ventana crece con el número de las diferentes subsecuencias que se van viendo en la entrada de cada secuencia nueva que ingresa.  Sea ${\mbox{suff}}_{l}$,  el sufijo de largo $l+1$ ,el sufijo de longitud $l=1$ de las inmediatamente historial de interacción.% a, que es un hacha .... la probabilidad se define de la siguiente forma recursiva.:
-
-Gopalratnam \& Cook, 2007 \etal\cite{Gopalratnam2007} efectivamente modelan procesos secuenciales, y es extremadamente útil para la predicción de procesos donde los eventos dependen de la historia de un evento anterior. Esto es debido a la capacidad del algoritmo para construir un modelo preciso de la fuente de los eventos que se genera, una característica heredada de su información de antecedentes teóricos(''base de conocimiento historica'') y el algoritmo de compresión de texto \texttt{LZ78}. La eficacia para el aprendizaje de una medida de tiempo también se puede atribuir al hecho de que \texttt{ALZ} (~\ref{acro-ActiveLezi}) es un potente predictor secuencial. Los sólidos principios teóricos en los que se fundamenta \texttt{ALZ} también significan que \texttt{ALZ} es un óptimo predictor universal, y se puede utilizar en una variedad de escenarios de predicción.
-	
-  	
-  	  
-
+  \item  \textbf{\emph{A new Markov model for Web access prediction}} (Dongshan y Junyi~\cite{Dongshan2002}, 2002). \input{relwork-dongshan2002}
  
  
- }
-
-
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Dongshan y Junyi~\cite{Dongshan2002} }
-  {
-	  Destacan que un modelo de Markov puede ayudar a predecir el comportamiento de un usuario, pero con ciertas limitaciones. Para solucionarlo presentan un nuevo modelo de Markov basado en una representación de \emph{Tree Order Model}, el cual es un híbrido entre un modelo de Markov tradicional y una representación de árbol, bautizada como HTMM (por sus siglas en inglés, \emph{Hybrid-Order Tree Markov Model}).
-	  Su modelo fue presentado en 2002, y es relevante conocer la predicción de los \emph{web access}, dada la importancia de creación de redes, la minería de datos, e-commerce, y otras áreas.
-	}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Domenech \etal~\cite{Domenech2006}}{  
-  Muestran un estudio de los rendimientos de técnicas de recuperación de datos.
-  Las mismas se pueden utilizar para dar una entrada ideal a algoritmos de aprendizaje o algoritmos de predicción. 
-  Los conceptos más importantes son las nuevas variables de caracterización, temporalidad, espacio y geografía, que se le suman a la predicción. 
-  Además de comenzar un trabajo más elaborado de como tomar una predicción, se introducen conceptos como predicciones genéricas o específicas, variables de uso de recursos a nivel de red o nivel de procesamiento.
-  Finalmente, se presenta un modelo predictivo que puede ayudar a disminuir la latencia entre la petición del cliente y la respuesta de la web, dando así un mejor rendimiento y \emph{QoS}.
+  \item \textbf{\emph{Web prefetching performance metrics: A survey}} (Domenech \etal~\cite{Domenech2006}, 2006). \input{relwork-domenech2006}
+    
+ 
+  \item \textbf{\emph{Improve on frequent access path algorithm in web page personalized recommendation model}} (Chen \etal~\cite{Chen2011}, 2011). \input{relwork-chen2011}
   
-    % @TODO detallar más explicarlo mas simple, darle mas enfoque al usuario segúnn del punto de vista que de los docuentos 
-    % como los autores antteriores.
- }
+
+  \item \textbf{\emph{Analysis of Preprocessing Methods for Web Usage Data}} (Kewen~\cite{kewen2012}, 2012). \input{relwork-kewen2012}
 
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Chen \etal~\cite{Chen2011}}{  
-	Dan una nueva perspectiva enfocada a entregar una clara recomendación a los usuarios basada en la misma propuesta de este proyecto, los access log.
-	El primer análisis realizado por los autores cubre las reglas asociativas que requiere un sistema de recomendación, pero en las pruebas propiamente tales encuentran que el análisis de los patrones detectadados dan una representación clara de como optimizar la web, y finalmente mediante sus pruebas logran una recomendación de calidad.}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Rajimol y Raju~\cite{Rajimol2012} }
-	{  
-	Minaron los patrones de los accesos web, donde el enfoque es usar los registros de acceso para crear subsecuencias y realizar comparaciones.
-	La literatura existente es relevante para poder anticipar el patrón de comportamiento de la web.
-  % @TODO reflexionar mas sobre este paper
-
-
-	}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Kewen~\cite{kewen2012} }
+  \item \textbf{\emph{Web Access Pattern Mining, A Survey}} (Rajimol y Raju~\cite{Rajimol2012}, 2012). \input{relwork-rajimol2012}
   
-	{  
-	Realizó un análisis más profundo del \emph{web usage minning}.
-	Parte de la importancia de este trabajo, es que después de minar los registros de accesos, logran reducir la ``\emph{bad data}''.
-	  %@TODO: Preguntar si este paper se escapa mucho del tema prinicipal, pero parece interesante  
-	}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \item \textbf{Poornalatha y Raghavendra~\cite{Poornalatha2012}}
+  \item \textbf{\emph{Web Page Prediction by Clustering and Integrated Distance Measure}} (Poornalatha y Raghavendra~\cite{Poornalatha2012}, 2012). \input{relwork-poornalatha2012}
   
-	{ 
-		
-	  Establecen que se pueden utilizar máquinas de aprendizaje para predecir basándose en métricas de distancia entre distintos clusters. Estos autores, al igual que Domenech \etal~\cite{Domenech2006} y Dongshan y Junyi~\cite{Dongshan2002}, comparan el objetivo de optimizar los recursos tanto en redes (disminución de latencia) y experiencia de usuario.
-	  }
-  
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   %\item Claude \etal~\cite{Claude2014} 
   
-%	{  
-%	presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
- % }
+		%	{  
+		%	presentan una estructura de representación eficiente que permite dar una representación de \emph{web access log} y ofrecen las operaciones básicas de WUM.
+		 % }
 \end{enumerate}
 
 
