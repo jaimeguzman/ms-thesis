@@ -16,7 +16,7 @@
 % D. Sculley and Carla E. Brodley
 
 El uso de algoritmos de compresión en tareas de \emph{Machine Learning} como agrupamiento y clasificación ha tenido presencia en variados campos de las ciencias de la computación. La intención de reducir problemas de selección explícita de ciertas características que se usan en estudios y algoritmos de \emph{Machine Learning}.
-Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissman~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictivilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
+Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissanen~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictibilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
 
 %Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
 
@@ -47,9 +47,9 @@ La motivación de profundizar en el área de compresión de datos se debe a una 
 
 A diferencia de la velocidad de conexión, las infraestructura de redes no crecen proporcionalmente a los volúmenes de transferencias de datos, esto genera un sin fin de problemas para los usuarios e industria web. Sabemos que la latencia es el tiempo de respuesta que demora un usuario hacer una petición, un \emph{request}, a un servidor. Minimizar este tiempo de respuesta es fundamental, pero en caso contrario podemos minimizar el tiempo de latencia prediciendo el siguiente recurso a disponer.
  
-Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo, audio, video, imágen, texto, etc. Las propiedades de estos algoritmos no solo permiten juntar un set de archivos y lograr un tasa de compresión óptima para ser transmitida por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés, las predicciones de la siguientes \emph{webaccess} de una determinada web. Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia \emph{Lempel} {\&} \emph{Ziv}. Estos son en sí modelos variables de Markov que nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
+Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo, audio, vídeo, imagen, texto, etc. Las propiedades de estos algoritmos no solo permiten juntar un set de archivos y lograr un tasa de compresión óptima para ser transmitida por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés, las predicciones de la siguientes \emph{webaccess} de una determinada web. Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia \emph{Lempel} {\&} \emph{Ziv}. Estos son en sí modelos variables de Markov que nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
 
-Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}, algoritmos de compresión sin pérdida.
+Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}~(\texttt{LCA}), algoritmos de compresión sin pérdida.
 
 
 El aprender acerca de la secuencia de datos continuas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y aprendizaje automático.
@@ -87,7 +87,7 @@ Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los 
  
 \subsection{Prediction by Partial Match (PPM)}
  
-El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algoriths}. El algoritmo requiere un tope superior $D$ en el maximo del orden de Markov de un modelo variable de Markov (\emph{VMM}) para construirse. 
+El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el maximo del orden de Markov de un modelo variable de Markov (\emph{VMM}) para construirse. 
 PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
 	
 	\begin{itemize}
@@ -98,12 +98,12 @@ PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
 		\item Exclusion
 	\end{itemize}
 	
-Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores PPM  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
+Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores \texttt{PPM}  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
 
-Algoritmos PPM consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, Active LeZi construye un orden-k del modelo de Markov. Ahora empleamos la estrategia PPM de exclusión para reunir información de los modelos de orden 1 a k para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
+Algoritmos PPM consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, \emph{Active LeZi} construye un orden-k del modelo de Markov. Ahora empleamos la estrategia \texttt{PPM} de exclusión para reunir información de los modelos de orden 1 a $k$ para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
 
 % FATLA una CITA a ACTILEZI
-La ventana mantenida por Active Lezi representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
+La ventana mantenida por \emph{Active Lezi} representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
 
 	
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
@@ -119,7 +119,7 @@ La ventana mantenida por Active Lezi representa el conjunto de contextos utiliza
  \subsection{Cadenas de Markov Dinámicas}
  
  
- Los Algoritmos DMC o \emph{Dinamyc Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
+ Los Algoritmos DMC o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
  Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
  Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo símbolo entra. La estructura puede también ser actualizada usando \emph{state cloning method}.
  
@@ -127,7 +127,7 @@ La ventana mantenida por Active Lezi representa el conjunto de contextos utiliza
 \subsection{Lempel \& Ziv }
 
 
-El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel ~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \texttt{LZ78} básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
+El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \texttt{LZ78} básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
 
 
 
@@ -167,36 +167,12 @@ El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel ~\cite{Zi
 %%%%%%%%%
 
 
-
-
-% \begin{algorithm}
-% 	\caption{My algorithm}\label{euclid}
-% 	\begin{algorithmic}[1]
-
-		
-% 		\State $\textit{initialize}\ \text{dictionary}\ =\ null $
-% 		\State $\textit{initialize}\ \text{phrase}\ w\ =\ null $
-	
-% 		\Loop
-		
-% 			\State {$\text{wait for next symbol v } $   } 
-		
-% 				\If{ $\text{((w.v) in dictionary)}$  }
-% 					\State{$w := w.v $} 
-% 				\Else 
-% 					\State{ $\text{add (w.v) to dictionary
-% 					\State {$\text{	 	w := null }$}
-% 					\State$\text{ increment frequency for every possible prefix of phrase} $ }
-		
-% 		\EndLoop		%\State $i \gets \textit{patlen}$
-		
-% 	\end{algorithmic}
-% \end{algorithm}
+ 
 
 
 
 \begin{algorithm}[t]
-	\caption{Seudocódigo para Algoritmo de \texttt{LZ78}.}
+	\caption{Seudocódigo para Algoritmo \texttt{LZ78}.}
 	\label{alg:pseudocode-lz78}
 	\begin{algorithmic}[1]
 		\State {initialize} \textbf{dictionary  }{:= null}

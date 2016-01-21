@@ -9,7 +9,7 @@ Este ambiente de trabajo se encuentra en un maduración estable y constante que 
 
 
 
-% PIO, tiene practicamente todo armadao, ello no hicieron nada nuevo ... solo juntaron  todo...
+% PIO, tiene prácticamente todo armadao, ello no hicieron nada nuevo ... solo juntaron  todo...
 
 
 
@@ -18,10 +18,10 @@ Este ambiente de trabajo se encuentra en un maduración estable y constante que 
 
 
 
-% La otra opción es meterle a este "DASE" un algoritmo  que mezcle una representación de cadenas de markov mezclado con LZ78. no se en que punto mezclarlo en el diccionario, o la verdad es como hacer el compresor sea "mas inteligente", encontré un papaer que te adjunto en el cual usan lz78 y lzw, esta interesante ya que le hacen un acercamiento mas al tema de de ser un predictor online.
+% La otra opción es meterle a este "DASE" un algoritmo  que mezcle una representación de cadenas de Markov mezclado con LZ78. no se en que punto mezclarlo en el diccionario, o la verdad es como hacer el compresor sea "mas inteligente", encontré un papaer que te adjunto en el cual usan lz78 y lzw, esta interesante ya que le hacen un acercamiento mas al tema de de ser un predictor online.
 
 
-% Ahora entiendo que la cadenas de markov son y se han ocupado para las predicciones, pero no veo la necesidad de ocuparlas mayormente. Adin me inisiste en que le de una vuelta.... pero mi sensación  es que tengo separada las ideas en dos extremos. 
+% Ahora entiendo que la cadenas de markov son y se han ocupado para las predicciones, pero no veo la necesidad de ocuparlas mayormente. Adin me insiste en que le de una vuelta.... pero mi sensación  es que tengo separada las ideas en dos extremos. 
 
 % Ya revise Suffix Tree para predicciones LZ77 y LZW, también PPM y HMM.
 
@@ -144,15 +144,15 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 
 
-  El modelamiento de eventos es fundamental para un predictor \emph{online}, el hecho de poder llevar un vector con ciertas propiedades característica\footnote{Característica de un cierto dataset para entrenar.} de una representación vectorial del mundo del \emph{Machine Learning} a un modelamiento secuencial, es en realidad el modelamiento que se debe realizar de como  tener las muestras de datos para generar \emph{Resilient Distributed Dataset} (\texttt{RDD}) que son un parte principal de nuestro ambiente de trabajo con \emph{PredictionIO} para poder acceder posterior o inmediatamente. 
+  El modelamiento de eventos es fundamental para un predictor \emph{online}, el hecho de poder llevar un vector con ciertas propiedades característica\footnote{Característica de un cierto conjunto de datos para entrenar.} de una representación vectorial del mundo del \emph{Machine Learning} a un modelamiento secuencial, es en realidad el modelamiento que se debe realizar de como  tener las muestras de datos para generar \emph{Resilient Distributed Dataset} (\texttt{RDD}) que son un parte principal de nuestro ambiente de trabajo con \emph{PredictionIO} para poder acceder posterior o inmediatamente. 
 
   Un evento lo definiremos como entidad que nos permite dar una representación temporalizada de información que será procesada por un motor de predicción. Analizaremos los eventos que un usuarios realiza para poder acceder a una web. Adicionalmente cuando cada usuario ingresa a una web automáticamente este genera una sesión, desde que que llega hasta que abandona la web.
 
-  Usaremos un \emph{dataset} con información que esta totalmente depurada y recuperada de los \emph{access log} (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
+  Usaremos un \emph{conjunto de datos} con información que esta totalmente depurada y recuperada de los \emph{webaccess log} (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
   
 
 
-%Poner algo mas matematico.
+%Poner algo mas matemático
 % EVENT API 
 % https://docs.prediction.io/datacollection/eventapi/
 
@@ -184,12 +184,12 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 \subsection{Ventajas de PredictionIO }
 
 
-  Es posible mezclar y aplicar distintas característica, si el modelo no puede ser persistido por \emph{PredictionIO} automáticamente. Se requiere un objeto  heredado de una clase que permita lograr la persistencia en memoria, esto permite cargar el modelo persistentemente e instanciar automáticamente durante la ejecución del motor de predicciones.
+  Es posible mezclar y aplicar distintas característica, si el modelo no puede ser persistido por \emph{PredictionIO} automáticamente. Se requiere un objeto  heredado de una clase que permita lograr la persistencia en memoria, esto permite cargar el modelo persistente-mente e instanciar automáticamente durante la ejecución del motor de predicciones.
 
   % Tenga en cuenta que los modelos generados por PAlgorithm no pueden ser persistieron automáticamente por naturaleza y deben implementar estas características, si se desea modelo de persistencia.
 
 
-  Comprendiendo el concepto de \emph{Resilient Distributed Dataset} (\texttt{RDD} \ref{concept-RDD}), ésta es la abstracción básica de \emph{Apache Spark}, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de \emph{Machine Learning} permite, gracias a sus componentes poder hacer un cluster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
+  Comprendiendo el concepto de \emph{Resilient Distributed Dataset} (\texttt{RDD} \ref{concept-RDD}), ésta es la abstracción básica de \emph{Apache Spark}, aún más, esto es una de las grandes cualidades de PredictionIO, ya que no solamente podemos disponer de una máquina para hacer estudios o implementar algoritmos, este servidor de \emph{Machine Learning} permite, gracias a sus componentes poder hacer un clúster para entregar mayor eficiencia acorde a los datos o algoritmo a implementar.
 
   Ya hemos mencionado que los \texttt{RDD} son una representación inmutable, una colección divida de elementos que pueden ser operadas en paralelo. Internamente cada \texttt{RDD} tiene cinco principales propiedades:
 
@@ -198,8 +198,8 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
     \item Una lista de particiones.
     \item Una función para procesar cada porción de datos.
     \item Una lista de dependencias en otros \texttt{RDD}. 
-    \item Opcionalmente una partición de un \texttt{RDD} puede ser representada como una combinación de llave y valor. 
-    \item Una lista optativa de los lugares preferidos para calcular cada una dividida en (por ejemplo, lugares de bloque para un archivo \emph{HDFS}); para procesamiento en \emph{Clustering}.
+    \item Opcional-mente una partición de un \texttt{RDD} puede ser representada como una combinación de llave y valor. 
+    \item Una lista optativa de los lugares preferidos para calcular cada una dividida por ejemplo en lugares de bloque para un archivo \texttt{HDFS} ó para procesamiento en \emph{Clustering}.
 
   \end{enumerate}
   
