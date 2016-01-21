@@ -1,4 +1,4 @@
-Este experimento busca validar las condiciones necesarias que debe tener una secuencia de entrada para que el algoritmo \texttt{LDC} pueda optimizar al momento de ser construido para una predicción \emph{online}, dado esto utilizaremos sesiones largas que entreguen redundancia en los accesos que permita al modelo de navegación ser más comprimido sin perder una métrica considerable para funcionar, según lo anterior realizamos las siguientes iteraciones con las particiones de data que cumplen: 
+Este experimento busca validar las condiciones necesarias que debe tener una secuencia de entrada para que el algoritmo \texttt{LDC} pueda optimizar al momento de ser construido para una predicción \emph{online}, dado esto utilizaremos sesiones largas que entreguen redundancia en los accesos que permita al modelo de navegación ser más comprimido sin perder una métrica considerable para funcionar, según lo anterior realizamos las siguientes particiones de data que cumplen en el siguiente ciclo. 
 	
 	\begin{figure}[h] 
 		\centering
@@ -84,7 +84,7 @@ Este experimento busca validar las condiciones necesarias que debe tener una sec
 	\caption{Tabla resumen de simbolos y frecuencia para experimento 4}
 \end{table}
 
-	Congruente con lo anterior podemos ver que sin tener un margen de error superior a la porción de datos seleccionado logramos un latencia de consulta predictiva en línea de alrededor de 70 \emph{seg}, el cual para ser implementado y consumido como ya se había mencionado antes como un algoritmo predictivo como servicio \emph{REST}, esta dentro del promedio aceptable.
+	Congruente con lo anterior podemos ver que sin tener un margen de error superior a la porción de datos seleccionado logramos un latencia de consulta predictiva en línea de alrededor de 70 \emph{seg}, el cual para ser implementado y consumido como ya se había mencionado antes como un algoritmo predictivo como servicio \texttt{REST}, esta dentro del promedio aceptable.
 
 	\begin{figure}[h] 
 		\centering
@@ -117,7 +117,7 @@ Este experimento busca validar las condiciones necesarias que debe tener una sec
 			\begin{tikzpicture}
 			\begin{axis}[
 			xlabel=Cantidad de Nodos para árbol de predicción,
-			ylabel=Accurracy en \%  ]
+			ylabel=Accuracy en \%  ]
 			\addplot[color=black,mark=x] coordinates {
 				(1012,42.5190839694656 )
 				(1428,44.595041322314 )

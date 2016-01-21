@@ -11,32 +11,29 @@ En este capítulo se explicarán brevemente los conceptos principales que se usa
 
 \subsection{Access Log}\label{concept-accesslog}
 
-Los \emph{Access Log} son registros que se almacenan en un servidor, los cuales dependiendo del servidor, sistema operativo y las configuraciones del ambiente pueden tener mayor o menor información. Cuando los usuarios acceden a diversos sitios web, estos registros dejan una gran cantidad de información, un ejemplo se puede ver en la Figura~\ref{fig:accesslog-apache-teleton}. Si se extraen de forma correcta se puede obtener patrones de navegación de usuarios. 
+Los \emph{Access Log} son registros que se almacenan en un servidor, los cuales dependiendo del servidor, sistema operativo y las configuraciones del ambiente pueden tener mayor o menor información. Cuando los usuarios acceden a diversos sitios \emph{web}, estos registros dejan una gran cantidad de información, un ejemplo se puede ver en la Figura~\ref{fig:accesslog-apache-teleton}. Si se extraen de forma correcta se puede obtener patrones de navegación de usuarios. 
 
 
 \subsection{Árboles Trie} \label{concept-trie}
 
-Los \emph{trie} son un tipo de árbol de prefijos, estructuras de datos en forma de árbol que almacenan datos en sus nodos y es muy fácil la recuperación de información de estos. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y sus nodos internos representan la información, en nuestro caso una secuencia de acceso o un símbolo (secuencia de largo 1). 
+Los \emph{trie} son un tipo de árboles conocido por muchos nombres incluyendo árboles de prefijos, árbol de búsqueda digital, árbol de recuperación (de ahí su nombre ``\emph{trie}'', por la palabra en inglés recuperación, \emph{retrieval}). Básicamente son estructuras de datos en forma de árbol que almacenan valores en sus nodos y es muy fácil recuperar la información. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y en sus nodos internos se encuentra la información asociada a las llaves, en nuestro caso una secuencia de acceso de usuarios o un símbolo. 
 
-Un árbol es una estructura general de nodos recursivos. Hay muchos tipos de árboles. Los populares son árbol binario y el árbol balanceado. Un \emph{trie} es conocido por muchos nombres incluyendo árbol prefijo, árbol de búsqueda digital, árbol de la recuperación (de ahí el nombre de ``\emph{trie}'', por la palabra del inglés recuperación, \emph{retrieval}).
+Hay muchos tipos de árboles, uno de los populares son los árboles binario y los árboles balanceado (\emph{B-tree}). Cada árbol tiene una finalidad, estructura y comportamiento distintos, por ejemplo un árbol binario almacena una colección de elementos comparables ( números o cadenas de caracteres). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o también  índices de otros datos que pueden ser representados por números (por ejemplo, objetos que pueden tener un cierto \emph{hash} de identificación). Su estructura está ordenada por lo que se puede buscar rápidamente un nodo. Otras estructuras de árbol, como un \emph{B-tree} son similares en principio al \emph{trie} que se implementará en la etapa experimental, ya que también la velocidad en la búsqueda del \emph{trie} es directamente proporcional a la altura y el balance de sus nodos.
 
-Cada tipo de árbol tiene distinta finalidad, estructura y comportamiento. Por ejemplo, un árbol binario almacena una colección de elementos comparables (por ejemplo, números). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o al índice de otros datos que pueden ser representados por los números (por ejemplo, objetos que pueden ser \emph{hash}). Su estructura está ordenada por lo que se puede buscar rápidamente para encontrar nodo. Otras estructuras de árbol, como un árbol balanceado son similares en principio al \emph{trie} que se implementará en la etapa experimental.
-
-Un \emph{trie} representa una forma  estructurada de nodos, la cual puede almacenar secuencias. % (ver el artículo de wiki). 
-Es muy diferente cuando almacena secuencias de valores en lugar de valores individuales. Cada nivel representa un incremento en la altura del árbol.
+Un \emph{trie} en este trabajo representa una estructurada de nodos, los cuales almacenan \emph{webaccess log}.  Es muy diferente cuando se almacena secuencias de valores, en lugar de valores individuales, la deducción de esto puede ser trivial debido a que entre menor es la secuencia de \emph{webaccess log} el nodo estará más cercano a la raíz, esto se profundizará en el Capitulo~\ref{ch:experimetal-all}. %Cada nivel representa un incremento en la altura del árbol, al igual .
 %'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
 
 
-Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{trie}, para representar un diccionario, en los cuales podemos señalar las siguientes operaciones disponibles:
+Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{trie}, para representar un diccionario generado por un algoritmo de compresión, en los cuales podemos señalar las siguientes operaciones disponibles que serán útiles conocer. Consideremos $x$ una cadena de caracteres
 
 	\begin{itemize}	
-		\item \textbf{findByPrefix(x):}  Retornar una una lista de todos los nodos hasta llegar a un nodo que posea un \emph{String} de parámetro equivalente a $x$.
+		\item \textbf{findByPrefix(x):}  Retorna una lista de todos los nodos 	que se recorren hasta llegar al nodo que posea un \emph{webaccess log} o valor del nodo  equivalente a $x$.
 		
-		\item \textbf{contains(x):} Retornar una lista de nodos intermedios hasta que el contenido del nodo final sea hoja o el intermedio corresponda a valor de la secuencia \emph{String} $x$.
+		\item \textbf{contains(x):} Retorna una lista de nodos intermedios entre la raíz del \emph{trie} hasta el contenido del nodo sea hoja o intermedio que corresponda al valor de $x$.
 		
-		\item \textbf{remove(x):} Retorna \emph{true} o \emph{false} cuando es posible remover el nodo con el contenido equivalente a $x$.
+		\item \textbf{remove(x):} Retorna \emph{true} o \emph{false} cuando es posible remover el nodo con valor equivalente a $x$.
 		
-		\item \textbf{pathTo(x):} Retorna una lista de nodos hasta llegar a un nodo que posea el contenido equivalente del valor $x$.
+		\item \textbf{pathTo(x):} Retorna una lista de nodos, representativa a la ruta recursiva para llegar desde la raíz a un nodo que posea un valor equivalente a $x$, representativo a un \emph{webaccess log}.
 	\end{itemize}
 
 
@@ -48,7 +45,7 @@ Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{
 \subsection{Alfabeto} \label{concept-alphabet}
 
 
-Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser de valores  discreto, representaremos por $\Sigma$ al alfabeto que usaremos y una de las características básica de este alfabeto posee $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n},\ \sigma_{i} \in \Sigma$, donde {$\sigma_{1}$}\label{concept-alphabet-homepage} es definido como la página inicial de una cierta secuencia  o sesión de usuario. Sea $|\Sigma|$ la longitud de secuencia o la cardinalidad del alfabeto daremos como restricción que $|\Sigma| \geq 2$ símbolos~\cite{Dmitry2002} necesarios para realizar experimentos acotados. Posteriormente en el capítulo experimental~(\ref{ch:experimetal-all}) usaremos un conjunto de datos de tamaño $|\Sigma| =\ 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
+Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser un valor discreto. Representamos por $\Sigma$ al alfabeto y los elementos de este  alfabeto por $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n} \mbox{ tal que } \sigma_{i} \in \Sigma$, donde {$\sigma_{1}$}\label{concept-alphabet-homepage} es definido como la página inicial de una cierta secuencia  o sesión de usuario. Sea $|\Sigma|$ la longitud de secuencia o la cardinalidad del alfabeto daremos como restricción que $|\Sigma| \geq 2$ símbolos~\cite{Dmitry2002} necesarios para realizar experimentos acotados. Posteriormente en el capítulo experimental~(\ref{ch:experimetal-all}) usaremos un conjunto de datos de tamaño $|\Sigma| = 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
 
 El alfabeto sera utilizado simbólicamente como la representación de varios nodos contenido en un \emph{trie} que {modela la navegación de usuarios}~(\ref{sec:nuestromodelopredict-mlldc}) para un sitio \emph{web}.
 
@@ -58,14 +55,14 @@ El alfabeto sera utilizado simbólicamente como la representación de varios nod
 
 \subsection{Secuencias discretas}\label{concept-discret-seq}
 
-Definimos una secuencia de accesos discreta y finita  $S$ , dado ciertos accesos de usuarios que tiene una \emph{web}, lo anterior es acotado por el concepto de \emph{sesión de navegación}, que es desde que se inicia la el primer acceso, $\sigma_{1}$~(\ref{concept-alphabet-homepage}) por parte de un usuario hasta su que finaliza su navegación. Las secuencias de navegación serán de tamaño $S\ \leq 1$ y  no superior a la cardinalidad del alfabeto $|\Sigma|$.
+Definimos una secuencia de accesos discreta y finita  $S$, dado ciertos accesos de usuarios que tiene una \emph{web}, lo anterior es acotado por el concepto de \emph{sesión de navegación}, que es desde que se inicia la el primer acceso, $\sigma_{1}$~(\ref{concept-alphabet-homepage}) por parte de un usuario hasta su que finaliza su navegación. Las secuencias de navegación serán de tamaño $S\ \leq 1$ y  no superior a la cardinalidad del alfabeto $|\Sigma|$.
 
 
 
 % Compresor tonto o Machine Learning lento para predecir
 \subsection{Lossless Data Compression (LDC)} \label{concept-LDC}
 
-La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En capítulos posteriores (\ref{ch:Compresion-Machine-Learning}) se detallará más sobre el tema compresión y como esta área ayuda a crear un modelo de predicción.
+La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En el capítulo~\ref{ch:Compresion-Machine-Learning} se detallará más sobre el tema compresión y como ayuda a crear un modelo de predicción.
 
 
 
@@ -77,26 +74,25 @@ Los motores de Predicción son la parte fundamental de un sistema predictivo, di
  
 
 
-\subsection{Resilient Distributed Datasets }\label{concept-RDD}
+\subsection{Resilient Distributed Datasets}\label{concept-RDD}
 
-	Los \texttt{RDD}, permiten que en un servidor de \emph{Machine Learning } pueda mantener un modelo o motor de aprendizaje persistente sin importar en el flujo que se encuentre.
+	Los \emph{Resilient Distributed Datasets} (\texttt{RDD}) permiten que un servidor o arquitectura de servidores de \emph{Machine Learning} puedan mantener los datos de un modelo de predicción, fuente de datos o valores de evaluación persistente sin importar en el flujo que sea invocado, esto es muy útil cuando se realizan procesamineto en \emph{clusters} y los datos se encuentran transversalmente sin tener pérdida procesamiento ni ejecución.
 
-	Esta estructura es fundamental dentro de la librería que se introducirá mas adelante, \emph{Apache Spark}. Esta estructura es una colección distribuida de objetos inmutables, cada 
-	set de datos en un \texttt{RDD} es divido en particiones lógicas, las cuales puedes ser computadas en distintos cluster. Los \texttt{RDD} pueden contener cualquier tipo de objeto de los siguientes lenguajes: \emph{Python}, \emph{Scala} y \emph{Java}, incluyendo clases definidas por el usuario. 
+	Esta colección es fundamental para \emph{PredictionIO} y \emph{Apache Spark}, que se verán en el Capitulo~\ref{ch:experimetal-all}. Esta estructura distribuida de almacenamiento de objetos inmutables separa los conjuntos de datos en un \texttt{RDD}\cite{zaharia2010}, que  es divido en particiones lógicas, las cuales puedes ser computadas en distintos cluster. Los \texttt{RDD} pueden contener cualquier tipo de objeto de los siguientes lenguajes: \emph{Python}, \emph{Scala} y \emph{Java}, incluyendo clases definidas por el usuario. 
 
-	Formalmente los \texttt{RDD} son solo de lectura, una colección de objetos divididos. Estos pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra \texttt{RDD}.
-	Otra de las características de los \texttt{RDD}, es que son colecciones de elementos tolerantes a fallas que pueden ser operadas en si mismas o en paralelo.
-	\emph{Apache Spark} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{MapReduce}, de ser requeridas. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el uso de \emph{Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} y otros.
-
+	Formalmente los \texttt{RDD} son solo de lectura como colecciones de objetos distribuidas. Pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra \texttt{RDD}.
+	Otra de las características es que son colecciones tolerantes a fallas que pueden operar individualmente o en paralelo.
+	\emph{Apache Spark}\footnote{Apache Spark, \url{http://spark.apache.org}} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{MapReduce}, si es requerido. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el fundamento de \emph{Apache Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} mediante el entorno de trabajo de \emph{PredictionIO}.
 
 
 
+%TODO ver mas aca
 \subsection{Data Source y Dataset }
 
-	Los \emph{Data Source} son distintas fuentes de datos que podemos ir sacando set de datos (\emph{Dataset}). Ambos conceptos están enfocados a proveer información tanto para el servidor de \emph{Machine Learning}, como para el procesamiento y análisis.
-	En este trabajo el dataset con que realizaremos nuestro estudio son los registros de accesos de la web española \emph{MSNBC}\cite{Claude2014}, los cuales representan aproximadamente 1.000.000 de registros de \emph{webaccess log}.
+	Los \emph{Data Source} son distintas fuentes de datos que podemos ir sacando set de datos (\emph{Dataset}). Ambos conceptos están enfocados a proveer información de entrada tanto para el servidor de \emph{Machine Learning}, como para el procesamiento y análisis.
+	En este trabajo el conjunto de datos experimental con que realizaremos nuestro estudio son los registros de accesos de la \emph{web} española \emph{MSNBC}\cite{Claude2014}, los cuales representan aproximadamente de registros de \emph{webaccess log}.
 
-	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 16, el cual como antes ya se ha señalado estará relacionado al concepto de alfabeto. También crearemos \emph{dataset} sintéticos para poder realizar depuraciones de nuestra implementación y casos de bordes.
+	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 16, el cual como antes ya se ha señalado estará relacionado al concepto de alfabeto. También crearemos conjuntos de datos sintéticos para poder realizar depuraciones de nuestra implementación y casos de bordes.
 	
 	 
 
@@ -131,7 +127,7 @@ Los motores de Predicción son la parte fundamental de un sistema predictivo, di
 
 \subsection{Transferencia de Estado Representacional}~\label{concept-rest}
 
-Es un estilo de desarrollo de software para sistemas distribuidos mediante Internet. El uso de REST, de sus siglas en ingles, ha sido adoptado mucho más adoptado que  \emph{Simple Object Access Protocol}, ya que los servicios \emph{REST} aprovechan mayor cantidad el ancho de banda, lo que hace que sea una mejor opción para su uso a través de Internet, los mensajes tanto originados por el servidor o cliente puede ser enviados en formato \emph{xml} o \emph{json}. 
+La Transferencia de Estado Representacional~(\texttt{REST}) es un estilo de desarrollo de software para sistemas distribuidos. Su uso ha sido adoptado mucho más rápido que  \emph{Simple Object Access Protocol} (\texttt{SOAP}), ya que los servicios \texttt{REST} aprovechan mejor el ancho de banda en las transferencia, lo que hace que sea una mejor opción para su uso. Los mensajes tanto de origen del servidor o cliente pueden ser enviados en formato \emph{xml} o \emph{json}. 
 
 
 
@@ -139,7 +135,7 @@ Es un estilo de desarrollo de software para sistemas distribuidos mediante Inter
 % Este tema debería detallarse en las siguientes secciones
 \section{Trabajos relacionados}
 
-En la literatura, el tema de la predicción en la web se ha presentado como un tema recurrente provocando bastante atención durante los último años y ha sido tratado por varios autores de áreas de \emph{Machine Learning} y \emph{Lossless Data Compression}. Tenemos los siguientes trabajos de interés:
+En la literatura, el tema de la predicción en la \emph{web} se ha presentado como un tema recurrente provocando bastante atención durante los último años y ha sido tratado por varios autores de áreas de \emph{Machine Learning} y \emph{Lossless Data Compression}. Tenemos los siguientes trabajos de interés a continuación.
 
 
 \input{related-work}
