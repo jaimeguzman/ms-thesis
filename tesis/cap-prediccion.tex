@@ -6,13 +6,13 @@ Comprender las predicciones en los patrones de navegación \emph{web} es el prob
 La compresión en este punto demuestra una convergencia en la predicción de secuencias discreta, debido a que existe un brecha en la compresión de los datos que comparte un espacio vectorial común, en el cual es posible ser un  algoritmo de compresión y ser candidato a generar un modelo predictivo. Usando toda la eficiencia de un algoritmo de compresión, es posible ofrecer toda una nueva perspectiva al ámbito de  predicciones que abarca los algoritmos tradicionales de \emph{Machine Learning}. 
 
 %@TODO Esto podria hablar mas de webaccess
-En los últimos años se ha observado que  los contenido de muchos sitios \emph{web} son dinámicos y nuevas páginas también se añaden a variados sitios de forma dinámica. Así es como  se hace necesario un modelo predictivo que pueda servir como un modelo predictivo \emph{online},  considerando tanto los cambios \emph{web} que se van produciendo, como también el comportamiento de los usuarios que interactúan con ella. 
+En los últimos años se ha observado que  los contenido de los sitios \emph{web} son dinámicos y nuevas páginas también se añaden a variados sitios de forma dinámica. Así es como  se hace necesario un modelo predictivo que pueda servir como un modelo predictivo \emph{online},  considerando tanto los cambios \emph{web} que se van produciendo, como también el comportamiento de los usuarios que interactúan con ella. 
 
 Moghaddam \etal~\cite{Moghaddam2009} proponen un modelo predictivo \emph{online} que cubre la eficiencia de la memoria como un factor importante para un algoritmo \emph{online}. 
 
 Para cualquier secuencia de eventos es posible modelar un proceso estocástico, algoritmos que emplean modelos de Markov para optimizar las predicciones del siguiente símbolo, en cualquier secuencia representativa  de sesión de navegación. Otros escenarios requieren que un algoritmo de predicción sea capaz de incrementar su recuperación de información  y poder dar resultados de forma inmediata, es decir predicciones $online$ .
 
-El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de símbolos $ X = x_{1}, x_{2}, \dots, x_{n}\ $, ¿Cuál es el siguiente símbolo $x_{i+1}$? Este problema ha sido formulado gracias al trabajo de  Rissanen\cite{Rissanen1983} y Langdom\cite{Langdon1983}. Un buen compresor es aquel que al comprimir datos sin pérdida se aproxima a un \emph{predictor}.
+El problema de la predicción secuencial se puede establecer de la siguiente manera, dado un secuencia de símbolos $ X = x_{1}, x_{2}, \dots, x_{n}\ $, ¿Cuál es el siguiente símbolo $x_{i+1}$? Este problema ha sido formulado gracias al trabajo de  Rissanen\cite{Rissanen1983} y Langdom\cite{Langdon1983}. Un buen compresor implementado en el ámbito de la predicción es aquel que al comprimir datos sin pérdida se aproxima a un \emph{predictor}.
 
  
 
@@ -36,7 +36,7 @@ El problema de la predicción secuencial se puede establecer de la siguiente man
 Para poder crear un modelo predictivo acorde a la Teoría de la Información, un predictor que construye un modelo cuya entropía se aproxima a la de la fuente de datos, consigue una mayor exactitud predictiva. 
 
 
-Las predicciones son un área importante dentro del dominio de las \emph{Machine Learning} y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un óptimo desempeño, también ayudan a dar información para la toma de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que, por lo general, se pueden modelar como un proceso estocástico. 
+Las predicciones son un área importante dentro del dominio de \emph{Machine Learning} y la Inteligencia Artificial, las cuales pueden ofrecer un sistema de inteligencia que las aplicaciones necesitan para un óptimo desempeño, también ayudan a dar información para la toma de decisiones. Ciertos dominios requieren que la predicción se pueda realizar en las secuencias de eventos que, por lo general, se pueden modelar como un proceso estocástico. 
 %Nuestro interés se centra en las predicciones de secuencias discretas, y en este punto, demostrar la convergencia en la  cual un modelo de compresión 
 %(como el caso de \texttt{LZ78} que se explicará más detalladamente en el Capítulo 4) y la eficiencia de un algoritmo de compresión, ofrece una nueva perspectiva a las predicciones. 
 
@@ -61,34 +61,35 @@ Dado lo anterior podemos hacer minería de los datos que un servidor ha recolect
 
  
 
-Sea $\Sigma$ un alfabeto finito y $q_{i}^{n}$ el $i\mbox{-ésimo}$ símbolo $q$ de un conjunto total de $n$ símbolos. Para entrenar un secuencia $q_{1}^{n}=q_{1}q_{2} \dots q_{n}$, donde $q_{i} \in \Sigma$ y el símbolo compuesto $q_{i}q_{i+1}$ que es la concatenación de $q_{i}$ y $q_{i+1}$, debemos tener un algoritmo que permita leer y usar esta secuencia, además entrenar con los datos procesados y entregar un resultado predictivo con el modelo que se desea generar. El objetivo es entrenar un modelo $M$ que entregue como resultado la probabilidad condicionada para cualquier futuro símbolo dado a una sub-secuencia que ha sido parte del entrenamiento previamente.
+Sea $\Sigma$ un alfabeto finito y $q_{i}^{n}$ el $i\mbox{-ésimo}$ símbolo $q$ de un conjunto total de $n$ símbolos. Para entrenar un secuencia $q_{1}^{n}=q_{1},q_{2} \dots q_{n}$, donde $q_{i} \in \Sigma$ y el símbolo compuesto $q_{i}q_{i+1}$, que es la concatenación de $q_{i}$ y $q_{i+1}$, debemos tener un algoritmo que permita leer y usar esta secuencia, además entrenar con los datos procesados y entregar un resultado predictivo con el modelo que se desea generar. El objetivo es entrenar un modelo $M$ que entregue como resultado la probabilidad condicionada para cualquier futuro símbolo dado a una sub-secuencia que ha sido parte del entrenamiento previamente.
 Definimos $\Sigma^{*}$ como un conjunto de sub-secuencias de símbolos $\sigma$ que componen $s$, talque $s \ \in \Sigma^{*} $. Específicamente, en cualquier contexto de secuencia $s$ de $\Sigma^{*}$  y  $\sigma \in \Sigma$ símbolos, el aprendizaje de la secuencia dado por el entrenamiento debe dar una distribución de probabilidad $M(\sigma | s )$ que su valor resultado es representada por el modelo $M$ al momento que es consultado o evaluado para predecir.
 
 El rendimiento del modelo predictivo se puede medir mediante una función del promedio de registro de errores $L(M,x_{1}^{T})$ de $M (\cdot | \cdot )$, con respecto a una secuencia $s = x_{1}^{T}$ con $x_{1}^{T}= x_{1},x_{2},....,x_{n} $ %, al acierto del siguiente símbolo $q_{i}$ de la secuencia $s$
   por lo tanto podemos definir $L$ como \begin{equation} L( M , x_{1}^{T} ) = 
 - \dfrac{1}{T} 
-\sum _{i=1}^{T} \log{ M(x_{i} | x_{i} \cdots x_{i-1}} )\end{equation}
-donde el logaritmo es en base $2$.  El promedio de $L$ es directamente relacionado a  \begin{equation}M(x_{1}^{R}) = \prod_{i=1}^{T} M(x_{i} | x_{i} \cdots x_{i-1} ) \end{equation} y minimizar el promedio de $L$ es completamente equivalente a maximizar la asignación de probabilidades a una secuencia de pruebas $x_{1}^{T}= x_{1},x_{2},\cdots,x_{n} $, teniendo en cuenta que esta equivalencia es totalmente válida. Sea $M(x_{1}^{T})$ una asignación de probabilidad consistente para una secuencia completa, la cual satisface que \begin{equation}
+\sum _{i=1}^{T} \log{ M(x_{i} | x_{i} \cdots x_{i-1}} ),\end{equation}
+donde el logaritmo es en base $2$.  El promedio de $L$ es directamente relacionado a  \begin{equation}M(x_{1}^{R}) = \prod_{i=1}^{T} M(x_{i} | x_{i} \cdots x_{i-1} ) \end{equation} y minimizar el promedio de $L$ es completamente equivalente a maximizar la asignación de probabilidades a una secuencia de pruebas $x_{1}^{T}= x_{1},x_{2},\cdots,x_{n} $, teniendo en cuenta que esta equivalencia es totalmente válida. 
+Sea $M(x_{1}^{T})$ una asignación de probabilidad consistente para una secuencia completa, la cual satisface \begin{equation}
 M(x_{1}^{t-1}) = \sum_{\mbox{$x_t$} \in \Sigma}^{T} M(x_{1} \cdots x_{t-1}x_{t} ) \ , 
-\end{equation}para todo $t=1,\ \cdots\ ,\ T$, induce la asignación de probabilidad,
+\end{equation}para todo $t=1,\cdots\ ,\ T$, induce la asignación de probabilidad,
 
 \begin{equation}
 M(x_{t} | x_{1}^{t-1} ) =  \dfrac{M(x_{1}^{t})}{M(x_{1}^{t-1} )},\ t=1,...,T.
 \end{equation}
 
 
-El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a \texttt{LDC}. La cantidad $- \log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la $auto-información$, puede ser la de compresión ideal o ``largo de secuencia'' de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1}) \ ,\end{equation} puede ser implementada \emph{online} (con  pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979} .
+El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a \texttt{LDC}. La cantidad $-\log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la ``auto--información'', puede ser la de compresión ideal o ``largo de secuencia'' de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1}) \ ,\end{equation} esta puede ser  \emph{online} (con  una pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979}.
 
 
 Por lo tanto, el promedio de $L$ también mide la tasa de compresión media de una secuencia de prueba, cuando se utilizan las predicciones generadas por $M$, es decir, un bajo promedio de $L$ %log-loss function
 sobre la secuencia $x_{1}^{T}$ puede implicar una buena compresión de esta secuencia \cite{Begleiter2004}.
 
-Suponiendo que los entrenamientos y las secuencias de pruebas fueron generados de una fuente desconocida\footnote{Mas adelante usaremos el término en ingles Data Source, para referirnos a fuentes de datos , tanto conocidas como desconocidas.} $P$. Sea una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es \begin{equation}
+Si se supone que el entrenamiento y las secuencias de pruebas fueron generados de una fuente desconocida\footnote{Mas adelante usaremos el término en ingles \emph{Data Source}, para referirnos a fuentes de datos , tanto conocidas como desconocidas.} $P$. Definimos una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es \begin{equation}
 P = arg\ min_{M} \{ - E_{P} \{\log M( X_{1}^{T} )\}   \}
 \end{equation}
 
 
-Dada la equivalencia de \emph{log-loss} y la compresión, como se ha visto anteriomente, el significado de \emph{log-loss} de $P$ logra la mejor compresión posible, o logra una entropía 
+Dada la equivalencia de \emph{log-loss} y la compresión, como se ha visto anteriormente, el significado de \emph{log-loss} de $P$ logra la mejor compresión posible, o logra una entropía 
 \begin{equation}
 	H_{T}(P) = - E \log P( X_{1}^{T} ) 
 \end{equation}
@@ -101,9 +102,9 @@ D_{T} ( P || M ) = E_{P} \{ - \log M(X_{1}^{T} - (- \log P(X_{1^{T}})   )  )    
 
 Para normalizar la \emph{redundancia} $D_{T} ( P || M ) / T $, de una secuencia de largo $T$, da los  \emph{bits} extra por símbolo (sobre la tasa de la entropía) al comprimir una secuencia utilizando $P$.  
 
-Este ajuste probabilístico motiva un objetivo deseable, al entregar un algoritmo de propósito general para la predicción: minimizar la redundancia de manera uniforme, con respecto a todas las posibles distribuciones. Un algoritmo de predicción el cual pueda acotar la redundancia de manera uniforme, con respecto a todas las distribuciones dada una clase.
+Este ajuste probabilístico motiva un objetivo deseable, al entregar un algoritmo de propósito general para la predicción: minimizar la redundancia de manera uniforme, con respecto a todas las posibles distribuciones. 
 
-Una cota inferior de la redundancia para cualquier \emph{Predictor Universal} y \emph{Compresor Universal} \begin{equation}
+Un algoritmo de predicción el cual pueda acotar la redundancia de manera uniforme, con respecto a todas las distribuciones dada una clase debe poseer un cota inferior de redundancia para cualquier \emph{Predictor Universal} y \emph{Compresor Universal} \begin{equation}
 \Omega \left(  K \dfrac{\log T}{2 T } \right),
 \end{equation} donde $K$ es (más o menos) el número de parámetros del modelo que codifica la distribución $P$ (Rissanen \cite{Rissanen1984}, 1984).
 
@@ -140,9 +141,11 @@ El objetivo de cada predictor es tener una función de minimización tal que min
 
 %
 %Primero asumimos que cada evento por si 
-En secciones anteriores se ha hablado de como los eventos secuenciales se pueden modelar como un proceso estocástico.
+ 
 
-Ciertamente para reconocer frecuencia en patrones secuenciales y reglas de asociación puede requerir mucha  información y entregar mejor precisión en la información de los usuarios y su comportamiento en la web. Pero un enfoque en que la temporalidad de los datos se debe modelar con un modelo de Markov es la clave para poder realizar esto, y estos datos ya han ayudado a predecir los accesos de los usuarios, como señala Dongshan \etal~\cite{Dongshan2002} pero en la práctica existen muchas limitaciones técnicas que no permiten que se implementen. 
+Se ha estudiado como los eventos secuenciales que se obtienen de usuarios \emph{web} cuando navegan se puede modelar, pero reconocer la frecuencia de estos patrones de \emph{webaccess} puede requerir mucha  información de entrada y un alto costo procesamiento.  Indudablemente puede entregar mejor precisión en el resultado de como es el comportamiento de los usuarios, pero no es óptimo para las demandas actuales. 
+
+Estos enfoques tradicionales usan Modelos de Markov, a medida que va aumentando el historial de navegación secuencial el orden de complejidad aumenta directamente proporcional. Lo anterior genera cálculos  complejos y lentos de procesar. Se ha encontrado que la implementación de estos modelos son inadecuados para este propósito~\cite{Dongshan2002} , debido a que no logran abarcar un volumen de datos, ni secuencias de mayores tamaños. Además la escalabilidad de estas propuestas  como señala Dongshan \etal~\cite{Dongshan2002} presentan en la práctica muchas limitaciones técnicas que no permiten ser implementadas. 
 
 
  
