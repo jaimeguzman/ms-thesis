@@ -162,36 +162,26 @@ Estos enfoques tradicionales usan Modelos de Markov, a medida que va aumentando 
  \subsection{Limitaciones de los modelos tradicionales de Markov}
  
  %%%%% Cita pagina 2 Dongshan2002 %%%%%%%%
+ Los modelos tradicionales de Markov predicen la siguiente página \emph{web} que un usuario puede acceder considerando el acceso más probable, se itera para  coincidir su secuencia de acceso actual con secuencias de accesos \emph{web} históricas.
  
- Los modelos tradicionales de Markov predicen la siguiente página Web que un usuario puede acceder considerando el acceso más probable, se itera para  coincidir su secuencia de acceso actual con secuencias de accesos Web históricas.
+ Usando estos modelos los investigadores como  Dongshan \etal~\cite{Dongshan2002} han comparado  el máximo número de elementos  prefijos de cada secuencia histórica,  con los elementos sufijos de la  misma longitud de secuencia de \emph{webaccess} actual del usuario y obteniendo secuencias dada su secuencia histórica con probabilidad más alta en la que los elementos coinciden.
  
- 
- Usando estos modelos los investigadores como  Dongshan \etal~\cite{Dongshan2002} han comparado  el máximo de elementos  prefijos de cada secuencia histórica de webaccess,  con los elementos sufijos de la  misma longitud de secuencia de webaccess actual del usuario y obteniendo secuencias dado su secuencia histórica con la probabilidad más alta en la cual los elementos coinciden.
- 
- El modelo de Markov de orden cero es la tasa base de probabilidad incondicional, la cual es la probabilidad de la página visitada, dada por
- \begin{equation}
-p(x_n) = Pr(X_n)\ ,
- \end{equation}	
- donde $x_{n}$ es xn y $Xn$ es otra Xn.
- 
- El modelo de Markov de orden uno observa la probabilidad de la transición de un página a otra, la podemos interpretar así:
- 
- \begin{equation} 
-	 p(x_{2} | x_1) = Pr(X_2 = x_2 | X_1 = x_1) 
+ El modelo de Markov de orden cero, es la tasa base de probabilidad incondicional, dada por \begin{equation}
+p(x_n) = Pr(X_n) , \end{equation} que es la probabilidad de visitar un página \emph{web}. El siguiente modelo de Markov de orden uno, observa la probabilidad en la transición de un página a otra, la podemos definir como  $x_{1}$ y $x_{2}$, la primera y segunda página visitada por un usuario. La probabilidad de la transición de una página a otra página sería \begin{equation} 
+	 p(x_{2} | x_1) = Pr(X_2 = x_{2} | X_1 = x_{1}) 
  \end{equation}	
  
- El $k$-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una nueva  $n$-ésima página  dado su anterior página visitada, teniendo que $k = n -1$ páginas vistas:
+ El $k$-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una $n$-ésima página nueva dada su anterior visita, teniendo que $k = n -1$ páginas vistas:
+
  \begin{equation}\label{eq:tantito}
-p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n} | X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k}) 
+ \scriptstyle
+ p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n}\ |\ X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k}) .
  \end{equation}
-
-
  
+ Los Modelos de Markov de orden inferior no pueden predecir con certeza total el futuro de los \emph{webaccess log}, ya que no van lo suficientemente atrás en el historial de \emph{webaccess} para determinar como se comporta el usuario. Estos comportamiento de los usuarios requieren buenas predicciones, las que a la vez requieren modelos de Markov de mayor orden, pero los modelos de orden superior resultan de mayor complejidad en espacio de estado y cobertura de estados de transición. 
+Los modelos con mayor orden de estados son distintas combinaciones de las acciones observadas y registradas en el conjunto de datos de los \emph{webaccess log}, entonces, el número de estados tiende a crecer exponencialmente al igual que el orden del modelo.
  
- Modelos de Markov, en (\ref{eq:tantito}), de orden inferior no pueden predecir con éxito total el futuro de los \emph{webaccess log}, ya que no van lo suficientemente atrás en el pasado para discriminar el modo en que se comporta el usuario. Este comportamiento de los usuarios requiere de buenas predicciones, las que a la vez requieren modelos de Markov de orden superior, pero los modelos de orden superior resultan de alta complejidad en espacio de estado y cobertura. 
- 
-Modelos con mayor orden de estados son distintas combinaciones de las acciones observadas en un set de datos, entonces, el número de estados tiende a crecer exponencialmente al igual que el orden del modelo. 
-Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los test podrían no tener estados correspondientes en los modelos de Markov de mayor orden, por lo que reduciría su alcance.
+Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los conjuntos de prueba podrían no tener estados correspondientes en los modelos de Markov que da mayor orden, por lo que reduciría su alcance y eficacia.
 
 
 \input{predictionio} 	 %introducción a las Prediccion

@@ -1,4 +1,3 @@
-
 \chapter[Compresión y Machine Learning]{Compresión y \emph{Machine Learning}}
 \label{ch:Compresion-Machine-Learning}
 
@@ -43,16 +42,17 @@ Desde otro punto de vista, los algoritmos de compresión mapean implícitamente 
 
 Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido mayormente explorada. Los algoritmos de compresión han sido estudiados e investigados durante varios años, la motivación fundamental es poder optimizar el espacio generado por ambas áreas, para un uso eficiente o mayor almacenamiento de datos. Estos algoritmos se encuentran, sin saberlo, en nuestro día a día, desde el núcleo de un sistema operativo como Linux hasta por ejemplo los formatos \emph{zip}, \emph{rar} y \emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar, por ejemplo, en dispositivos físicos. 
 
-La motivación de profundizar en el área de compresión de datos se debe a una de las razones mencionadas con anterioridad, Internet. Esta red de redes, constantemente crea nuevos contenidos, registros, imágenes, entre otros tipos de datos,  los cuales sin tener buenos recursos de red y/o infraestructura para cargar de un lugar a otro mediante una transferencia directa implicaría un demora exponencial en un escenario típico de una web. Dichos archivos crecen innumerablemente (mayormente generados por usuarios) y he aquí uno de los mayores aportes que poseen los algoritmos de compresión con relación a nuestra red de redes, precisamente la compresión de datos optimiza la transferencia de archivos como la carga de archivos en el lado del cliente.
+La motivación de profundizar en el área de compresión, \texttt{LDC}, es la cantidad de posibilidades que entrega para mejorar la operación, movilidad de archivos y distintos recursos que ayudan a mejorar la experiencia en Internet. Considerando que constantemente se crean nuevos contenidos, registros, imágenes, videos entre otros tipos de datos,  los cuales ayudaría cuando no se poseen buenos recursos de red y/o infraestructura para cargar de un lugar a otro mediante  transferencia directas, esto implicaría un disminución en un escenario típico de una \emph{web} en el que se mueven miles de \emph{gigabytes}. Dichos archivos crecen innumerablemente no solo en número, sino también en el peso individual y he aquí uno de los mayores aportes que poseen los algoritmos de compresión con relación a nuestra red de redes. Precisamente la compresión de datos optimiza la transferencia de archivos como la carga de archivos en el lado del cliente.
 
-A diferencia de la velocidad de conexión, las infraestructura de redes no crecen proporcionalmente a los volúmenes de transferencias de datos, esto genera un sin fin de problemas para los usuarios e industria web. Sabemos que la latencia es el tiempo de respuesta que demora un usuario hacer una petición, un \emph{request}, a un servidor. Minimizar este tiempo de respuesta es fundamental, pero en caso contrario podemos minimizar el tiempo de latencia prediciendo el siguiente recurso a disponer.
+A diferencia de la velocidad de conexión, las infraestructura de redes no crecen proporcionalmente a los volúmenes de transferencias de datos, esto genera un sin fin de problemas para los usuarios e industria web. Sabemos que la latencia es el tiempo de respuesta que demora un usuario hacer una petición, un \emph{request}, a un servidor. Minimizar este tiempo de respuesta es fundamental, pero en caso contrario podemos minimizar el tiempo de latencia prediciendo el siguiente recurso a disponer aporta a una evolución en la manera en que se manipulan los sistemas de archivos.
  
-Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo, audio, vídeo, imagen, texto, etc. Las propiedades de estos algoritmos no solo permiten juntar un set de archivos y lograr un tasa de compresión óptima para ser transmitida por Internet, también pueden ayudar a realizar análisis en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Sobre este último punto es nuestro mayor interés, las predicciones de la siguientes \emph{webaccess} de una determinada web. Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia \emph{Lempel} {\&} \emph{Ziv}. Estos son en sí modelos variables de Markov que nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
+Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo audio, video, imagen, texto, etc. Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por Internet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Este último punto es nuestro mayor interés,  predicciones de \emph{webaccess log} de una \emph{web}. 
 
 Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}~(\texttt{LCA}), algoritmos de compresión sin pérdida.
 
+Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia \emph{Lempel} {\&} \emph{Ziv}. Estos son en sí modelos variables de Markov que nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
 
-El aprender acerca de la secuencia de datos continuas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y aprendizaje automático.
+El aprender acerca de la secuencia de datos continuas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y aprendizaje automático, \emph{Machine Learning}.
 
 
 
@@ -69,7 +69,7 @@ El aprender acerca de la secuencia de datos continuas sigue siendo un ítem fund
 
 
 %Sintetis de paper: Using Compresion models for filtering troll comments
-\vspace{2cm}
+\vspace{1cm}
 \section{Modelos de compresión}
 
 
@@ -87,8 +87,8 @@ Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los 
  
 \subsection{Prediction by Partial Match (PPM)}
  
-El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el maximo del orden de Markov de un modelo variable de Markov (\emph{VMM}) para construirse. 
-PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
+El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el máximo del orden de Markov de un modelo variable de Markov (\emph{\texttt{VMM}}) para construirse. 
+\texttt{PPM} maneja el problema de frecuencia cero usando dos mecanismo~\cite{Begleiter2004},  llamados
 	
 	\begin{itemize}
 			\setlength{\itemsep}{1pt}
@@ -100,10 +100,10 @@ PPM maneja el problema de frecuencia cero usando dos mecanismo  llamados
 	
 Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores \texttt{PPM}  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
 
-Algoritmos PPM consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, \emph{Active LeZi} construye un orden-k del modelo de Markov. Ahora empleamos la estrategia \texttt{PPM} de exclusión para reunir información de los modelos de orden 1 a $k$ para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
+Algoritmos  \texttt{PPM} consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, \emph{Active LeZi} construye un orden-k del modelo de Markov. Ahora empleamos la estrategia \texttt{PPM} de exclusión para reunir información de los modelos de orden 1 a $k$ para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
 
 % FATLA una CITA a ACTILEZI
-La ventana mantenida por \emph{Active Lezi} representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
+La ventana mantenida por \emph{Active Lezi}~\cite{Gopalratnam2007} representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
 
 	
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
@@ -121,7 +121,7 @@ La ventana mantenida por \emph{Active Lezi} representa el conjunto de contextos 
  
  Los Algoritmos DMC o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
  Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
- Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un 0 or un 1 son sumados cuando un nuevo símbolo entra. La estructura puede también ser actualizada usando \emph{state cloning method}.
+ Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un $0$ o $1$ son sumados cuando un nuevo símbolo entra. %La estructura puede también ser actualizada usando \emph{state cloning method}.
  
  
 \subsection{Lempel \& Ziv }
@@ -218,10 +218,7 @@ Sin embargo se presentan ciertos problemas de análisis con \texttt{LZ78}. Cualq
 \begin{itemize}
 	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
 	
-	\item La tasa de convergencia de \texttt{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \texttt{LZ78}se acerca de forma asintótica a un óptimo previsible.
-	%en (Ref. 1) por Feder et al,	
-	
-	
+	\item La tasa de convergencia de \texttt{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \texttt{LZ78} se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
 	
 \end{itemize}
 

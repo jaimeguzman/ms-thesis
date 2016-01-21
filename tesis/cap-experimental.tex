@@ -13,7 +13,7 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar hacer predicciones en secuencias discretas con distintos largos.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar predicciones en secuencias discretas con distintos largos.
 
 En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning, PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma \texttt{API }que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accuracy} (Exactitud) frente a distintas porciones de datos. Con el conjunto de datos que tenemos haremos variadas pruebas para ver métricas como Accuracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
@@ -66,7 +66,7 @@ Input = \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
 		]
 	]
 	\end{forest}
-	\caption{Ejemplod de Árbol de Predicción basado en \texttt{LZ78}.}
+	\caption{Ejemplo de Árbol de Predicción basado en \texttt{LZ78}.}
 	\label{fig:lztrie1}
 \end{figure}
 
@@ -83,7 +83,7 @@ Acotamos los siguientes casos en que nuestro Modelo de predicción funcionará:
 \begin{enumerate}
 	\item \textbf{Nodos Intermedios probabilidad Equivalente}
 	
-	Dada la $P( x | A\epsilon  )$, siendo $x$ la probabilidad de encontrar el siguiente símbolo. Este caso nos muestra que tenemos dos secuencias posibles $\{A,AB\}$, por lo cual podemos hacer la función $arc max(AA,AB)$ ó calcular una función $random(AA,AB)$, al ser un caso con solamente dos posibilidades tenemos solo un $50\%$ de éxito.
+	Dada la $P( x | A\epsilon  )$, siendo $x$ la probabilidad de encontrar el siguiente símbolo. Este caso nos muestra que tenemos dos secuencias posibles $\{A,AB\}$, por lo cual podemos hacer la función $arg\ max(AA,AB)$ ó calcular una función $random(AA,AB)$, al ser un caso con solamente dos posibilidades tenemos solo un $50\%$ de éxito.
 	
 	
 	\item \textbf{Nodos intermedios con un nodo hijo }
@@ -121,7 +121,7 @@ Para los ambientes experimentales se han dispuestos dos máquinas para realizar 
 		\item Procesadores Intel Xeon E5-2670 v2 (Ivy Bridge) de alta frecuencia 32 vCPU, 244 GB de Memoria RAM y Sistema Operativo Ubuntu 14.14 
 	\end{itemize}
 	
-Para el proceso de desarrollo con IntelliJ y dataset menores a 500 sesiones se usará la máquina con 16GB y para experimentos con sesiones mayores a 1000 sesiones de usuarios se usará la máquina 240GB.	
+Para el proceso de desarrollo con \emph{IntelliJ} y un conjunto de datos menores a 500 sesiones se usará la máquina con 16GB y para experimentos con sesiones mayores a 10000 sesiones de usuarios se usará la máquina 240GB.	
 	
 
 \subsubsection{Software utilizado}
@@ -270,13 +270,13 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 	
 	\begin{equation}
 		P( x | AAAAAAA)= A ,	
-	\end{equation} pero siendo la sesión $R$ de tamaño = 12, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
+	\end{equation} pero siendo la sesión $R$ de tamaño = $12$, en el siguiente acceso tendremos una probabilidad equiprobable dentro de las secciones en nuestro alfabeto, la cual generará un probabilidad de éxito ''falso positivo''.
 	
 	En el siguiente experimento veremos como se comporta nuestro modelo dado entradas \emph{Ruidosas}. Además se mostrará como el árbol suele perder su balance a medida que va creciendo los niveles de altura. 
 	
 	
 	
-	Por otro lado teniendo la noción de como es el funcionamiento de un servidor IIS, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}.
+	Por otro lado teniendo la noción de como es el funcionamiento de un servidor \texttt{IIS}, y al ser una página con un gran número de visitas, podemos señalar que los datos proporcionados no son totalmente representativos de usuarios reales, ya que la web al bien indexada en los buscadores existen un cantidad indeterminada de \emph{Crawlers} ó \emph{Bots} que están constantemente generando accesos tanto para almacenar en caché páginas o generando accesos automatizados a ciertos secciones sin ser datos representativo. Dejamos como discusión que algoritmo se podría implementar para detección de estos patrones por las ramas que hemos generado para la detección de \emph{bots} o \emph{robots}.
 	
 	
 	
@@ -401,8 +401,8 @@ Con esto demostraremos que secuencias con menores cantidad de símbolos generar 
 
 El orden de como se ingresan las sesiones afecta directamente proporcional a la construcción del modelo \emph{trie},  por lo cual es un factor  \emph{FIFO} al momento de crear, lo primero que lee es lo primero que entrena por lo cual se debiese tener un criterio para ordenar los \emph{webaccess} antes de poder pasarlos al entrenador, que implica antes de la construcción.
 
-El modelo propuesto, básicamente es un compresor el cual no toma decisiones, una posible mejora sería implementar un árbol de decisiones con algún criterior para decidir que entrenar y que no, estos árboles pueden estar dentro del \emph{trie} para
-poder elegir secuencias optimo acorde a los criterios históricos, asi podría darse el caso de ser un compresor-predictor  \emph{mas inteligente}.
+El modelo propuesto, básicamente es un compresor el cual no toma decisiones, una posible mejora sería implementar un árbol de decisiones con algún criterio para decidir que entrenar y que no, estos árboles pueden estar dentro del \emph{trie} para
+poder elegir secuencias optimo acorde a los criterios históricos, así podría darse el caso de ser un compresor--predictor  \emph{mas inteligente}.
 
 
 
@@ -434,13 +434,13 @@ poder elegir secuencias optimo acorde a los criterios históricos, asi podría d
 \newpage
 \section{Trabajos Futuro}
 
-Esta memoria forma parte del plan de continuidad para la continuación en el postgrado de la Escuela de Ingeniería Informática y telecomunicaciones, por lo cual se desea profundizar este trabajo en las discusiones realizadas. Los temas deseados por abarcar:
+Esta memoria forma parte del plan de continuidad en el postgrado de la Escuela de Ingeniería Informática y telecomunicaciones, por lo cual se desea profundizar este trabajo en las discusiones realizadas. Los temas deseados por abarcar:
 
 \begin{itemize}
 
-\item Crear un estudio comparativo con Modelos de \emph{Machine Learning} como RNN, Redes Neuronales, Reglas de Asociación, \emph{Deep Learning} y algoritmo de tipo \emph{Frequent Pattern Growth}.
+\item Crear un estudio comparativo con Modelos de \emph{Machine Learning} como (\emph{RNN}) Redes Neuronales, Reglas de Asociación, \emph{Deep Learning} y algoritmo de tipo \emph{Frequent Pattern Growth}.
 
-\item Mejorar la implementación de \texttt{LZ78}, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel.(C++)
+\item Mejorar la implementación de \texttt{LZ78}, realizado con lenguaje funcional y objetos(\emph{Scala}) y hacer una comparación de rendimientos contra implementaciones clásicas en lenguajes de más bajo nivel (\texttt{C++}).
 
 
 \item Crear técnicas como la usada por Claude \etal~\cite{Claude2014}, para crear representaciones eficientes en función de este modelo predictivo.
