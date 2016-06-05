@@ -1,8 +1,6 @@
+
 \chapter[Compresión y Machine Learning]{Compresión y \emph{Machine Learning}}
 \label{ch:Compresion-Machine-Learning}
-
-
-
 
 %%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
 %Moreover, machine learning algorithms such as neural networks and sequential rule mining have been applied to perform sequence prediction [6, 11].
@@ -15,6 +13,7 @@
 % D. Sculley and Carla E. Brodley
 
 El uso de algoritmos de compresión en tareas de \emph{Machine Learning} como agrupamiento y clasificación ha tenido presencia en variados campos de las ciencias de la computación. La intención de reducir problemas de selección explícita de ciertas características que se usan en estudios y algoritmos de \emph{Machine Learning}.
+
 Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissanen~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictibilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
 
 %Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
@@ -276,17 +275,81 @@ Podemos señalar que existen muchos problemas en que el factor de la secuenciali
 
 \subsection{Cadenas Ocultas de Markov}
 
+Las cadenas ocultas de Markov o en sus siglas en inglés HMM (Hidden Markov Model), son normalmente usados en reconocer discuros o lenguaje, reconocimiento de patrones en imágenes y video, traducción de textos, clasificaciónd de texto, etiquetado de documentos y también en compresión de datos.
+
+% repetido
+Una gran diferencia entre los modelos ocultos de markov y un proceso de markov clásico es que los primeros los estados no son observables. Un nueva observación es emitidad con una probabilidad conocida.
+
+Un modelo oculto de Markov consiste en un proceso de Markov (también conocido como una cadena de Markov) para observaciones con un tiempo discreto. La principal diferencia con los procesos de Markov es que los estados no son observables. Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios.
+
+En la actualidad hay dos fuentes de aleatoriedad:
+
+\begin{itemize}
+	\item Transición entre estados
+	\item La emisión de una observación cuando se da un estado
+\end{itemize}
+
+%Vamos a volver a utilizar el ejemplo cajas y pelotas. Si las cajas son estados ocultos (no observable), entonces el usuario dibuja las bolas cuyo color no es visible. La probabilidad de emisión es la probabilidad de bik = p (ot = colork | qt = Si) para recuperar una bola de color k de una caja oculta I, como se describe en el siguiente diagrama:
+
+
+
+\textbf{Nota: Invariancia del tiempo}
+
+Los \textit{HMM} requieren que los elementos de transición, $a_{ji}$, son independientes en el tiempo. Esta propiedad se conoce como restricción estacionaria u homogénea.
+
+\textbf{Nota: Normalizacion}
+
+Los estados de entrada y los datos de observaciones pueden tener que ser normalizados y se convierten en probabilidades antes de inicializar las matrices A y B.
+
+Input states and observations data may have to be normalized and converted to probabilities before initializing the matrices A and B.
 
 
 
 
+Para formalizar un escenario de HMM:
+
+\begin{itemize}
+	\item Un conjunto de observaciones
+	\item Una secuencia de estados ocultos
+	\item Un modelo que maximiza la probabilidad conjunta de las observaciones y estados ocultos, conocido como el modelo Lambda.
+
+\end{itemize}
+
+
+Un modelo Lambda,$\lambda$, está compuesto de probabilidades $\pi$ iniciales, las probabilidades de las transiciones de estado según la definición de la matriz A, y las probabilidades de los estados que emiten una o más observaciones.
+
+
+
+%@TODO: Definir una notación matematica para empezar hablar de HMM
+
+% HMM execution state
+% The canonical forms of the HMM are implemented through dynamic programming techniques. These techniques rely on variables that define the state of the execution of the HMM for any of the canonical forms:
+
+% Alpha (the forward variable): The probability of observing the first t < T observations for a specific state at Si for the observation t, αt(i) = p(O0:t, qt=Si|λ)
+
+% Beta (the backward variable): The probability of observing the remainder of the sequence qt for a specific state βt(i) = p(Ot+1:T-1|qt=Si,λ)
+
+% Gamma: The probability of being in a specific state given a sequence of observations and a model γt(i) =p(qt=Si|O0:T-1, λ)
+
+% Delta: The sequence to have the highest probability path for the first i observations defined for a specific test δt(i)
+
+% Qstar: The optimum sequence q* of states Q0:T-1
+% DiGamma: The probability of being in a specific state at t and another defined state at t+1 given the sequence of observations and the model γt(i,j) =p(qt=Si,qt+1=Sj|O0:T-1, λ)
+
+% Each of the parameters is described in the section related to each canonical form. Let's create a class HMMState that encapsulates the variables used in the implementation of the three canonical cases.
+
+
+%%%%%%%%% -> Realmente no se sis es necesarios definir los estados de ejecución de HMM
 
 
 
 
+\textbf{Algoritmo Viterbi}
 
+La extración del mejor estado de la secuencia (La secuencia de estado que posee la mayor probabilidad) toma mucho tiempo. Un alternativa es usar técnicas de programación dinámica para encontrar la mejor secuencia %qt
+a través de la iteración. Este algoritmo es conocido como \emph{Viterbi}. 
 
-
-
-
+Dada una secuencia de estados $q_{t}$ y una secuencia de observación  $o_{j}$, la probabilidad $\gamma_{t}(i)$ 
+%for any sequence to have the highest probability path for the first T observations is defined for the state St [7:7].
+para cualquier secuencia que tenga las mayores probabilidades hacia  las primeras $T$ observaciones, se puede definir para el estado $S_{t}$.
 
