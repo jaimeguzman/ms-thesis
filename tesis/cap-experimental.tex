@@ -2,6 +2,45 @@
 
 
 
+% rand	Uniformly distributed random numbers
+% randn	Normally distributed random numbers
+% randi	Uniformly distributed pseudorandom integers
+% randperm	Random permutation
+
+
+
+
+% B = randi([1 17],20,100);
+
+
+% B = randi(  [1 17], 20   , round( rand(1)*100 )   );
+
+
+
+% save LALA B -ascii
+
+% xlswrite('archivo.xls', datos obtenidos,'datos','A1:C2');
+
+
+% La función "diary" nos permite salvar, en un fichero de texto, lo que aparezca por pantalla. Por ejemplo, el siguiente código:
+
+% diary('diario1.txt')
+% x = 3
+% A = 10000;
+% diary off
+
+
+
+
+
+
+% Al cargar los datos desde Matlab, nos estaría creando una estructura. Para acceder a los datos y al texto, podríamos hacer:
+
+% A = importdata('data.txt')
+% B = A.data
+% t1 = cell2mat(A.textdata)
+% clear A
+
 
 
 {
