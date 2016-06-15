@@ -7,27 +7,7 @@ En esta sección se presenta formalmente el ambiente de desarrollo que se utiliz
 
 Este ambiente de trabajo se encuentra en un maduración estable y constante que permite tanto disponer servidores con motores predictivos, como también toda una infraestructura distribuida para hacer que complejos algoritmos que sean utilizados para solucionar problemas reales de mayor escala.
 
-
-
-% PIO, tiene prácticamente todo armadao, ello no hicieron nada nuevo ... solo juntaron  todo...
-
-
-
-% He estado investigando y revisando documentación, Yelp, Skype, Hubot de github y otras implementaciones tienen usando prediction.io
-
-
-
-
-% La otra opción es meterle a este "DASE" un algoritmo  que mezcle una representación de cadenas de Markov mezclado con LZ78. no se en que punto mezclarlo en el diccionario, o la verdad es como hacer el compresor sea "mas inteligente", encontré un papaer que te adjunto en el cual usan lz78 y lzw, esta interesante ya que le hacen un acercamiento mas al tema de de ser un predictor online.
-
-
-% Ahora entiendo que la cadenas de markov son y se han ocupado para las predicciones, pero no veo la necesidad de ocuparlas mayormente. Adin me insiste en que le de una vuelta.... pero mi sensación  es que tengo separada las ideas en dos extremos. 
-
-% Ya revise Suffix Tree para predicciones LZ77 y LZW, también PPM y HMM.
-
- 
- 
-
+% tiene que haber un conector entre este parraafo y lo que hablare de DASE
 
 
 \subsection{Arquitectura DASE}
@@ -39,18 +19,22 @@ Un motor de predicción es un tipo de proceso en \emph{Machine Learning}. Siguie
 
 \begin{itemize}
 
-  \item\label{dase-datasource} \textbf{ $[D]$ Data Source y Data Preparator}. Los Data Source leen la data desde la entrada original y la transforman en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
+  \item\label{dase-datasource} 
+  \textbf{ $[D]$ Data Source y Data Preparator}. Los Data Source leen la data desde la entrada original y la transforman en un formato deseado para hacer análisis de estos. En cambio \emph{Data Preparator} pre-procesa la información y la reenvía a los algoritmos para   hacer el modelo de entrenamiento.
 
 
-  \item\label{dase-algoritmo} \textbf{ $[A]$ Algoritmo}. Los componentes de \emph{PredictionIO}, dada sus librerías incluyen algoritmos de \emph{Machine Learning}, estos, pueden ser provistos por \emph{Apache Spark} o se pueden incluir algoritmos propios como también de terceros.
+  \item\label{dase-algoritmo} 
+  \textbf{ $[A]$ Algoritmo}. Los componentes de \emph{PredictionIO}, dada sus librerías incluyen algoritmos de \emph{Machine Learning}, estos, pueden ser provistos por \emph{Apache Spark} o se pueden incluir algoritmos propios como también de terceros.
     Adicionalmente a los algoritmos podemos asignarle parámetros, para determinar como debiese ser construido el motor ó si es requerido para un cierto algoritmo.
 
 
 
-  \item\label{dase-servicio} \textbf{ $[S]$ Servicio}. El componente servicio toma las consultas ó \emph{queries} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
+  \item\label{dase-servicio} 
+  \textbf{ $[S]$ Servicio}. El componente servicio toma las consultas ó \emph{queries} de predicción y retorna los resultados, en nuestro modelo propuesto en la etapa experimental veremos el siguiente símbolo de una secuencia. 
   Si el motor de predicción tiene múltiples algoritmos, combinará los resultados en uno. Adicionalmente, la lógica específica de negocios puede ser añadida para especificar aún más el resultado final. 
  
-  \item\label{dase-eval} \textbf{ $[E]$ Evaluación de Métricas}.
+  \item\label{dase-eval} 
+  \textbf{ $[E]$ Evaluación de Métricas}.
 Las métricas de evaluación cuantifican la precisión de la predicción con una puntuación numérica. Puede ser utilizado para la comparación de algoritmos o ajustes de los parámetros del algoritmo.
 \end{itemize}
 
@@ -100,7 +84,8 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 \vspace{1cm}
 
-\emph{PredictionIO} ayuda a tener componentes muy modulares, las que ya hemos descrito como  arquitectura \emph{DASE} (\ref{fig:arquitectura-dase})  que puede construir modelos de predicción de manera sencilla y ya contando con toda la arquitectura y algoritmos de \emph{MLIB}\footnote{Machine Learning Library Apache Spark, \url{http://spark.apache.org/mllib/}} de \emph{Apache Spark}. También poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
+
+\emph{PredictionIO} ayuda con componentes muy modulares, las que ya hemos descrito como  arquitectura \emph{DASE} (\ref{fig:arquitectura-dase})  que puede construir modelos de predicción de manera sencilla y ya contando con toda la arquitectura y algoritmos de \emph{MLIB}\footnote{Machine Learning Library Apache Spark, \url{http://spark.apache.org/mllib/}} de \emph{Apache Spark}. También poder integrarlos con gran facilidad a cualquier sistema o plataforma, por ejemplo, es posible elegir cual de todos los componentes se podrá desplegar al momento de crear un \emph{Engine} (Motor de Predicción.)
 
 
 
@@ -136,10 +121,10 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
 
 
-
+%https://docs.prediction.io/datacollection/eventmodel/
 \subsection{Modelamiento de eventos}
 
-%https://docs.prediction.io/datacollection/eventmodel/
+
 
 
 
@@ -150,6 +135,9 @@ Las métricas de evaluación cuantifican la precisión de la predicción con una
 
   Usaremos un \emph{conjunto de datos} con información que esta totalmente depurada y recuperada de los \emph{webaccess log} (provista por Claude \etal~\cite{Claude2014}), los cuales a efectos de temporalidad solo nos interesa conocer la secuencialidad de estos accesos.
   
+
+
+
 
 
 %Poner algo mas matemático
