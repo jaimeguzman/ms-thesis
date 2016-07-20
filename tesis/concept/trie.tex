@@ -1,0 +1,20 @@
+
+Los \emph{trie} son un tipo de árboles conocido por muchos nombres incluyendo árboles de prefijos, árbol de búsqueda digital, árbol de recuperación (de ahí su nombre ``\emph{trie}'', por la palabra en inglés recuperación, \emph{retrieval}). Básicamente son estructuras de datos en forma de árbol que almacenan valores en sus nodos y es muy fácil recuperar la información. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y en sus nodos internos se encuentra la información asociada a las llaves, en nuestro caso una secuencia de acceso de usuarios o un símbolo. 
+
+Hay muchos tipos de árboles, uno de los populares son los árboles binario y los árboles balanceado (\emph{B-tree}). Cada árbol tiene una finalidad, estructura y comportamiento distintos, por ejemplo un árbol binario almacena una colección de elementos comparables ( números o cadenas de caracteres). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o también  índices de otros datos que pueden ser representados por números (por ejemplo, objetos que pueden tener un cierto \emph{hash} de identificación). Su estructura está ordenada por lo que se puede buscar rápidamente un nodo. Otras estructuras de árbol, como un \emph{B-tree} son similares en principio al \emph{trie} que se implementará en la etapa experimental, ya que también la velocidad en la búsqueda del \emph{trie} es directamente proporcional a la altura y el balance de sus nodos.
+
+Un \emph{trie} en este trabajo representa una estructurada de nodos, los cuales almacenan \emph{webaccess log}.  Es muy diferente cuando se almacena secuencias de valores, en lugar de valores individuales, la deducción de esto puede ser trivial debido a que entre menor es la secuencia de \emph{webaccess log} el nodo estará más cercano a la raíz, esto se profundizará en el Capitulo~\ref{ch:experimetal-all}. %Cada nivel representa un incremento en la altura del árbol, al igual .
+%'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
+
+
+Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{trie}, para representar un diccionario generado por un algoritmo de compresión, en los cuales podemos señalar las siguientes operaciones disponibles que serán útiles conocer. Consideremos $x$ una cadena de caracteres
+
+\begin{itemize}	
+	\item \textbf{findByPrefix(x):}  Retorna una lista de todos los nodos 	que se recorren hasta llegar al nodo que posea un \emph{webaccess log} o valor del nodo  equivalente a $x$.
+	
+	\item \textbf{contains(x):} Retorna una lista de nodos intermedios entre la raíz del \emph{trie} hasta el contenido del nodo sea hoja o intermedio que corresponda al valor de $x$.
+	
+	\item \textbf{remove(x):} Retorna \emph{true} o \emph{false} cuando es posible remover el nodo con valor equivalente a $x$.
+	
+	\item \textbf{pathTo(x):} Retorna una lista de nodos, representativa a la ruta recursiva para llegar desde la raíz a un nodo que posea un valor equivalente a $x$, representativo a un \emph{webaccess log}.
+\end{itemize}

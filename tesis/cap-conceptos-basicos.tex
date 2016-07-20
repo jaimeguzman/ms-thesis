@@ -7,91 +7,47 @@ En esta sección se explicarán brevemente los conceptos principales que se usar
 
 
 \subsection{Access Log}\label{concept-accesslog}
-
-Los \emph{Access Log} son registros que se almacenan en un servidor, los cuales dependiendo del servidor, sistema operativo y las configuraciones del ambiente pueden tener mayor o menor información. Cuando los usuarios acceden a diversos sitios \emph{web}, estos registros dejan una gran cantidad de información, un ejemplo se puede ver en la Figura~\ref{fig:accesslog-apache-teleton}. Si se extraen de forma correcta se puede obtener patrones de navegación de usuarios. 
-
+	\input{concept/accesslog}
 
 \subsection{Árboles Trie} \label{concept-trie}
 
-Los \emph{trie} son un tipo de árboles conocido por muchos nombres incluyendo árboles de prefijos, árbol de búsqueda digital, árbol de recuperación (de ahí su nombre ``\emph{trie}'', por la palabra en inglés recuperación, \emph{retrieval}). Básicamente son estructuras de datos en forma de árbol que almacenan valores en sus nodos y es muy fácil recuperar la información. Se caracterizan por ser un conjunto de llaves que se representan en el árbol y en sus nodos internos se encuentra la información asociada a las llaves, en nuestro caso una secuencia de acceso de usuarios o un símbolo. 
-
-Hay muchos tipos de árboles, uno de los populares son los árboles binario y los árboles balanceado (\emph{B-tree}). Cada árbol tiene una finalidad, estructura y comportamiento distintos, por ejemplo un árbol binario almacena una colección de elementos comparables ( números o cadenas de caracteres). Por lo tanto, se puede utilizar para almacenar un conjunto de números, o también  índices de otros datos que pueden ser representados por números (por ejemplo, objetos que pueden tener un cierto \emph{hash} de identificación). Su estructura está ordenada por lo que se puede buscar rápidamente un nodo. Otras estructuras de árbol, como un \emph{B-tree} son similares en principio al \emph{trie} que se implementará en la etapa experimental, ya que también la velocidad en la búsqueda del \emph{trie} es directamente proporcional a la altura y el balance de sus nodos.
-
-Un \emph{trie} en este trabajo representa una estructurada de nodos, los cuales almacenan \emph{webaccess log}.  Es muy diferente cuando se almacena secuencias de valores, en lugar de valores individuales, la deducción de esto puede ser trivial debido a que entre menor es la secuencia de \emph{webaccess log} el nodo estará más cercano a la raíz, esto se profundizará en el Capitulo~\ref{ch:experimetal-all}. %Cada nivel representa un incremento en la altura del árbol, al igual .
-%'¿cuál es el valor del punto I de la lista de entrada'. Esto es diferente a un árbol binario que compara el valor buscado único a cada nodo.
-
-
-Durante este trabajo mostraremos que nuestro modelo de predicción usa un \emph{trie}, para representar un diccionario generado por un algoritmo de compresión, en los cuales podemos señalar las siguientes operaciones disponibles que serán útiles conocer. Consideremos $x$ una cadena de caracteres
-
-	\begin{itemize}	
-		\item \textbf{findByPrefix(x):}  Retorna una lista de todos los nodos 	que se recorren hasta llegar al nodo que posea un \emph{webaccess log} o valor del nodo  equivalente a $x$.
-		
-		\item \textbf{contains(x):} Retorna una lista de nodos intermedios entre la raíz del \emph{trie} hasta el contenido del nodo sea hoja o intermedio que corresponda al valor de $x$.
-		
-		\item \textbf{remove(x):} Retorna \emph{true} o \emph{false} cuando es posible remover el nodo con valor equivalente a $x$.
-		
-		\item \textbf{pathTo(x):} Retorna una lista de nodos, representativa a la ruta recursiva para llegar desde la raíz a un nodo que posea un valor equivalente a $x$, representativo a un \emph{webaccess log}.
-	\end{itemize}
-
-
-
-
-
+	\input{concept/trie}
 
 
 \subsection{Alfabeto} \label{concept-alphabet}
-
-
-Un alfabeto es un conjunto ordenado de elementos. Una de sus características es que la cantidad de elementos puede ser un valor discreto. Representamos por $\Sigma$ al alfabeto y los elementos de este  alfabeto por $\sigma^{n}$ símbolos, tal que $\sigma^{n}= \sigma_{1}, \dots, \sigma_{n} \mbox{ tal que } \sigma_{i} \in \Sigma$, donde {$\sigma_{1}$}\label{concept-alphabet-homepage} es definido como la página inicial de una cierta secuencia  o sesión de usuario. Sea $|\Sigma|$ la longitud de secuencia o la cardinalidad del alfabeto daremos como restricción que $|\Sigma| \geq 2$ símbolos~\cite{Dmitry2002} necesarios para realizar experimentos acotados. Posteriormente en el capítulo experimental~(\ref{ch:experimetal-all}) usaremos un conjunto de datos de tamaño $|\Sigma| = 17\  \mbox{símbolos}$, para datos reales recolectados de \emph{MSNBC}\cite{Claude2014} y un $|\Sigma|$ variable para experimentos con datos sintéticos.
-
-El alfabeto sera utilizado simbólicamente como la representación de varios nodos contenido en un \emph{trie} que {modela la navegación de usuarios}~(\ref{sec:nuestromodelopredict-mlldc}) para un sitio \emph{web}.
-
-
-
-
+	\input{concept/alphabet}
 
 \subsection{Secuencias discretas}\label{concept-discret-seq}
-
-Definimos una secuencia de accesos discreta y finita  $S$, dado ciertos accesos de usuarios que tiene una \emph{web}, lo anterior es acotado por el concepto de \emph{sesión de navegación}, que es desde que se inicia la el primer acceso, $\sigma_{1}$~(\ref{concept-alphabet-homepage}) por parte de un usuario hasta su que finaliza su navegación. Las secuencias de navegación serán de tamaño $S\ \leq 1$ y  no superior a la cardinalidad del alfabeto $|\Sigma|$.
-
+	\input{concept/discrete-sequence}
 
 
 % Compresor tonto o Machine Learning lento para predecir
 \subsection{Lossless Data Compression (LDC)} \label{concept-LDC}
-
-La compresión sin pérdida o \emph{LDC}, es el arte de poder comprimir \emph{bits} y poder hacer el proceso inverso, es decir poder codificar y decodificar. En el capítulo~\ref{ch:Compresion-Machine-Learning} se detallará más sobre el tema compresión y como ayuda a crear un modelo de predicción.
-
+	\input{concept/ldc}
 
 
 \subsection{Motor de Predicción}\label{concept-enginepredict}
 
-Los motores de Predicción son la parte fundamental de un sistema predictivo, dirigido a adivinar el futuro eventos dado un entrenamiento para un escenario o conjunto de datos en particular. La salida del motor de predicción es un evento siguiente. Para nuestro trabajo la salida se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta \emph{web}. 
-% que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
+	Los motores de Predicción son la parte fundamental de un sistema predictivo, dirigido a adivinar el futuro eventos dado un entrenamiento para un escenario o conjunto de datos en particular. La salida del motor de predicción es un evento siguiente. Para nuestro trabajo la salida se compone de un símbolo representando la dirección \emph{url} o una sección en particular de una cierta \emph{web}. 
+	% que son propensos a ser solicitado por el usuario en las solicitudes posteriores.
 
  
 
 
 \subsection{Resilient Distributed Datasets}\label{concept-RDD}
+	\input{concept/rdd}
 
-	Los \emph{Resilient Distributed Datasets} (\texttt{RDD}) permiten que un servidor o arquitectura de servidores de \emph{Machine Learning} puedan mantener los datos de un modelo de predicción, fuente de datos o valores de evaluación persistente sin importar en el flujo que sea invocado, esto es muy útil cuando se realizan procesamineto en \emph{clusters} y los datos se encuentran transversalmente sin tener pérdida procesamiento ni ejecución.
 
-	Esta colección es fundamental para \emph{PredictionIO} y \emph{Apache Spark}, que se verán en el Capitulo~\ref{ch:experimetal-all}. Esta estructura distribuida de almacenamiento de objetos inmutables separa los conjuntos de datos en un \texttt{RDD}\cite{zaharia2010}, que  es divido en particiones lógicas, las cuales puedes ser computadas en distintos cluster. Los \texttt{RDD} pueden contener cualquier tipo de objeto de los siguientes lenguajes: \emph{Python}, \emph{Scala} y \emph{Java}, incluyendo clases definidas por el usuario. 
 
-	Formalmente los \texttt{RDD} son solo de lectura como colecciones de objetos distribuidas. Pueden ser creados a través de  operaciones deterministas en una cierta tabla o un almacenamiento externo u otra \texttt{RDD}.
-	Otra de las características es que son colecciones tolerantes a fallas que pueden operar individualmente o en paralelo.
-	\emph{Apache Spark}\footnote{Apache Spark, \url{http://spark.apache.org}} hace el uso del concepto de \texttt{RDD} para lograr rapidez y eficiencia en las operaciones de \emph{MapReduce}, si es requerido. Destacamos la escabilidad de esta librería para un gran nivel de cómputo, pero en este trabajo no se explicará el fundamento de \emph{Apache Spark}, pero si se utilizarán algunos conceptos como \texttt{RDD} mediante el entorno de trabajo de \emph{PredictionIO}.
 
 
 
 %TODO ver mas aca
 \subsection{Data Source y Dataset }
+	\input{concept/data-source-set}
 
-	Los \emph{Data Source} son distintas fuentes de datos que podemos ir sacando set de datos (\emph{Dataset}). Ambos conceptos están enfocados a proveer información de entrada tanto para el servidor de \emph{Machine Learning}, como para el procesamiento y análisis.
-	En este trabajo el conjunto de datos experimental con que realizaremos nuestro estudio son los registros de accesos de la \emph{web} española \emph{MSNBC}\cite{Claude2014}, los cuales representan aproximadamente de registros de \emph{webaccess log}.
 
-	Nuestro set de  datos esta basado en los registros (webaccess log), ya previamente depurados con una representación numérica desde 0 hasta 16, el cual como antes ya se ha señalado estará relacionado al concepto de alfabeto. También crearemos conjuntos de datos sintéticos para poder realizar depuraciones de nuestra implementación y casos de bordes.
-	
-	 
+
 
 
 
@@ -119,31 +75,5 @@ Los motores de Predicción son la parte fundamental de un sistema predictivo, di
 
 
 
-
-
-
-%@TODO:
-% Este tema debería detallarse en las siguientes secciones
-\section{Trabajos relacionados}
-
-En la literatura, el tema de la predicción en la \emph{web} se ha presentado como un tema recurrente provocando bastante atención durante los último años y ha sido tratado por varios autores de áreas de \emph{Machine Learning} y \emph{Lossless Data Compression}. Tenemos los siguientes trabajos de interés a continuación.
-
-
-	\input{related-work}
-
-
-
-
-
-
-
-
-
-% Se consideran y explican detalladamente 
-% todos los conceptos, teorıas, y aspectos pertinentes al tema tratado.
-% El marco teorico concuerda con los objetivos y el tipo de trabajo.
-
-\section{Descripción del contenido} 
-\input{intro-descrip-content}
 
 
