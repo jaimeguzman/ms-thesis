@@ -3,46 +3,35 @@
 
 %Thomas G. Dietterich Oregon State University, Corvallis, Oregon, USA, tgd@cs.orst.edu,
 %Como introducción 
+La explosión tecnológica y avances de nuevas entradas de datos, como dispositivos móviles o una red de servicios mas hiperconectada, han sido una de las principales razones para la generación de mayor cantidad de datos. Existe una gran necesidad, deseao y urgencia de extraer conocimiento de ciertos set de datos o procesarlos.
 
-La exploción tecnológica y avances de nuevas entradas de datos, como dispositivos móviles o una red de servicios mas hiperconectada, han sido una de las principales razones para la generación de mayor cantidad de datos. Existe una gran necesidad, deseao y urgencia de extraer conocimiento de ciertos set de datos o procesarlos.
-
-El conocimiento es a menudo definido como un modelo que puede ser actualizado o ajustado constantemente a medida que nuevos datos se van generando y usajndo.
+El conocimiento es a menudo definido como un modelo que puede ser actualizado o ajustado constantemente a medida que nuevos datos se van generando y usando
 Los modelos son, obviamente, de dominio específico que van desde la evaluación del riesgo de crédito, reconocimiento de rostros, la maximización de la calidad del servicio, la clasificación de los síntomas patológicos de la enfermedad, la optimización de las redes informáticas, y la detección de intrusiones de seguridad, con el comportamiento en línea de los clientes e historial de compras.
 
 
-Machine Learning, abarca soliuciones de problemas que pueden ser categorizados como clasificadores, predictores, dominios de optimización y regresión.
+Machine Learning, abarca soluciones de problemas que pueden ser categorizados como clasificadores, predictores, dominios de optimización y regresión.
 
 \begin{itemize}
 	
-	\item[Clasificadores] 
-	El fin de un clasificador es extraer conocimiento específico de un dominio a partir de datos históricos. Por ejemplo, un clasificador puede ser construido para identificar una enfermedad a partir de un conjunto de síntomas. El científico recoge la información relativa a la temperatura del cuerpo (variable continua), la congestión (variables discretas alta, media y baja), y el actual de diagnóstico (gripe). Este conjunto de datos se utiliza para crear un modelo como si la temperatura> 102 y la congestión = ALTO ENTONCES paciente tiene la gripe (probabilidad 0.72), que los médicos pueden utilizar en su diagnóstico.
+	\item[Clasificadores]  	\input{machine/clasificadores}
 
-	\item[Predictores]
+	\item[Predictores] 						\input{machine/predictores}
 
-	Ya extraída y validados ante los ultimos datos del modelo, que puede ser utilizado para inferir de los datos futuros. Tomando el ejemplo de un médico recoge los sintomas de la un paciente, como la temperatura comporal o el avance de la enfermedad que esta tratando. Con los datos anteriores puede anticipar en el avanxew de la enfermedad que se encuentra tratando a su paicente.
+	\item[Optimización] 				\input{machine/optimizacion}
 
-
-	\item[Optimización]
-
-	No todos los problemas de optimización global son abordable usando métodos de optimización no lineal ó lineal tradicional. Mediante Machine Learning se puede mejorar las posibilidades de que el método de optimización converja hacia una solución (búsqueda inteligente). Imaginese que la lucha contra la propagación de un nuevo virus requiere la optimización de un proceso que puede evolucionar con el tiempo a medida que se descubren más síntomas y casos.
-
-
-
-	\item[Regresión]
-
-	Es una técnica de clasificación que es particularmente adecuada para un modelo continuo, lineal (mínimos cuadrados), polinomio, y regresiones logísticas se encuentran entre las técnicas más utilizadas para mejorar o ajustar un modelo paramétrico, o función, $y = f ( x j )$, a un conjunto de datos. Se considera la regresión un caso especializado de clasificación para los cuales las variables de salida son continuas en lugar de categórica.
-
+	\item[Regresión] 									\input{machine/regresion}
 
 \end{itemize}
-\vspace{1cm}
 
 
-Este trabajo se ha centrado en la generación de un modelo predictivo de secuencias discretas sobre un alfabeto finito, con las definiciiones anteriores podemos produndizando como usar técnicas de Machine Learning, que nos permitan avanzar y estar en la búsqueda de nuevas comparaciones.
 
-El aprendizaje sobre datos secuenciales, como tambíen el reconocimiento de patrones sigue siendo una de los desafios del área de \emph{Machine Learning}.
-La literura en estos temas es extensa y se ofrecen muchos acercamientos para análisis y predicción sobre secuencias en un alfabeto finito.
 
-Una de las técnicas mas usadas son basadas sobre los \emph{HMM}, siglas en ingles de \emph{Hidden Markov Models} (Cadenas ocultas de Markov) CITA A RABINEER 1989 . Los \emph{HMM} mos ofrecen un estructura flexible que puede modelar distinto origenes de datos secuenciales. Sin embargo, trabajar con los \emph{HMM} requieren una basta compresión en el dominio de problema, para poder modelar todas sus posibles restricciones.
+Este trabajo se ha centrado en la generación de un modelo predictivo de secuencias discretas sobre un alfabeto finito, con las definiciones anteriores podemos profundizando como usar técnicas de Machine Learning, que nos permitan avanzar y estar en la búsqueda de nuevas comparaciones.
+
+El aprendizaje sobre datos secuenciales, como también el reconocimiento de patrones sigue siendo una de los desafíos del área de \machinelearning.
+La literatura en estos temas es extensa y se ofrecen muchos acercamientos para análisis y predicción sobre secuencias en un alfabeto finito.
+
+Una de las técnicas mas usadas son basadas sobre los \HMM}, siglas en ingles de \hiddenmarkovmodels (Cadenas ocultas de Markov) CITA A RABINEER 1989 . Los \HMM nos ofrecen un estructura flexible que puede modelar distinto orígenes de datos secuenciales. Sin embargo, trabajar con los \HMM} requieren una basta compresión en el dominio de problema, para poder modelar todas sus posibles restricciones.
 
 
 Existen muchos problemas en que el factor de la secuencialidad de los datos se convierten en un principal actor. Hemos estado atacando un escenario en que la ocurrencia de los datos, sin ser afectos al tiempo, el orden que van ocurriendo generan puntos a desarrollar. También dado a la flexibilidad proporcionada, un entrenamiento exitoso requiere un gran conjunto de datos para ser entrenado.
@@ -52,12 +41,12 @@ Existen muchos problemas en que el factor de la secuencialidad de los datos se c
 
 
 
-Si dieramos una introducción al modelamiento secuencial, es necesario introducir modelos o los efectos probabilisticos.
+Si diéramos una introducción al modelamiento secuencial, es necesario introducir modelos o los efectos probabilistas
 
 
 De alguna manera hay que mencionar los VMM o Modelos de markov variables, son la base de los algoritmos de predicción usando LZ78
 
 
 
-Aqui también se debe dar una intro pequeña a que se utilizará matlab, una de las validaciones que se espera es hacer correr el modelo de LZ para compararlo con los resultados típicos que tienen el LZ.
+Aquí también se debe dar una intro pequeña a que se utilizará matlab, una de las validaciones que se espera es hacer correr el modelo de LZ para compararlo con los resultados típicos que tienen el LZ.
 
