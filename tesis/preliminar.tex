@@ -1,54 +1,72 @@
 
 \section{Contexto preliminar}\label{sec:preliminar}
 
-	
-El contenido de \inet crece exponencialmente y muchos usuarios son atraídos a estos, tanto para satisfacer ciertas necesidades   ocio y entretenimiento, redes sociales,  publicidad o finalmente comprar de bienes y servicios. Los ejemplos anteriores, además debe estar en el menor tiempo posible, dado el poco tiempo que se tiene de atención de un usuario.
+Los modelos de predicción secuenciales son uno de los temas de interés tanto para el área de \machinelearning  y \losslessdatacompression, la búsqueda de un algoritmo que pueda entregar un análisis  y resultado predictivo con la mejor probabilidad de acierto o con el menor posible.
+En los escenarios que involucran a \emph{webs}, la cantidad de variables y problemas a estudiar, es proporcional a la complejidad de la misma. 
+Una característica común, es como los usuarios navegan su contenido en una sesión o acceso de un usuario. Podemos formular un modelo que refleje el comportamiento de accesos y realizar predicciones secuenciales con este. Tomando como punto inicial la llegada del usuario a la web, tendremos una cantidad finita de vistas de una sección a otra, por ejemplo. Si esta web que se describe fuera una comercio electrónico análogamente podríamos visualizar que se podría obtener predicciones de acceso a ciertos cierto catalogo de producto y podríamos tomar una decisión de negocio que logre concretar una venta. 
 
-Este constante y complicado desafío genera una gran consumo de recursos de infraestructura informáticas y sistemas de telecomunicaciones. Además  requiere de \emph{webs} con ciertos algoritmos que aprendan silenciosamente desde información técnica que es almacenada en cada visita. Por ejemplo con el fin de entregar una gran experiencia al usuario.
+%  Como explique en ese parrafo esta muy ligado a lo que es recomendacion 
+% ¿Cual es la necesidad?
+Tener información antes que suceda o tener una aproximación cercana, es una de los principales desafío que busca solucionar en el área  de \machinelearning dando en el caso de las \emph{webs} una inteligencia para entregar una mejor experiencia cuando el usuario interactúa. Un ejemplo frecuente son los motores de búsqueda como \emph{Google}, \emph{Yahoo} y \emph{Bing}, los cuales en cada interacción de búsqueda muestran el tiempo demorado. Hoy en día se intentan anticipar el contexto de la búsqueda con la menor cantidad ed palabras claves, con el menor esfuerzo posible del usuario ó inclusive recomendar exactamente mientras se esta escribiendo. Esto nos da un estrecha relación con los sistemas de recomendación, en el cual no es de nuestro interés. 
+
+Es común que en \machinelearning se realicen varios entrenamientos a un cierto algoritmo, que de como resultado un buen aprendizaje del dominio, también es requerido la mayor cantidad de datos posibles. Lo anterior da una complejidad de recursos en los cuales el algoritmo debe ser muy eficiente o exacto. En muchos casos es la segunda propiedad la predominante. 
 
 
-% es casi un ejemplo de introducccón
- % por ejemplo los motores de búsqueda como \emph{Google}, \emph{Yahoo} y \emph{Bing}, intentan anticipar la búsqueda con el menor esfuerzo posible del usuario ó inclusive recomendar exactamente mientras se busca, lo cual nos da un estrecha relación con los sistemas de recomendación que están fuera de este trabajo, y también existe una competencias en entregar la mayor velocidad en los resultados, ya que un usuario que ha esperado varios segundos es posible que no vuelva a usar la misma herramienta y use la de la competencia.
-%%%%% podria ir 
+% Los motores de busqueda es un claro ejemplo del gran manejo de volumenes de datos en el cual estos algoritmos de prediccion, si el objetivo fuera búsqueda, no se pueden acotar.
 
-Podemos deducir de lo anterior que no es suficiente aumentar los recursos, para obtener  mejor rendimiento o métricas, tampoco será óptimo o económicamente viable. Por ejemplo tenemos el ancho de banda de \inet, es una relación proporcionalmente inversa el crecimiento de esta a la cantidad de datos generados. Este escenario ejemplo es uno de los muchos ejemplos en que una limitación real y física que ha sido abordada por la academia como la industria. 
+Podemos deducir de lo anterior que no es suficiente aumentar los recursos, para obtener  mejor rendimiento para un cierto algoritmo, tampoco será óptimo o económicamente viable. Como ejemplo tenemos las infraestructuras de telecomunicaciones, el ancho de banda de \emph{Internet} en una relación con el volumen de datos generado es inversamente proporcional al crecimiento en un mismo periodo de tiempo. La industria con ofertas de computación en la nube (\emph{cloud computing}), ejemplo \emph{Amazon AWS, Google Cloud, Azure Microsoft, Oracle Cloud}, han buscado disminuir esta brecha técnica y de recursos físicos. Cada vez mas muchas empresas cuentan con sistemas de información en estas nuevas arquitecturas en la nube. Adicionalmente, las tecnologías para la creación de \www dinámica y asíncrona, entre el cliente y el servidor evoluciona a favor de dar la carga al cliente, también los lenguajes de programación y \emph{framework} que disminuyen considerablemente la carga de peticiones al servidor que se realizan.
 
-Empresas con ofertas de computación en la nube (\emph{cloud computing}), ejemplo \emph{Amazon AWS, Google Cloud, Azure Microsoft, Oracle Cloud}, han buscado disminuir esta brecha técnica y es más ver muchas empresas cuentan con su sistemas de información en estas nuevas arquitecturas. Adicionalmente, las tecnologías para la creación de \www dinámica y asíncrona, entre el cliente y el servidor evoluciona a favor de dar la carga al cliente. También los lenguajes y \emph{framework} que disminuyen considerablemente la carga de peticiones al servidor que se realizan.
+Sobre escenarios que se posee un gran volumen de datos, es fundamental usarlos para tener análisis predictivos más exactos y tomar decisiones o acciones. Estas decisiones  pueden ser determinadas bajo un algoritmo probabilista o de frecuencia, es posible ser consultado  mientas el usuario esta navegando en una web. 
 
-Sobre escenarios que se posee un gran volumen de datos es fundamental utilizarlos para tomar decisiones. Las tecnologías actuales no cubren transparentemente este problema y es ahí el interés de dar un servicio integrable para dar inteligencia a la \www como escenario de estudio.
-A estas decisiones de lo que se puede hacer mientas el usuario esta navegando, entraremos en el ámbito de las predicciones, no solo la podemos extender {a niveles de navegación de usuario, también pueden ser usadas para la detección de fraudes financieros, predicción de valores bursátiles y también para hacer diagnostico en áreas de la salud basado un conjuntos de datos genéticos o problemas de salud hereditarios. Los ejemplos anteriormente mencionados tienen una variable en común y es que las predicciones ayudan a tomar decisiones}.\label{ejemplos-casos-contextopreliminar
-}
+El contenido de \emph{Internet} tiene un crecimiento exponencial y muchos usuarios son atraídos a visitarlos.  En gran medida para satisfacer ciertas necesidades comunicación, información, ocio y entretenimiento, redes sociales,  publicidad o  comprar de bienes y servicios. Los escenarios anteriores deben estar sujetos a ciertas restricciones que para el usuario debe estar en el menor tiempo posible, dado el poco tiempo de atención que se dispone o la gran cantidad de tareas que se realizan. Este constante y complicado desafío genera una gran consumo de recursos de infraestructura informáticas y sistemas de telecomunicaciones. Además  requiere de \emph{webs} con ciertos algoritmos que aprendan silenciosamente desde información técnica que es almacenada en cada visita, con el fin de entregar una gran experiencia al usuario.
+ 
+% %%% ejemplos de mas ideas dnd ser usado
+Existen varios escenarios de estudios en que las predicciones sobre  volúmenes de datos, también pueden ser usadas para la {detección de fraudes financieros, predicción de valores bursátiles y también para hacer diagnostico en áreas de la salud, basado un conjuntos de datos genéticos o problemas de salud hereditarios. Los ejemplos anteriormente mencionados tienen una variable  común y es que toda predicción ayuda a tomar una decisión.}\label{ejemplos-casos-contextopreliminar}
+
+%
+%
+%
+% hacer link al concepto de trie
+%
+%  REFERENCIAS
+\losslessdatacompression, es un área que permite tener representaciones de la información mas compactas sin perder información. Dado el caso que se detallara en la sección de compresión, existe un punto acorde a la literatura, en que un compresor y debido a la entropía de los datos se puede convertir en un predictor, que a su vez es una representación secuencial de datos comprimidas en un \emph{trie}, maneja datos discretas al igual que algoritmos de \machinelearning. En la literatura encontramos casos en que existen aproximaciones a usar estas áreas, para converger en una propuesta llamada \emph{modelos de markov variables}, los cuales veremos como se relacionan con el algoritmo de compresión \emph{LZ78}.
+
+%
+% JUNTAR MAS IDEAS  ML con LDC
+%
+
+% IDEA de que porque es comportamiento
+Variados escenarios de estudio como  detección de  patrones para cierto dominio de problemas y aprenderlos rápidamente con un cierto algoritmo,, posteriormente se puede proveer resultados para ser analizados o procesados pueden ser desarrollados gracias a \machinelearning, mediante un modelo predictivo.  La navegación de un usuario  en una web, es nuestro contexto de estudio y en adelante diremos que la  navegación de usuarios usuarios es su patrón de navegación o comportamiento, registrado en  \webasccesslog. Estos se pueden analizar, estudiar y modelar con algoritmos que tengan enfoques predictivos. Se pueden usar de manera procesada o pre-procesada. Acorde a los ejemplos que hemos mencionado en esta sección~(\ref{ejemplos-casos-contextopreliminar})  y nuestro interés para predecir el comportamiento de navegación de usuarios en determinadas \emph{webs}.
+
+%% Estos 2 parrafos aun no logros relacionarlos
+
+
+ Es fundamental estudiar los datos que se buscan modelar para predecir y encontrar patrones frecuentes que  se encuentran para poder crear un modelo predictivo, intentando de evitar un sobre-entrenamiento del modelo. Este trabajo usará los avances en \emph{Web Usage Minning} y \emph{Web Access Pattern} para buscar una implementación de un modelos predictivos con una característica \emph{online} e híbrido. Ciertamente \machinelearning usa \emph{features}\footnote{\emph{feature:} Las característica de un \machinelearning son propiedades individual y cuantitativas de un fenómeno que se observa dentro de un conjunto de datos.} y entre más información de entrenamiento se obtendrá  mejores predicciones. Por ejemplo la sesión de un usuario podría modelarse con gran exactitud en el mundo \machinelearning, ya que nos entrega una gran cantidad de datos para hacer análisis predictivos. Estas sesiones comienza cuando se establece la conexión a una \www. Estableciendo dicha conexión, se crea instantáneamente una sesión de navegación automáticamente, que se almacena en el lado del cliente o que hospeda la \www. Un ejemplo de  \webasccesslog es lo que se observa en la Figura \ref{fig:accesslog-apache-teleton}.
+
+\input{preliminar-logs-teleton}
+
+%TODO:
+%En el párrafo anterior cerré hablando de una figura no puedo seguir hablando de la misma
+
+En la Figura \ref{fig:accesslog-apache-teleton}, existe mucha información interesante como la \texttt{IP} desde donde se conecta, el tipo de navegador, el dispositivo desde donde se conecta, si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario. Anteriormente mencionamos la importancia para nuestro trabajo tener un versión simplificada de la sesión. Al tener un simplificada la representación podemos usar mas datos y generar un modelo de datos para predecir, en este instante se comprenderá la importancia de el uso de un algoritmo de compresión de tipo  \losslessdatacompression, el cual nos permitirá crear modelos que sean creados con mayor volumen de datos que las técnicas tradicionales de \machinelearning y además usando propiedades de la compresión y la \emph{Teoría de la Información}, que nos entreguen resultados interesantes dado nuestro escenario de modelo discreto de predicción para navegación de  usuarios en una.
+   
+Esta nueva perspectiva posee una adaptabilidad a la demanda o proveer información que permita adaptarse a los eventos, por lo tanto, presenta una gran ayuda para conocer futuros eventos y ayudar a tomar decisiones, por ejemplo el siguiente acceso, basado en un mayor cantidad de datos históricos. Sobre esta idea se pueden hacer integraciones en áreas  \losslessdatacompression y \machinelearning siendo un gran desafío. Independientemente del área, el problema común  se puede resolver de manera acotada en cada área, pero se busca encontrar las propiedades en común y usarlas para lograr un resultado predictivo en demanda.  
+
+
+
 
 
 
 %; moderado por administradores a ser  generado orgánicamente por los usuarios. Estas nuevas propiedades es una nueva evolución de \inet. 
-Enfocando nuestros interés en encontrar comportamientos de usuarios, se buscar predecir accesos web para dar la mejora continua de la \www. y evolución. Este trabajo no profundizará en tópicos completos de recuperación de la información (\emph{Information Retrieval}), ni en el procesamiento analítico de estos datos, pero si el estudio del aprendizaje de patrones e implementación tendrán un protagonismo en nuestra propuesta y se tendrá un completa sección de los conceptos básico~(\ref{ch:Conceptos-Basicos}) sobre \losslessdatacompression y \machinelearning.
-%%%%%%%%%%% evaluar si se migra a intro
+% Enfocando nuestros interés en encontrar comportamientos de usuarios, se buscar predecir accesos web para dar la mejora continua de la \www. y evolución. Este trabajo no profundizará en tópicos completos de recuperación de la información (\emph{Information Retrieval}), ni en el procesamiento analítico de estos datos, pero si el estudio del aprendizaje de patrones e implementación tendrán un protagonismo en nuestra propuesta y se tendrá un completa sección de los conceptos básico~(\ref{ch:Conceptos-Basicos}) sobre \emph{\losslessdatacompression} y \machinelearning.
+%%%%%%%%%%% evaluar si se migra a intro --- esta idea es como quiero usarlo on ... algo asi..
 
 
-Las Máquinas de aprendizaje o \machinelearning como se ha referido, pueden detectar patrones y aprenderlos rápidamente con un cierto algoritmo, posteriormente se puede servir sus resultados para ser analizados o procesados gracias a un modelo que en nuestro caso estudio de interés será predictivo. Nos enfocamos en la arquitectura funcional de un servidor de \machinelearning para realizar experimentos y alterar su funcionamiento. En las etapas de un estudio usando \machinelearning existe el entrenamiento de un set de datos, aprendizaje, etapa de servir resultados y finalmente una evaluación.  Si nos enfocamos en el aprendizaje, es requerido tener un modelo, que funcione como un algoritmo de predicción y posteriormente pueda dar una interpretación de los datos que son servidos por este modelo. Utilizaremos una arquitectura y patrón de implementación para modelos de \machinelearning como servicio y toda la experimentación se llevará acabo ofreciendo los algoritmos y modelos como servicio basado en una Transferencia de Estado Representacional (\texttt{REST}~\ref{concept-rest}), y así acércanos a la fácil implementación en áreas productivas en variadas industrias las cuales pueden presentar interés dando nuevos escenarios de estudio.
+% bla bla
+% Nos enfocamos en la arquitectura de un servidor de \machinelearning para realizar experimentos y alterar su funcionamiento. En las etapas de un estudio usando \machinelearning existe el entrenamiento de un conjunto de datos, un aprendizaje, una etapa de servir resultados y finalmente una evaluación.  Para el aprendizaje, es requerido tener un modelo, que funcione como un algoritmo de predicción y posteriormente pueda dar una interpretación de los datos que son entregados por este modelo.  
 
-	
-
-La navegación del usuario es nuestro escenerio de estudio y en adelante diremos que la  navegación de usuarios usuarios es su patrón de navegación o comportamiento, registrado en \webasccesslog. Estos se pueden analizar, estudiar y modelar con algoritmos que tengan enfoques predictivos. Se pueden usar de manera procesada o pre-procesada. Acorde a los ejemplos que hemos mencionado en esta sección~(\ref{ejemplos-casos-contextopreliminar})  y nuestro nterés para predecir navegación de usuarios en \www.
-
-
-
-
+ 
 % Evaluar para intro
  % entrega una posible ayuda a ingenieros de desarrollo \www y diseñadores de experiencia de usuarios, como también en general a mejorar la experiencia del usuario, podemos mencionar que podría disminuir latencia en respuestas por parte de cada petición realizada a los servidores, con técnicas de \emph{pre-fetching predictivo} en el lado del cliente, pero para lograr esto debemos tener una registros de accesos válidos. 
 
  % sar representaciones eficientes como las realizadas por Claude \etal~\cite{Claude2014} facilitaría el estudio al tener un foco en las predicciones secuenciales y no en la recuperación de estos registros. El uso de esta  minería de datos realizada en un conjunto de datos real, radica en que día a día \www genera  innumerables cantidades de información, lo que conlleva a usar algoritmos que puedan operar de manera comprimida grandes volúmenes de información o representación más liviana de datos trabajar. 
-
- Es fundamental estudiar los datos que se buscan modelar y en sí trabajar con los patrones repetitivos que encontramos para poder crear un modelo predictivo, intentando de evitar un sobre-entrenamiento del modelo. 
-
-
-
- Este trabajo usará los avances en \emph{Web Usage Minning} y \emph{Web Access Pattern} para buscar una nueva implementación de un modelos predictivos con  \emph{online} híbridos. Ciertamente \machinelearning usa \emph{features}\footnote{\emph{feature:} Las característica de un \machinelearning son propiedades individual y cuantitativas de un fenómeno que se observa dentro de un conjunto de datos.} y entre más información de entrenamiento podremos  obtener mejores predicciones. Por ejemplo la sesión de un usuario podría modelarse con gran exactitud en el mundo \machinelearning, ya que nos entrega una gran cantidad de datos para hacer análisis predictivos. Estas sesiones comienza cuando se establece la conexión a una \www. Estableciendo dicha conexión, se crea instantáneamente una sesión de navegación automáticamente, que se almacena en el lado del cliente o que hospeda la \www. Un ejemplo de \webasccesslog es lo que se observa en la Figura \ref{fig:accesslog-apache-teleton}.
-
-\input{preliminar-logs-teleton}
-
-
-En la Figura \ref{fig:accesslog-apache-teleton}, existe mucha información interesante como la \texttt{IP} desde donde se conecta, el tipo de navegador, el dispositivo desde donde se conecta, si es un teléfono inteligente o un navegador de escritorio, la fecha en que se realizó el acceso y también lo más relevante el destino del usuario. Anteriormente mencionamos la importancia para nuestro trabajo tener un versión simplificada de la sesión. Al tener un simplificada la representación podemos usar mas datos y generar un modelo de datos para predecir, en este instante se comprenderá la importancia de el uso de un algoritmo de compresión de tipo \losslessdatacompression, el cual nos permitirá crear modelos que sean creados con mayor volumen de datos que las técnicas tradicionales de \machinelearning y además usando propiedades de la compresión y la \emph{Teoría de la Información}, que nos entreguen resultados interesantes dado nuestro escenario de modelo predicción de navegación discreta de usuarios en una \www.
-   
-Esta nueva perspectiva posee una adaptabilidad a la demanda o proveer información que permita adaptarse a los eventos, por lo tanto, presenta una gran ayuda para conocer futuros eventos y ayudar a tomar decisiones, por ejemplo el siguiente acceso, basado en un mayor cantidad de datos históricos. Sobre esta idea se pueden hacer integraciones en áreas \losslessdatacompression y \machinelearning siendo un gran desafío. Independientemente del área, el problema común  se puede resolver de manera acotada en cada área, pero se busca encontrar las propiedades en común y usarlas para lograr un resultado predictivo en demanda.  
