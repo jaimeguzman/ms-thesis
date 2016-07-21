@@ -1,19 +1,29 @@
+\section{Algoritmos de compresión}
 
 \input{cap-compresion-intro}
 
 %Sintetis de paper: Using Compresion models for filtering troll comments
 \vspace{1cm}
-\section{Modelos de compresión}
+\subsection{Modelos de compresión}
 
 
 Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \emph{Machine Learning} y además tengan propiedades para ser candidatos a un predictor. 
+
+%HACER UNA CITA CON ESTE AUTOR
+
+\begin{verbatim}
+ Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. Our model decreases computational complexities which is a serious problem in developing online prediction systems. A performance evaluation is presented using real web logs. This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
+ 
+ In this paper we present efficient techniques for modeling user navigation behavior. Our model is online so changes in user request patterns will update our prediction model incrementally. We do not build per-user predictive models. 
+\end{verbatim}
+\LDCMoghaddam
 
 
 %%%%%Moghaddam_Kabir
 %These algorithms are compression algorithms and also are used in sequence mining. We use these algorithms for modeling the user navigation history.
 %%%%%%%%
  
-\subsection{Prediction by Partial Match (PPM)}
+\subsubsection{Prediction by Partial Match (PPM)}
  
 El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el máximo del orden de Markov de un modelo variable de Markov (\emph{\texttt{VMM}}) para construirse. 
 \texttt{PPM} maneja el problema de frecuencia cero usando dos mecanismo~\cite{Begleiter2004},  llamados
@@ -37,22 +47,22 @@ La ventana mantenida por \emph{Active Lezi}~\cite{Gopalratnam2007} representa el
 % @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
 
 
- \subsection{Probabilistic Suffix Tree (PST)}
+ \subsubsection{Probabilistic Suffix Tree (PST)}
  
  Los árboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor \emph{VMM} con límite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un límite superior a la orden de Markov de un fuente certera es conocida como \emph{learner}.
  
  %@TODO: explayar mas aca
  
  
- \subsection{Cadenas de Markov Dinámicas}
+ \subsubsection{Cadenas de Markov Dinámicas}
  
  
- Los Algoritmos DMC o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
+ Los Algoritmos \emph{DMC} o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
  Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
  Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un $0$ o $1$ son sumados cuando un nuevo símbolo entra. %La estructura puede también ser actualizada usando \emph{state cloning method}.
  
  
-\subsection{Lempel \& Ziv }
+\subsubsection{Lempel \& Ziv }
 
 
 El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \texttt{LZ78} básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
