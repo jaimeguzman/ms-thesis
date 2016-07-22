@@ -1,3 +1,5 @@
+
+
 \chapter[Machine Learning y Lossless Data Compression]{Machine Learning y Lossless Data Compression}\label{ch:Compresion-Machine-Learning}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Que busco inducir de machine learnig
@@ -13,54 +15,58 @@ Una de las áreas que comprende la Inteligencia Artificial es \machinelearning, 
 El conocimiento es a menudo definido como un modelo que puede ser actualizado o ajustado constantemente a medida que nuevos datos se van generando y usando. Los modelos son  de dominio específico que van por ejemplo desde la evaluación del riesgo de crédito financieros, reconocimiento de rostros, maximizar la calidad del servicio, la clasificación de los síntomas patológicos de ciertas enfermedades, optimización de redes informáticas, detección de intrusiones de seguridad y también se pueden analizar el comportamiento en línea de los usuarios e historial de compras ó navegación  de un cierta \webs. Específicamente, un algoritmo de \machinelearning ``infiere patrones y asociaciones entre distintas variables y conjunto de datos''~\cite[capítulo 8]{guller2015big}, en otras palabras un algoritmo de \machinelearning aprende para predecir. 
 
 
-Un modelo es una construcción matemática para capturar patrones de un conjunto de datos. Como señala Guller~\MLGuller, básicamente un modelo es una función que toma ciertas características de un conjunto de datos como sus valores iniciales y resultados.  Estos son la pieza fundamental de cualquier implementación de \machinelearning, describen lo datos observados de un sistema. En muchos casos estos modelos se aplican a nuevos conjuntos de datos  que ayudan a un modelo aprender nuevos comportamientos y también predecirlos~\MLPDASunila. Se clasifican de la siguiente manera:
+Un modelo es una construcción matemática para capturar patrones de un conjunto de datos. Como señala \emph{Guller}~\MLGuller, básicamente un modelo es una función que toma ciertas características de un conjunto de datos como sus valores iniciales y resultados.  Estos son la pieza fundamental de cualquier implementación de \machinelearning, describen lo datos observados de un sistema. En muchos casos estos modelos se aplican a nuevos conjuntos de datos  que ayudan a un modelo aprender nuevos comportamientos y también predecirlos~\MLPDASunila. Se clasifican de la siguiente manera:
 
 \begin{itemize}
- \item Modeos Lógicos
- \item Modeos Geométricos
- \item Modeos Probabilisticos
+ \item Modelos Lógicos
+ \item Modelos Geométricos
+ \item Modelos Probabilisticos
 \end{itemize} 
 
 
-Cada uno de estos modelos son entrenados por algoritmos de \machinelearning, nos concetraremos en los modelos probabilísticos, los que pueden ser algoritmos de \emph{regresión lineal}, \emph{forecasting} o \emph{predicción}, que intenan determinar de alguna manera que pasará en el futuro, dado a la información que utilizan provista de experiencia o conocimiento previo.
+Cada uno de estos modelos son entrenados por algoritmos de \machinelearning, nos concentraremos en los modelos probabilísticos estos pueden ser entrenados por algoritmos de \emph{regresión lineal}, \emph{forecasting} o \emph{predicción}. Todos los algoritmos mencionados anteriormente intentan de alguna manera determinar que pasará en el futuro, dado a la información provista de experiencia o conocimiento previo.
 
 
-La aplicación de algun modelos debe ser definida por un caminio para lograr un objetivo, como el nuestro que es el de lograr predicciones con datos secuenciales.  
-
-
+%La aplicación de algún modelos debe ser definida por un caminio para lograr un objetivo, como el nuestro que es el de lograr predicciones con datos secuenciales.  
 
 
 
-Se pueden clasificar las aproximaciones a soluciones de la siguiente manera:
+Esta sección entrega un base a ciertos fundamentos y referencias de algoritmos que son mencionados y refereidos. Se agrupa los algoritmos en  las siguientes categorías:
 
 \begin{itemize}
-	
-	\item[Clasificadores]	
-		\input{machine/clasificadores}
-	\item[Predictores]		
-		\input{machine/predictores}
-	\item[Optimización]	
-		\input{machine/optimizacion}
-	\item[Regresión]
-		\input{machine/regresion}
-
+	\item Regresión
+	\item Clasificadores	
+	\item Predictores
+	% \item[Optimización]	
+	% 	\input{machine/optimizacion}
 \end{itemize}
 
-Las clasificaciones anteriores no son la totalidad que ofrece \machinelearning, pero para acercarse a los análisis predictivos de datos, es suficiente.
+
+
+\subsubsection{Regresión}
+		\input{machine/regresion}
+\subsubsection{Clasificadores}
+		\input{machine/clasificadores}
+\subsubsection{Predictores}
+		\input{machine/predictores}
+
+\vspace{1cm}
+
+Existen una gran cantidad de algoritmos, los anteriores no son la totalidad que ofrece \machinelearning, todos los modelos pueden ir sufriendo variaciones o alteraciones acorde a como se presenten los datos. Estos deben conocerse para que el modelo o el uso de estos sea valido, es lógico pensar que si usa un algoritmo para un escenario que no corresponde este sea totalmente invalido o inconsistente.
+
+
+
+Al momento de realizar nuevos algoritmos o modificaciones que ayuden a modelos tradicionales de \machinelearning, se crear un nueva perspectiva para abordar variados problemas. \emph{Sculley y Brodley} en~\cite{Sculley2006} plantean y discuten estas perspectiva con un enfoque más teórico e empírico, la idea fundamental que planten es que si se tiene un \emph{string} $x$ e $y$ y al ser comprimidos juntos son eficaces, ambos \emph{string} comparten la misma información. Si estos \emph{string} representarán grandes volúmenes de datos puede ser un escenario el cual puede sumar complejidad al momento de realizar un entrenamiento, sin usar técnicas de compresión, pero si se considera esta aproximación es posible entregar mejores resultado, siendo un beneficio a favor. En el ejemplo anterior como en otras tareas se puede usar algoritmos de compresión sobre \machinelearning, tanto en tareas tradicionales de clasificación y agrupamiento.  Esta perspectiva no es nuevo y ha aparecido en variados campos~\cite{Sculley2006}, algunas veces con la promesa de reducir los problemas en la selección implícita de ciertas características de un conjunto de datos. 
+
+Li~\etal en~\cite{Li2005} lograron implementar una nueva clase \emph{string kernel}\footnote{Los String kernel, son operaciones que permiten trabajar funciones no lineales, como lineales. Para un explicación detallada ver~\cite{Li2005}.} basada en un algoritmo de compresión y lo utilizaron para manejar un clasificador \texttt{SVM} para la clasificación de géneros musicales. El algoritmo utilizado por \cite{Sculley2006} es de la familia de {Lempel and Ziv}, el cual lo veremos mas adelante en la sección ~\ref{}.
 
 
 
 
 
 
-% BUSCAR IDEAS DE COMO INTRODUCIR EL ANALISIS PREDICTIVO DE DATOS CON ML
 
-% dejar en claro que no son las unicas clasificaciones
-
-%IDEA: 
-Existen variadas propuestas que buscan modelar la navegación de usuarios, aun que acorde a MOHA y la literatura en general estas no son \online
-
-% TODA:  INTRODUCIR UN POCO IDEAS DE HMM EN ESTA INTRODUCCION DE CAPITULO
+Por otro lado el área de \losslessdatacompression en función de los análisis predictivo no presente explícitamente una acercamiento, pero su acercamiento es involuntario para poder explicar ciertos fenomenos al moemento de comprimir información.  Además como se señala y detallará en la sección de compresión~\ref{}, existen algoritmos de compresión que han tenido base común en las bases matemáticas que usan ciertos algoritmos de tipo probabilistas de \machinelearning. Estos algoritmos son los \emph{modelos variables de markov}
 
 
 
@@ -69,30 +75,9 @@ Existen variadas propuestas que buscan modelar la navegación de usuarios, aun q
 
 
 
+% Summary
 
-
-% TODO: hacer una introduccion a LDC y como usare el super mega LZ en el modelo.
-
-
-La Construcción de un modelo de análisis de datos predictivos para \machinelearning, que pueda capturar  la mejor relación entre las características descriptivas que se buscan y el objetivo (target) de un dataset.
-
-Un criterio que debe ser simple de comprender es que si se desea construir modelo que realice prediccion númerica, este entregue un resultado consistente. osea un número que esta acorde al dataset que ha sido utilizado para entrenar.
-
-
-
-
-
-Por otro lado el área de \losslessdatacompression en función de los análisis predictivo no presente explícitamente una acercamiento, pero se torna fundamental su compresión para hacer uso de tecnologías que puedan trabajar con grandes volumenes de infomación.
-
-
-
-
-Además como se señala y detallará en la sección de compresión, existen algoritmos de compresión que han tenido base común en las bases matemáticas que usan ciertos algoritmos de tipo probabilistas de \machinelearning. Estos algoritmos son las \emph{modelos variables de markov}
-
-
-
-
-
+% In this chapter, you learned about different regression, classification, and clustering algorithms. You learned how each of the algorithms work, and the type of problems for which they are suited. The goal of this chapter is to provide you with the foundation for using these algorithms to solve the various problems covered in upcoming chapters. In addition, the resources provided in this chapter will help you learn more deeply about state-of-art machine learning and the theory behind some of these algorithms.
 
 
 

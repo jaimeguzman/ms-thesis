@@ -1,1 +1,19 @@
 	El fin de un clasificador es extraer conocimiento específico de un dominio a partir de datos históricos. Por ejemplo, un clasificador puede ser construido para identificar una enfermedad a partir de un conjunto de síntomas. El científico recoge la información relativa a la temperatura del cuerpo (variable continua), la congestión (variables discretas alta, media y baja), y el actual de diagnóstico (gripe). Este conjunto de datos se utiliza para crear un modelo como si la temperatura> 102 y la congestión = ALTO ENTONCES paciente tiene la gripe (probabilidad 0.72), que los médicos pueden utilizar en su diagnóstico.
+
+
+% Classification is a type of supervised machine learning. In supervised learning, the goal is to infer a function using labeled training data. The function can then be used to determine the label for a new dataset (where the labels are unknown). A non-exhaustive list of classification algorithms that can be used for building the model includes decision trees, logistic regression, neural networks, support vector machines, naïve Bayes, and Bayes Point Machines.
+
+% Classification algorithms are used to predict the label for input data (where the label is unknown). Labels are also referred to as classes, groups, or target variables. For example, a telecommunication company wants to predict the following:
+
+% Churn: Customers who have an inclination to switch to a different telecommunication provider
+% Propensity to Buy: Customers willing to buy new products or services
+% Upselling: Customers willing to buy upgraded services or add-ons
+% To achieve this, the telecommunication company builds a classification model using training data (where the labels are known or have already been predefined). In this section, you’ll look at several common classification algorithms that can be used for building the model. Once the model has been built and validated using test data, data scientists at the telecommunication company can use the model to predict churn, propensity to buy, and upselling labels for customers (where the labels are unknown). Consequently, the telecommunication company can use these predictions to design marketing strategies that can reduce the customer churn and offer services to the customers that are more willing to buy new services or upsell.
+
+% Other scenarios where classification algorithms are commonly used include financial institutions, where models are used to determine whether a credit card transaction is a fraudulent case or if a loan application should be approved based on the financial profile of the customer. Hotels and airlines use models to determine whether a customer should be upgraded to a higher level of service (such as from economy to business class, from a normal room to a suite, etc.).
+
+% The classification problem is defined as follows: given an input sample of image, where x1 refers to an item in the sample of size d, the goal of classification is to learn the mapping image, where y ∈ Y is a class.
+
+% An instance of data belongs to one of J groups (or classes), such as image. For example, in a two-class classification problem for the telecommunication scenario, Class C1 refers to customers that will churn and switch to a new telecommunication provider, and Class C2 refers to customers that will not churn.
+
+% To achieve this, labeled training data is first used to train a model using one of the classification algorithms. This is then validated by using test data to determine the number of mistakes made by the trained model (the classifier). Various metrics are used to measure the performance of the classifier. These include measuring the accuracy, precision, recall, and the area under curve (AUC) of the trained model.
