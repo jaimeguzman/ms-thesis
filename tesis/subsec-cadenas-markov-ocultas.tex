@@ -2,6 +2,24 @@
 
 
 
+Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  básicamente son un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Estos \HMM son un proceso estocástico doble, en el cual el sistema es modelado con un proceso de markov con estados no observados, es decir, estados escondidos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de simbolos observados.
+
+En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición.
+Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
+
+Para poder predecir la sequencia de estado más probable, los \HMM hacen un sistema de observación y transmisión. Una gran diferencia de los modelos ocultos de markov y un proceso de markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios. Existen dos fuentes de aleatoriedad:
+
+\begin{itemize}
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	\item Transición entre estados
+	\item La emisión de una observación cuando se da un estado
+\end{itemize}
+
+% NOTA: los estados HMM son modelos generativos,  los cuales se modeló la distribución conjunta de las observaciones y estados ocultos.
+
+
 
 
 
@@ -12,17 +30,16 @@ La teoría fundamental fue desarrollado sobre la investigación y trabajo  Baum 
 Un trabajo anterior en esta área es realizado por  Stratonovich (1960), quien propuso un modelo óptimo \emph{NO LINEAL DE FILTRADO}, basada en la teoría de los procesos de Markov condicionales. Una reciente contribución a la Aplicación de HMM fue hecha por Rabiner (1989), en la formulación de un método estadístico de representar el habla. EL AUTOR establecido una implementación exitosa de un sistema \emph{HMM}, BASADO EN parámetros de distribución de probabilidad discreto o continuo.
 
 
-
-Si resumieramos los problemas fundamentales que pueden ser trabajados por \emph{HMM}, tendríamos los tres problemas siguientes:
+Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los tres problemas siguientes:
 
 \begin{enumerate}
 	
-	 \item Evaluación de un modelo: Evaluar la probabilidad de una secuencia de observaciones para un HMM dada  $(M = (A, B, M)).$
+\item Evaluación de un modelo: Evaluar la probabilidad de una secuencia de observaciones para un HMM dada  $(M = (A, B, M)).$
 
 
- \item Decodificar la ruta:  EVALUAR la secuencia óptima de un modelo de estados $Q$ (Estados ocultos) para una determinada secuencia de observaciones y un modelo \emph{HMM}  $M = (A, B, M).$
+\item Decodificar la ruta:  EVALUAR la secuencia óptima de un modelo de estados $Q$ (Estados ocultos) para una determinada secuencia de observaciones y un modelo \emph{HMM}  $M = (A, B, M).$
 
- \item  Entrenamiento del modelo:   determinar el conjunto de parámetros del modelo que explica mejor la señal observada.
+\item  Entrenamiento del modelo:   determinar el conjunto de parámetros del modelo que explica mejor la señal observada.
 
 \end{enumerate}
 
@@ -31,34 +48,9 @@ Modelos de aprendizaje: dada un un set de datos, para aprender un modelo probabi
 
 
 
-
-
-
-Las cadenas ocultas de Markov o en sus siglas en inglés HMM (Hidden Markov Model) es básicamente un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Estos \emph{HMM} son un proceso estocástico doble, en el cual el sistema es modelado con un proceso de markov con estados no observados, es decir, estados escondidos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de simbolos observados.
-
-En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición.
-Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
-
-Para poder predecir la sequencia de estado más probable, los \emph{HMM} hacen un sistema de observación y transmisión.
-
-% NOTA: los estados HMM son modelos generativos,  los cuales se modeló la distribución conjunta de las observaciones y estados ocultos.
-
-
-
-
-
-
 Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó video, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
 
-% repetido
-Una gran diferencia de los modelos ocultos de markov y un proceso de markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios.
 
-En la actualidad hay dos fuentes de aleatoriedad:
-
-\begin{itemize}
-	\item Transición entre estados
-	\item La emisión de una observación cuando se da un estado
-\end{itemize}
 
 %Vamos a volver a utilizar el ejemplo cajas y pelotas. Si las cajas son estados ocultos (no observable), entonces el usuario dibuja las bolas cuyo color no es visible. La probabilidad de emisión es la probabilidad de bik = p (ot = colork | qt = Si) para recuperar una bola de color k de una caja oculta I, como se describe en el siguiente diagrama:
 

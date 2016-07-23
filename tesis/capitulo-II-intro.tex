@@ -18,7 +18,9 @@ El conocimiento es a menudo definido como un modelo que puede ser actualizado o 
 Un modelo es una construcción matemática para capturar patrones de un conjunto de datos. Como señala \emph{Guller}~\MLGuller, básicamente un modelo es una función que toma ciertas características de un conjunto de datos como sus valores iniciales y resultados.  Estos son la pieza fundamental de cualquier implementación de \machinelearning, describen lo datos observados de un sistema. En muchos casos estos modelos se aplican a nuevos conjuntos de datos  que ayudan a un modelo aprender nuevos comportamientos y también predecirlos~\MLPDASunila. Se clasifican de la siguiente manera:
 
 \begin{itemize}
-		\setlength{\itemsep}{0pt}
+			\setlength{\itemsep}{1pt}
+			\setlength{\parskip}{0pt}
+			\setlength{\parsep}{0pt}
  \item Modelos Lógicos
  \item Modelos Geométricos
  \item Modelos Probabilisticos
@@ -35,7 +37,9 @@ Cada uno de estos modelos son entrenados por algoritmos de \machinelearning, nos
 Esta sección entrega un base a ciertos fundamentos y referencias de algoritmos que son mencionados y refereidos. Se agrupa los algoritmos en  las siguientes categorías:
 
 \begin{itemize}
-	\setlength{\itemsep}{0pt}
+			\setlength{\itemsep}{1pt}
+			\setlength{\parskip}{0pt}
+			\setlength{\parsep}{0pt}
 	\item Regresión
 	\item Clasificadores	
 	\item Predictores
@@ -63,9 +67,9 @@ Al momento de realizar nuevos algoritmos o modificaciones que ayuden a modelos t
 Li~\etal en~\cite{Li2005} lograron implementar una nueva clase \emph{string kernel}\footnote{Los String kernel, son operaciones que permiten trabajar funciones no lineales, como lineales. Para un explicación detallada ver~\cite{Li2005}.} basada en un algoritmo de compresión y lo utilizaron para manejar un clasificador \texttt{SVM} para la clasificación de géneros musicales. El algoritmo utilizado por \cite{Sculley2006} es de la familia de {Lempel and Ziv}, el cual lo veremos mas adelante en la sección ~\ref{}.
 
 
-Una de las motivaciones que se puede tener al usar compresión es ahorrar espacio para ciertos conjuntos de datos que se desean entrenar, también ahorrar tiempo en transmitir o mover cierto conjunto de datos y finalmente la mayoria de los datos en general presentantan redundancia de información.
+Una de las motivaciones que se puede tener al usar compresión es ahorrar espacio para ciertos conjuntos de datos que se desean entrenar, también ahorrar tiempo en transmitir o mover cierto conjunto de datos y finalmente la mayoría de los datos en general presentantan redundancia de información.
 
-Los algoritmos de compresión pueden ser con o sin pérdida de informacion, abordaremos solamente los algoritmo sin pérdida (\losslessdatacompression), estos en función de los análisis predictivo no presente explícitamente una acercamiento, pero poseen una estrecha relación,temáticas que usan ciertos algoritmos de tipo probabilistas de \machinelearning. Estos algoritmos son los \emph{modelos variables de markov}, son tipos de modelos los cuales están basados en las cadenas de Markov, esto se detallará con mayor precisión en la sección~\ref{}, además se realizará una aproximación a los \emph{modelos ocultos de markov} que son mas asociados a estudios de \machinelearning.
+Los algoritmos de compresión pueden ser con o sin pérdida de información, abordaremos solamente los algoritmo sin pérdida (\losslessdatacompression), estos en función de los análisis predictivo no presente explícitamente una acercamiento, pero poseen una estrecha relación,temáticas que usan ciertos algoritmos de tipo probabilistas de \machinelearning. Estos algoritmos son los \emph{modelos variables de markov}, son tipos de modelos los cuales están basados en las cadenas de Markov, esto se detallará con mayor precisión en la sección~\ref{}, además se realizará una aproximación a los \emph{modelos ocultos de markov} que son mas asociados a estudios de \machinelearning.
 
 
 
@@ -73,12 +77,7 @@ Los algoritmos de compresión pueden ser con o sin pérdida de informacion, abor
 
 %\subsubsection{Resumen}
 
-En esta introducción hemos introducidos varios conceptos que veremos mas adelante, uno de los más importante es el acercamiento de dos areas para poder complementar una solución específica. Hemos hablado de como ciertos modelos son entrenados por algoritmos. Además hemos visto una primera revisión a la literatura en la cual ha validado a que podemos hacer esta intersección de áreas de manera correcta, para lograr un objetivo como es las predicciones. En las proximas secciones de este capitulo se entregará una base mas detallada para comprender el aporte de que puede hacer un algoritmo \losslessdatacompression para un modelo de entrenamiento y predicción de \machinelearning.
-
-
-% Summary
-
-% In this chapter, you learned about different regression, classification, and clustering algorithms. You learned how each of the algorithms work, and the type of problems for which they are suited. The goal of this chapter is to provide you with the foundation for using these algorithms to solve the various problems covered in upcoming chapters. In addition, the resources provided in this chapter will help you learn more deeply about state-of-art machine learning and the theory behind some of these algorithms.
+En esta introducción hemos introducidos varios conceptos que veremos mas adelante, uno de los más importante es el acercamiento de dos áreas para poder complementar una solución específica. Hemos hablado de como ciertos modelos son entrenados por algoritmos. Además hemos visto una primera revisión a la literatura en la cual ha validado a que podemos hacer esta intersección de áreas de manera correcta, para lograr un objetivo como es las predicciones. En las próximas secciones de este capitulo se entregará una base mas detallada para comprender el aporte de que puede hacer un algoritmo \losslessdatacompression para un modelo de entrenamiento y predicción de \machinelearning.
 
 
 
