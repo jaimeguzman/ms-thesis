@@ -1,5 +1,40 @@
 % Encoding: UTF-8
 
+% %%%%%%%%%%%%
+@Book{guller2015big,
+  Title                    = {Big Data Analytics with Spark},
+  Author                   = {Guller, Mohammed},
+  Publisher                = {Springer},
+  Year                     = {2015}
+}
+
+@Book{gollapudi2016practical,
+  Title                    = {Practical Machine Learning},
+  Author                   = {Gollapudi, S.},
+  Publisher                = {Packt Publishing},
+  Year                     = {2016},
+  Series                   = {Community experience distilled},
+  ISBN                     = {9781784399689},
+  URL                      = {https://books.google.cl/books?id=3ywhjwEACAAJ}
+}
+
+@Book{khanna2015efficient,
+  Title                    = {Efficient Learning Machines: Theories, Concepts, and Applications for Engineers and System Designers},
+  Author                   = {Khanna, Rahul and Awad, Mariette},
+  Publisher                = {Apress},
+  Year                     = {2015}
+}
+
+@Book{MengyiPu2006,
+  Title                    = {Fundamental Data Compression},
+  Annote                   = {SIGNATUR = 788.362},
+  Author                   = {Ida Mengyi Pu},
+  Publisher                = {Elsevier},
+  Year                     = {2006},
+  Place                    = {Favoritenstrasse 9/4th Floor/1863}
+}
+
+% %%%%%%%%%%%%%%
 
 @Article{Begleiter2004,
   Title                    = {On Prediction Using Variable Order Markov Models},
@@ -22,54 +57,55 @@
   Review                   = {
   - algorithms for prediction of discrete sequences over a finite alphabet, using variable order Markov models.
 
-- Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.
+  - Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.
 
-- La oferta en la literatura es:
-Perhaps the most commonly used techniques are based on Hidden Markov Models (HMMs)
+  - La oferta en la literatura es:
+  Perhaps the most commonly used techniques are based on Hidden Markov Models (HMMs)
 
-- In this paper we focus on general-purpose prediction algorithms, based on learning Vari- able order Markov Models (VMMs) over a finite alphabet Σ.
+  - In this paper we focus on general-purpose prediction algorithms, based on learning Vari- able order Markov Models (VMMs) over a finite alphabet Σ.
 
-- There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
+  - There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
 
-- ¿ Porque se eligio lz78 y no PPM?
+  - ¿ Porque se eligio lz78 y no PPM?
 
-- the goal is to generate a model capable of predicting the rest of the sequence.
+  - the goal is to generate a model capable of predicting the rest of the sequence.
 
-- The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.
+  - The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.
 
-- lz78 algorithm that forms the basis of many commercial applications for compression
+  - lz78 algorithm that forms the basis of many commercial applications for compression
 
--
-3.1 Lempel-Ziv 78 (LZ78)
-The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
-The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary. Clearly, the newly parsed phrase s′ extends an existing
- 
-dictionary phrase by one symbol; that is, s′ = sσ, where s is already in the dictionary
-(s can be the empty phrase). For compression, the algorithm encodes the index of s′
-(among all parsed phrases) followed by a fixed code for σ. Note that coding issues will not
-concern us in this paper. Also observe that lz78 compresses sequences without explicit
-probabilistic estimates. Here is an example of this lz78 parsing: if q11 = abracadabra, 1
-then the parsed phrases are a|b|r|ac|ad|ab|ra. Observe that the empty sequence ǫ is always in the dictionary and is omitted in our discussions.
-An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983). We describe separately the learning and prediction phases.6 For simplicity we first discuss the binary case where Σ = {0, 1}, but the algorithm can be naturally extended to alphabets of any size (and in the experiments discussed below we do use the multi-alphabet algorithm). In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above). In the tree we also maintain counters that hold statistics of q1n. The initial tree contains a root and two (left and right) leaves. The left child of a node corresponds to a parsing of ‘0’ and the right child corresponds to a parsing of ‘1’. Each node maintains a counter. The counter in a leaf is always set to 1. The counter in an internal node is always maintained so that it equals the sum of its left and right child counters. Given a newly parsed phrase s′, we start at the root and traverse the tree according to s′ (clearly the tree contains a corresponding path, which ends at a leaf). When reaching a leaf, the tree is expanded by making this leaf an internal node and adding two leaf-sons to this new internal node. The counters along the path to the root are updated accordingly.
-To compute the estimate Pˆ(σ|s) we start from the root and traverse the tree according to s. If we reach a leaf before “consuming” s we continue this traversal from the root, etc. Upon completion of this traversal (at some internal node, or a leaf) the prediction for σ = ‘0’ is the ‘0’ (left) counter divided by the sum of ‘0’ and ‘1’ counters at that node, etc.
-For larger alphabets, the algorithm is naturally extended such that the phrases are
-stored in a multi-way tree and each internal node has exactly k = |Σ| children. In addition,
-each node has k counters, one for each possible symbol. In Figure 1 we depict the resulting
-tree for the training sequence q11 = abracadabra and calculate the probability Pˆ(b|ab), 1
-assuming Σ = {a, b, c, d, r}.
-Several performance guarantees were proven for the lz78 compression (and prediction)
-algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
-
-
-
--> Modificaciones a LZ78 
-
-A major advantage of the lz78 algorithm is its speed. This speed is made possible by compromising on the systematic counts of all sub-sequences. For example, in Figure 1, the sub-sequence br is not parsed and, therefore, is not part of the tree. However, this sub- sequence is significant for calculating Pˆ(a|br). While for a very long training sequence this compromise will not affect the prediction quality significantly, for short training sequences the lz78 algorithm yields sparse and noisy statistics. Another disadvantage of the lz78 algorithm is its loss of context when calculating Pˆ(σ|s). For example, in Figure 1, when taking σ = b and s = raa, the lz78 prediction algorithm will compute Pˆ(b|raa) by travers- ing the tree along the raa path (starting from the root) and will end on a leaf. Therefore, Pˆ(b|raa) = Pˆ(b|ǫ) = 5/33. Nevertheless, we could use the suffix a of raa to get the more accurate value Pˆ(b|a) = 5/17. These are two major deficiencies of lz78. The lz-ms al- gorithm attempts to overcome both these disadvantages by introducing two corresponding heuristics. This algorithm improves the lz78 predictions by extracting more phrases during learning and by ensuring a minimal context for the next phrase, whenever possible.
+  -
+  3.1 Lempel-Ziv 78 (LZ78)
+  The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
+  The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary. Clearly, the newly parsed phrase s′ extends an existing
+   
+  dictionary phrase by one symbol; that is, s′ = sσ, where s is already in the dictionary
+  (s can be the empty phrase). For compression, the algorithm encodes the index of s′
+  (among all parsed phrases) followed by a fixed code for σ. Note that coding issues will not
+  concern us in this paper. Also observe that lz78 compresses sequences without explicit
+  probabilistic estimates. Here is an example of this lz78 parsing: if q11 = abracadabra, 1
+  then the parsed phrases are a|b|r|ac|ad|ab|ra. Observe that the empty sequence ǫ is always in the dictionary and is omitted in our discussions.
+  An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983). We describe separately the learning and prediction phases.6 For simplicity we first discuss the binary case where Σ = {0, 1}, but the algorithm can be naturally extended to alphabets of any size (and in the experiments discussed below we do use the multi-alphabet algorithm). In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above). In the tree we also maintain counters that hold statistics of q1n. The initial tree contains a root and two (left and right) leaves. The left child of a node corresponds to a parsing of ‘0’ and the right child corresponds to a parsing of ‘1’. Each node maintains a counter. The counter in a leaf is always set to 1. The counter in an internal node is always maintained so that it equals the sum of its left and right child counters. Given a newly parsed phrase s′, we start at the root and traverse the tree according to s′ (clearly the tree contains a corresponding path, which ends at a leaf). When reaching a leaf, the tree is expanded by making this leaf an internal node and adding two leaf-sons to this new internal node. The counters along the path to the root are updated accordingly.
+  To compute the estimate Pˆ(σ|s) we start from the root and traverse the tree according to s. If we reach a leaf before “consuming” s we continue this traversal from the root, etc. Upon completion of this traversal (at some internal node, or a leaf) the prediction for σ = ‘0’ is the ‘0’ (left) counter divided by the sum of ‘0’ and ‘1’ counters at that node, etc.
+  For larger alphabets, the algorithm is naturally extended such that the phrases are
+  stored in a multi-way tree and each internal node has exactly k = |Σ| children. In addition,
+  each node has k counters, one for each possible symbol. In Figure 1 we depict the resulting
+  tree for the training sequence q11 = abracadabra and calculate the probability Pˆ(b|ab), 1
+  assuming Σ = {a, b, c, d, r}.
+  Several performance guarantees were proven for the lz78 compression (and prediction)
+  algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
 
 
 
--> 
-We focused on prediction settings that are more closely related to those required by machine learning practitioners dealing with discrete sequences},
+  -> Modificaciones a LZ78 
+
+  A major advantage of the lz78 algorithm is its speed. This speed is made possible by compromising on the systematic counts of all sub-sequences. For example, in Figure 1, the sub-sequence br is not parsed and, therefore, is not part of the tree. However, this sub- sequence is significant for calculating Pˆ(a|br). While for a very long training sequence this compromise will not affect the prediction quality significantly, for short training sequences the lz78 algorithm yields sparse and noisy statistics. Another disadvantage of the lz78 algorithm is its loss of context when calculating Pˆ(σ|s). For example, in Figure 1, when taking σ = b and s = raa, the lz78 prediction algorithm will compute Pˆ(b|raa) by travers- ing the tree along the raa path (starting from the root) and will end on a leaf. Therefore, Pˆ(b|raa) = Pˆ(b|ǫ) = 5/33. Nevertheless, we could use the suffix a of raa to get the more accurate value Pˆ(b|a) = 5/17. These are two major deficiencies of lz78. The lz-ms al- gorithm attempts to overcome both these disadvantages by introducing two corresponding heuristics. This algorithm improves the lz78 predictions by extracting more phrases during learning and by ensuring a minimal context for the next phrase, whenever possible.
+
+
+
+  -> 
+  We focused on prediction settings that are more closely related to those required by machine learning practitioners dealing with discrete sequences
+  },
   URL                      = {http://dl.acm.org/citation.cfm?id=1622487.1622499}
 }
 
@@ -93,16 +129,17 @@ We focused on prediction settings that are more closely related to those require
   Author                   = {Claude, F. and Konow, R. and Navarro, G.},
   Year                     = {2014},
   Abstract                 = {Or to analyze the performance of their systems in order to apply smart prefetching techniques for faster response, among other applications.
-One particular WUM task is to predict the path of web pages that the user is going to traverse within a website.
-Another application is as a recommendation technique
+  One particular WUM task is to predict the path of web pages that the user is going to traverse within a website.
+  Another application is as a recommendation technique
 
-improving the user’s experience.
+  improving the user’s experience.
 
-WUM and general data mining is to retrieve the top-k most frequent sequences
+  WUM and general data mining is to retrieve the top-k most frequent sequences
 
-In this paper we focus on improving the space consumption and time to perform queries on the web access sequences obtained from the web server logs used during the first step, thus freeing resources for the second stage and therefore increasing the performance of the process.
-Indexing Web Access Sequences
-** Our experiments show that our index uses about the same size of the plain representation of the data, and within this space supports various relevant operations within tens of microseconds.},
+  In this paper we focus on improving the space consumption and time to perform queries on the web access sequences obtained from the web server logs used during the first step, thus freeing resources for the second stage and therefore increasing the performance of the process.
+  Indexing Web Access Sequences
+  ** Our experiments show that our index uses about the same size of the plain representation of the data, and within this space supports various relevant operations within tens of microseconds.
+  },
   File                     = {:../papers/fclaude-2014/bwt.pdf:PDF},
   Keywords                 = {Web Usage Minning, WUM Process, server access logs, rank2},
   Owner                    = {jguzman},
@@ -173,17 +210,6 @@ Indexing Web Access Sequences
   Keywords                 = {binary sequences, data compression, filtering and prediction theory, Lempel-Ziv data compression algorithm, binary sequence, complexity, compressibility, finite memory, finite state predictor, finite-state predictability, incremental parsing procedure, individual sequences, infinite sequence, predictability, prediction errors, universal sequential prediction, Binary sequences, Data compression, Frequency, rank5}
 }
 
-@Book{gollapudi2016practical,
-  Title                    = {Practical Machine Learning},
-  Author                   = {Gollapudi, S.},
-  Publisher                = {Packt Publishing},
-  Year                     = {2016},
-  Series                   = {Community experience distilled},
-  ISBN                     = {9781784399689},
-  Keywords                 = {rank4},
-  URL                      = {https://books.google.cl/books?id=3ywhjwEACAAJ}
-}
-
 @Article{Gopalratnam2007,
   Title                    = {Online Sequential Prediction via Incremental Parsing: The Active LeZi Algorithm},
   Author                   = {Gopalratnam, K. and Cook, D.J.},
@@ -217,12 +243,7 @@ Indexing Web Access Sequences
   URL                      = {http://dx.doi.org/10.1007/978-3-319-18032-8_49}
 }
 
-@Book{guller2015big,
-  Title                    = {Big Data Analytics with Spark},
-  Author                   = {Guller, Mohammed},
-  Publisher                = {Springer},
-  Year                     = {2015}
-}
+
 
 @Article{hartmann2007,
   Title                    = {Prediction Algorithms for User Actions.},
@@ -243,12 +264,6 @@ Indexing Web Access Sequences
   Timestamp                = {2015.07.27}
 }
 
-@Book{khanna2015efficient,
-  Title                    = {Efficient Learning Machines: Theories, Concepts, and Applications for Engineers and System Designers},
-  Author                   = {Khanna, Rahul and Awad, Mariette},
-  Publisher                = {Apress},
-  Year                     = {2015}
-}
 
 @Article{Kotiyal2013,
   Title                    = {User behavior analysis in web log through comparative study of Eclat and Apriori},
@@ -315,42 +330,43 @@ Indexing Web Access Sequences
   Keywords                 = {Web sites, storage management, LZ78 algorithm, LZW algorithm, Web access prediction, Web logs, Web prefetching, World Wide Web, computational complexity, data preparation task, dynamic Web page prediction, memory efficient Web page prediction model, online prediction model, online prediction system, online section, performance evaluation, personalization system, prediction algorithm, uch less memory than PPM family of, user navigation, Accuracy, Association rules, Data mining, Entropy, Filtering, Navigation, Prediction algorithms, Predictive models, Prefetching, Web pages, LZ78, LZW, Web Page Prediction, rank5},
   Review                   = {Las Predicciones en los registros webaccess ha atraido mucha atencion en los últimos años
 
-La mayoria de las aplicaciones actuales que predicen el siguiente acceso a un página web posee una  componente offline 
-que hace la tarea de preparar la data y una sección en linea que permite personalizar cierto contenido para un usuario en particular
-basado en las actividades de navegación
+    La mayoria de las aplicaciones actuales que predicen el siguiente acceso a un página web posee una  componente offline 
+    que hace la tarea de preparar la data y una sección en linea que permite personalizar cierto contenido para un usuario en particular
+    basado en las actividades de navegación
 
 
-In this paper we present an online prediction model that does not have an offline component and fit in the memory with good prediction accuracy.
+    In this paper we present an online prediction model that does not have an offline component and fit in the memory with good prediction accuracy.
 
 
-In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem.
+    In web page prediction understanding the user navigation pattern and then predicting the next pages is the main problem.
 
 
 
-In most of the web usage mining techniques, sequences are either used to produce association rules or to produce tree structures or Markov chains to represent navigation patterns. Markov models are based on a well-established theory and are simple to understand. They wildly used for modeling user navigation path.
+    In most of the web usage mining techniques, sequences are either used to produce association rules or to produce tree structures or Markov chains to represent navigation patterns. Markov models are based on a well-established theory and are simple to understand. They wildly used for modeling user navigation path.
 
 
-In recent years the content of many web sites are dynamic and new pages are also added to site dynamically. So we need a model that can be online and consider the changes of web site and user behavior. The memory efficiency is an important factor for an online algorithm. Most of the current models proposed for prediction are not online [8, 9] and need an offline component for processing tasks and online models such as model that proposed in [7] may soon become too big to fit in memory.
+    In recent years the content of many web sites are dynamic and new pages are also added to site dynamically. So we need a model that can be online and consider the changes of web site and user behavior. The memory efficiency is an important factor for an online algorithm. Most of the current models proposed for prediction are not online [8, 9] and need an offline component for processing tasks and online models such as model that proposed in [7] may soon become too big to fit in memory.
 
 
-We do not build per-user predictive models.
+    We do not build per-user predictive models.
 
-LZ78 and LZW algorithms. These algorithms are compression algorithms and also are used in sequence mining.
+    LZ78 and LZW algorithms. These algorithms are compression algorithms and also are used in sequence mining.
 
- We use these algorithms for modeling the user navigation history.
-
-
-The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. 
-
-There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
+     We use these algorithms for modeling the user navigation history.
 
 
-In this section we propose two algorithms that are based on LZ78 and LZW. LZ78 algorithm is proposed by Jacob Ziv and Abraham Lempel in 1977 [15].
+    The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. 
+
+    There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
 
 
-LZ78 basically are lossless data compression algorithms with good functionality. The most important part of these algorithms is the dictionary construction algorithm that we use it for creating the prediction model.
+    In this section we propose two algorithms that are based on LZ78 and LZW. LZ78 algorithm is proposed by Jacob Ziv and Abraham Lempel in 1977 [15].
 
-Usar el ejemplo de construccion del arbol de LZ para explicar en la tesis}
+
+    LZ78 basically are lossless data compression algorithms with good functionality. The most important part of these algorithms is the dictionary construction algorithm that we use it for creating the prediction model.
+
+    Usar el ejemplo de construccion del arbol de LZ para explicar en la tesis
+    }
 }
 
 @Article{Pena-Sordo2015,
@@ -526,6 +542,9 @@ Usar el ejemplo de construccion del arbol de LZ para explicar en la tesis}
   ISSN                     = {0018-9448},
   Keywords                 = {Sequential coding, Source coding, Books, Compression algorithms, Data compression, Data processing, Displays, Information theory, Jacobian matrices, Telephony, Testing, Upper bound, rank2}
 }
+
+
+
 
 @comment{jabref-meta: databaseType:bibtex;}
 

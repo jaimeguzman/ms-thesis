@@ -61,6 +61,34 @@ La Redundancia de datos, se puede describir como la superposción de datos ó da
 
 \subsection{Clasificación de algoritmos de compresión} 
 
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. 
+
+% NOTAS:::::::
+ % es posible que tengamos que asumir que el origen contiene símbolos de un alfabeto y los símbolos se producen a raíz de una distribución de probabilidad específica antes de que ocurra ningún tipo de codificación.
+
+% Cualquier método de compresión que ver esencialmente dos tipos de trabajo: el modelado y la codificación. 
+
+% El modelo representa nuestro conocimiento sobre el dominio de origen y la manipulación de la redundancia de origen.
+
+%  El dispositivo que se utiliza para cumplir la tarea de codificación se suele llamar codificador significa codificador. 
+
+%  Basado en el modelo y algunos cálculos, el codificador se utiliza para derivar un código y codificar (comprimir) la entrada. 
+
+%  Un codificador puede ser independiente del modelo.
+
+% Una estructura similar se aplica a algoritmos de decodificación. No es de nuevo un modelo y un decodificador para cualquier algoritmo de decodificación.
+
+%%%%%%%%%%%%%%
+
+
+Los Algoritmos de compresión se clasifican en algoritmos sin pérdida de datos y con pérdida. Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC), se encuentran en nuestro día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente.
+
+Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
+
+Existen varios algoritmos de compresión interesantes, que veremos en esta sección, que se pueden usar para realizar modelos predictivos, nos enfocaremos en los que estan basados en un modelo variable de Markov. Estos nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
+
+
+
 
 
 % There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
@@ -73,16 +101,6 @@ La Redundancia de datos, se puede describir como la superposción de datos ó da
 
 
 % Lossless compression techniques are used when the original data of a source are so important that we cannot afford to lose any details. Examples of such source data are medical images, text and images preserved for legal reason, some computer executable files, etc.
-
-
-Los Algoritmos de compresión se clasifican en algoritmos sin perdida de datos y con perdida. Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC), se encuentran en nuestro día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente.
-
-
-
-
-Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
-
-Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en los que estan enfocados en un modelo variable de Markov. Estos nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
 
 
 
