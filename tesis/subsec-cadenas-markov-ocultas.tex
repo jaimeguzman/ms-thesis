@@ -2,10 +2,14 @@
 %%%%%%%  
 %%%%%%%  
 
-Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  básicamente son un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Una cadena o proceso de Markov es una secuencia de eventos, estos se pueden representar por estados, la probabilidad de cada uno estados sólo depende del estado anterior.
+% En un modelo oculto de markov, el estado es parcialmente observable ( no se conoce pero existen observaciones o \in O) y no existen ACCIONES (no hay toma de decisiones -> equivale a una sola accion)
+
+% En HMM la observación es una función de probabilidad del estado.
+
+Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  es un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Una cadena o proceso de Markov es una secuencia de eventos, estos se pueden representar por estados, la probabilidad de cada uno estados sólo depende del estado anterior.
 
 
-Estos \HMM son modelos dinámicos con un proceso estocástico doble, en el cual el sistema es modelado mediante un proceso de markov con estados no observados directamente, es decir, estados escondidos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de simbolos observados. Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó video, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
+Estos \HMM son modelos dinámicos con un proceso estocástico doble, en el cual el sistema es modelado mediante un proceso de markov con estados no observados directamente, es decir, estados ocultos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de símbolos observados. Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó vídeo, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
 
 En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición. Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
 % Y QUE PASA CON LOS HMM se habla de los tradicionales falta mejorar esta idea
@@ -13,10 +17,32 @@ En los modelos tradicionales de Markov, los estados son visibles para el observa
 
 
 
-% \subsubsection{Terminología para HMM}
+\subsubsection{Terminología para HMM}
+
+Para comprender diremos que tendremos $i$ estados que representan ciertos eventos, no afectos al tiempo. Cada estado tiene $q_{i}$, que es la probabilidad de ese estado.
+
+\begin{enumerate}
+
+	\item \textbf{Modelo de Markov observable:} Cada estado es un evento físico observable.
+
+	\item \textbf{Probabilidad de emisión:} son la  función distribubución de probabilidad que caracteriza cada estado $q_{i}$, por ejemplo calcular la probabilidad $x$ del siguiente estado sería: $P( x | q_{i})$.
+
+	\item \textbf{Probabilidad de transición:} Si se tiene un estado $i$ y uno $j$, la probabilidad de transición que tendremos  desde el estado $i$ hasta $j$  es: $P(q_{j} | q_{i}  )$. En \HMM se usan matrices para almacenar todos los estados que podemos movernos, siendo por ejemplo $a_{ij}$ un término equivalente a $ P(q_{j} | q_{i}  )$.
 
 
-Para poder predecir la sequencia de estado más probable, los \HMM hacen un sistema de observación y transmisión. Una gran diferencia de los modelos ocultos de markov y un proceso de markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios. 
+
+
+	\item \textbf{Estado inicial no-emisior y estado final:} Sea una secuencia $X = {x_1,\dots ,x_K} $, que posee una longitud finita $K$, es necesario que cuando un secuencia empiece o termine, estos dos eventos se deben modelar como eventos discretos adicionales. En \HMM se agregan dos estados adicionales que no emiten (inicial y final), esto es debido a que estos dos eventos particulares no están asociados a ninguna probabilidad de emisión de un estado a otro.
+	% Las transiciones a partir del estado inicial corresponden a la modelización de un estado de distribución P inicial (I | qj), que indica la probabilidad de iniciar la secuencia de estado con el estado qj emisor.
+	% El estado final por lo general sólo tiene una transición no nula de que los bucles sobre sí mismo con una probabilidad de 1 (es un estado absorbente), de modo que la secuencia de estado se "atrapado" en ella cuando se alcanza.
+
+
+
+\end{enumerate}
+
+
+
+
 
 \subsubsection{Fuentes de aleatoriedad para HMM}
 
@@ -27,6 +53,38 @@ Los estados en \HMM son modelos generativos, los cuales modelan la distribución
 	\item Transición entre estados.
 	\item La emisión de una observación cuando se da un estado.
 \end{itemize}
+
+
+
+\subsubsection{Formalización HMM}
+Una especificación completa de \HMM (\emph{Rabiner 1989}~\cite{Rabiner1990}) requiere una definición formal de los siguientes elementos:
+
+
+\begin{itemize}
+	\menorEspacioItemize
+	\item \textbf{N} es la cantidad de estados ocultos.
+ 	\item \textbf{M} es la cantidad de simbolos observables por estado.
+	\item \textbf{ Distribución de probabilidad de la transición de estados}\\
+	Sea $A={a_{ij}}$ con $a_{ij} = P[q_{t+1}=S_{j} | q_t = S_i  ]$, con $i,j = 1,\dots,N$.
+
+	\item \textbf{ Distribución de probabilidad de observación de simbolos  en cada estado} \\
+	Sea $B={b_{ij}}$ con $b_{j}(k) = P[v_{k}  | q_t = S_j ]$, con $i \in {1,\dots, N}$ e $j \in {1,\dots, M}$.
+
+	\item \textbf{ Distribución de probabilidad del estado inicial}\\
+	Sea $\pi = {\pi_{i}}$, donde  $\pi_{i} = P[q_i=S_i] $ y $i=1,\dots,N$.
+	\item \textbf{ Notación}
+		\begin{itemize}
+			\menorEspacioItemize
+			\item Observación: $O = O_{1},O_{2},\dots ,O_{T}$, de tamaño $T$.
+			\item Modelo: $\sigma = (A,B, \pi)$.
+		\end{itemize}
+
+
+\end{itemize}
+
+
+
+
 
 
 \subsubsection{Escenario formal HMM}
@@ -46,27 +104,38 @@ Un modelo Lambda,$\lambda$, está compuesto de probabilidades $\pi$ iniciales, l
 
 
 
-
 %@TODO: Definir una notación matematica para empezar hablar de HMM
 
 
  
 
+\subsubsection{Problemas fundamentales de HMM}
 
-Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los tres problemas siguientes:
+Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los siguientes tres problemas:
 
 \begin{enumerate}
 	\menorEspacioItemize
-	\item Evaluación de un modelo: Evaluar la probabilidad de una secuencia de observaciones para un \HMM dada  $(M = (A, B, M)).$
-	\item Decodificar la ruta:  EVALUAR la secuencia óptima de un modelo de estados $Q$ (Estados ocultos) para una determinada secuencia de observaciones y un modelo \HMM $M = (A, B, M).$
-	\item  Entrenamiento del modelo:   determinar el conjunto de parámetros del modelo que explica mejor la señal observada.
+	\item \textbf{Evaluación:} Dado el modelo $\lambda$, el cual equivale a $\lambda=(A,B,\pi)$ y la secuencia de observación $O = O_1,O_2,\dots,O_{T}$, calcular $P( O | \lambda)$, que corresponde a evaluar la probabilidad de una secuencia de observaciones para un \HMM dado el modelo $M$.(\emph{Algoritmo forward-backward})
+
+
+	\item \textbf{Decodificar la ruta:} Sea el modelo $\lambda=(A,B,\pi)$ y la secuencia de observación $O = O_1,O_2,\dots,O_{T}$, se busca evaluar  la secuencia óptima de un modelo de estados $Q = Q_1,Q_2,\dots,Q_{T}$ que mejor explique las observaciones. (\emph{Algoritmo Viterbi})
+
+
+	\item  \textbf{Entrenamiento:} Dado una secuencia de observación $O = O_1,O_2,\dots,O_{T}$,  determinar el conjunto de parámetros del modelo $\lambda=(A,B,\pi)$ que explica mejor la señal observada, osea que maximiza la $P(O|\lambda)$. (\emph{Algoritmo Baum-Welch})
 
 \end{enumerate}
 
 
 
 
+\uncm
 
+Para poder predecir la secuencia de estado más probable, los \HMM hacen un sistema de observación y transmisión. Una gran diferencia de los modelos ocultos de Markov y un proceso de Markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios. 
+
+
+
+
+% Y SI AQUI COLOCO ALGO DE DONGSAHNG THMM
 
 
 

@@ -1,6 +1,10 @@
-En \machinelearning se realizan tareas de clasificación, agrupamiento o regresión, como ya hemos introducido. Uno de los modelos que se puede usar son modelos que usan probabilidades, es decir, podemos realizar un entrenamiento con una distribución de probabilidades sobre una secuencia de datos. El concepto de modelo de Markov, se basa en la idea anterior, pero no solo se lograr realizar lo anteriormente señado, existe un universo de modelos de markov como \emph{Procesos de deciones de Markov}, \emph{Markov discreto}, \emph{Cadenas de Markov de Monte Carlo para redes Bayesianas}, y  \emph{Modelo oculto de Markov}.
+%%%%%%%  
+%%%%%%%  
+%%%%%%%  
 
-El \emph{Modelo oculto de Markov} (\HMM) ha sido usado tanto en el reconocimiento de voz, traducción de idiomas, clasificación de texto, etiquetado de documentos y compresión. \HMM ha sido una gran herramienta para algoritmo de \machinelearning, se puede ver mas detalle de los trabajos y soluciones que ofrece en \emph{Rabiner}~\cite{}.
+En \machinelearning se realizan tareas de clasificación, agrupamiento o regresión. Una de las herramientas que se puede usar para estos modelos son las que usan probabilidades, es decir, podemos realizar un entrenamiento con una distribución de probabilidades sobre una secuencia de datos. El concepto de modelo de Markov, se basa en la idea anterior, pero no solamente se puede hacer lo anterior, existe un universo de modelos de Markov como \emph{Procesos de deciones de Markov}, \emph{Markov discreto}, \emph{Cadenas de Markov de Monte Carlo para redes Bayesianas}, y  \emph{Modelo oculto de Markov}.
+
+El \emph{Modelo oculto de Markov} (\HMM) ha sido usado tanto en el reconocimiento de voz, traducción de idiomas, clasificación de texto, etiquetado de documentos y compresión \MLkhanna. \HMM ha sido una gran herramienta para algoritmos de \machinelearning, se puede ver mas detalle de los trabajos y soluciones a problemas que ofrece \emph{Rabiner} en~\cite{}.
 
 
 
@@ -10,7 +14,10 @@ El \emph{Modelo oculto de Markov} (\HMM) ha sido usado tanto en el reconocimient
 
 
 
-Las propiedades de Markov son una característica de un proceso estocástico, donde la distribución de probabilidades condicionales de un estado a otro depende directamente del estado actual y no de los estado en que alguna vez estuvo, en el pasado. Dado lo anterior se entiende que los estados se producen en un tiempo discret, y la propiedad de Markov es conocida como \emph{cadena de Markov discreta}. Aunque elos procesos de Markov se puede aplicar como ensayo y error en varias aplicaciones, su usabilidad es limita a la resolución de problemas para los cuales las observaciones no dependen de los estados ocultos. Los Modelos ocultos de Markov son una técnica comúnmente aplicado a afrontar este reto.
+Las propiedad de Markov es una característica de un proceso estocástico, donde la distribución de probabilidades condicionales de un estado a otro depende directamente del estado actual y no de los estado en que alguna vez estuvo, en el pasado. Sea $i$ un estado cualquiera de la secuencia $X$ de una cadena de Markov.  El estado $i+1$, solo depende del estado $i$ del sistema y no de la evolución del anterior.
+
+
+Lo anterior se extiende a que los estados se producen en un tiempo discreto, y la propiedad de Markov es conocida como \emph{cadena de Markov discreta}. Aunque los procesos de Markov se puede aplicar como ensayo y error en varias aplicaciones, su usabilidad es limitada a la resolución de problemas para los cuales las observaciones no dependen de los estados ocultos. Los Modelos ocultos de Markov son una técnica comúnmente aplicado a afrontar este problema.
 
 
 
@@ -19,8 +26,8 @@ Las propiedades de Markov son una característica de un proceso estocástico, do
 
 \subsubsection{Textos por revisar}
 
+% REVISAR :
 % The first-order discrete Markov chain
-
 % Este trabajo se ha centrado en la generación de un modelo predictivo de secuencias discretas sobre un alfabeto finito, con las definiciones anteriores podemos profundizando como usar técnicas de Machine Learning, que nos permitan avanzar y estar en la búsqueda de nuevas comparaciones.
 
 \begin{lstlisting}
@@ -36,8 +43,6 @@ Existen muchos problemas en que el factor de la secuencialidad de los datos se c
  
 
 
-
-Si diéramos una introducción al modelamiento secuencial, es necesario introducir modelos o los efectos probabilistas
 
 
 De alguna manera hay que mencionar los VMM o Modelos de markov variables, son la base de los algoritmos de predicción usando LZ78
