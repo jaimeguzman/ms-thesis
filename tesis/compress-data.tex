@@ -2,9 +2,181 @@
 
 \section{Compresión para predicciones secuenciales}
 
-% There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
+
 
 \input{cap-compresion-intro}
+
+\uncm
+
+
+
+\subsection{Modelamiento matemático}
+
+El modelamiento matemático es un proceso en el cual se configura un ambiente que permite a ciertas variables de interes ser observadas o explorar un cierto comportamiento  de un sistema. En si este proceso es una formalización y extensión de la descripción de un problema, todas las reglas y relaciones que presenta estas observaciones se pueden formular mediantes formulas matemáticas.
+
+El modelamiento es una etapa muy importante en el diseño de algoritmos. Un modelo puede decir inmediatamente el acercamiento de n algoritmo, es decir, un  buen modelo puede llevar a soluciones eficientes de los algoritmos. Ciertas condiciones previas se deben asumir y el ambiente debe ser descrito  en términos matemáticos. En el área de Compresión de datos, los modelos son usados para describir ciertas fuentes de datos.
+
+En los problemas que aborda la Compresión de datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento.
+
+
+Los modelos comunmente usados en Compresión de datos son los siguiente:
+
+\begin{itemize}
+	\menorEspacioItemize
+	\item \textbf{Modelo físico:} Conocimiento de la físcia de los datos, como el origen de los datos de una cierte fuente, la cual puede ser un procesos generativo o mediante observación empírica.
+
+	\item \textbf{Modelos de probabilidad:} Uso de teoría de probabilidades para describir la fuente de datos.
+
+
+	\item \textbf{Modelo de Markov:} Uso de la teoría de cadena de Markov para modelar fuentes de datos.
+
+
+	\item \textbf{Modelo compuesto:} Es la descripción de la fuente de datos como una combinación de varios tipos y el uso de un conmutador para activar un tipo a la vez.
+\end{itemize}
+
+El resultado final del modelamiento matemático en el contexto de la compresión, es un modelo factible, en el cual la redundancia de datos y ciertas restricciones de salida se intercectan en una relación definidad, tanto para la entrada del algoritmo como su salida.
+
+\uncm
+ 
+
+
+\subsection{Teoría de la información elemental}
+
+
+La Teoría de la Información fue propuesta por \emph{Claude E. Shannon} en los laboratorios \emph{Bell} en 1948 y se basa en el estudio de la información basada en teoría de probabilidades. Su objetivo es una la realización de forma matemática que pueda medir la cantidad de información.
+
+La expectativa de los resultados de un evento se puede medir por la probabilidad del evento. La alta expectativa corresponde a una alta probabilidad de que el evento ocurra. Un evento que ocurra pocas veces significa que es un evento de baja probabilidad. Un evento que nunca sucede tiene una probabilidad cero. Por lo tanto la cantidad de información en un mensaje también se puede medir cuantitativamente de acuerdo con la incertidumbre o sorpresa de que un evento ocurra.
+
+\subsubsection{Entropía}
+
+La Entropía sirve para medir los eventos o símbolos con ocurrencia individual o a la vez. Sin embargo, a menudo estamos más interesados en la información de una fuente donde las ocurrencias de todos los símbolos posibles tienen que ser considerados. En otras palabras, la medida de la información de una fuente tiene que ser considerada en todo el alfabeto.
+
+
+\subsubsection{Redundancia}
+
+La Redundancia de datos, se puede describir como la superposción de datos ó datos que poseen una base común, características comunes o equivalentes en alguna estructura. En el área de Compresión de Datos se vuelve una de las primeras tarea indentificar la redundacia en ciertos origenes de datos.
+
+
+ 
+
+\subsection{Clasificación de algoritmos de compresión} 
+
+
+
+% There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
+
+% A compression problem involves finding an efficient algorithm to remove various redundancy from a certain type of data. 
+
+% A compression approach is lossless only if it is possible to exactly reconstruct the original data from the compressed version. There is no loss of any information during the compression 1 process. [MengyiPu2006]
+
+% Lossless compression is called reversible compression since the original data may be recovered perfectly by decompression.
+
+
+% Lossless compression techniques are used when the original data of a source are so important that we cannot afford to lose any details. Examples of such source data are medical images, text and images preserved for legal reason, some computer executable files, etc.
+
+
+Los Algoritmos de compresión se clasifican en algoritmos sin perdida de datos y con perdida. Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC), se encuentran en nuestro día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente.
+
+
+
+
+Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
+
+Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en los que estan enfocados en un modelo variable de Markov. Estos nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
+
+
+
+
+
+
+%%%%%%%%%%G. V. CORMACK* AND R. N. S. HORSPOOL*
+
+% All data compression methods rely on a priori assumptions about the structure of the source data. 
+
+% A similar assumption, that there is an underlying Markov model for the data, is made in the Ziv-Lempel13.14 and the Cleary-Witten1 techniques. In fact, it is provable that Ziv- Lempel coding approaches the optimal compression factor for sufficiently long messages that are generated by a. Markov model.
+
+% The new direction taken in our work is an algorithmic attempt to discover a Markov chain model that describes the data. If such a model can be constructed from the first part of a message, it can be used to predict forthcoming binary characters. Each state in the Markov chain supplies probabilities for the next binary character being a zero or a one. After using the probability estimate in a data coding scheme, we can use the actual message character to transfer to a new state in the Markov chain. This new state is then used to predict the next message bit, and so on.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Megha Atwal, Lovnish Bansal Fast Lempel-ZIV (LZ’78) Algorithm Using Codebook Hashing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Claude Shannon ignited the area of source coding with his ground breaking papers [1] in the late 1940s and early 1950s. Shannon essentially forged the theoretical background of compression using information theory for lossless compression and rate-distortion theory for lossy compression. In information theory, data compression or source coding involves encoding information using fewer bits than the original. Compression can be either lossy or lossless. Lossless compression reduces bits by removing statistical redundancy. Lossy compression reduces bits by removing unnecessary information. The process of reducing the size of a file is referred to as data compression, though formally it is called source coding.
+
+% Compression is useful as it helps reduce resources usage, such as storage space or transmission capacity. But we must decompress the compressed data before use. This overhead
+
+% Dictionary Coding  Static Dictionary   Semi Adaptive Dictionary  Adaptive Dictionary
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+ 
+
+
+% Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissanen~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictibilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
+
+
+% Desde otro punto de vista, los algoritmos de compresión mapean implícitamente strings en espacios vectoriales implícitos por features de un cierto dominio, y debido a las propiedades que usa la  compresión, podemos usarlos para los dominios de predicción y aprendizaje de ciertas características que nos entrega un entrenamiento típico de algoritmos de Machine Learning.
+% colocar cita a paper de ML con LDC
+
+% Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido mayormente explorada. Los algoritmos de compresión han sido estudiados e investigados durante varios años, la motivación fundamental es poder optimizar el espacio generado por ambas áreas, para un uso eficiente o mayor almacenamiento de datos. Estos algoritmos se encuentran, sin saberlo, en nuestro día a día, desde el núcleo de un sistema operativo como Linux hasta por ejemplo los formatos \emph{zip}, \emph{rar} y \emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar, por ejemplo, en dispositivos físicos. 
+
+
+
+
+%Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
+
+
+%@TODO: THERE IS AN INTIMATE RELATION BETWEEN PREDICTION OF DISCRETE SEQUENCES AND LOSSLESS COMPRESSION
+%ALGORITHMS, WHERE, IN PRINCIPLE, ANY LOSSLESS COMPRESSION ALGORITHM CAN BE USED
+%FOR PREDICTION AND VICE VERSA (SEE, E.G., FEDER & MERHAV, 1994).
+
+
+
+
+
+
+
+% The fundamental idea that data compression can be used to perform machine learning tasks has surfaced in a several areas of research, including data compression (Witten et al., 1999a; Frank et al., 2000),
+
+% machine learning and data mining (Cilibrasi and Vitanyi, 2005; Keogh et al., 2004; Chen et al., 2004), information theory, (Li et al., 2004), bioinformatics (Chen et al., 1999; Hagenauer et al., 2004), spam filtering (Bratko and Filipic, 2005), and even physics (Benedetto et al., 2002). The principle at work is that if strings x and y compress more effectively together than they do apart, then they must share similar information.
+
+
+
+
+% @TODO: 
+% - hablar mas de que LZ78 es basado en un diccicionario.
+
+
+%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context ‘a’ occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
+
+
+%empezar habalr sibre lempel ziv
+
+
+
+
+
+
+
+%%%%@BEGLEITER
+% Vamos Σ ser un alfabeto finito. Un alumno se da una secuencia de entrenamiento Q1n = q1q2 · · · qn, donde Σ ∈ qi y qiqi + 1 es la concatenación de qi y qi + 1. Basado en Q1n, el objetivo es aprender un modelo P que proporciona una asignación de probabilidad de cualquier resultado futuro dado algún pasado. En concreto, para cualquier "contexto" s ∈ Σ * y símbolo σ ∈ Σ el alumno debe generar una distribución de probabilidad condicional P (σ | s).
+% Predicción del rendimiento se mide a través de la media de pérdida de log-l (P, XT1) de P (· | ·), con respecto a una secuencia de prueba XT1 = x1 ··· xT,
+
+
+%%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
+
+%Therefore, an important research problem is to propose strategies to reduce the size and prediction time of CPT. Reducing the spatial complexity is a very challenging task. An effective compression strategy should provide a huge spatial gain while providing a minimum overhead in terms of training time and prediction time
+
+
+
 
 %Sintetis de paper: Using Compresion models for filtering troll comments
 \vspace{1cm}

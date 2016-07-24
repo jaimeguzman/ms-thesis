@@ -2,93 +2,27 @@
 %%%%%%%  INTRO COMPRESION
 %%%%%%%  
 
-
-En el capitulo~\ref{capitulo-I} se ha planteado como ciertos algoritmos de compresión se pretenden usar para ayudar a tareas de \machinelearning, para lograr entender como es realizarlo, se explicarán conceptos de compresión que darán los fundamentos para comprobar esta idea.
-
-
-
-Los Algoritmos de compresión se clasifican sin perdida de datos y con perdida, los primeros \losslessdatacompression(\LDC), se encuentran en nuestro día a día. La motivación de profundizar en el área de compresión sin pérdida, \LDC, es la cantidad de posibilidades que entregan para mejorar ciertas  operaciónes, por ejemplo la  movilidad de archivos y distintos recursos que ayudan a mejorar la experiencia en Internet. 
-
-
-Considerando que en internet constantemente se crean nuevos contenidos, registros, imágenes, videos entre otros tipos de datos, en los cuales ayudaría cuando no se poseen buenos recursos de red y/o infraestructura para mover de un lugar a otro mediante  transferencia directas, esto implicaría un disminución en un escenario típico de una \emph{web} en el que se mueven miles de \emph{gigabytes}. 
-
-Dichos archivos crecen exponencialmente no solo en número, sino también en el peso individual y he aquí uno de los mayores aportes que poseen los algoritmos de compresión con relación a nuestra red de redes. 
-
-Precisamente la compresión de datos en un escenario de transmisión de datos por \inet optimiza la transferencia de archivos, como también la carga de archivos en el lado del cliente.
-
-
-A diferencia de la velocidad de conexión, las infraestructura de redes no crecen proporcionalmente a los volúmenes de transferencias de datos, esto genera un sin fin de problemas para los usuarios e industria web. Sabemos que la latencia es el tiempo de respuesta que demora un usuario hacer una petición, un \emph{request}, a un servidor. 
-
-
-Minimizar este tiempo de respuesta es fundamental, pero en caso contrario podemos minimizar el tiempo de latencia prediciendo el siguiente recurso a disponer aporta a una evolución en la manera en que se manipulan los sistemas de archivos.
  
-Uno de los grandes ejemplos que tenemos en la web es la proliferación de archivos comprimidos para su descarga, los cuales en su interior poseen variados recursos de tipo audio, video, imagen, texto, etc. Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por Internet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; el análisis de texto, clasificación de proteínas, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de Internet. Este último punto es nuestro mayor interés,  predicciones de \emph{webaccess log} de una \emph{web}. 
+La Compresión de Datos, en el contexto de las ciencias de la computación, es la ciencia (y arte) de representar información en una forma lo más compacta posible. Algunos ejemplos de áreas de aplicación que son relevantes y han sido motivación para la compresión de datos, son:
 
-Para introducir el camino se debe presentar formalmente los algoritmos de compresión y su clasificación más general. Entre ellos tenemos los algoritmos con pérdida y sin pérdida, nos enfocaremos en los algoritmos \emph{Lossless Compression Algorithm}~(\texttt{LCA}), algoritmos de compresión sin pérdida.
+\begin{itemize}
+	\menorEspacioItemize
 
-Existen varios prominentes algoritmos de compresión que se pueden usar para realizar modelos predictivos, nos enfocaremos en la familia \emph{Lempel} {\&} \emph{Ziv}. Estos son en sí modelos variables de Markov que nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia.
+	\item Sistemas de comunicación, ejemplo fax, \emph{voice mail} y telefonía.
+	\item Estructuras de memoria, discos y cintas de computadores.
+	\item Mobile computing.
+	\item Sistemas distribuidos.
+	\item Redes informáticas e Internet.
+	\item Evolución multimedia, imágenes, procesamiento de señales.
+	\item Archivos de imagen y videoconferencia.
+	\item TV digital y satelital.
 
-El aprender acerca de la secuencia de datos continuas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y aprendizaje automático, \emph{Machine Learning}.
-
-
-
-
-
-
-El uso de algoritmos de compresión en tareas de \emph{Machine Learning} como agrupamiento y clasificación ha tenido presencia en variados campos de las ciencias de la computación. La intención de reducir problemas de selección explícita de ciertas características que se usan en estudios y algoritmos de \emph{Machine Learning}.
-
-
-Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissanen~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictibilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
+\end{itemize}
 
 
-Desde otro punto de vista, los algoritmos de compresión mapean implícitamente strings en espacios vectoriales implícitos por features de un cierto dominio, y debido a las propiedades que usa la  compresión, podemos usarlos para los dominios de predicción y aprendizaje de ciertas características que nos entrega un entrenamiento típico de algoritmos de Machine Learning.
-% colocar cita a paper de ML con LDC
-
-Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido mayormente explorada. Los algoritmos de compresión han sido estudiados e investigados durante varios años, la motivación fundamental es poder optimizar el espacio generado por ambas áreas, para un uso eficiente o mayor almacenamiento de datos. Estos algoritmos se encuentran, sin saberlo, en nuestro día a día, desde el núcleo de un sistema operativo como Linux hasta por ejemplo los formatos \emph{zip}, \emph{rar} y \emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar, por ejemplo, en dispositivos físicos. 
+Considerando que los usuarios de \inet constantemente  crean nuevos contenidos, imágenes y videos  entre otros tipos de datos. Todos los recursos mencionados anteriorment al tener un menor tamaño o representación, se favorece al usuario y la red cuando no existen una buena calidad de conexión o infraestructura para mover un lugar a otro. Esto implica un disminución del tiempo de transferencia en la \emph{web} en el que se mueven miles de \emph{gigabytes}. Dichos archivos crecen exponencialmente no solo en número, sino también en peso individual y he aquí uno de los mayores aportes que poseen los algoritmos de compresión con relación a transferencia de datos. Precisamente la compresión de datos en un escenario de transmisión de datos por \inet optimiza la transferencia de archivos desde servidores, como también la carga de archivos en el lado del cliente. A diferencia de la velocidad de conexión y infraestructura de redes, estas no crecen proporcionalmente a los mismo volúmenes de transferencias de datos, esto genera una cantidad de problemas para los usuarios e industria web. Respecto a lo anterior podemos decir que el tiempo que demorar un usuario en pedir un archivo hasta recibirlo, se llama latencia. Por lo cual se comprende que al transportar archivos de menor tamaño la latencia de una petición a un servicio, será menor.
 
 
+En el capitulo~\ref{capitulo-I} se ha planteado que ciertos algoritmos de compresión de datos, se usan para ayudar a tareas de \machinelearning. Para lograr entender esta premisa, se explicarán conceptos de compresión que darán los fundamentos para comprobar esta idea.
 
 
-%Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
-
-
-%@TODO: THERE IS AN INTIMATE RELATION BETWEEN PREDICTION OF DISCRETE SEQUENCES AND LOSSLESS COMPRESSION
-%ALGORITHMS, WHERE, IN PRINCIPLE, ANY LOSSLESS COMPRESSION ALGORITHM CAN BE USED
-%FOR PREDICTION AND VICE VERSA (SEE, E.G., FEDER & MERHAV, 1994).
-
-
-
-
-
-
-
-% The fundamental idea that data compression can be used to perform machine learning tasks has surfaced in a several areas of research, including data compression (Witten et al., 1999a; Frank et al., 2000),
-
-% machine learning and data mining (Cilibrasi and Vitanyi, 2005; Keogh et al., 2004; Chen et al., 2004), information theory, (Li et al., 2004), bioinformatics (Chen et al., 1999; Hagenauer et al., 2004), spam filtering (Bratko and Filipic, 2005), and even physics (Benedetto et al., 2002). The principle at work is that if strings x and y compress more effectively together than they do apart, then they must share similar information.
-
-
-
-
-% @TODO: 
-% - hablar mas de que LZ78 es basado en un diccicionario.
-
-
-%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context ‘a’ occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
-
-
-%empezar habalr sibre lempel ziv
-
-
-
-
-
-
-
-%%%%@BEGLEITER
-% Vamos Σ ser un alfabeto finito. Un alumno se da una secuencia de entrenamiento Q1n = q1q2 · · · qn, donde Σ ∈ qi y qiqi + 1 es la concatenación de qi y qi + 1. Basado en Q1n, el objetivo es aprender un modelo P que proporciona una asignación de probabilidad de cualquier resultado futuro dado algún pasado. En concreto, para cualquier "contexto" s ∈ Σ * y símbolo σ ∈ Σ el alumno debe generar una distribución de probabilidad condicional P (σ | s).
-% Predicción del rendimiento se mide a través de la media de pérdida de log-l (P, XT1) de P (· | ·), con respecto a una secuencia de prueba XT1 = x1 ··· xT,
-
-
-%%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
-
-%Therefore, an important research problem is to propose strategies to reduce the size and prediction time of CPT. Reducing the spatial complexity is a very challenging task. An effective compression strategy should provide a huge spatial gain while providing a minimum overhead in terms of training time and prediction time
