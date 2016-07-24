@@ -1,81 +1,41 @@
 %%%%%%%  
+%%%%%%%  
+%%%%%%%  
+
+Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  básicamente son un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Una cadena o proceso de Markov es una secuencia de eventos, estos se pueden representar por estados, la probabilidad de cada uno estados sólo depende del estado anterior.
+
+
+Estos \HMM son modelos dinámicos con un proceso estocástico doble, en el cual el sistema es modelado mediante un proceso de markov con estados no observados directamente, es decir, estados escondidos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de simbolos observados. Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó video, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
+
+En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición. Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
+% Y QUE PASA CON LOS HMM se habla de los tradicionales falta mejorar esta idea
 
 
 
-Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  básicamente son un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Estos \HMM son un proceso estocástico doble, en el cual el sistema es modelado con un proceso de markov con estados no observados, es decir, estados escondidos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de simbolos observados.
 
-En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición.
-Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
+% \subsubsection{Terminología para HMM}
 
-Para poder predecir la sequencia de estado más probable, los \HMM hacen un sistema de observación y transmisión. Una gran diferencia de los modelos ocultos de markov y un proceso de markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios. Existen dos fuentes de aleatoriedad:
+
+Para poder predecir la sequencia de estado más probable, los \HMM hacen un sistema de observación y transmisión. Una gran diferencia de los modelos ocultos de markov y un proceso de markov clásico es que en los primeros, los estados no son observables.  Una nueva observación se emite con una probabilidad conocida como la probabilidad de emisión cada vez que el estado del sistema o modelo cambios. 
+
+\subsubsection{Fuentes de aleatoriedad para HMM}
+
+Los estados en \HMM son modelos generativos, los cuales modelan la distribución conjunta de  observaciones y estados ocultos.
 
 \begin{itemize}
-	\setlength{\itemsep}{1pt}
-	\setlength{\parskip}{0pt}
-	\setlength{\parsep}{0pt}
-	\item Transición entre estados
-	\item La emisión de una observación cuando se da un estado
+	\menorEspacioItemize
+	\item Transición entre estados.
+	\item La emisión de una observación cuando se da un estado.
 \end{itemize}
 
-% NOTA: los estados HMM son modelos generativos,  los cuales se modeló la distribución conjunta de las observaciones y estados ocultos.
 
-
-
-
-
-%HISTORIA
-
-La teoría fundamental fue desarrollado sobre la investigación y trabajo  Baum y colaboradores (BAUM AND PETRIE 1966; BAUM AND EAGON 1967; BAUM AND SELL 1968; BAUM ET AL. 1970; BAUM 1972)). 
-
-Un trabajo anterior en esta área es realizado por  Stratonovich (1960), quien propuso un modelo óptimo \emph{NO LINEAL DE FILTRADO}, basada en la teoría de los procesos de Markov condicionales. Una reciente contribución a la Aplicación de HMM fue hecha por Rabiner (1989), en la formulación de un método estadístico de representar el habla. EL AUTOR establecido una implementación exitosa de un sistema \emph{HMM}, BASADO EN parámetros de distribución de probabilidad discreto o continuo.
-
-
-Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los tres problemas siguientes:
-
-\begin{enumerate}
-	
-\item Evaluación de un modelo: Evaluar la probabilidad de una secuencia de observaciones para un HMM dada  $(M = (A, B, M)).$
-
-
-\item Decodificar la ruta:  EVALUAR la secuencia óptima de un modelo de estados $Q$ (Estados ocultos) para una determinada secuencia de observaciones y un modelo \emph{HMM}  $M = (A, B, M).$
-
-\item  Entrenamiento del modelo:   determinar el conjunto de parámetros del modelo que explica mejor la señal observada.
-
-\end{enumerate}
-
-
-Modelos de aprendizaje: dada un un set de datos, para aprender un modelo probabilístico con estructuras de optimización y parámetros.
-
-
-
-Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó video, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
-
-
-
-%Vamos a volver a utilizar el ejemplo cajas y pelotas. Si las cajas son estados ocultos (no observable), entonces el usuario dibuja las bolas cuyo color no es visible. La probabilidad de emisión es la probabilidad de bik = p (ot = colork | qt = Si) para recuperar una bola de color k de una caja oculta I, como se describe en el siguiente diagrama:
-
-
-
-\textbf{Nota: Invariancia del tiempo}
-
-Los \textit{HMM} requieren que los elementos de transición, $a_{ji}$, son independientes en el tiempo. Esta propiedad se conoce como restricción estacionaria u homogénea.
-
-\textbf{Nota: Normalizacion}
-
-Los estados de entrada y los datos de observaciones pueden tener que ser normalizados y se convierten en probabilidades antes de inicializar las matrices A y B.
-
-Input states and observations data may have to be normalized and converted to probabilities before initializing the matrices A and B.
-
-
-
-
-Para formalizar un escenario de HMM:
+\subsubsection{Escenario formal HMM}
 
 \begin{itemize}
+	\menorEspacioItemize
 	\item Un conjunto de observaciones
 	\item Una secuencia de estados ocultos
 	\item Un modelo que maximiza la probabilidad conjunta de las observaciones y estados ocultos, conocido como el modelo Lambda.
-
 \end{itemize}
 
 
@@ -83,31 +43,48 @@ Un modelo Lambda,$\lambda$, está compuesto de probabilidades $\pi$ iniciales, l
 
 
 
+
+
+
+
 %@TODO: Definir una notación matematica para empezar hablar de HMM
 
-% HMM execution state
-% The canonical forms of the HMM are implemented through dynamic programming techniques. These techniques rely on variables that define the state of the execution of the HMM for any of the canonical forms:
 
-% Alpha (the forward variable): The probability of observing the first t < T observations for a specific state at Si for the observation t, αt(i) = p(O0:t, qt=Si|λ)
-
-% Beta (the backward variable): The probability of observing the remainder of the sequence qt for a specific state βt(i) = p(Ot+1:T-1|qt=Si,λ)
-
-% Gamma: The probability of being in a specific state given a sequence of observations and a model γt(i) =p(qt=Si|O0:T-1, λ)
-
-% Delta: The sequence to have the highest probability path for the first i observations defined for a specific test δt(i)
-
-% Qstar: The optimum sequence q* of states Q0:T-1
-% DiGamma: The probability of being in a specific state at t and another defined state at t+1 given the sequence of observations and the model γt(i,j) =p(qt=Si,qt+1=Sj|O0:T-1, λ)
-
-% Each of the parameters is described in the section related to each canonical form. Let's create a class HMMState that encapsulates the variables used in the implementation of the three canonical cases.
+ 
 
 
-%%%%%%%%% -> Realmente no se sis es necesarios definir los estados de ejecución de HMM
+Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los tres problemas siguientes:
+
+\begin{enumerate}
+	\menorEspacioItemize
+	\item Evaluación de un modelo: Evaluar la probabilidad de una secuencia de observaciones para un \HMM dada  $(M = (A, B, M)).$
+	\item Decodificar la ruta:  EVALUAR la secuencia óptima de un modelo de estados $Q$ (Estados ocultos) para una determinada secuencia de observaciones y un modelo \HMM $M = (A, B, M).$
+	\item  Entrenamiento del modelo:   determinar el conjunto de parámetros del modelo que explica mejor la señal observada.
+
+\end{enumerate}
 
 
 
 
-\vspace{1cm}
 
-\input{sec-algo-viterbi}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+%\vspace{1cm}
+
+%\input{sec-algo-viterbi}
 
