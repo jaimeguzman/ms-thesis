@@ -1,4 +1,10 @@
- 
- Los Algoritmos \emph{DMC} o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
- Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
- Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un $0$ o $1$ son sumados cuando un nuevo símbolo entra. %La estructura puede también ser actualizada usando \emph{state cloning method}.
+ %%%%%
+ %%%%% ~\cite{PenaSordo2015}
+ %%%%%
+
+ Los \emph{Dynamic Markov Compression} o \DMC son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto~\cite{PenaSordo2015}. 
+ Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. Los \DMC comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un $0$ o $1$ son sumados cuando un nuevo símbolo entra. %La estructura puede también ser actualizada usando \emph{state cloning method}.
+
+
+% ~\cite{PenaSordo2015}
+%  The compression algorithm dynamic Markov compression (DMC) [11] models information with a finite state machine. Associations are built between every possible symbol in the source alphabet and the probability distribution over those symbols. This probability distribution is used to predict the next binary digit. The DMC method starts in a already defined state, changing the state when new bits are read from the entry. The frequency of the transitions to either a 0 or a 1 are summed when a new symbol arrives. The structure can be also be updated using a state cloning method.
