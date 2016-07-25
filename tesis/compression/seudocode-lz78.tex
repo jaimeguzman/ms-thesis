@@ -1,0 +1,21 @@
+
+
+\begin{algorithm}[t]
+	\caption{Seudocódigo para Algoritmo \texttt{LZ78}.}
+	\label{alg:pseudocode-lz78}
+	\begin{algorithmic}[1]
+		\State {initialize} \textbf{dictionary  }{:= null}
+		\State {initialize} \textbf{phrase w  }{:= null}
+		
+		\While{wait for next symbol v }
+			\If { ((w.v) in dictionary):}
+				\State  \textbf{ w  }{:= w.v}	
+			\Else 
+				\State 	{add (w.v) to dictionary}
+				\State {w := null}
+				\State {increment frequency for every possible prefix of phrase}
+				
+			\EndIf	
+		\EndWhile
+	\end{algorithmic}
+\end{algorithm}

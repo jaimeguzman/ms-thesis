@@ -8,7 +8,10 @@
 
 \uncm
 
+% Preliminar 
 
+% Llamaremos alfabeto a cualquier conjunto finito no vac ́ıo. Usualmente lo denotaremos como Σ. Los elementos de Σ se llamar ́an s ́ımbolos o caracteres.
+% \cite{Navarro2014}
 
 \subsection{Modelamiento matemático}
 
@@ -16,10 +19,9 @@ El modelamiento matemático es un proceso en el cual se configura un ambiente qu
 
 El modelamiento es una etapa muy importante en el diseño de algoritmos. Un modelo puede decir inmediatamente el acercamiento de n algoritmo, es decir, un  buen modelo puede llevar a soluciones eficientes de los algoritmos. Ciertas condiciones previas se deben asumir y el ambiente debe ser descrito  en términos matemáticos. En el área de Compresión de datos, los modelos son usados para describir ciertas fuentes de datos.
 
-En los problemas que aborda la Compresión de datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento.
 
 
-Los modelos comunmente usados en Compresión de datos son los siguiente:
+En los problemas que aborda la Compresión de datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento. Los modelos comunmente usados en Compresión de datos son los siguiente:
 
 \begin{itemize}
 	\menorEspacioItemize
@@ -34,7 +36,7 @@ Los modelos comunmente usados en Compresión de datos son los siguiente:
 	\item \textbf{Modelo compuesto:} Es la descripción de la fuente de datos como una combinación de varios tipos y el uso de un conmutador para activar un tipo a la vez.
 \end{itemize}
 
-El resultado final del modelamiento matemático en el contexto de la compresión, es un modelo factible, en el cual la redundancia de datos y ciertas restricciones de salida se intercectan en una relación definidad, tanto para la entrada del algoritmo como su salida.
+El resultado final del modelamiento matemático en el contexto de la compresión, es un modelo factible en el cual la redundancia de datos y ciertas restricciones de salida se intercectan en una relación definidad, tanto para la entrada del algoritmo como su salida. En otras palabras los problemas de compresión  buscan un algoritmo eficiente para remover la mayor cantidad de redundacia(ver~\ref{ch2:concept-redundacia}) desde una fuente de datos.
 
 \uncm
  
@@ -47,213 +49,90 @@ La Teoría de la Información fue propuesta por \emph{Claude E. Shannon} en los 
 
 La expectativa de los resultados de un evento se puede medir por la probabilidad del evento. La alta expectativa corresponde a una alta probabilidad de que el evento ocurra. Un evento que ocurra pocas veces significa que es un evento de baja probabilidad. Un evento que nunca sucede tiene una probabilidad cero. Por lo tanto la cantidad de información en un mensaje también se puede medir cuantitativamente de acuerdo con la incertidumbre o sorpresa de que un evento ocurra.
 
-\subsubsection{Entropía}
+
+\subsubsection{Entropía}\label{ch2:concept-entropia}
 
 La Entropía sirve para medir los eventos o símbolos con ocurrencia individual o a la vez. Sin embargo, a menudo estamos más interesados en la información de una fuente donde las ocurrencias de todos los símbolos posibles tienen que ser considerados. En otras palabras, la medida de la información de una fuente tiene que ser considerada en todo el alfabeto.
 
 
-\subsubsection{Redundancia}
+
+
+
+\subsubsection{Redundancia}\label{ch2:concept-redundacia}
 
 La Redundancia de datos, se puede describir como la superposción de datos ó datos que poseen una base común, características comunes o equivalentes en alguna estructura. En el área de Compresión de Datos se vuelve una de las primeras tarea indentificar la redundacia en ciertos origenes de datos.
 
 
  
 
+
+
+
+
 \subsection{Clasificación de algoritmos de compresión} 
 
-Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. 
-
-% NOTAS:::::::
- % es posible que tengamos que asumir que el origen contiene símbolos de un alfabeto y los símbolos se producen a raíz de una distribución de probabilidad específica antes de que ocurra ningún tipo de codificación.
-
-% Cualquier método de compresión que ver esencialmente dos tipos de trabajo: el modelado y la codificación. 
-
-% El modelo representa nuestro conocimiento sobre el dominio de origen y la manipulación de la redundancia de origen.
-
-%  El dispositivo que se utiliza para cumplir la tarea de codificación se suele llamar codificador significa codificador. 
-
-%  Basado en el modelo y algunos cálculos, el codificador se utiliza para derivar un código y codificar (comprimir) la entrada. 
-
-%  Un codificador puede ser independiente del modelo.
-
-% Una estructura similar se aplica a algoritmos de decodificación. No es de nuevo un modelo y un decodificador para cualquier algoritmo de decodificación.
-
-%%%%%%%%%%%%%%
-
-
-Los Algoritmos de compresión se clasifican en algoritmos sin pérdida de datos y con pérdida. Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC), se encuentran en nuestro día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente.
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente y abordar sus propiedades de transformación, como también la predicción.
 
 Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
+% JUSTO EN EL PARRAFO ANTERIOR FALTA UN NEXO A TEO DE INFORMACION
 
-Existen varios algoritmos de compresión interesantes, que veremos en esta sección, que se pueden usar para realizar modelos predictivos, nos enfocaremos en los que estan basados en un modelo variable de Markov. Estos nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
+Existen varios \losslessdatacompression interesantes, algunos son basados en en diccionario. En esta sección veremos que se pueden usar para realizar modelos predictivos. Nos enfocaremos en los que estan basados en un modelo variable de Markov, los cuales nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
 
 
 
 
 
-% There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
 
-% A compression problem involves finding an efficient algorithm to remove various redundancy from a certain type of data. 
 
-% A compression approach is lossless only if it is possible to exactly reconstruct the original data from the compressed version. There is no loss of any information during the compression 1 process. [MengyiPu2006]
 
-% Lossless compression is called reversible compression since the original data may be recovered perfectly by decompression.
 
 
-% Lossless compression techniques are used when the original data of a source are so important that we cannot afford to lose any details. Examples of such source data are medical images, text and images preserved for legal reason, some computer executable files, etc.
 
 
 
 
+\uncm
+\subsection{Algoritmos de compresión}
 
 
-%%%%%%%%%%G. V. CORMACK* AND R. N. S. HORSPOOL*
-
-% All data compression methods rely on a priori assumptions about the structure of the source data. 
-
-% A similar assumption, that there is an underlying Markov model for the data, is made in the Ziv-Lempel13.14 and the Cleary-Witten1 techniques. In fact, it is provable that Ziv- Lempel coding approaches the optimal compression factor for sufficiently long messages that are generated by a. Markov model.
-
-% The new direction taken in our work is an algorithmic attempt to discover a Markov chain model that describes the data. If such a model can be constructed from the first part of a message, it can be used to predict forthcoming binary characters. Each state in the Markov chain supplies probabilities for the next binary character being a zero or a one. After using the probability estimate in a data coding scheme, we can use the actual message character to transfer to a new state in the Markov chain. This new state is then used to predict the next message bit, and so on.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Megha Atwal, Lovnish Bansal Fast Lempel-ZIV (LZ’78) Algorithm Using Codebook Hashing
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% Claude Shannon ignited the area of source coding with his ground breaking papers [1] in the late 1940s and early 1950s. Shannon essentially forged the theoretical background of compression using information theory for lossless compression and rate-distortion theory for lossy compression. In information theory, data compression or source coding involves encoding information using fewer bits than the original. Compression can be either lossy or lossless. Lossless compression reduces bits by removing statistical redundancy. Lossy compression reduces bits by removing unnecessary information. The process of reducing the size of a file is referred to as data compression, though formally it is called source coding.
-
-% Compression is useful as it helps reduce resources usage, such as storage space or transmission capacity. But we must decompress the compressed data before use. This overhead
-
-% Dictionary Coding  Static Dictionary   Semi Adaptive Dictionary  Adaptive Dictionary
-
-
-
-
-
-
- 
- 
-
-
-
-
- 
-
-
-% Un punto de vista de esta inclusión de áreas muestra que los algoritmos de compresión mapean implícitamente a las representaciones vectoriales que se usan para hacer los conjuntos de entrenamientos para la construcción de predictores, las cuales a su vez son cotas superiores. Podemos señalar que  trabajos como los de Langdon y Rissanen~\cite{RissanenLangdon1979} han sido claves para determinar la comprensibilidad de un algoritmo y la \emph{predictibilidad} que poseen los modelos de compresión. Con estos modelos se pueden realizar predicciones muy interesantes en el área de \emph{Machine Learning}.
-
-
-% Desde otro punto de vista, los algoritmos de compresión mapean implícitamente strings en espacios vectoriales implícitos por features de un cierto dominio, y debido a las propiedades que usa la  compresión, podemos usarlos para los dominios de predicción y aprendizaje de ciertas características que nos entrega un entrenamiento típico de algoritmos de Machine Learning.
-% colocar cita a paper de ML con LDC
-
-% Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido mayormente explorada. Los algoritmos de compresión han sido estudiados e investigados durante varios años, la motivación fundamental es poder optimizar el espacio generado por ambas áreas, para un uso eficiente o mayor almacenamiento de datos. Estos algoritmos se encuentran, sin saberlo, en nuestro día a día, desde el núcleo de un sistema operativo como Linux hasta por ejemplo los formatos \emph{zip}, \emph{rar} y \emph{7z}, también en formatos de imágenes y audios, etc. los cuales son útiles para poder optimizar una transferencia de archivos de un equipo a otro mediante Internet o simplemente comprimir datos para respaldar, por ejemplo, en dispositivos físicos. 
-
-
-
-
-%Esta idea de usar algoritmos de compresión en máquinas de aprendizaje no es nueva, pero no ha sido explotada mayormente explorada.
-
-
-%@TODO: THERE IS AN INTIMATE RELATION BETWEEN PREDICTION OF DISCRETE SEQUENCES AND LOSSLESS COMPRESSION
-%ALGORITHMS, WHERE, IN PRINCIPLE, ANY LOSSLESS COMPRESSION ALGORITHM CAN BE USED
-%FOR PREDICTION AND VICE VERSA (SEE, E.G., FEDER & MERHAV, 1994).
-
-
-
-
-
-
-
-% The fundamental idea that data compression can be used to perform machine learning tasks has surfaced in a several areas of research, including data compression (Witten et al., 1999a; Frank et al., 2000),
-
-% machine learning and data mining (Cilibrasi and Vitanyi, 2005; Keogh et al., 2004; Chen et al., 2004), information theory, (Li et al., 2004), bioinformatics (Chen et al., 1999; Hagenauer et al., 2004), spam filtering (Bratko and Filipic, 2005), and even physics (Benedetto et al., 2002). The principle at work is that if strings x and y compress more effectively together than they do apart, then they must share similar information.
-
-
-
-
-% @TODO: 
-% - hablar mas de que LZ78 es basado en un diccicionario.
-
-
-%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context ‘a’ occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
-
-
-%empezar habalr sibre lempel ziv
-
-
-
-
-
-
-
-%%%%@BEGLEITER
-% Vamos Σ ser un alfabeto finito. Un alumno se da una secuencia de entrenamiento Q1n = q1q2 · · · qn, donde Σ ∈ qi y qiqi + 1 es la concatenación de qi y qi + 1. Basado en Q1n, el objetivo es aprender un modelo P que proporciona una asignación de probabilidad de cualquier resultado futuro dado algún pasado. En concreto, para cualquier "contexto" s ∈ Σ * y símbolo σ ∈ Σ el alumno debe generar una distribución de probabilidad condicional P (σ | s).
-% Predicción del rendimiento se mide a través de la media de pérdida de log-l (P, XT1) de P (· | ·), con respecto a una secuencia de prueba XT1 = x1 ··· xT,
-
-
-%%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
-
-%Therefore, an important research problem is to propose strategies to reduce the size and prediction time of CPT. Reducing the spatial complexity is a very challenging task. An effective compression strategy should provide a huge spatial gain while providing a minimum overhead in terms of training time and prediction time
-
-
-
-
-%Sintetis de paper: Using Compresion models for filtering troll comments
-\vspace{1cm}
-\subsection{Modelos de compresión}
-
-
-Existen muchos modelos y algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \emph{Machine Learning} y además tengan propiedades para ser candidatos a un predictor. 
+Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \emph{Machine Learning} y además tengan propiedades para ser candidatos a un predictor. 
 
 %HACER UNA CITA CON ESTE AUTOR
 
 \begin{verbatim}
- Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. Our model decreases computational complexities which is a serious problem in developing online prediction systems. A performance evaluation is presented using real web logs. This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
+ Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. 
+ Our model decreases computational complexities which is a serious problem in developing online prediction systems. 
+
+ A performance evaluation is presented using real web logs. 
+ This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
  
  In this paper we present efficient techniques for modeling user navigation behavior. Our model is online so changes in user request patterns will update our prediction model incrementally. We do not build per-user predictive models. 
 \end{verbatim}
 \LDCMoghaddam
 
 
-%%%%%Moghaddam_Kabir
-%These algorithms are compression algorithms and also are used in sequence mining. We use these algorithms for modeling the user navigation history.
-%%%%%%%%
+
  
 \subsubsection{Prediction by Partial Match (PPM)}
+
+	\input{compression/ppm}
  
-El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el máximo del orden de Markov de un modelo variable de Markov (\emph{\texttt{VMM}}) para construirse. 
-\texttt{PPM} maneja el problema de frecuencia cero usando dos mecanismo~\cite{Begleiter2004},  llamados
-	
-	\begin{itemize}
-			\setlength{\itemsep}{1pt}
-			\setlength{\parskip}{0pt}
-			\setlength{\parsep}{0pt}
-		\item Escape
-		\item Exclusion
-	\end{itemize}
-	
-Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores \texttt{PPM}  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
 
-Algoritmos  \texttt{PPM} consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, \emph{Active LeZi} construye un orden-k del modelo de Markov. Ahora empleamos la estrategia \texttt{PPM} de exclusión para reunir información de los modelos de orden 1 a $k$ para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
-
-% FATLA una CITA a ACTILEZI
-La ventana mantenida por \emph{Active Lezi}~\cite{Gopalratnam2007} representa el conjunto de contextos utilizado para calcular la probabilidad  del siguiente símbolo. En nuestro ejemplo, el último se utiliza la frase \texttt{aaa}. Dentro de esta frase, los contextos que pueden ser utilizados son todos sufijos dentro de la frase, excepto la ventana en sí (es decir, \texttt{aa} , \texttt{a}, y el contexto nulo).
-
-	
-% @TODO: Trabajar mas en este tema. y mencionar mas adelante porque usar LZ y no este, rendimiento
 
 
  \subsubsection{Probabilistic Suffix Tree (PST)}
  
- Los árboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor \emph{VMM} con límite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un límite superior a la orden de Markov de un fuente certera es conocida como \emph{learner}.
- 
- %@TODO: explayar mas aca
+ 	\input{compression/pst}
+
+
+
  
  
  \subsubsection{Cadenas de Markov Dinámicas}
  
- 
- Los Algoritmos \emph{DMC} o \emph{Dynamic Markov Compression} son modelos de información con máquinas de estados finitos. Las asociaciones están hechas entre todos los símbolos posibles en el alfabeto origen y la distribución de probabilidad sobre todos los símbolos en el alfabeto. 
- Esta distribución de probabilidad es usada para predecir el siguiente dígito binario. 
- Los \emph{DMC} comienzan en un estado ya previamente definido, cambiando de estado cuando nuevos bits son leídos desde la entrada. La frecuencia de transmisión ya sea un $0$ o $1$ son sumados cuando un nuevo símbolo entra. %La estructura puede también ser actualizada usando \emph{state cloning method}.
+
+  	\input{compression/dmc}
+
  
  
 \subsubsection{Lempel \& Ziv }
@@ -263,67 +142,16 @@ El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel~\cite{Ziv
 
 
 
-%%%%%%% \cite{Moghaddam2009}
-%LZ78 basically are lossless data compression algorithms with good functionality. The most important part of these algorithms is the dictionary construction algorithm that we use it for creating the prediction model.
-
-
-%%%%%%% \cite{Moghaddam2009}
-%LZ78 and LZW algorithms. These algorithms are compression algorithms and also are used in sequence mining.
-%We use these algorithms for modeling the user navigation history.
-%%%%%%%%% 
-
-
-%LZW compression has its roots in the work of Jacob Ziv and Abraham Lempel. In 1977, they published a paper on "sliding-window" compression, and followed it with another paper in 1978 on "dictionary" based compression. These algorithms were named LZ77 and LZ78, respectively. Then in 1984, Terry Welch made a modification to LZ78 which became very popular and was dubbed LZW (guess why). The LZW algorithm is what we are going to talk about here.
-
-
-%%%%%%% \cite{Begleiter2004}
-%El algoritmo LZ78 es uno de los algoritmos de compresión sin pérdidas más populares (Ziv y Lem- pel, 1978). Se utiliza como la base de la utilidad de Unix comprimir y otras utilidades de archivado populares para PC. También cuenta con garantías de rendimiento dentro de varios modelos de análisis. Este algoritmo (junto con el método de compresión LZ77) atrajo una enorme atención e inspiró el área de compresión sin pérdidas y la secuencia de predicción.
-%El componente de predicción de este algoritmo se discutió por primera Langdon (1983) y Rissanen (1983). La presentación de este algoritmo se simplifica después del algoritmo de compresión LZ78 conocido, que funciona de la siguiente manera, se entiende. Dada una secuencia de Q1n ∈ Σn, LZ78 incrementalmente analiza Q1n en 'frases' adyacentes que no se solapan, que se recogen en una frase "diccionario". El algoritmo comienza con un diccionario que contiene el ǫ frase vacía. En cada paso del algoritmo analiza una nueva frase, que es la frase más corta que todavía no está en el diccionario. Claramente, la frase recién analizada s 'se extiende una ya existente
-
-%frase diccionario por un símbolo; es decir, s '= sσ, donde s ya está en el diccionario
-%(s puede ser la frase vacía). Para la compresión, el algoritmo codifica el índice de s '
-%(entre todas las frases analizadas), seguido de un código fijo para σ. Tenga en cuenta que los problemas de codificación no lo hará
-%nos concierne en este trabajo. También observe que LZ78 comprime secuencias sin explícita
-%estimaciones probabilísticas. He aquí un ejemplo de este análisis LZ78: si = Q11 abracadabra, 1
-%a continuación, las frases son analizados se a | b | r | ac | anuncio | ab | ra. Observe que el vacío secuencia ǫ siempre está en el diccionario y se omite en nuestras discusiones.
-%Un algoritmo de predicción basado en LZ78 fue propuesto por Langdon (1983) y Rissanen (1983). Se describen por separado el aprendizaje y la predicción phases.6 Por simplicidad primera discutimos el caso binario, donde Σ = {0, 1}, pero el algoritmo se puede extender naturalmente a alfabetos de cualquier tamaño (y en los experimentos discutidos a continuación hacemos uso de la algoritmo multi-alfabeto). En la fase de aprendizaje el algoritmo construye a partir de la secuencia de entrenamiento Q1n un árbol binario (trie) que registra las frases analizados se (como se mencionó anteriormente). En el árbol también mantenemos contadores que mantienen estadísticas de Q1n. El árbol inicial contiene una raíz y dos (izquierda y derecha) se va. El hijo izquierdo de un nodo corresponde a un análisis de '0' y el hijo derecho corresponde a un análisis de '1'. Cada nodo mantiene un contador. El contador en una hoja siempre se establece en 1. El contador en un nodo interno se mantiene siempre por lo que es igual a la suma de sus izquierdo y derecho contadores niño. Dada una frase recién analizada s ', empezamos en la raíz y recorrer el árbol de acuerdo a s' (claramente el árbol contiene una ruta correspondiente, que termina en una hoja). Al llegar a una hoja, el árbol se expande haciendo que esta hoja de un nodo interno y la adición de dos foliares hijos a este nuevo nodo interno. Los contadores lo largo de la ruta a la raíz se actualizan en consecuencia.
-%Para calcular la estimación de P (σ | s) se parte de la raíz y recorrer el árbol de acuerdo con s. Si llegamos a una hoja antes de "consumir" s seguimos este recorrido desde la raíz, etc. Al finalizar este recorrido (en algún nodo interno, o una hoja) la predicción para = S '0' es el '0' (izquierda ) contador dividido por la suma de '0' y contadores '1' en ese nodo, etc.
-%Para alfabetos más grandes, el algoritmo se extiende, naturalmente, de tal manera que las frases son
-%almacenada en un árbol de múltiples vías y cada nodo interno ha exactamente k = | Σ | niños. En adición,
-%cada nodo tiene k contadores, uno para cada símbolo sea posible. En la Figura 1 que representan la resultante
-%árbol de la secuencia de entrenamiento q11 = abracadabra y calcular la probabilidad P (b | ab), 1
-%suponiendo Σ = {a, b, c, d, r}.
-%Varios garantías de rendimiento fueron probados para la compresión LZ78 (y predicción)
-%algoritmo. Dentro de un entorno probabilístico (véase la sección 2), cuando la fuente desconocida es Markov estacionario y ergódico de orden finito, la redundancia se acotado superiormente por (1 / ln n), donde n es la longitud de la secuencia de entrenamiento (Savari, 1997). Por lo tanto, el algoritmo LZ78 es un algoritmo de predicción universal con respecto a la gran clase de fuentes estacionarias y ergódicos de Markov de orden finito.
-
-%%%%%%%%%
-
-
- 
 
 
 
-\begin{algorithm}[t]
-	\caption{Seudocódigo para Algoritmo \texttt{LZ78}.}
-	\label{alg:pseudocode-lz78}
-	\begin{algorithmic}[1]
-		\State {initialize} \textbf{dictionary  }{:= null}
-		\State {initialize} \textbf{phrase w  }{:= null}
-		
-		\While{wait for next symbol v }
-			\If { ((w.v) in dictionary):}
-				\State  \textbf{ w  }{:= w.v}	
-			\Else 
-				\State 	{add (w.v) to dictionary}
-				\State {w := null}
-				\State {increment frequency for every possible prefix of phrase}
-				
-			\EndIf	
-		\EndWhile
-	\end{algorithmic}
-\end{algorithm}
 
 
+
+
+% Seucodigo de algormito de compresión LZ78
+
+\input{compression/seudocode-lz78}
 
 
 
@@ -340,14 +168,13 @@ Cuando se inserta una secuencia en el árbol los contadores de las aristas que r
 %%%%%%
 
 
-%%%%%%% \cite{Moghaddam2009}
-%Usar el ejemplo de construccion del arbol de LZ para explicar en la tesis
 
 
 
 Sin embargo se presentan ciertos problemas de análisis con \texttt{LZ78}. Cualquier aplicación práctica de \texttt{LZ78} sufre  los siguientes inconvenientes: 
 
 \begin{itemize}
+	\menorEspacioItemize	
 	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
 	
 	\item La tasa de convergencia de \texttt{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \texttt{LZ78} se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
@@ -356,34 +183,14 @@ Sin embargo se presentan ciertos problemas de análisis con \texttt{LZ78}. Cualq
 
 
 
+% \subsubsection{Compresión basada en Diccionarios}
 
 
 
 
 
 
-% seria bonito dejar una explciacion de como se construye el tree
 
 
 
-% Begleiter, El-Yaniv y YonaBegleiter, El-Yaniv y Yona
-%El algoritmo LZ78 es uno de los algoritmos de compresión sin pérdidas más populares (Ziv y Lem- pel, 1978). Se utiliza como la base de la utilidad de Unix comprimir y otras utilidades de archivado populares para PC. También cuenta con garantías de rendimiento dentro de varios modelos de análisis. Este algoritmo (junto con el método de compresión LZ77) atrajo una enorme atención e inspiró el área de compresión sin pérdidas y la secuencia de predicción.
-% El componente de predicción de este algoritmo se discutió por primera Langdon (1983) y Rissanen (1983). La presentación de este algoritmo se simplifica después del algoritmo de compresión LZ78 conocido, que funciona de la siguiente manera, se entiende. Dada una secuencia de Q1n ∈ Σn, LZ78 incrementalmente analiza Q1n en 'frases' adyacentes que no se solapan, que se recogen en una frase "diccionario". El algoritmo comienza con un diccionario que contiene el ǫ frase vacía. En cada paso del algoritmo analiza una nueva frase, que es la frase más corta que todavía no está en el diccionario. Claramente, la frase recién analizada s 'se extiende una ya existente
-% 5. No se incluyeron en el presente trabajo el algoritmo de predicción que se puede derivar del algoritmo de compresión bzip más reciente (ver http://www.digistar.com/bzip2), que se basa en el éxito de Burrows-Wheeler Transform ( Burrows y Wheeler, 1994; Manzini, 2001).
-% 
-% frase diccionario por un símbolo; es decir, s '= sσ, donde s ya está en el diccionario
-% (s puede ser la frase vacía). Para la compresión, el algoritmo codifica el índice de s '
-% (entre todas las frases analizadas), seguido de un código fijo para σ. Tenga en cuenta que los problemas de codificación no lo hará
-% nos concierne en este trabajo. También observe que LZ78 comprime secuencias sin explícita
-% estimaciones probabilísticas. He aquí un ejemplo de este análisis LZ78: si = Q11 abracadabra, 1
-% a continuación, las frases son analizados se a | b | r | ac | anuncio | ab | ra. Observe que el vacío secuencia ǫ siempre está en el diccionario y se omite en nuestras discusiones.
-% Un algoritmo de predicción basado en LZ78 fue propuesto por Langdon (1983) y Rissanen (1983). Se describen por separado el aprendizaje y la predicción phases.6 Por simplicidad primera discutimos el caso binario, donde Σ = {0, 1}, pero el algoritmo se puede extender naturalmente a alfabetos de cualquier tamaño (y en los experimentos discutidos a continuación hacemos uso de la algoritmo multi-alfabeto). En la fase de aprendizaje el algoritmo construye a partir de la secuencia de entrenamiento Q1n un árbol binario (trie) que registra las frases analizados se (como se mencionó anteriormente). En el árbol también mantenemos contadores que mantienen estadísticas de Q1n. El árbol inicial contiene una raíz y dos (izquierda y derecha) se va. El hijo izquierdo de un nodo corresponde a un análisis de '0' y el hijo derecho corresponde a un análisis de '1'. Cada nodo mantiene un contador. El contador en una hoja siempre se establece en 1. El contador en un nodo interno se mantiene siempre por lo que es igual a la suma de sus izquierdo y derecho contadores niño. Dada una frase recién analizada s ', empezamos en la raíz y recorrer el árbol de acuerdo a s' (claramente el árbol contiene una ruta correspondiente, que termina en una hoja). Al llegar a una hoja, el árbol se expande haciendo que esta hoja de un nodo interno y la adición de dos foliares hijos a este nuevo nodo interno. Los contadores lo largo de la ruta a la raíz se actualizan en consecuencia.
-% Para calcular la estimación de P (σ | s) se parte de la raíz y recorrer el árbol de acuerdo con s. Si llegamos a una hoja antes de "consumir" s seguimos este recorrido desde la raíz, etc. Al finalizar este recorrido (en algún nodo interno, o una hoja) la predicción para = S '0' es el '0' (izquierda ) contador dividido por la suma de '0' y contadores '1' en ese nodo, etc.
-% Para alfabetos más grandes, el algoritmo se extiende, naturalmente, de tal manera que las frases son
-% almacenada en un árbol de múltiples vías y cada nodo interno ha exactamente k = | Σ | niños. En adición,
-% cada nodo tiene k contadores, uno para cada símbolo sea posible. En la Figura 1 que representan la resultante
-% árbol de la secuencia de entrenamiento q11 = abracadabra y calcular la probabilidad P (b | ab), 1
-% suponiendo Σ = {a, b, c, d, r}.
-% Varios garantías de rendimiento fueron probados para la compresión LZ78 (y predicción)
-% algoritmo. Dentro de un entorno probabilístico (véase la sección 2), cuando la fuente desconocida es Markov estacionario y ergódico de orden finito, la redundancia se acotado superiormente por (1 / ln n), donde n es la longitud de la secuencia de entrenamiento (Savari, 1997). Por lo tanto, el algoritmo LZ78 es un algoritmo de predicción universal con respecto a la gran clase de fuentes estacionarias y ergódicos de Markov de orden finito.
-
+\subsection{Algoritmo Lempel Ziv 78}
