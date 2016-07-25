@@ -1,11 +1,8 @@
 \uncm
-
 \section{Compresión para predicciones secuenciales}
 
-
-
+%Introduccion de la sección
 \input{cap-compresion-intro}
-
 \uncm
 
 % Preliminar 
@@ -21,7 +18,7 @@ El modelamiento es una etapa muy importante en el diseño de algoritmos. Un mode
 
 
 
-En los problemas que aborda la Compresión de datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento. Los modelos comunmente usados en Compresión de datos son los siguiente:
+En los problemas que aborda la Compresión de Datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento. Los modelos comunmente usados en Compresión de datos son los siguiente:
 
 \begin{itemize}
 	\menorEspacioItemize
@@ -69,9 +66,14 @@ La Redundancia de datos, se puede describir como la superposción de datos ó da
 
 
 
+% \subsubsection{Compresión basada en Diccionarios}
+
+\uncm
 \subsection{Clasificación de algoritmos de compresión} 
 
-Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{kernel Linux}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente y abordar sus propiedades de transformación, como también la predicción.
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extración, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente y abordar sus propiedades de transformación, como también la predicción.
+% For example, in UNIX or Linux, commands compress, uncompress, gzip and gunzip have all used the dictionary compression methods at some stage.~\cite{MengyiPu2006}
+
 
 Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
 % JUSTO EN EL PARRAFO ANTERIOR FALTA UN NEXO A TEO DE INFORMACION
@@ -94,73 +96,65 @@ Existen varios \losslessdatacompression interesantes, algunos son basados en en 
 \uncm
 \subsection{Algoritmos de compresión}
 
-
+%MEJORAR ESTA INTRO o BORRARLA
 Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \emph{Machine Learning} y además tengan propiedades para ser candidatos a un predictor. 
 
-%HACER UNA CITA CON ESTE AUTOR
 
-\begin{verbatim}
- Our algorithm is based on LZ78 and LZW algorithms that are adapted for modeling the user navigation in web. 
- Our model decreases computational complexities which is a serious problem in developing online prediction systems. 
-
- A performance evaluation is presented using real web logs. 
- This evaluation shows that our model needs much less memory than PPM family of algorithms with good prediction accuracy.
- 
- In this paper we present efficient techniques for modeling user navigation behavior. Our model is online so changes in user request patterns will update our prediction model incrementally. We do not build per-user predictive models. 
-\end{verbatim}
-\LDCMoghaddam
-
-
-
- 
 \subsubsection{Prediction by Partial Match (PPM)}
-
 	\input{compression/ppm}
  
-
-
-
- \subsubsection{Probabilistic Suffix Tree (PST)}
- 
+\subsubsection{Probabilistic Suffix Tree (PST)}
  	\input{compression/pst}
 
-
-
- 
- 
- \subsubsection{Cadenas de Markov Dinámicas}
- 
-
+\subsubsection{Cadenas de Markov Dinámicas}
   	\input{compression/dmc}
+ 
+
+
+\subsubsection{Familia de algoritmos Lempel\&Ziv}
 
  
- 
-\subsubsection{Lempel \& Ziv }
+Los algoritmos base de esta familia fueron desarrollado por \emph{Jacob Ziv} y \emph{Abraham Lempel} en sus trabajos publicados en 1977~\cite{ZivLempel1977} y 1978~\cite{ZivLempel1978}. Ambas publicaciones proporcionan dos enfoques diferentes para la creación de diccionarios adaptables, y cada enfoque ha dado lugar a una serie de variaciones. Se puede decir que existen dos grupos que generarón algoritmos derivados, es decir, \lzSieteSiete~\cite{ZivLempel1977} y LZ78~\cite{ZivLempel1978}. Otra popular variante  de \lzSieteOcho es \texttt{LZW}, que fue una publicación de \emph{Terry Welch} en 1984. Existen muchas variantes de \lzSieteSiete y \texttt{LZ78/LZW}. Enfocaremos nuestro estudio y discusiones en \lzSieteOcho. 
 
 
-El algoritmo \texttt{LZ78} es propuesto por Jacob Ziv y Abraham Lempel~\cite{ZivLempel1977} en 1977. Un método de predicción en línea no necesita depender de pre-procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre-procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \texttt{LZ78} básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
-
-
+Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones hace un tiempo, debido a que es posible que se haya desplazado hacia fuera de la memoria histórica(buffer). En estas situaciones, los patrones son ignorados o si son consultados el algoritmo retorna no encontrado. Para poder extender la memoria de los patrones encontrado se desarrollo \lzSieteOcho conun diccionario, el cual permite mantener los patrones permanentemente durante todo el proceso de codificación.
 
 
 
-
-
-
-
-
-% Seucodigo de algormito de compresión LZ78
-
-\input{compression/seudocode-lz78}
+% TODO: ESTE PARRAFO DEBO CORREGIRLO
+Un método de predicción en línea no necesita depender de preprocesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El preprocesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \lzSieteOcho básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
 
 
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\uncm
+\subsection{Algoritmo Lempel-Ziv 78}
+
+
+
+
 
 
 %%%%%%%Moghaddam_Kabir
-\texttt{LZ78} es un algoritmo de compresión sin pérdidas, el algoritmo anteriormente muestra  como el diccionario es construido  a partir de secuencias, utilizando \texttt{LZ78}. En el entorno web utilizamos frecuencia de \emph{webaccess} de páginas web del usuario como secuencia de entrada al algoritmo \texttt{LZ78}. La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo PPM. Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \texttt{LZ78}, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
+\lzSieteOcho es un algoritmo de compresión sin pérdidas, el algoritmo anteriormente muestra  como el diccionario es construido  a partir de secuencias, utilizando \lzSieteOcho. En el entorno web utilizamos frecuencia de \emph{webaccess} de páginas web del usuario como secuencia de entrada al algoritmo \lzSieteOcho. La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo PPM. Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
 %En la Tabla 1 la primera fila muestra las peticiones de los usuarios. El segundo muestra la fila las secuencias insertadas en el árbol y la tercera fila muestra las secuencias que mantiene en la sesión del usuario activo. 
 Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
 %Tabla 2 muestra los resultados. Si el usuario A solicita ABABCBC.
@@ -168,29 +162,46 @@ Cuando se inserta una secuencia en el árbol los contadores de las aristas que r
 %%%%%%
 
 
-
-
-
-Sin embargo se presentan ciertos problemas de análisis con \texttt{LZ78}. Cualquier aplicación práctica de \texttt{LZ78} sufre  los siguientes inconvenientes: 
+Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualquier aplicación práctica de \lzSieteOcho sufre  los siguientes inconvenientes: 
 
 \begin{itemize}
 	\menorEspacioItemize	
 	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
 	
-	\item La tasa de convergencia de \texttt{LZ78} a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \texttt{LZ78} se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
+	\item La tasa de convergencia de \lzSieteOcho a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \lzSieteOcho se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
 	
 \end{itemize}
 
 
+%HACER UNA CITA CON ESTE AUTOR
 
-% \subsubsection{Compresión basada en Diccionarios}
+\begin{verbatim}
+ Our algorithm is based on LZ78 
+ and LZW algorithms that are adapted for 
+ modeling the user navigation in web. 
+ Our model decreases computational 
+ complexities which is 
+ a serious problem in developing 
+ online prediction systems. 
+
+ A performance evaluation 
+ is presented using real web logs. 
+ This evaluation shows that our model 
+ needs much less memory than PPM family 
+ of algorithms with good prediction accuracy.
+ 
+ In this paper we present efficient 
+ techniques for modeling user navigation behavior. 
+ Our model is online 
+ so changes in user request patterns 
+ will update our prediction model incrementally. 
+ We do not build per-user predictive models. 
+\end{verbatim}
+\LDCMoghaddam
 
 
 
 
+% Seucodigo de algormito de compresión LZ78
 
-
-
-
-
-\subsection{Algoritmo Lempel Ziv 78}
+\input{compression/seudocode-lz78}

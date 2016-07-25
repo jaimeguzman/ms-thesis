@@ -1,0 +1,39 @@
+% LZ78 also requires one component less in triple tokens compared to that in LZ77 and only outputs pair tokens instead. A pair token is defined as 〈f, c〉 where f represents the offset which indicates the starting position of a match, and c is the character of the next symbol to the match in the source text. The length of the match is included in the dictionary, so there is no need to include the information in the code.
+
+
+
+
+% Typical LZ78 compression algorithms use a trie6 to keep track of all the patterns seen so far. The dictionary D contains a set of pattern entries, which are indexed from 0 onwards using integers. Similar to LZ77, the index corresponding to a word in the dictionary is called the token. The output of the encoding algorithm is a sequence of tokens only. If a symbol is not found in the dictionary, the token 〈0, x〉 will be output which indicates a concatenation of the null string and x. Initially the dictionary D is normally loaded with all 256 single character strings. Each single character is represented simply by its ASCII code. All subsequent entries are given token numbers 256 or more.
+
+
+%  7.5 Applications
+% One of the Unix utilities compress is a widely used LZW variant.
+
+% -The number of bits used for representing tokens is increased gradually as needed. For example, when the token number reaches 255, all the tokens are coded using 9 bits, until the token number 511 (29 − 1) is reached. After that, 10 bits are used to encode tokens and so on.
+% -When the dictionary is full (i.e. the token number reaches its limit), the algorithm stops adapting and only uses existing words in the dictionary. At this time, the compression performance is monitored, and the dictionary is rebuilt from scratch if the performance deteriorates significantly.
+% -The dictionary is represented using a trie data structure.
+% GIF (Graphics Interchange Format) is a lossless image compression format introduced by CompuServe in 1987.
+% -Each pixel of the images is an index into a table that specifies a colour map.
+% -The colour table is allowed to be specified along with each image (or with a group of images sharing the map).
+% -The table forms an uncompressed prefix to the image file, and may specify up to 256 colour table entries each of 24 bits.
+% -The image is really a sequence of 256 different symbols and is compressed using the LZW algorithm.
+% V.42bis is an ITU-T standard commmunication protocol for telephone-line modems that applies the LZW compression method.
+% -Each modem has a pair of dictionaries, one for incoming data and one for outgoing data.
+% -The maximum dictionary size is often negotiated between the sending and receiving modem as the connection is made. The minimum size is 512 tokens with a maximum of six characters per token.
+% -Those tokens to be used infrequently may be deleted from the dictionary.
+% -The modem may switch to transmitting uncompressed data if it detects that compression is not happening (e.g. if the file to transmit has already been compressed).
+% -The modem may also request the called modem to discard the dictionary, when a new file is to be transmitted.
+
+
+
+Summary
+Dictionary compression algorithms use no statistical models. They focus on the memory on the strings already seen. The memory may be an explicit dictionary that can be extended infinitely, or an implicit limited dictionary as sliding windows. Each seen string is stored into a dictionary with an index. The indices of all the seen strings are used as codewords. The compression and decompression algorithm maintains individually its own dictionary but the two dictionaries are identical. Many variations are based on three representative families, namely LZ77, LZ78 and LZW. Implementation issues include the choice of the size of the buffers, the dictionary and indices.
+
+Learning outcomes
+On completion of your studies in this chapter, you should be able to:
+
+• explain the main ideas of dictionary-based compression
+
+• describe compression and decompression algorithms such as LZW, LZ77 and LZ78
+
+• list and comment on the main implementation issues for dictionary-based compression algorithms.
