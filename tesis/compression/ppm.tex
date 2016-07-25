@@ -1,15 +1,16 @@
-El algoritmo de predicción por certeza parcial es considerado uno de los mejores algoritmos del tipo \emph{Lossless Compression Algorithm}. El algoritmo requiere un tope superior $D$ en el máximo del orden de Markov de un modelo variable de Markov (\emph{\texttt{VMM}}) para construirse. 
-\texttt{PPM} maneja el problema de frecuencia cero usando dos mecanismo~\cite{Begleiter2004},  llamados
-	
+
+
+
+El algoritmo de Predicción por coincidencia parcial~\texttt{PPM}(por sus siglas en inglés \emph{Prediction by Partial Match}), es considerado uno de los mejores algoritmos del tipo \losslessdatacompression. El algoritmo requiere un tope superior $D$ en el máximo del orden de Markov de un modelo variable de Markov (\emph{\texttt{VMM}}) para construirse. 
+
+\texttt{PPM} maneja el problema de frecuencia cero usando dos mecanismo~\cite{Begleiter2004} llamados:
 	\begin{itemize}
-			\setlength{\itemsep}{1pt}
-			\setlength{\parskip}{0pt}
-			\setlength{\parsep}{0pt}
+		\menorEspacioItemize
 		\item Escape
 		\item Exclusion
 	\end{itemize}
 	
-Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores \texttt{PPM}  (por sus siglas en inglés de Predicción Parcial de Partido). Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
+Para un método que considera diferentes órdenes de modelos, retomamos una vez más a la compresión de datos y la familia de predictores.  Esto ha sido usado con gran efecto, para un marco predictivo basado en \texttt{LZ78}. 
 
 Algoritmos  \texttt{PPM} consideran modelos de Markov de diferente orden,  con el fin de construir una distribución de probabilidad mediante la ponderación de modelos de diferente orden. En nuestro escenario predictivo, \emph{Active LeZi} construye un orden-k del modelo de Markov. Ahora empleamos la estrategia \texttt{PPM} de exclusión para reunir información de los modelos de orden 1 a $k$ para asignar el siguiente símbolo de su valor de probabilidad. Este método se ilustra considerando la secuencia de ejemplo utilizado en los apartados anteriores: \texttt{aaababbbbbaabccddcbaaaa}.
 
