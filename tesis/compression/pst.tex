@@ -1,3 +1,21 @@
- Los árboles de sufijos implementados como un algoritmo de predicción intentan construir el único y mejor \emph{VMM} con límite superior $D$, acorde a la secuencia de entrenamiento de entrada. Esto asume que un límite superior a la orden de Markov de un fuente certera es conocida como \emph{learner}.
+
+%%%%%
+%%%%% Un de las referencia resume este texto en ~\cite{PenaSordo2015}
+%%%%% Using Compression Models for Filtering Troll Comments 
+
+
+Los \emph{Probabilistic Suffix Tree} o Árboles de sufijos probabilisticos intentan construir el único y mejor \VMM con límite superior $D$ de acuerdo con la secuencia de entrenamiento. Esto asume que un límite superior a la orden de Markov de un fuente certera es conocida como \emph{learner}~\cite{PenaSordo2015}.
  
- %@TODO: explayar mas aca
+ 
+%@TODO:
+% A PST over   is a non empty rooted tree, where the degree of each node varies between zero (for leaves) and |   |. 
+
+% Each edge in the tree is associated with a unique symbol in  . 
+
+% These edge labels define a unique sequence s for each path from a node v to the root. The sequence s labels the node v. 
+
+% Any such PST tree induces a ’suffix set’ S consisting of the labels of all the nodes. The goal of the PST learning algorithm is to identify a good suffix set S for a PST tree and to assign a probability distribution P (σ|s) over  , for each s ∈ S. 
+
+% Note that a PST tree may not be a tree source. The reason is that the set S is not necessarily proper.
+
+% La razón es que el conjunto S no es necesariamente correcta.
