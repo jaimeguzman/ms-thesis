@@ -116,13 +116,13 @@ Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos
  
 
 
-\subsubsection{Familia de algoritmos Lempel\&Ziv}
+\subsubsection{Familia de algoritmos Lempel\&Ziv}\label{ch2:sec-lzfamily}
 
  
 Los algoritmos base de esta familia fueron desarrollado por \emph{Jacob Ziv} y \emph{Abraham Lempel} en sus trabajos publicados en 1977~\cite{ZivLempel1977} y 1978~\cite{ZivLempel1978}. Ambas publicaciones proporcionan dos enfoques diferentes para la creación de diccionarios adaptables, y cada enfoque ha dado lugar a una serie de variaciones. Se puede decir que existen dos grupos que generarón algoritmos derivados, es decir, \lzSieteSiete~\cite{ZivLempel1977} y LZ78~\cite{ZivLempel1978}. Otra popular variante  de \lzSieteOcho es \texttt{LZW}, que fue una publicación de \emph{Terry Welch} en 1984. Existen muchas variantes de \lzSieteSiete y \texttt{LZ78/LZW}. Enfocaremos nuestro estudio y discusiones en \lzSieteOcho. 
 
 
-Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones hace un tiempo, debido a que es posible que se haya desplazado hacia fuera de la memoria histórica(buffer). En estas situaciones, los patrones son ignorados o si son consultados el algoritmo retorna no encontrado. Para poder extender la memoria de los patrones encontrado se desarrollo \lzSieteOcho conun diccionario, el cual permite mantener los patrones permanentemente durante todo el proceso de codificación.
+Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones hace un tiempo, debido a que es posible que se haya desplazado hacia fuera de la memoria histórica(\emph{buffer}). En estas situaciones, los patrones son ignorados o si son consultados el algoritmo retorna no encontrado. Para poder extender la memoria de los patrones encontrado se desarrollo \lzSieteOcho con un diccionario en una representacion de trie, el cual permite mantener los patrones permanentemente durante todo el proceso de codificación.
 
 
 
@@ -153,6 +153,9 @@ Un método de predicción en línea no necesita depender de preprocesamiento tie
 \uncm
 \subsection{Algoritmo Lempel-Ziv 78}
 
+% ~\cite{Begleiter2004}
+% El algoritmo LZ78 es uno de los algoritmos de compresión sin pérdida más populares (Ziv y Lem- pel, 1978). Se utiliza como base de la utilidad de Unix comprimir y otras utilidades de archivado populares para PC.
+
 
 
 % Seucodigo de algormito de compresión LZ78
@@ -166,6 +169,21 @@ Cuando se inserta una secuencia en el árbol los contadores de las aristas que r
 %Tabla 2 muestra los resultados. Si el usuario A solicita ABABCBC.
 
 %%%%%%
+
+% Observaciones sobre LZ78
+	% 1. LZ78 ha hecho algunas mejoras sobre LZ77. 
+	% Por ejemplo, en teoría, el diccionario puede mantener a los 
+	% patrones para siempre después de haber sido visto una vez. 
+	% En la práctica, sin embargo, el tamaño del diccionario 
+	% no puede crecer indefinidamente. 
+	% Algunos patrones pueden necesitar ser reinstalado si el diccionario está lleno.
+
+	% 2. Las palabras de código de salida contienen un componente 
+	% menos que los de LZ77. Esto mejora la eficiencia de los datos.
+
+	% 3. LZ78 tiene muchas variantes y LZW es la varianza más popular para LZ78, 
+	% donde el diccionario comienza con todas las 256 símbolos iniciales 
+	% y el par de salida se simplifica a la salida de un único elemento.
 
 
 Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualquier aplicación práctica de \lzSieteOcho sufre  los siguientes inconvenientes: 
@@ -208,3 +226,9 @@ Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualqu
 
 
 
+% LIMITACION DE CRECIMIENTO:
+% While the LZ78 algorithm has the ability to capture patterns and hold them indefinitely,
+%  it also has a rather serious drawback. 
+%  As seen from the example, the dictionary keeps growing without bound. 
+%  In a practical situation, we would have to stop the growth of the dictionary at some stage and then either prune it back or treat the encoding as a fixed dictionary scheme. 
+%  We will discuss some possible approaches when we study applications of dictionary coding.

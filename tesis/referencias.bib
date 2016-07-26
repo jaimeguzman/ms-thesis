@@ -47,78 +47,6 @@
 
 
 % %%%%%%%%%%%%%%% %%%%%%%%%%%%%%% %%%%%%%%%%%%%%% %%%%%%%%%%%%%%
-@Article{Begleiter2004,
-  Title                    = {On Prediction Using Variable Order Markov Models},
-  Author                   = {Begleiter, Ron and El-Yaniv, Ran and Yona, Golan},
-  Journal                  = {J. Artif. Int. Res.},
-  Year                     = {2004},
-  Month                    = dec,
-  Number                   = {1},
-  Pages                    = {385--421},
-  Volume                   = {22},
-  Abstract                 = {This paper is concerned with algorithms for prediction of discrete sequences over a finite alphabet, using variable order Markov models. The class of such algorithms is large and in principle includes any lossless compression algorithm. We focus on six prominent prediction algorithms, including Context Tree Weighting (CTW), Prediction by Partial Match (PPM) and Probabilistic Suffix Trees (PSTs). We discuss the properties of these algorithms and compare their performance using real life sequences from three domains: proteins, English text and music pieces. The comparison is made with respect to prediction quality as measured by the average log-loss. We also compare classification algorithms based on these predictors with respect to a number of large protein classification tasks. Our results indicate that a "decomposed" CTW (a variant of the CTW algorithm) and PPM outperform all other algorithms in sequence prediction tasks. Somewhat surprisingly, a different algorithm, which is a modification of the Lempel-Ziv compression algorithm, significantly outperforms all algorithms on the protein classification problems.},
-  Acmid                    = {1622499},
-  Address                  = {USA},
-  File                     = {:../docs/paper-tesis/1107.0051.pdf:PDF},
-  ISSN                     = {1076-9757},
-  Issue_date               = {July 2004},
-  Keywords                 = {rank5},
-  Numpages                 = {37},
-  Publisher                = {AI Access Foundation},
-  Review                   = {
-  - algorithms for prediction of discrete sequences over a finite alphabet, using variable order Markov models.
-
-  - Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.
-
-  - La oferta en la literatura es:
-  Perhaps the most commonly used techniques are based on Hidden Markov Models (HMMs)
-
-  - In this paper we focus on general-purpose prediction algorithms, based on learning Vari- able order Markov Models (VMMs) over a finite alphabet Σ.
-
-  - There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
-
-  - ¿ Porque se eligio lz78 y no PPM?
-
-  - the goal is to generate a model capable of predicting the rest of the sequence.
-
-  - The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.
-
-  - lz78 algorithm that forms the basis of many commercial applications for compression
-
-  -
-  3.1 Lempel-Ziv 78 (LZ78)
-  The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
-  The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary. Clearly, the newly parsed phrase s′ extends an existing
-   
-  dictionary phrase by one symbol; that is, s′ = sσ, where s is already in the dictionary
-  (s can be the empty phrase). For compression, the algorithm encodes the index of s′
-  (among all parsed phrases) followed by a fixed code for σ. Note that coding issues will not
-  concern us in this paper. Also observe that lz78 compresses sequences without explicit
-  probabilistic estimates. Here is an example of this lz78 parsing: if q11 = abracadabra, 1
-  then the parsed phrases are a|b|r|ac|ad|ab|ra. Observe that the empty sequence ǫ is always in the dictionary and is omitted in our discussions.
-  An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983). We describe separately the learning and prediction phases.6 For simplicity we first discuss the binary case where Σ = {0, 1}, but the algorithm can be naturally extended to alphabets of any size (and in the experiments discussed below we do use the multi-alphabet algorithm). In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above). In the tree we also maintain counters that hold statistics of q1n. The initial tree contains a root and two (left and right) leaves. The left child of a node corresponds to a parsing of ‘0’ and the right child corresponds to a parsing of ‘1’. Each node maintains a counter. The counter in a leaf is always set to 1. The counter in an internal node is always maintained so that it equals the sum of its left and right child counters. Given a newly parsed phrase s′, we start at the root and traverse the tree according to s′ (clearly the tree contains a corresponding path, which ends at a leaf). When reaching a leaf, the tree is expanded by making this leaf an internal node and adding two leaf-sons to this new internal node. The counters along the path to the root are updated accordingly.
-  To compute the estimate Pˆ(σ|s) we start from the root and traverse the tree according to s. If we reach a leaf before “consuming” s we continue this traversal from the root, etc. Upon completion of this traversal (at some internal node, or a leaf) the prediction for σ = ‘0’ is the ‘0’ (left) counter divided by the sum of ‘0’ and ‘1’ counters at that node, etc.
-  For larger alphabets, the algorithm is naturally extended such that the phrases are
-  stored in a multi-way tree and each internal node has exactly k = |Σ| children. In addition,
-  each node has k counters, one for each possible symbol. In Figure 1 we depict the resulting
-  tree for the training sequence q11 = abracadabra and calculate the probability Pˆ(b|ab), 1
-  assuming Σ = {a, b, c, d, r}.
-  Several performance guarantees were proven for the lz78 compression (and prediction)
-  algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
-
-
-
-  -> Modificaciones a LZ78 
-
-  A major advantage of the lz78 algorithm is its speed. This speed is made possible by compromising on the systematic counts of all sub-sequences. For example, in Figure 1, the sub-sequence br is not parsed and, therefore, is not part of the tree. However, this sub- sequence is significant for calculating Pˆ(a|br). While for a very long training sequence this compromise will not affect the prediction quality significantly, for short training sequences the lz78 algorithm yields sparse and noisy statistics. Another disadvantage of the lz78 algorithm is its loss of context when calculating Pˆ(σ|s). For example, in Figure 1, when taking σ = b and s = raa, the lz78 prediction algorithm will compute Pˆ(b|raa) by travers- ing the tree along the raa path (starting from the root) and will end on a leaf. Therefore, Pˆ(b|raa) = Pˆ(b|ǫ) = 5/33. Nevertheless, we could use the suffix a of raa to get the more accurate value Pˆ(b|a) = 5/17. These are two major deficiencies of lz78. The lz-ms al- gorithm attempts to overcome both these disadvantages by introducing two corresponding heuristics. This algorithm improves the lz78 predictions by extracting more phrases during learning and by ensuring a minimal context for the next phrase, whenever possible.
-
-
-
-  -> 
-  We focused on prediction settings that are more closely related to those required by machine learning practitioners dealing with discrete sequences
-  },
-  URL                      = {http://dl.acm.org/citation.cfm?id=1622487.1622499}
-}
 
 @Article{Chen2011,
   Title                    = {Improve on frequent access path algorithm in web page personalized recommendation model},
@@ -206,64 +134,9 @@
   Timestamp                = {2015.07.27}
 }
 
-@Article{Feder1992,
-  Title                    = {Universal prediction of individual sequences},
-  Author                   = {Feder, M. and Merhav, N. and Gutman, M.},
-  Journal                  = {Information Theory, IEEE Transactions on},
-  Year                     = {1992},
-  Month                    = {Jul},
-  Number                   = {4},
-  Pages                    = {1258-1270},
-  Volume                   = {38},
-  Abstract                 = {The problem of predicting the next outcome of an individual binary sequence using finite memory is considered. The finite-state predictability of an infinite sequence is defined as the minimum fraction of prediction errors that can be made by any finite-state (FS) predictor. It is proven that this FS predictability can be achieved by universal sequential prediction schemes. An efficient prediction procedure based on the incremental parsing procedure of the Lempel-Ziv data compression algorithm is shown to achieve asymptotically the FS predictability. Some relations between compressibility and predictability are discussed, and the predictability is proposed as an additional measure of the complexity of a sequence},
-  DOI                      = {10.1109/18.144706},
-  ISSN                     = {0018-9448},
-  Keywords                 = {binary sequences, data compression, filtering and prediction theory, Lempel-Ziv data compression algorithm, binary sequence, complexity, compressibility, finite memory, finite state predictor, finite-state predictability, incremental parsing procedure, individual sequences, infinite sequence, predictability, prediction errors, universal sequential prediction, Binary sequences, Data compression, Frequency, rank5}
-}
-
-@Article{Gopalratnam2007,
-  Title                    = {Online Sequential Prediction via Incremental Parsing: The Active LeZi Algorithm},
-  Author                   = {Gopalratnam, K. and Cook, D.J.},
-  Journal                  = {Intelligent Systems, IEEE},
-  Year                     = {2007},
-  Month                    = {Jan},
-  Number                   = {1},
-  Pages                    = {52-58},
-  Volume                   = {22},
-  Abstract                 = {Intelligent systems that can predict future events can make more reliable decisions. Active LeZi, a sequential prediction algorithm, can reason about the future in stochastic domains without domain-specific knowledge. In this article, potential of constructing a prediction algorithm based on data compression techniques are investigated. Active LeZi prediction algorithm approaches sequential prediction from an information-theoretic standpoint. For any sequence of events that can be modeled as a stochastic process, ALZ uses Markov models to optimally predict the next symbol},
-  DOI                      = {10.1109/MIS.2007.15},
-  ISSN                     = {1541-1672},
-  Keywords                 = {Markov processes, data compression, prediction theory, text analysis, Active LeZi, Markov models, data compression, information theory, intelligent systems, sequential prediction algorithm, stochastic process, Compression algorithms, Data compression, Entropy, Frequency, Information theory, Intelligent systems, Prediction algorithms, Predictive models, Probability, Stochastic processes, Active LeZi, MavHome, sequential prediction, smart environments, rank2},
-  Review                   = {Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.}
-}
-
-@InCollection{Gueniche2015,
-  Title                    = {CPT+: Decreasing the Time/Space Complexity of the Compact Prediction Tree},
-  Author                   = {Gueniche, Ted and Fournier-Viger, Philippe and Raman, Rajeev and Tseng, VincentS.},
-  Booktitle                = {Advances in Knowledge Discovery and Data Mining},
-  Publisher                = {Springer International Publishing},
-  Year                     = {2015},
-  Editor                   = {Cao, Tru and Lim, Ee-Peng and Zhou, Zhi-Hua and Ho, Tu-Bao and Cheung, David and Motoda, Hiroshi},
-  Pages                    = {625-636},
-  Series                   = {Lecture Notes in Computer Science},
-  Volume                   = {9078},
-  DOI                      = {10.1007/978-3-319-18032-8_49},
-  ISBN                     = {978-3-319-18031-1},
-  Keywords                 = {Sequence prediction, Next item prediction, Accuracy, Compression, rank3},
-  Language                 = {English},
-  URL                      = {http://dx.doi.org/10.1007/978-3-319-18032-8_49}
-}
 
 
 
-@Article{hartmann2007,
-  Title                    = {Prediction Algorithms for User Actions.},
-  Author                   = {Hartmann, Melanie and Schreiber, Daniel},
-  Year                     = {2007},
-  Pages                    = {349--354},
-  Booktitle                = {LWA},
-  Keywords                 = {rank4}
-}
 
 @Article{Kewen2012,
   Title                    = {Analysis of Preprocessing Methods for Web Usage Data},
@@ -288,30 +161,7 @@
   Keywords                 = {Pattern matching;Algorithm Comparison;Apriori;Eclat;Filtered Data;Proposed Architecture;Recommended System;Sequential Pattern Mining;Web Usage Mining}
 }
 
-@Article{Langdon1983,
-  Title                    = {A note on the Ziv - Lempel model for compressing individual sequences (Corresp.)},
-  Author                   = {Langdon, G.G., Jr.},
-  Journal                  = {Information Theory, IEEE Transactions on},
-  Year                     = {1983},
-  Month                    = {Mar},
-  Number                   = {2},
-  Pages                    = {284-287},
-  Volume                   = {29},
-  Abstract                 = {The Ziv-Lempel compression algorithm is a string matching and parsing approach to data compression. The symbolwise equivalent for parsing models has been defined by Rissanen and Langdon and gives the same ideal codelength at the same cost in coding parameters. By describing the context and coding parameter for each symbol an insight is provided into how the Ziv-Lempel method achieves compression. This treatment does not employ a probabilistic source for the data string. The Ziv-Lempel method effectively counts symbol instances within parsed phrases. The coding parameter for each symbolwise context is determined by cumulative count ratios. The code string length increase for a symbol y following substring s , under the symbolwise equivalent, is the log of the ratio of node counts in subtrees s and s\cdot y of the Ziv-Lempel parsing tree. To demonstrate the symbolwise equivalent of the Ziv-Lempel algorithm, we extend the work of Rissanen and Langdon to incomplete parse trees. The result requires the proper handling of the comma when one phrase is the prefix of another phrase.},
-  DOI                      = {10.1109/TIT.1983.1056645},
-  ISSN                     = {0018-9448},
-  Keywords                 = {Data compression, Encoding, Frequency, Instruments, Laplace equations, Phase change materials, Probability distribution, Rate distortion theory, Smoothing methods, Source coding, Speech, rank2},
-  Owner                    = {jaimeguzman}
-}
 
-@Article{Li2005,
-  Title                    = {R.: Genre classification via an lz78-based string kernel},
-  Author                   = {Ming Li and Ronan Sleep},
-  Year                     = {2005},
-  Pages                    = {252--259},
-  Booktitle                = {In: Proceedings of the 6th International Conference on Music Information Retrieval (ISMIR 2005},
-  Keywords                 = {rank5}
-}
 
 @Article{Li2013,
   Title                    = {Research of Analysis of User Behavior Based on Web Log},
@@ -327,6 +177,100 @@
   Owner                    = {jaimeguzman},
   Timestamp                = {2015.07.27}
 }
+
+
+
+@InCollection{Rabiner1990,
+  Title                    = {Readings in Speech Recognition},
+  Author                   = {Rabiner, Lawrence R.},
+  Publisher                = {Morgan Kaufmann Publishers Inc.},
+  Year                     = {1990},
+  Address                  = {San Francisco, CA, USA},
+  Chapter                  = {A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition},
+  Editor                   = {Waibel, Alex and Lee, Kai-Fu},
+  Pages                    = {267--296},
+  Acmid                    = {108253},
+  ISBN                     = {1-55860-124-4},
+  Numpages                 = {30},
+  URL                      = {http://dl.acm.org/citation.cfm?id=108235.108253}
+}
+
+@Article{Rajimol2012,
+  Title                    = {Web Access Pattern Mining, A Survey},
+  Author                   = {A. Rajimol and G. Raju},
+  Year                     = {2012},
+  Abstract                 = {effective web site management, creating adaptive Web sites, business and support services, personalization and so on},
+  Keywords                 = {WAP Tree, Web Access Pattern Mining, Pre-order Linked Web Access Pattern Mining, First-Occurrence Linked Pattern Tree mining, First-Occurrence Forest Mining, Conditional Sequence Mining.},
+  Owner                    = {jaimeguzman},
+  Timestamp                = {2015.07.27}
+}
+
+
+
+
+@Article{Ryabko2002,
+  Title                    = {On Asymptotically Optimal Methods of Prediction and Adaptive Coding for Markov Sources },
+  Author                   = {Boris Ya. Ryabko and Flemming Topsøe},
+  Journal                  = {Journal of Complexity },
+  Year                     = {2002},
+  Number                   = {1},
+  Pages                    = {224 - 241},
+  Volume                   = {18},
+  Abstract                 = {The problem of predicting a sequence x1, x2, … generated by a discrete source with unknown statistics is considered. Each letter xt+1 is predicted using information on the word x1x2…xt only. In fact, this problem is a classical problem which has received much attention. Its history can be traced back to Laplace. To estimate the efficiency of a method of prediction, three quantities are considered: the precision as given by the Kullback–Leibler divergence, the memory size of the program needed to implement the method on a computer, and the time required, measured by the number of binary operations needed at each time instant. A method is presented for which the memory size and the average time are close to the minimum. The results can readily be translated to results about adaptive coding. },
+  DOI                      = {http://dx.doi.org/10.1006/jcom.2001.0611},
+  ISSN                     = {0885-064X},
+  Keywords                 = {prediction},
+  URL                      = {http://www.sciencedirect.com/science/article/pii/S0885064X01906119}
+}
+
+
+
+@Article{Shan2011,
+  Title                    = {The research of web users' behavior mining based on association rules},
+  Author                   = {Xiaohong Shan and Huamei Sun},
+  Year                     = {2011},
+  Month                    = {Aug},
+  Pages                    = {7415-7418},
+  Abstract                 = {When accessing websites, users usually leave a lot of access information, which can be mined reasonably to help the managers of website to get accessing patterns of users. This article first introduces the preprocessing procedure of web logs, which includes the tasks of data cleaning, Data Discretization and their implementation. On the basis of preprocessing the analysis method of requested resource “URL” and “referrer” which is the webpage before users browse the URL in web log by the use of association rules is proposed to find the accessing patterns of users. Finally the experiment is accomplished. The result shows that the method is feasible, and it can help the manager in making decisions about the analysis of website users' behavior and the optimization of website.},
+  Booktitle                = {Artificial Intelligence, Management Science and Electronic Commerce (AIMSEC), 2011 2nd International Conference on},
+  DOI                      = {10.1109/AIMSEC.2011.6011219},
+  Keywords                 = {Web sites;data mining;information retrieval;optimisation;user interfaces;URL;Web sites;Web users behavior mining;access information;association rules;data cleaning;data discretization;optimization;web log;Association rules;Data preprocessing;Google;Itemsets;Knowledge engineering;Software;Association Rules;Web Log;Web mining}
+}
+
+
+
+@InProceedings{zaharia2010,
+  Title                    = {Spark: cluster computing with working sets},
+  Author                   = {Zaharia, Matei and Chowdhury, Mosharaf and Franklin, Michael J and Shenker, Scott and Stoica, Ion},
+  Booktitle                = {Proceedings of the 2nd USENIX conference on Hot topics in cloud computing},
+  Year                     = {2010},
+  Pages                    = {10},
+  Volume                   = {10}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% PAPERS DE PREDICCION %%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+
+@Article{Feder1992,
+  Title                    = {Universal prediction of individual sequences},
+  Author                   = {Feder, M. and Merhav, N. and Gutman, M.},
+  Journal                  = {Information Theory, IEEE Transactions on},
+  Year                     = {1992},
+  Month                    = {Jul},
+  Number                   = {4},
+  Pages                    = {1258-1270},
+  Volume                   = {38},
+  Abstract                 = {The problem of predicting the next outcome of an individual binary sequence using finite memory is considered. The finite-state predictability of an infinite sequence is defined as the minimum fraction of prediction errors that can be made by any finite-state (FS) predictor. It is proven that this FS predictability can be achieved by universal sequential prediction schemes. An efficient prediction procedure based on the incremental parsing procedure of the Lempel-Ziv data compression algorithm is shown to achieve asymptotically the FS predictability. Some relations between compressibility and predictability are discussed, and the predictability is proposed as an additional measure of the complexity of a sequence},
+  DOI                      = {10.1109/18.144706},
+  ISSN                     = {0018-9448},
+  Keywords                 = {binary sequences, data compression, filtering and prediction theory, Lempel-Ziv data compression algorithm, binary sequence, complexity, compressibility, finite memory, finite state predictor, finite-state predictability, incremental parsing procedure, individual sequences, infinite sequence, predictability, prediction errors, universal sequential prediction, Binary sequences, Data compression, Frequency, rank5}
+}
+
 
 @Article{Moghaddam2009,
   Title                    = {Dynamic and memory efficient web page prediction model using LZ78 and LZW algorithms},
@@ -380,54 +324,30 @@
     }
 }
 
-@Article{PenaSordo2015,
-  Title                    = {Using compression models for filtering troll comments},
-  Author                   = {de-la-Pena-Sordo, Jorge and Pastor-Lopez, Iker and Santos, Igor and Bringas, Pablo G.},
-  Year                     = {2015},
-  Month                    = {June},
-  Pages                    = {655-660},
-  Abstract                 = {Internet is evolving. How the content is generated has changed and currently, users and readers of a site can create content. They can express themselves showing their feelings or opinions commenting diverse stories or other users' comments in social news websites. This fact has led to negative side effects: the appearance of troll users and their contents seeking deliberately controversy. In this paper we propose a new method to filter trolling comments using compression models. Normally, Vector Space Model representation use is quite common but these filters can be attacked. To this end, we validate our approach with data from ‘Menéame’, a popular Spanish social news site, training several compression models, showing that our method can maintain high accuracy rates whilst making such filters difficult to defeat.},
-  Booktitle                = {Industrial Electronics and Applications (ICIEA), 2015 IEEE 10th Conference on},
-  DOI                      = {10.1109/ICIEA.2015.7334191},
-  Keywords                 = {Algorithm design and analysis, Compression algorithms, Dictionaries, Government, Mathematical model, Probabilistic logic, Training, rank4}
+@Article{hartmann2007,
+  Title                    = {Prediction Algorithms for User Actions.},
+  Author                   = {Hartmann, Melanie and Schreiber, Daniel},
+  Year                     = {2007},
+  Pages                    = {349--354},
+  Booktitle                = {LWA},
+  Keywords                 = {rank4}
 }
 
-@InProceedings{Poornalatha2012,
-  Title                    = {Web Page Prediction by Clustering and Integrated Distance Measure},
-  Author                   = {Poornalatha, G. and Raghavendra, P.S.},
-  Booktitle                = {Advances in Social Networks Analysis and Mining (ASONAM), 2012 IEEE/ACM International Conference on},
-  Year                     = {2012},
-  Month                    = {Aug},
-  Pages                    = {1349-1354},
-  Abstract                 = {The tremendous progress of the internet and the World Wide Web in the recent era has emphasized the requirement for reducing the latency at the client or the user end. In general, caching and prefetching techniques are used to reduce the delay experienced by the user while waiting to get the web page from the remote web server. The present paper attempts to solve the problem of predicting the next page to be accessed by the user based on the mining of web server logs that maintains the information of users who access the web site. The prediction of next page to be visited by the user may be pre fetched by the browser which in turn reduces the latency for user. Thus analyzing user's past behavior to predict the future web pages to be navigated by the user is of great importance. The proposed model yields good prediction accuracy compared to the existing methods like Markov model, association rule, ANN etc.},
-  DOI                      = {10.1109/ASONAM.2012.231},
-  File                     = {:../papers/clustering/G. Poornalatha, Prakash S. Raghavendra - 06425570.pdf:PDF},
-  Keywords                 = {Internet, data mining, pattern clustering, user interfaces, ANN, Markov model, Web page prediction, Web server, Web server log mining, World Wide Web, artificial neural network, association rule, caching technique, distance measure clustering, distance measure integration, prefetching technique, user behavior analysis, Accuracy, Browsers, Markov processes, Predictive models, Servers, Web pages, clustering, sequence alignment, user session, rank4}
-}
 
-@InCollection{Rabiner1990,
-  Title                    = {Readings in Speech Recognition},
-  Author                   = {Rabiner, Lawrence R.},
-  Publisher                = {Morgan Kaufmann Publishers Inc.},
-  Year                     = {1990},
-  Address                  = {San Francisco, CA, USA},
-  Chapter                  = {A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition},
-  Editor                   = {Waibel, Alex and Lee, Kai-Fu},
-  Pages                    = {267--296},
-  Acmid                    = {108253},
-  ISBN                     = {1-55860-124-4},
-  Numpages                 = {30},
-  URL                      = {http://dl.acm.org/citation.cfm?id=108235.108253}
-}
-
-@Article{Rajimol2012,
-  Title                    = {Web Access Pattern Mining, A Survey},
-  Author                   = {A. Rajimol and G. Raju},
-  Year                     = {2012},
-  Abstract                 = {effective web site management, creating adaptive Web sites, business and support services, personalization and so on},
-  Keywords                 = {WAP Tree, Web Access Pattern Mining, Pre-order Linked Web Access Pattern Mining, First-Occurrence Linked Pattern Tree mining, First-Occurrence Forest Mining, Conditional Sequence Mining.},
-  Owner                    = {jaimeguzman},
-  Timestamp                = {2015.07.27}
+@Article{RissanenLangdon1979,
+  Title                    = {Arithmetic Coding},
+  Author                   = {Rissanen, J. and Langdon, G.G., Jr.},
+  Journal                  = {IBM Journal of Research and Development},
+  Year                     = {1979},
+  Month                    = {March},
+  Number                   = {2},
+  Pages                    = {149-162},
+  Volume                   = {23},
+  Abstract                 = {The earlier introduced arithmetic coding idea has been generalized to a very broad and flexible coding technique which includes virtually all known variable rate noiseless coding techniques as special cases. An outstanding feature of this technique is that alphabet extensions are not required. A complete decodability analysis is given. The relationship of arithmetic coding to other known nonblock codes is illuminated.},
+  DOI                      = {10.1147/rd.232.0149},
+  ISSN                     = {0018-8646},
+  Keywords                 = {rank2},
+  URL                      = {http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5390830&queryText=Arithmetic%20coding.%20IBM%20Journal%20of%20Research%20and%20Development&refinements=4230865550&searchField=Search_All}
 }
 
 @Article{Rissanen1983,
@@ -446,6 +366,22 @@
   URL                      = {http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1056741&queryText=A%20universal%20data%20compression%20system.%20IEEE%20Transactions%20on%20Information%20Theory,&newsearch=true}
 }
 
+@Article{Langdon1983,
+  Title                    = {A note on the Ziv - Lempel model for compressing individual sequences (Corresp.)},
+  Author                   = {Langdon, G.G., Jr.},
+  Journal                  = {Information Theory, IEEE Transactions on},
+  Year                     = {1983},
+  Month                    = {Mar},
+  Number                   = {2},
+  Pages                    = {284-287},
+  Volume                   = {29},
+  Abstract                 = {The Ziv-Lempel compression algorithm is a string matching and parsing approach to data compression. The symbolwise equivalent for parsing models has been defined by Rissanen and Langdon and gives the same ideal codelength at the same cost in coding parameters. By describing the context and coding parameter for each symbol an insight is provided into how the Ziv-Lempel method achieves compression. This treatment does not employ a probabilistic source for the data string. The Ziv-Lempel method effectively counts symbol instances within parsed phrases. The coding parameter for each symbolwise context is determined by cumulative count ratios. The code string length increase for a symbol y following substring s , under the symbolwise equivalent, is the log of the ratio of node counts in subtrees s and s\cdot y of the Ziv-Lempel parsing tree. To demonstrate the symbolwise equivalent of the Ziv-Lempel algorithm, we extend the work of Rissanen and Langdon to incomplete parse trees. The result requires the proper handling of the comma when one phrase is the prefix of another phrase.},
+  DOI                      = {10.1109/TIT.1983.1056645},
+  ISSN                     = {0018-9448},
+  Keywords                 = {Data compression, Encoding, Frequency, Instruments, Laplace equations, Phase change materials, Probability distribution, Rate distortion theory, Smoothing methods, Source coding, Speech, rank2},
+  Owner                    = {jaimeguzman}
+}
+
 @Article{Rissanen1984,
   Title                    = {Universal coding, information, prediction, and estimation},
   Author                   = {Rissanen, J.},
@@ -462,35 +398,161 @@
   URL                      = {http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1056936&queryText=Universal%20coding,%20information,%20prediction,%20and%20estimation.&newsearch=true}
 }
 
-@Article{RissanenLangdon1979,
-  Title                    = {Arithmetic Coding},
-  Author                   = {Rissanen, J. and Langdon, G.G., Jr.},
-  Journal                  = {IBM Journal of Research and Development},
-  Year                     = {1979},
-  Month                    = {March},
-  Number                   = {2},
-  Pages                    = {149-162},
-  Volume                   = {23},
-  Abstract                 = {The earlier introduced arithmetic coding idea has been generalized to a very broad and flexible coding technique which includes virtually all known variable rate noiseless coding techniques as special cases. An outstanding feature of this technique is that alphabet extensions are not required. A complete decodability analysis is given. The relationship of arithmetic coding to other known nonblock codes is illuminated.},
-  DOI                      = {10.1147/rd.232.0149},
-  ISSN                     = {0018-8646},
-  Keywords                 = {rank2},
-  URL                      = {http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5390830&queryText=Arithmetic%20coding.%20IBM%20Journal%20of%20Research%20and%20Development&refinements=4230865550&searchField=Search_All}
+
+@InProceedings{Poornalatha2012,
+  Title                    = {Web Page Prediction by Clustering and Integrated Distance Measure},
+  Author                   = {Poornalatha, G. and Raghavendra, P.S.},
+  Booktitle                = {Advances in Social Networks Analysis and Mining (ASONAM), 2012 IEEE/ACM International Conference on},
+  Year                     = {2012},
+  Month                    = {Aug},
+  Pages                    = {1349-1354},
+  Abstract                 = {The tremendous progress of the internet and the World Wide Web in the recent era has emphasized the requirement for reducing the latency at the client or the user end. In general, caching and prefetching techniques are used to reduce the delay experienced by the user while waiting to get the web page from the remote web server. The present paper attempts to solve the problem of predicting the next page to be accessed by the user based on the mining of web server logs that maintains the information of users who access the web site. The prediction of next page to be visited by the user may be pre fetched by the browser which in turn reduces the latency for user. Thus analyzing user's past behavior to predict the future web pages to be navigated by the user is of great importance. The proposed model yields good prediction accuracy compared to the existing methods like Markov model, association rule, ANN etc.},
+  DOI                      = {10.1109/ASONAM.2012.231},
+  File                     = {:../papers/clustering/G. Poornalatha, Prakash S. Raghavendra - 06425570.pdf:PDF},
+  Keywords                 = {Internet, data mining, pattern clustering, user interfaces, ANN, Markov model, Web page prediction, Web server, Web server log mining, World Wide Web, artificial neural network, association rule, caching technique, distance measure clustering, distance measure integration, prefetching technique, user behavior analysis, Accuracy, Browsers, Markov processes, Predictive models, Servers, Web pages, clustering, sequence alignment, user session, rank4}
 }
 
-@Article{Ryabko2002,
-  Title                    = {On Asymptotically Optimal Methods of Prediction and Adaptive Coding for Markov Sources },
-  Author                   = {Boris Ya. Ryabko and Flemming Topsøe},
-  Journal                  = {Journal of Complexity },
-  Year                     = {2002},
+@InCollection{Gueniche2015,
+  Title                    = {CPT+: Decreasing the Time/Space Complexity of the Compact Prediction Tree},
+  Author                   = {Gueniche, Ted and Fournier-Viger, Philippe and Raman, Rajeev and Tseng, VincentS.},
+  Booktitle                = {Advances in Knowledge Discovery and Data Mining},
+  Publisher                = {Springer International Publishing},
+  Year                     = {2015},
+  Editor                   = {Cao, Tru and Lim, Ee-Peng and Zhou, Zhi-Hua and Ho, Tu-Bao and Cheung, David and Motoda, Hiroshi},
+  Pages                    = {625-636},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {9078},
+  DOI                      = {10.1007/978-3-319-18032-8_49},
+  ISBN                     = {978-3-319-18031-1},
+  Keywords                 = {Sequence prediction, Next item prediction, Accuracy, Compression, rank3},
+  Language                 = {English},
+  URL                      = {http://dx.doi.org/10.1007/978-3-319-18032-8_49}
+}
+
+@Article{Gopalratnam2007,
+  Title                    = {Online Sequential Prediction via Incremental Parsing: The Active LeZi Algorithm},
+  Author                   = {Gopalratnam, K. and Cook, D.J.},
+  Journal                  = {Intelligent Systems, IEEE},
+  Year                     = {2007},
+  Month                    = {Jan},
   Number                   = {1},
-  Pages                    = {224 - 241},
-  Volume                   = {18},
-  Abstract                 = {The problem of predicting a sequence x1, x2, … generated by a discrete source with unknown statistics is considered. Each letter xt+1 is predicted using information on the word x1x2…xt only. In fact, this problem is a classical problem which has received much attention. Its history can be traced back to Laplace. To estimate the efficiency of a method of prediction, three quantities are considered: the precision as given by the Kullback–Leibler divergence, the memory size of the program needed to implement the method on a computer, and the time required, measured by the number of binary operations needed at each time instant. A method is presented for which the memory size and the average time are close to the minimum. The results can readily be translated to results about adaptive coding. },
-  DOI                      = {http://dx.doi.org/10.1006/jcom.2001.0611},
-  ISSN                     = {0885-064X},
-  Keywords                 = {prediction},
-  URL                      = {http://www.sciencedirect.com/science/article/pii/S0885064X01906119}
+  Pages                    = {52-58},
+  Volume                   = {22},
+  Abstract                 = {Intelligent systems that can predict future events can make more reliable decisions. Active LeZi, a sequential prediction algorithm, can reason about the future in stochastic domains without domain-specific knowledge. In this article, potential of constructing a prediction algorithm based on data compression techniques are investigated. Active LeZi prediction algorithm approaches sequential prediction from an information-theoretic standpoint. For any sequence of events that can be modeled as a stochastic process, ALZ uses Markov models to optimally predict the next symbol},
+  DOI                      = {10.1109/MIS.2007.15},
+  ISSN                     = {1541-1672},
+  Keywords                 = {Markov processes, data compression, prediction theory, text analysis, Active LeZi, Markov models, data compression, information theory, intelligent systems, sequential prediction algorithm, stochastic process, Compression algorithms, Data compression, Entropy, Frequency, Information theory, Intelligent systems, Prediction algorithms, Predictive models, Probability, Stochastic processes, Active LeZi, MavHome, sequential prediction, smart environments, rank2},
+  Review                   = {Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.}
+}
+
+
+@Article{Begleiter2004,
+  Title                    = {On Prediction Using Variable Order Markov Models},
+  Author                   = {Begleiter, Ron and El-Yaniv, Ran and Yona, Golan},
+  Journal                  = {J. Artif. Int. Res.},
+  Year                     = {2004},
+  Month                    = dec,
+  Number                   = {1},
+  Pages                    = {385--421},
+  Volume                   = {22},
+  Abstract                 = {This paper is concerned with algorithms for prediction of discrete sequences over a finite alphabet, using variable order Markov models. The class of such algorithms is large and in principle includes any lossless compression algorithm. We focus on six prominent prediction algorithms, including Context Tree Weighting (CTW), Prediction by Partial Match (PPM) and Probabilistic Suffix Trees (PSTs). We discuss the properties of these algorithms and compare their performance using real life sequences from three domains: proteins, English text and music pieces. The comparison is made with respect to prediction quality as measured by the average log-loss. We also compare classification algorithms based on these predictors with respect to a number of large protein classification tasks. Our results indicate that a "decomposed" CTW (a variant of the CTW algorithm) and PPM outperform all other algorithms in sequence prediction tasks. Somewhat surprisingly, a different algorithm, which is a modification of the Lempel-Ziv compression algorithm, significantly outperforms all algorithms on the protein classification problems.},
+  Acmid                    = {1622499},
+  Address                  = {USA},
+  File                     = {:../docs/paper-tesis/1107.0051.pdf:PDF},
+  ISSN                     = {1076-9757},
+  Issue_date               = {July 2004},
+  Keywords                 = {rank5},
+  Numpages                 = {37},
+  Publisher                = {AI Access Foundation},
+  Review                   = {
+  - algorithms for prediction of discrete sequences over a finite alphabet, using variable order Markov models.
+
+  - Learning of sequential data continues to be a fundamental task and a challenge in pattern recognition and machine learning.
+
+  - La oferta en la literatura es:
+  Perhaps the most commonly used techniques are based on Hidden Markov Models (HMMs)
+
+  - In this paper we focus on general-purpose prediction algorithms, based on learning Vari- able order Markov Models (VMMs) over a finite alphabet Σ.
+
+  - There is an intimate relation between prediction of discrete sequences and lossless com- pression algorithms, where, in principle, any lossless compression algorithm can be used for prediction and vice versa (see, e.g., Feder & Merhav, 1994).
+
+  - ¿ Porque se eligio lz78 y no PPM?
+
+  - the goal is to generate a model capable of predicting the rest of the sequence.
+
+  - The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.
+
+  - lz78 algorithm that forms the basis of many commercial applications for compression
+
+  -
+  3.1 Lempel-Ziv 78 (LZ78)
+  The lz78 algorithm is among the most popular lossless compression algorithms (Ziv & Lem- pel, 1978). It is used as the basis of the Unix compress utility and other popular archiving utilities for PCs. It also has performance guarantees within several analysis models. This algorithm (together with the lz77 compresion method) attracted enormous attention and inspired the area of lossless compression and sequence prediction.
+  The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983). The presentation of this algorithm is simplified after the well-known lz78 compression algorithm, which works as follows, is understood. Given a sequence q1n ∈ Σn, lz78 incrementally parses q1n into non-overlapping adjacent ‘phrases’, which are collected into a phrase ‘dictionary’. The algorithm starts with a dictionary containing the empty phrase ǫ. At each step the algorithm parses a new phrase, which is the shortest phrase that is not yet in the dictionary. Clearly, the newly parsed phrase s′ extends an existing
+   
+  dictionary phrase by one symbol; that is, s′ = sσ, where s is already in the dictionary
+  (s can be the empty phrase). For compression, the algorithm encodes the index of s′
+  (among all parsed phrases) followed by a fixed code for σ. Note that coding issues will not
+  concern us in this paper. Also observe that lz78 compresses sequences without explicit
+  probabilistic estimates. Here is an example of this lz78 parsing: if q11 = abracadabra, 1
+  then the parsed phrases are a|b|r|ac|ad|ab|ra. Observe that the empty sequence ǫ is always in the dictionary and is omitted in our discussions.
+  An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983). We describe separately the learning and prediction phases.6 For simplicity we first discuss the binary case where Σ = {0, 1}, but the algorithm can be naturally extended to alphabets of any size (and in the experiments discussed below we do use the multi-alphabet algorithm). In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above). In the tree we also maintain counters that hold statistics of q1n. The initial tree contains a root and two (left and right) leaves. The left child of a node corresponds to a parsing of ‘0’ and the right child corresponds to a parsing of ‘1’. Each node maintains a counter. The counter in a leaf is always set to 1. The counter in an internal node is always maintained so that it equals the sum of its left and right child counters. Given a newly parsed phrase s′, we start at the root and traverse the tree according to s′ (clearly the tree contains a corresponding path, which ends at a leaf). When reaching a leaf, the tree is expanded by making this leaf an internal node and adding two leaf-sons to this new internal node. The counters along the path to the root are updated accordingly.
+  To compute the estimate Pˆ(σ|s) we start from the root and traverse the tree according to s. If we reach a leaf before “consuming” s we continue this traversal from the root, etc. Upon completion of this traversal (at some internal node, or a leaf) the prediction for σ = ‘0’ is the ‘0’ (left) counter divided by the sum of ‘0’ and ‘1’ counters at that node, etc.
+  For larger alphabets, the algorithm is naturally extended such that the phrases are
+  stored in a multi-way tree and each internal node has exactly k = |Σ| children. In addition,
+  each node has k counters, one for each possible symbol. In Figure 1 we depict the resulting
+  tree for the training sequence q11 = abracadabra and calculate the probability Pˆ(b|ab), 1
+  assuming Σ = {a, b, c, d, r}.
+  Several performance guarantees were proven for the lz78 compression (and prediction)
+  algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.
+
+
+
+  -> Modificaciones a LZ78 
+
+  A major advantage of the lz78 algorithm is its speed. This speed is made possible by compromising on the systematic counts of all sub-sequences. For example, in Figure 1, the sub-sequence br is not parsed and, therefore, is not part of the tree. However, this sub- sequence is significant for calculating Pˆ(a|br). While for a very long training sequence this compromise will not affect the prediction quality significantly, for short training sequences the lz78 algorithm yields sparse and noisy statistics. Another disadvantage of the lz78 algorithm is its loss of context when calculating Pˆ(σ|s). For example, in Figure 1, when taking σ = b and s = raa, the lz78 prediction algorithm will compute Pˆ(b|raa) by travers- ing the tree along the raa path (starting from the root) and will end on a leaf. Therefore, Pˆ(b|raa) = Pˆ(b|ǫ) = 5/33. Nevertheless, we could use the suffix a of raa to get the more accurate value Pˆ(b|a) = 5/17. These are two major deficiencies of lz78. The lz-ms al- gorithm attempts to overcome both these disadvantages by introducing two corresponding heuristics. This algorithm improves the lz78 predictions by extracting more phrases during learning and by ensuring a minimal context for the next phrase, whenever possible.
+
+
+
+  -> 
+  We focused on prediction settings that are more closely related to those required by machine learning practitioners dealing with discrete sequences
+  },
+  URL                      = {http://dl.acm.org/citation.cfm?id=1622487.1622499}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% PAPERS DE COMPRESION %%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+
+
+@Article{PenaSordo2015,
+  Title                    = {Using compression models for filtering troll comments},
+  Author                   = {de-la-Pena-Sordo, Jorge and Pastor-Lopez, Iker and Santos, Igor and Bringas, Pablo G.},
+  Year                     = {2015},
+  Month                    = {June},
+  Pages                    = {655-660},
+  Abstract                 = {Internet is evolving. How the content is generated has changed and currently, users and readers of a site can create content. They can express themselves showing their feelings or opinions commenting diverse stories or other users' comments in social news websites. This fact has led to negative side effects: the appearance of troll users and their contents seeking deliberately controversy. In this paper we propose a new method to filter trolling comments using compression models. Normally, Vector Space Model representation use is quite common but these filters can be attacked. To this end, we validate our approach with data from ‘Menéame’, a popular Spanish social news site, training several compression models, showing that our method can maintain high accuracy rates whilst making such filters difficult to defeat.},
+  Booktitle                = {Industrial Electronics and Applications (ICIEA), 2015 IEEE 10th Conference on},
+  DOI                      = {10.1109/ICIEA.2015.7334191},
+  Keywords                 = {Algorithm design and analysis, Compression algorithms, Dictionaries, Government, Mathematical model, Probabilistic logic, Training, rank4}
+}
+
+@InProceedings{Shkarin2002,
+  Title                    = {PPM: one step to practicality},
+  Author                   = {Shkarin, D.},
+  Booktitle                = {Data Compression Conference, 2002. Proceedings. DCC 2002},
+  Year                     = {2002},
+  Pages                    = {202-211},
+  Abstract                 = {PPM is one of the most promising lossless data compression algorithms using Markov source model of order D. Its main essence is the coding of a new (in the given context) symbol in one of inner nodes of the context tree; a sequence of the special escape symbols is used to describe this node. In reality, the majority of symbols is encoded in inner nodes and the Markov model becomes rather conventional. In spite of the fact that the PPM algorithm achieves the best results in comparison with others, it is used rarely in practical applications due to its high computational complexity. This paper is devoted to the PPM algorithm implementation that has a complexity comparable with widespread practical compression schemes based on LZ77, LZ78 and BWT algorithms. This scheme has been proposed by Shkarin (see Problems of Information Transmission, vol.34, no.3, p.44-54, 2001) and named PPM with information inheritance (PPMII).},
+  DOI                      = {10.1109/DCC.2002.999958},
+  ISSN                     = {1068-0314},
+  Keywords                 = {Markov processes, computational complexity, data compression, encoding, prediction theory, probability, BWT algorithm, LZ77 algorithm, LZ78 algorithm, Markov model, Markov source model, PPM, PPM algorithm, PPMII, coding, context tree, escape symbols sequence, information inheritance, inner nodes, lossless data compression algorithms, prediction by partial matching, Chromium, Data compression, rank4}
 }
 
 @Article{Sculley2006,
@@ -506,38 +568,18 @@
   Keywords                 = {data compression, data structures, learning (artificial intelligence), Kolmogorov complexity, classification, clustering, compression, data representation, feature selection, feature space vectors, machine learning, Area measurement, Compression algorithms, Computer science, Concrete, Data compression, Extraterrestrial measurements, Machine learning, Machine learning algorithms, Measurement standards, Upper bound, rank5}
 }
 
-@Article{Shan2011,
-  Title                    = {The research of web users' behavior mining based on association rules},
-  Author                   = {Xiaohong Shan and Huamei Sun},
-  Year                     = {2011},
-  Month                    = {Aug},
-  Pages                    = {7415-7418},
-  Abstract                 = {When accessing websites, users usually leave a lot of access information, which can be mined reasonably to help the managers of website to get accessing patterns of users. This article first introduces the preprocessing procedure of web logs, which includes the tasks of data cleaning, Data Discretization and their implementation. On the basis of preprocessing the analysis method of requested resource “URL” and “referrer” which is the webpage before users browse the URL in web log by the use of association rules is proposed to find the accessing patterns of users. Finally the experiment is accomplished. The result shows that the method is feasible, and it can help the manager in making decisions about the analysis of website users' behavior and the optimization of website.},
-  Booktitle                = {Artificial Intelligence, Management Science and Electronic Commerce (AIMSEC), 2011 2nd International Conference on},
-  DOI                      = {10.1109/AIMSEC.2011.6011219},
-  Keywords                 = {Web sites;data mining;information retrieval;optimisation;user interfaces;URL;Web sites;Web users behavior mining;access information;association rules;data cleaning;data discretization;optimization;web log;Association rules;Data preprocessing;Google;Itemsets;Knowledge engineering;Software;Association Rules;Web Log;Web mining}
+@Article{Li2005,
+  Title                    = {R.: Genre classification via an lz78-based string kernel},
+  Author                   = {Ming Li and Ronan Sleep},
+  Year                     = {2005},
+  Pages                    = {252--259},
+  Booktitle                = {In: Proceedings of the 6th International Conference on Music Information Retrieval (ISMIR 2005},
+  Keywords                 = {rank5}
 }
 
-@InProceedings{Shkarin2002,
-  Title                    = {PPM: one step to practicality},
-  Author                   = {Shkarin, D.},
-  Booktitle                = {Data Compression Conference, 2002. Proceedings. DCC 2002},
-  Year                     = {2002},
-  Pages                    = {202-211},
-  Abstract                 = {PPM is one of the most promising lossless data compression algorithms using Markov source model of order D. Its main essence is the coding of a new (in the given context) symbol in one of inner nodes of the context tree; a sequence of the special escape symbols is used to describe this node. In reality, the majority of symbols is encoded in inner nodes and the Markov model becomes rather conventional. In spite of the fact that the PPM algorithm achieves the best results in comparison with others, it is used rarely in practical applications due to its high computational complexity. This paper is devoted to the PPM algorithm implementation that has a complexity comparable with widespread practical compression schemes based on LZ77, LZ78 and BWT algorithms. This scheme has been proposed by Shkarin (see Problems of Information Transmission, vol.34, no.3, p.44-54, 2001) and named PPM with information inheritance (PPMII).},
-  DOI                      = {10.1109/DCC.2002.999958},
-  ISSN                     = {1068-0314},
-  Keywords                 = {Markov processes, computational complexity, data compression, encoding, prediction theory, probability, BWT algorithm, LZ77 algorithm, LZ78 algorithm, Markov model, Markov source model, PPM, PPM algorithm, PPMII, coding, context tree, escape symbols sequence, information inheritance, inner nodes, lossless data compression algorithms, prediction by partial matching, Chromium, Data compression, rank4}
-}
 
-@InProceedings{zaharia2010,
-  Title                    = {Spark: cluster computing with working sets},
-  Author                   = {Zaharia, Matei and Chowdhury, Mosharaf and Franklin, Michael J and Shenker, Scott and Stoica, Ion},
-  Booktitle                = {Proceedings of the 2nd USENIX conference on Hot topics in cloud computing},
-  Year                     = {2010},
-  Pages                    = {10},
-  Volume                   = {10}
-}
+
+
 
 
 %%%%%%%%%% ALGORITMOS BASE DE LZ
