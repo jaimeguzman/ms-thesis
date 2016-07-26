@@ -1,0 +1,10 @@
+\textbf{Modelamiento de navegación con LZ78}
+
+En el entorno web utilizamos frecuencia de \emph{webaccess} de páginas web del usuario como secuencia de entrada al algoritmo \lzSieteOcho. 
+
+La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo PPM. 
+
+Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
+
+
+Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
