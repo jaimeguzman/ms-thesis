@@ -115,198 +115,22 @@ Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos
   	\input{compression/dmc}
  
 
-
 \subsubsection{Familia de algoritmos Lempel\&Ziv}\label{ch2:sec-lzfamily}
-
- 
-Los algoritmos base de esta familia fueron desarrollado por \emph{Jacob Ziv} y \emph{Abraham Lempel} en sus trabajos publicados en 1977~\cite{ZivLempel1977} y 1978~\cite{ZivLempel1978}. Ambas publicaciones proporcionan dos enfoques diferentes para la creación de diccionarios adaptables, y cada enfoque ha dado lugar a una serie de variaciones. Se puede decir que existen dos grupos que generaron algoritmos derivados, es decir, \lzSieteSiete~\cite{ZivLempel1977} y LZ78~\cite{ZivLempel1978}. Otra popular variante  de \lzSieteOcho es \texttt{LZW}, que fue una publicación de \emph{Terry Welch} en 1984. Existen muchas variantes de \lzSieteSiete y \texttt{LZ78/LZW}. Enfocaremos nuestro estudio y discusiones en \lzSieteOcho. 
-
-
-Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones hace un tiempo, debido a que es posible que se haya desplazado hacia fuera de la memoria histórica (\emph{buffer}). En estas situaciones, los patrones son ignorados o si son consultados el algoritmo retorna no encontrado. Para poder extender la memoria de los patrones encontrado se desarrollo \lzSieteOcho con un diccionario en una representación de trie, el cual permite mantener los patrones permanentemente durante todo el proceso de codificación.
-
-
-
-% TODO: ESTE PARRAFO DEBO CORREGIRLO
-Un método de predicción en línea no necesita depender de pre procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El pre procesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \lzSieteOcho básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
-
-
-
-% REVISAR
-
-
-
-algoritmos aritméticos, así como algoritmos de Huffman se basan en un modelo estadístico, es decir, un alfabeto y la distribución de probabilidad de una fuente. 
-
-La eficiencia de la compresión para una fuente dada depende del tamaño del alfabeto y lo cerca su distribución de probabilidad de las estadísticas es a las de la fuente. 
-
-
-El método de codificación también afecta a la eficacia de la compresión. 
-Para un código de longitud variable, las longitudes de las palabras de código tienen que satisfacer la desigualdad Kraft con el fin de ser únicamente descifrable. Esto, de alguna manera, ofrece orientación teórica de hasta qué punto un algoritmo de compresión puede ir; en otro, limita el rendimiento de estos algoritmos de compresión.
-
- 
-
-
-El diccionario se utiliza para almacenar los patrones de cadena visto antes y los índices se utilizan para codificar los patrones repetidos. El diccionario aparece ya sea en un explícito o una forma implícita, como veremos más adelante.
-
-enfoques de compresión diccionario aplican diversas técnicas que incorporan la estructura de los datos con el fin de lograr una mejor compresión. El objetivo es eliminar la redundancia de almacenar series repetitivas de palabras y frases repetidas dentro de la secuencia de texto. El codificador mantiene un registro de las palabras más comunes o frases en un documento llamado un diccionario y utiliza sus índices en el diccionario como fichas de salida. Idealmente, las fichas son mucho más cortos en comparación con las palabras o frases a sí mismos y las palabras y frases se repiten con frecuencia en el documento.
-
-El codificador lee la cadena de entrada, identifica esas palabras recurrentes, y da salida a sus índices en el diccionario. Una nueva palabra se emite en forma no comprimida y agregados en el diccionario como una entrada nueva. Las principales operaciones implican la comparación de secuencias, mantenimiento diccionario y una forma eficiente de codificación.
-
-Compresores y descompresores ambos mantienen un diccionario por sí mismos. Los algoritmos basados en diccionarios son normalmente más rápido que los basados en entropía. Ellos procesar la entrada como una secuencia de caracteres en lugar de como corrientes de bits.
-
-
-
-La entrada al algoritmo de compresión es una corriente de símbolos y la salida consiste en una mezcla de tokens y palabras en forma original. Cuando se da salida a fichas, el sistema de codificación puede ser clasificado como de trabajo en la moda-variable-a fijo, ya que, en la forma básica, cada cadena a codificar es de diferente longitud, pero las palabras de código, es decir, los índices en el diccionario, son de la mismo largo.
-
-
-
-
-enfoques basados en diccionarios son adaptativos 1 en la naturaleza porque el diccionario se actualiza durante el proceso de compresión y descompresión. El contenido del diccionario varía en función de la secuencia de entrada de texto para ser comprimido.
-
-
-
-
-enfoques de diccionario no utilizan ningún modelo estadístico, pero se basan en la identificación de los patrones repetidos. Por lo tanto, el efecto de compresión no depende de la calidad del modelo estadístico, ni está limitado por la entropía de una fuente. Se puede, por lo tanto, a menudo lograr una mejor relación de compresión que los métodos basados en un modelo estadístico.
-
-
-
-Sin embargo, hay otros aspectos a tener en cuenta. Por ejemplo, ¿cómo se pueden identificar ciertos patrones de cadena? ¿Cuáles son las buenas técnicas que pueden utilizarse para comprobar si un símbolo está en el diccionario? Diferentes opciones de patrones pueden dar lugar a diferentes resultados de compresión. ¿Qué debemos hacer si el diccionario se expande en tamaño demasiado rápido? Ciertas estructuras de datos pueden afectar a la eficacia de ciertas operaciones directamente. Por ejemplo, cuanto más grande es el diccionario, cuanto más tiempo se necesita para comprobar si una palabra está en el diccionario. Algunas estructuras de datos dedicados son muy útiles, tales como colas circulares, montones, tablas hash, y quadtrees intentos. Centrado por los tres algoritmos de representación, muchos algoritmos se han rediseñado para lograr o mejorar aspectos individuales de ellos.
-
-
-
-Diccionario algoritmos tienen muchas aplicaciones y se han utilizado en una serie de programas de software comerciales. Por ejemplo, en UNIX o Linux, comandos comprimir, descomprimir, gzip y gunzip todos han usado los métodos de compresión de diccionario en algún momento. Dado que nuestro interés se centra en los enfoques de los algoritmos de diccionario, vamos a examinar tres algoritmos más populares de forma fundamental, a saber, LZ77, LZ78 y el LZW.
-
-
- 
-
-
-
-% REVISAR
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	\input{compression/familia-lz}
 
 
 
 \uncm
 \subsection{Algoritmo Lempel-Ziv 78}
-% Convenciones para esta sección:
-% shortcuts: \lzSieteOcho \lzSieteSiete
-% Se habla de secuencias
-% ¿Como se construye el arbol?
-
-
-
-% Seucodigo de algormito de compresión LZ78
-\input{compression/seudocode-lz78}
-
-
-
-
-% https://www.safaribooksonline.com/library/view/analytic-pattern-matching/9781316287392/Chapter_9.html
-
-
-Lempel-Ziv 78~\cite{ZivLempel1978} es uno de los algoritmos \losslessdatacompression más populares~\cite{Begleiter2004}, en la sección anterior hemos vistos varios ejemplos en donde se usa este algoritmo, (ver sección~\ref{ch2:sec-lzfamily}).
-
-Este divide una secuencia larga en frases o bloques de tamaño variable ,de tal manera que una nueva frase es la subcadena más corta que no se haya visto anteriormente como una frase.
-
-Divide una secuencia en frases o bloques de tamaño variable de tal manera que una nueva frase es la subcadena más corta no vista en el pasado como una frase.
-
-Cada frase es codificada por el índice de su prefijo anexado(appended) por un símbolo; por lo tanto el código LZ'78 contiene los pares (puntero, símbolos).
-
-LZ78 compression algorithms use a trie
-
-% Número de frases y redundanancia.
-% La raíz contiene la frase vacía
-
-Todas las otras frases del algoritmo de análisis de Lempel-Ziv se almacenan en los nodos internos .
-
-
-
-El rendimiento de LZ78 depende del número de frases, pero el objetivo final es reducir al mínimo el código de compresión, y hablamos de este lado.
-
-
-% Let n be a nonnegative integer. We denote by Mn the number of phrases M(w) and by Cn the code length C(w) when the original text w is of fixed length n. We shall assume throughout that the text is generated by a memoryless source over a finite alphabet A such that the entropy rate is h = − ∑a∈A pa log pa > 0, where pa is the probability of symbol a ∈ A. We respectively define the compression rate
+	\input{compression/algoritmoLZ78}
 
 
 
 
 
-
-\textbf{Observaciones sobre LZ78}
-
-
-- LZ78 ha hecho algunas mejoras sobre LZ77. 
-Por ejemplo, en teoría, el diccionario puede mantener a los 
-patrones para siempre después de haber sido visto una vez. 
-En la práctica, sin embargo, el tamaño del diccionario 
-no puede crecer indefinidamente. 
-Algunos patrones pueden necesitar ser reinstalado si el diccionario está lleno.
-
-- Las palabras de código de salida contienen un componente 
-menos que los de LZ77. Esto mejora la eficiencia de los datos.
-
-- LZ78 tiene muchas variantes y LZW es la varianza más popular para LZ78, 
-donde el diccionario comienza con todas las 256 símbolos iniciales 
-y el par de salida se simplifica a la salida de un único elemento.
+\input{compression/modelo-navegacion-usuario}
 
 
-
-% LIMITACION DE CRECIMIENTO:
-% While the LZ78 algorithm has the ability to capture patterns and hold them indefinitely,
-%  it also has a rather serious drawback. 
-%  As seen from the example, the dictionary keeps growing without bound. 
-%  In a practical situation, we would have to stop the growth of the dictionary at some stage and then either prune it back or treat the encoding as a fixed dictionary scheme. 
-%  We will discuss some possible approaches when we study applications of dictionary coding.
-
-
-Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualquier aplicación práctica de \lzSieteOcho sufre  los siguientes inconvenientes: 
-
-\begin{itemize}
-	\menorEspacioItemize	
-	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
-	
-	\item La tasa de convergencia de \lzSieteOcho a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \lzSieteOcho se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
-	
-\end{itemize}
-
-
-
-The memory may be an explicit dictionary that can be extended infinitely, or an implicit limited dictionary as sliding windows. Each seen string is stored into a dictionary with an index. The indices of all the seen strings are used as codewords. The compression and decompression algorithm maintains individually its own dictionary but the two dictionaries are identical. Many variations are based on three representative families, namely LZ77, LZ78 and LZW. Implementation issues include the choice of the size of the buffers, the dictionary and indices.
-
-
-
-
-
-
-\textbf{Modelamiento de navegación con LZ78}
-
-En el entorno web utilizamos frecuencia de \emph{webaccess} de páginas web del usuario como secuencia de entrada al algoritmo \lzSieteOcho. 
-
-La variable w es la secuencia que es recuperada en cada sesión de usuario. Este algoritmo puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo PPM. 
-
-Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
-
-
-Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
 
 
 
