@@ -2,7 +2,7 @@
 \section{Compresión para predicciones secuenciales}
 
 %Introduccion de la sección
-\input{cap-compresion-intro}
+\input{compression/compresion-intro}
 \uncm
 
 % Preliminar 
@@ -39,12 +39,17 @@ El resultado final del modelamiento matemático en el contexto de la compresión
  
 
 
+
+
 \subsection{Teoría de la información elemental}
 
 
 La Teoría de la Información fue propuesta por \emph{Claude E. Shannon} en los laboratorios \emph{Bell} en 1948 y se basa en el estudio de la información basada en teoría de probabilidades. Su objetivo es una la realización de forma matemática que pueda medir la cantidad de información.
 
 La expectativa de los resultados de un evento se puede medir por la probabilidad del evento. La alta expectativa corresponde a una alta probabilidad de que el evento ocurra. Un evento que ocurra pocas veces significa que es un evento de baja probabilidad. Un evento que nunca sucede tiene una probabilidad cero. Por lo tanto la cantidad de información en un mensaje también se puede medir cuantitativamente de acuerdo con la incertidumbre o sorpresa de que un evento ocurra.
+
+
+
 
 
 \subsubsection{Entropía}\label{ch2:concept-entropia}
@@ -150,7 +155,8 @@ Un método de predicción en línea no necesita depender de preprocesamiento tie
 
 
 
-
+% Seucodigo de algormito de compresión LZ78
+\input{compression/seudocode-lz78}
 
 
 %%%%%%%Moghaddam_Kabir
@@ -202,6 +208,3 @@ Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualqu
 
 
 
-% Seucodigo de algormito de compresión LZ78
-
-\input{compression/seudocode-lz78}
