@@ -6,44 +6,23 @@
 
 Sabemos que \lzSieteOcho es un algoritmo que no tendrá pérdida, si buscamos representar la navegación de un usuario no deseamos perder datos, ya que estos mismo nos servirán para realizar una predicción, y esta representación debe ser la base para ese objetivo, un modelo.
 
-Para comenzar con el modelo, debemos tomar las ideas principales que tiene LZ78. Primero en base a una sequencia de símbolos crear un diccionario, y después crear un \trie que represente la estructura y modelo. Uno de los factores de los sistemas que están en linea o \webs, es siempre reducir su complejidad y con la simple idea anterior es posible. Segundo debemos hacer que cada sesión que realice el usuario es representado por una secuencia, gracias el trabajo realizado por \emph{Claude}~\etal en~\cite{Claude2014}, podemos solamente preocuparnos de continuar la constucción, ya que los datos ya han sido minados de los \webasccesslog.
+Para comenzar con el modelo, debemos tomar las ideas principales que tiene \lzSieteOcho. Primero en base a una sequencia de símbolos crear un diccionario, y después crear un \trie que represente la estructura y modelo. Uno de los factores de los sistemas que están en linea o \webs, es siempre reducir su complejidad y con la simple idea anterior es posible. Segundo debemos hacer que cada sesión que realice el usuario es representado por una secuencia, gracias el trabajo realizado por \emph{Claude}~\etal en~\cite{Claude2014}, podemos solamente preocuparnos de continuar la constucción, ya que los datos ya han sido minados de los \webasccesslog.
 
 
 
+Supogamos que $S_{1}$ es la secuencia de un cierto usuario, con el  algoritmo \lzSieteOcho creará un árbol de navegación que representará la navegación de este usuario. Si ingresa otro usuario con una secuencia representada por $S_{2}$, con un comportamiento similar, se podría crear predicciones en base a como ya se ha comportado el usuario anterio. En caso contrario actualizará los nodos de cada símbolos~(representan una página web o una categoría de una web). Si el usuario se mantiene navegando el algoritmo irá actualizando su frecuencia en cada nodo del \trie. Podemos señalar además por el trabajo de~\cite{Begleiter2004}, en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo \PPM.  
+
+% TODO explicar esto con el modelo de navegacion que usa ~\cite{Moghaddam2009}
 
 
-Supogamos que $S_{1}$ es la secuencia de un cierto usuario, con el  algoritmo LZ78 creará un árbol de navegación que representará la navegación de este usuario. Si ingresa otro usuario, con un comportamiento similar, se podría crear predicciones en base a como ya se ha comportado el usuario anterio. En caso contrario actualizará los nodos de cada símbolos~(que  representan una página web). Si el usuario se mantiene navegando el algoritmo irá actualizando su frecuencia en cada nodo del \trie. Podemos señalar además por el trabajo de 
+% Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
 
 
-puede insertar largas secuencias, pero en general, el número total de secuencias que inserta en el árbol es menos que el algoritmo \PPM. 
-
-Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
-
-
-Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
+% Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. 
+% Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
 
 
-As we mentioned in previous section, LZ78 is a lossless
-compression algorithm. Fig.2 shows that how the
-dictionary constructed from sequences using LZ78.
+% TODO:
+% Concluir y conectar con el que sigue
 
-In web environment we use user web page requests sequence
-as input sequence of LZ78 algorithm. Fig.3 shows how
-prediction tree is constructed. In Fig.2 and 3 variable w is
-sequence that is saved in each user session. This algorithm
-can insert sequences with long length, but generally total
-number of sequences that inserted in tree is less than PPM
-algorithm. We explain this algorithm with an example.
-Suppose the user requests the pages ABABCBC
-sequentially. 
-
-If we use the LZ78 algorithm, then the A, B,
-AB, C and BC should be inserted in the tree. In Table 1
-the first row shows the user requests. The second row
-shows the sequences inserted in the tree and the third row
-shows the sequences that maintained in active user
-session. When a sequence is inserted in the tree the
-weights of edges that represent the pass from the root to
-the last request of sequence is incremented. Now assume
-that user B requests the sequence of pages ABCABCD.
-Table 2 shows the results. If user A requests ABABCBC
+\textbf{CONECTOR pendiente a la siguiente subseccion}
