@@ -1,5 +1,4 @@
-\chapter[Predicciones sobre Web Access]{Predicciones sobre Web Access} 
-\label{ch:predicciones-webaccess}
+\chapter[Predicciones sobre Web Access]{Predicciones sobre Web Access}\label{ch:predicciones-webaccess}
 
 %Predicting the future is mostly a matter of managing not to blink as you witness the present.
 %William Gibson
@@ -15,74 +14,27 @@
 \input{prediction/intro}
 
 
-
-
-
-
 \section{Predictores de estado finito}
 	\input{prediction/predictores-estado-finito}
 
- 
-
-
-
-
-
-
-
 \section{Modelos tradicionales}
+	\input{prediction/modelos-tradicionales}
 
 
-%Gueniche_Fournier-Viger_Raman_Tseng
-%However, these models suffer from some important limitations [5]. First, most of them assume the Markovian hypothesis that each event solely depends on the previous events. If this hypothesis does not hold, prediction accuracy using these models can severely decrease [5, 3]. Second, all these models are built using only part of the information contained in training sequences. Thus, these models do not use all the information contained in training sequences to perform predic- tions, and this can severely reduce their accuracy. For instance, Markov models typically considers only the last k items of training sequences to perform a pre- diction, where k is the order of the model. One may think that a solution to this problem is to increase the order of Markov models. However, increasing the order of Markov models often induces a very high state complexity, thus making them impractical for many real-life applications [3].
+\section{Modelo predictivo simple de navegación }
+	\input{prediction/simple-model-navegation}
 
-%
-%Primero asumimos que cada evento por si 
- 
-
-Se ha estudiado como los eventos secuenciales que se obtienen de usuarios \emph{web} cuando navegan se puede modelar, pero reconocer la frecuencia de estos patrones de \emph{webaccess} puede requerir mucha  información de entrada y un alto costo procesamiento.  Indudablemente puede entregar mejor precisión en el resultado de como es el comportamiento de los usuarios, pero no es óptimo para las demandas actuales. 
-
-Estos enfoques tradicionales usan Modelos de Markov, a medida que va aumentando el historial de navegación secuencial el orden de complejidad aumenta directamente proporcional. Lo anterior genera cálculos  complejos y lentos de procesar. Se ha encontrado que la implementación de estos modelos son inadecuados para este propósito~\cite{Dongshan2002} , debido a que no logran abarcar un volumen de datos, ni secuencias de mayores tamaños. Además la escalabilidad de estas propuestas  como señala Dongshan \etal~\cite{Dongshan2002} presentan en la práctica muchas limitaciones técnicas que no permiten ser implementadas. 
-
-
- 
-
-%CITED Moghaddam_Kabir
-%The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. Association rules were proposed to capture the co-occurrence of buying different items in a supermarket shopping [11]. Association rules indicate groups that are presented together. In [12] study on different kinds of sequential association rules for web document prediction is proposed. It shows how to construct the association rule based prediction models for web log data.
-
-
-
-
-%@TODO
- 
- 
- \subsection{Limitaciones de los modelos tradicionales de Markov}
- 
- %%%%% Cita pagina 2 Dongshan2002 %%%%%%%%
- Los modelos tradicionales de Markov predicen la siguiente página \emph{web} que un usuario puede acceder considerando el acceso más probable, se itera para  coincidir su secuencia de acceso actual con secuencias de accesos \emph{web} históricas.
- 
- Usando estos modelos los investigadores como  Dongshan \etal~\cite{Dongshan2002} han comparado  el máximo número de elementos  prefijos de cada secuencia histórica,  con los elementos sufijos de la  misma longitud de secuencia de \emph{webaccess} actual del usuario y obteniendo secuencias dada su secuencia histórica con probabilidad más alta en la que los elementos coinciden.
- 
- El modelo de Markov de orden cero, es la tasa base de probabilidad incondicional, dada por \begin{equation}
-p(x_n) = Pr(X_n) , \end{equation} que es la probabilidad de visitar un página \emph{web}. El siguiente modelo de Markov de orden uno, observa la probabilidad en la transición de un página a otra, la podemos definir como  $x_{1}$ y $x_{2}$, la primera y segunda página visitada por un usuario. La probabilidad de la transición de una página a otra página sería \begin{equation} 
-	 p(x_{2} | x_1) = Pr(X_2 = x_{2} | X_1 = x_{1}) 
- \end{equation}	
- 
- El $k$-ésimo orden del Modelo de Markov considera la probabilidad condicional que un usuario cambie a una $n$-ésima página nueva dada su anterior visita, teniendo que $k = n -1$ páginas vistas:
-
- \begin{equation}\label{eq:tantito}
- \scriptstyle
- p( x_{n} | x_{n-1},..., x_{n-k} ) = Pr(X{n} = x_{n}\ |\ X_{n-1} = x_{n-1},..., X_{n-k} = x_{n-k}) .
- \end{equation}
- 
- Los Modelos de Markov de orden inferior no pueden predecir con certeza total el futuro de los \emph{webaccess log}, ya que no van lo suficientemente atrás en el historial de \emph{webaccess} para determinar como se comporta el usuario. Estos comportamiento de los usuarios requieren buenas predicciones, las que a la vez requieren modelos de Markov de mayor orden, pero los modelos de orden superior resultan de mayor complejidad en espacio de estado y cobertura de estados de transición. 
-Los modelos con mayor orden de estados son distintas combinaciones de las acciones observadas y registradas en el conjunto de datos de los \emph{webaccess log}, entonces, el número de estados tiende a crecer exponencialmente al igual que el orden del modelo.
- 
-Este aumento puede limitar significativamente la aplicabilidad de los modelos de Markov para aplicaciones en las que las predicciones rápidas son críticas para el rendimiento en tiempo real o para aplicaciones con restricciones de uso de memoria. Además, muchos ejemplos en los conjuntos de prueba podrían no tener estados correspondientes en los modelos de Markov que da mayor orden, por lo que reduciría su alcance y eficacia.
-
+	% ESTO PUEDE SERVIR PAR EL CAPITULO DE EXPERIMENTACION
+	\input{compression/modelo-navegacion-usuario}
 
 
 
 
 \subsubsection{Herramientas para crear Modelos predictivos}
+% AHORA VIENDOLO ES COMO UN PARTE MAS EXPERIMENTAL ESTA SECTION
+
+\section{Predecir con \emph{PredictionIO}}
+
 \input{predictionio} 	 %introducción a las Prediccion
+
+
