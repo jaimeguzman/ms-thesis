@@ -1,0 +1,31 @@
+%Gueniche_Fournier-Viger_Raman_Tseng
+%However, these models suffer from some important limitations [5]. First, most of them assume the Markovian hypothesis that each event solely depends on the previous events. If this hypothesis does not hold, prediction accuracy using these models can severely decrease [5, 3]. Second, all these models are built using only part of the information contained in training sequences. Thus, these models do not use all the information contained in training sequences to perform predic- tions, and this can severely reduce their accuracy. For instance, Markov models typically considers only the last k items of training sequences to perform a pre- diction, where k is the order of the model. One may think that a solution to this problem is to increase the order of Markov models. However, increasing the order of Markov models often induces a very high state complexity, thus making them impractical for many real-life applications [3].
+
+%
+%Primero asumimos que cada evento por si 
+ 
+
+
+Se ha estudiado como los eventos secuenciales que se obtienen de usuarios \emph{web} cuando navegan se puede modelar, pero reconocer la frecuencia de estos patrones de \emph{webaccess} puede requerir mucha  información de entrada y un alto costo procesamiento.  Indudablemente puede entregar mejor precisión en el resultado de como es el comportamiento de los usuarios, pero no es óptimo para las demandas actuales. 
+
+Estos enfoques tradicionales usan Modelos de Markov, a medida que va aumentando el historial de navegación secuencial el orden de complejidad aumenta directamente proporcional. Lo anterior genera cálculos  complejos y lentos de procesar. Se ha encontrado que la implementación de estos modelos son inadecuados para este propósito~\cite{Dongshan2002} , debido a que no logran abarcar un volumen de datos, ni secuencias de mayores tamaños. Además la escalabilidad de estas propuestas  como señala Dongshan \etal~\cite{Dongshan2002} presentan en la práctica muchas limitaciones técnicas que no permiten ser implementadas. 
+
+
+ 
+
+%CITED Moghaddam_Kabir
+%The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. Association rules were proposed to capture the co-occurrence of buying different items in a supermarket shopping [11]. Association rules indicate groups that are presented together. In [12] study on different kinds of sequential association rules for web document prediction is proposed. It shows how to construct the association rule based prediction models for web log data.
+
+
+
+
+
+%@TODO
+
+
+\subsection{Limitaciones de los modelos tradicionales de Markov}
+
+
+\input{prediction/limitaciones-markov}
+
+
