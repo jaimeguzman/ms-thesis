@@ -8,6 +8,112 @@
 
 %%%%%%%Gueniche_Fournier-Viger_Raman_Tseng
 %Moreover, machine learning algorithms such as neural networks and sequential rule mining have been applied to perform sequence prediction [6, 11].
+Dentro del areá de las ciencias de computación, predecir es uno de los ultimos puntos que un roadmap de analisis se puede dar.
+%https://dl.dropboxusercontent.com/spa/srrxi5k8b49mdt9/zn67b9c4.png
+%https://www.safaribooksonline.com/library/view/introducing-data-science/9781633430037/kindle_split_010.html
+
+
+Sobre temas anteriores, hemos hablado que una de las principales tareas de machine learning es hacer predicciones, es decir dado un numero x de entrenamiento, el sistema pude ser capaz de generalizar una entrada para lograr una predicción
+
+
+
+ 
+Hemos explicado en los capitulos anteriores, variadas herramientas y conceptos claves para llegar a este capitulo, que comprende el objetivo de esta tesis.
+
+
+Las predicciones es un proceso natural en que de cierta manera tomamos alguan decisión bastante rápido, inclusive uno no se da cuenta de esta decisión. Este desafio de anticipar la decisión es una la realización de análisis predictivos.
+
+
+Las ventajas en varios campos de saber lo que pasará en un tiempo mas adelante, no da cierto un gran ventaja comparativa frente a competencias de mercado o en sí en cualquier escenario que podamos imaginar.
+
+
+Que se requiere para hacer un realizar predicción, en un contexto simple ?
+
+- Describir el escenario, en el que se harán las predicciones.
+- Recolección de Datos
+- Modelo que represente los datos
+- Un algoritmo
+- Metodlogía / Herramientas
+- Una implementación eficiente
+
+
+¿Que pasa cuando tenemos datos que queremos predecir y no estan ordenados?
+
+- Los datos no están listos para ser procesados. CLAUDE logro hacer ya este trabajo para lograr una estructura eficietne dentro de webaccess log, ese problema no lo abordaremos.
+
+
+
+
+
+``El modelo'', 
+
+La realización de un modelo nunca es fácil, existe todo un proceso, ya se ha explicado en secciones anteriores por lo cual no vale la pena volver a mencionarlo.
+
+De todas maneras, existen lineamientos que se pueden seguir:
+
+- Recolección de información
+- Entender la conceptualización de cualquier modelo presente.
+- Conocer la naturaleza de la inforamción.
+- Conocer que errores pueden ser falsos positvos, etc...
+- Analisis del dominio 
+
+
+
+``Errores'',
+
+Nada es perfecto, por lo mismo un modeo predictivo es muy propenso a fallar, es importante saber que es lo que falla y ¿porque ?
+
+Los errores pueden venir de cualquier áree
+
+Las predicciones en cualquier dominio, entre mayor sea el umbral de distancia que queramos conocer que pasará, mayor son la cantidad de variables que vamos a tener que contemplar.
+
+
+
+No model is perfect. In fact, any model even advertised as approaching perfection should be viewed with significant skepticism. It really is true with predictive analytics and modeling that if it looks too good to be true it probably is; there is almost certainly something very wrong with the sample, the analysis, or both. Errors can come from many areas; however, the following are a few common pitfalls.
+
+
+``Cosas a tener en cuenta'' 
+
+- Generalizar vs Precisar
+- Valores anómalos
+- No salir de la linea base que aborda el modelo
+- Sobre-ajuste o overfitting del modelo
+
+
+
+
+``Evaluar''
+
+Siempre un modelo predictivo debe estar propenso a ser continuamente evaluado.
+
+
+
+
+``Resultados''
+
+Cualquier resultado que nos entregue un modelo predictivo debe ser consitente con lo que ha sido entrenado, un ejemplo burdo:  Es realizar un modelo predictivo para saber que clima habrá en una determinada hora y el resultado del modelo predictivo retorne un valor representado a una juego de azar.(malo el ejemplo)
+
+\emph{La interpretación del resultado es clave}
+
+
+
+\subsubsection{Herramientas para crear Modelos predictivos}
+
+
+
+La clasificacion es un proceso que consta de dos pasos fundamentales. En el primer paso es donde se construye un modelo que describe un conjunto predeterminado de datos, clases o conceptos. Este modelo se construye tupla a tupla, describiendo en cada caso los atributos de la base de datos que se analiza. Se asume que cada tupla pertenece a una clase predefinida, que esta determinada por uno de los atributos llamado atributo clase. Las tuplas dentro de la clasificacion son tambien conocidas como ejemplos, instancias o experiencias (de aqui en adelante ejemplos). El conjunto de ejemplos analizados para construir el modelo forman el conjunto de datos de entrenamiento. Los ejemplos individuales que forman el conjunto de entrenamiento son seleccionados aleatoriamente de la poblacion muestral asignandole a cada uno, una etiqueta de clase, teniendo lugar el aprendizaje supervisado (se indica a que clase pertenece cada experiencia) ya mencionado anteriormente. Contrario al aprendizaje supervisado, el aprendizaje no supervisado, es aquel en el que no se conocen las etiquetas de clase de las experiencias, y el numero o conjunto de clases no se tienen a priori. Generalmente el modelo obtenido esta representado en la forma de reglas de clasificacion, arboles de decision o formulas matematicas. En el segundo paso, el modelo obtenido en el paso anterior es usado para prediccion y se puede estimar la precision de la prediccion del modelo (o clasificador) [17].
+Segun Ye [29], a manera de resumen podemos decir que la clasificacion tiene como objetivo la construccion de modelos concisos que representen la distribucion
+del atributo dependiente (clase) en funcion de los atributos predictores (atributos). El modelo resultante se usara, principalmente, para determinar la clase a la que pertenecen las observaciones de las que se conocen todos los valores de sus atributos con excepcion del valor de clase, es decir, su tarea sera preferentemente predictiva. Dependiendo del modelo generado, este ademas puede presentar caracteristicas descriptivas, lo que lo hara aun mas deseable desde el punto de vista de la extraccion de conocimiento.
+
+La prediccion puede ser vista como la construccion y uso de un modelo para evaluar la clase de un objeto sin etiqueta, el valor o estimar los rangos que puede tener un objeto o atributo dado. La clasificacion y la regresion son los dos tipos principales de problemas de prediccion donde la clasificacion se usa para predecir valores discretos o nominales, mientras la regresion se usa para predecir valores continuos u ordenados. Sin embargo en este caso se puede referir al uso de prediccion para predecir etiquetas de clase, como clasificacion, y el uso de prediccion para predecir valores continuos (usando tecnicas de regresion) como prediccion, este punto de vista es el mas aceptado dentro de la Mineria de Datos [17]. La prediccion tiene aplicaciones numerosas dentro de las cuales podemos encontrar la aprobacion de credito, la prediccion de diagnostico medico, prediccion de desempen~o, y mercadeo selectivo.
+
+
+
+
+Lo dificil de escoger un modelo de compresión es realmente si este funcionará con los datos que tengo.
+
+
+
 
 
 Comprender las predicciones en los patrones de navegación \emph{web} es el problema principal, dado los nuevos sistemas es cada vez más común interactuar con \emph{web} inteligente. Estos sistemas deben tener cualidades que permitan adaptarse y tomar decisiones inmediatas en las situaciones que requiera el usuario. Aún mas necesaria es esta propiedad en problemas que requieren predicciones secuenciales, es decir, dada una secuencia de eventos  predecir el siguiente evento basado en nuestro limitado conocimiento histórico del caso estudio.
@@ -53,7 +159,10 @@ El problema de la predicción secuencial se puede establecer de la siguiente man
 \LDCMoghaddam
 
 
- 
+ % REVISAR ESTOS EJEMPLOS
+ % https://www.safaribooksonline.com/library/view/predictive-analytics-revised/9781119145677/f04.xhtml
+
+
 
 % TODO:
 % Para mezclar con LZ78 existen harta informacion en la intro de  Begleiter2004
