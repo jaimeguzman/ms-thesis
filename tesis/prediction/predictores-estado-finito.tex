@@ -1,0 +1,73 @@
+
+Sea $\Sigma$ un alfabeto finito y $q_{i}^{n}$ el $i\mbox{-ésimo}$ símbolo $q$ de un conjunto total de $n$ símbolos. Para entrenar un secuencia $q_{1}^{n}=q_{1},q_{2} \dots q_{n}$, donde $q_{i} \in \Sigma$ y el símbolo compuesto $q_{i}q_{i+1}$, que es la concatenación de $q_{i}$ y $q_{i+1}$, debemos tener un algoritmo que permita leer y usar esta secuencia, además entrenar con los datos procesados y entregar un resultado predictivo con el modelo que se desea generar. El objetivo es entrenar un modelo $M$ que entregue como resultado la probabilidad condicionada para cualquier futuro símbolo dado a una sub-secuencia que ha sido parte del entrenamiento previamente.
+Definimos $\Sigma^{*}$ como un conjunto de sub-secuencias de símbolos $\sigma$ que componen $s$, talque $s \ \in \Sigma^{*} $. Específicamente, en cualquier contexto de secuencia $s$ de $\Sigma^{*}$  y  $\sigma \in \Sigma$ símbolos, el aprendizaje de la secuencia dado por el entrenamiento debe dar una distribución de probabilidad $M(\sigma | s )$ que su valor resultado es representada por el modelo $M$ al momento que es consultado o evaluado para predecir.
+
+El rendimiento del modelo predictivo se puede medir mediante una función del promedio de registro de errores $L(M,x_{1}^{T})$ de $M (\cdot | \cdot )$, con respecto a una secuencia $s = x_{1}^{T}$ con $x_{1}^{T}= x_{1},x_{2},....,x_{n} $ %, al acierto del siguiente símbolo $q_{i}$ de la secuencia $s$
+  por lo tanto podemos definir $L$ como \begin{equation} L( M , x_{1}^{T} ) = 
+- \dfrac{1}{T} 
+\sum _{i=1}^{T} \log{ M(x_{i} | x_{i} \cdots x_{i-1}} ),\end{equation}
+donde el logaritmo es en base $2$.  El promedio de $L$ es directamente relacionado a  \begin{equation}M(x_{1}^{R}) = \prod_{i=1}^{T} M(x_{i} | x_{i} \cdots x_{i-1} ) \end{equation} y minimizar el promedio de $L$ es completamente equivalente a maximizar la asignación de probabilidades a una secuencia de pruebas $x_{1}^{T}= x_{1},x_{2},\cdots,x_{n} $, teniendo en cuenta que esta equivalencia es totalmente válida. 
+Sea $M(x_{1}^{T})$ una asignación de probabilidad consistente para una secuencia completa, la cual satisface \begin{equation}
+M(x_{1}^{t-1}) = \sum_{\mbox{$x_t$} \in \Sigma}^{T} M(x_{1} \cdots x_{t-1}x_{t} ) \ , 
+\end{equation}para todo $t=1,\cdots\ ,\ T$, induce la asignación de probabilidad,
+
+\begin{equation}
+M(x_{t} | x_{1}^{t-1} ) =  \dfrac{M(x_{1}^{t})}{M(x_{1}^{t-1} )},\ t=1,...,T.
+\end{equation}
+
+
+El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a \texttt{LDC}. La cantidad $-\log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la ``auto--información'', puede ser la de compresión ideal o ``largo de secuencia'' de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1}) \ ,\end{equation} esta puede ser  \emph{online} (con  una pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979}.
+
+
+Por lo tanto, el promedio de $L$ también mide la tasa de compresión media de una secuencia de prueba, cuando se utilizan las predicciones generadas por $M$, es decir, un bajo promedio de $L$ %log-loss function
+sobre la secuencia $x_{1}^{T}$ puede implicar una buena compresión de esta secuencia \cite{Begleiter2004}.
+
+Si se supone que el entrenamiento y las secuencias de pruebas fueron generados de una fuente desconocida\footnote{Mas adelante usaremos el término en ingles \emph{Data Source}, para referirnos a fuentes de datos , tanto conocidas como desconocidas.} $P$. Definimos una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es \begin{equation}
+P = arg\ min_{M} \{ - E_{P} \{\log M( X_{1}^{T} )\}   \}
+\end{equation}
+
+
+Dada la equivalencia de \emph{log-loss} y la compresión, como se ha visto anteriormente, el significado de \emph{log-loss} de $P$ logra la mejor compresión posible, o logra una entropía 
+\begin{equation}
+	H_{T}(P) = - E \log P( X_{1}^{T} ) 
+\end{equation}
+Aún no conociendo realmente cual es la distribución de probabilidad de $P$, un entrenamiento genera una aproximación a $M$ usando una secuencia de entrenamiento. La pérdida extra que podemos obtener la llamaremos \emph{Redundancia} y esta dada por el valor de
+
+\begin{equation}
+D_{T} ( P || M ) = E_{P} \{ - \log M(X_{1}^{T} - (- \log P(X_{1^{T}})   )  )       \} \ .
+\end{equation}
+ 
+
+Para normalizar la \emph{redundancia} $D_{T} ( P || M ) / T $, de una secuencia de largo $T$, da los  \emph{bits} extra por símbolo (sobre la tasa de la entropía) al comprimir una secuencia utilizando $P$.  
+
+Este ajuste probabilístico motiva un objetivo deseable, al entregar un algoritmo de propósito general para la predicción: minimizar la redundancia de manera uniforme, con respecto a todas las posibles distribuciones. 
+
+Un algoritmo de predicción el cual pueda acotar la redundancia de manera uniforme, con respecto a todas las distribuciones dada una clase debe poseer un cota inferior de redundancia para cualquier \emph{Predictor Universal} y \emph{Compresor Universal} \begin{equation}
+\Omega \left(  K \dfrac{\log T}{2 T } \right),
+\end{equation} donde $K$ es (más o menos) el número de parámetros del modelo que codifica la distribución $P$ (Rissanen \cite{Rissanen1984}, 1984).
+
+
+
+
+
+
+ 
+
+Si llamamos al siguiente símbolo $b_{t}$, diremos que el resultado de nuestro predictor es entregar este valor. Dado esto, existe una función de pérdida asociada $L( b_{t},x_{t} )$ para cada predicción realizada. 
+
+El objetivo de cada predictor es tener una función de minimización tal que minimize la fracción de predicciones erróneas, a lo anterior lo llamaremos $T$.% que será:
+
+
+
+
+
+%$$ T = \dfrac{1}{n} \sum^{n}^{t=1} {L( b_{t},x_{t} ) }  $$
+
+
+
+% Given the resources in a practical situation, the predictor that is capable of possibly meeting these
+% requirements must be a member of the set of all possible finite state machines (FSM’s). Consider the set of all possible finite state predictors with S states. Then the S-state predictability of the sequence xn (denoted by π S (x n ) ), is defined as the minimum fraction of prediction errors made by an FS predictor with S-
+% states. This is a measure of the performance of the best possible predictor with S states, with reference to a given sequence. For a fixed-length sequence, as S is increased, the best possible predictor for that sequence will eventually make zero errors. The finite state predictability for a particular sequence is then defined as the S – state predictability for very large S, and very large n, i.e. the finite state predictability of a particular sequence is
+% lim limπS(xn). S→∞ n→∞
+% FS predictability is an indicator of the best possible sequential prediction that can be made on an arbitrarily long sequence of input symbols by any FSM. This quantity is analogous to FS compressibility, as defined in (Ref. 5), where a value of zero for the FS predictability indicates perfect predictability and a value of 1⁄2 indicates perfect unpredictability.
+% This notion of predictability enables a different optimal FS predictor for every individual sequence, but it has been shown in (Ref. 1) that there exist universal FS predictors that, independent of the particular sequence being considered, always attain the FS predictability.
