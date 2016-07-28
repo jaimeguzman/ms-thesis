@@ -1,3 +1,13 @@
+% Referencias
+% 
+% ~\cite{Begleiter2004}
+% ~\cite{}
+%
+%
+% Seccion preliminar para VMM de ~\cite{Begleiter2004}
+% https://dl.dropboxusercontent.com/spa/srrxi5k8b49mdt9/m-1owunl.png
+% https://dl.dropboxusercontent.com/spa/srrxi5k8b49mdt9/sbq0f8f9.png
+
 
 Sea $\Sigma$ un alfabeto finito y $q_{i}^{n}$ el $i\mbox{-ésimo}$ símbolo $q$ de un conjunto total de $n$ símbolos. Para entrenar un secuencia $q_{1}^{n}=q_{1},q_{2} \dots q_{n}$, donde $q_{i} \in \Sigma$ y el símbolo compuesto $q_{i}q_{i+1}$, que es la concatenación de $q_{i}$ y $q_{i+1}$, debemos tener un algoritmo que permita leer y usar esta secuencia, además entrenar con los datos procesados y entregar un resultado predictivo con el modelo que se desea generar. El objetivo es entrenar un modelo $M$ que entregue como resultado la probabilidad condicionada para cualquier futuro símbolo dado a una sub-secuencia que ha sido parte del entrenamiento previamente.
 Definimos $\Sigma^{*}$ como un conjunto de sub-secuencias de símbolos $\sigma$ que componen $s$, talque $s \ \in \Sigma^{*} $. Específicamente, en cualquier contexto de secuencia $s$ de $\Sigma^{*}$  y  $\sigma \in \Sigma$ símbolos, el aprendizaje de la secuencia dado por el entrenamiento debe dar una distribución de probabilidad $M(\sigma | s )$ que su valor resultado es representada por el modelo $M$ al momento que es consultado o evaluado para predecir.
