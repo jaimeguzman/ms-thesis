@@ -1,27 +1,24 @@
+% Referencias
+% ~\cite{}
+% ~\cite{}
 
 
-Las Predicciones sobre \webasccesslog es el objetivo final de esta tesis y en este capítulo daremos los fundamentos teóricos para comprender las necesidades que se tienen al ser abordados. Los \webasccesslog como hemos visto en el capitulo 1\ref~{}, son registros que se almacenan en el servidor, es necesario recordar que además uno de los problemas planteados por Claude \etal~\cite{Claude2014}, es mediante ciertos registros de accesos almacenados en el servidor se pueda realizar predicciones para mejorar significativas al usuario.
 
+Las Predicciones sobre \webasccesslog es el objetivo final de esta tesis y en este capítulo daremos los fundamentos teóricos para comprender las necesidades que se tienen al ser abordados. Los \webasccesslog como hemos visto en el capitulo 1\ref~{}, son registros que se almacenan en el servidor, es necesario recordar que además uno de los problemas planteados por \emph{Claude} \etal~\cite{Claude2014}, es mediante ciertos registros de accesos almacenados en el servidor se pueda realizar predicciones para mejoras significativas al usuario.
 
+ 
 % Idea: 
 % conexión con capítulos anteriores y fundamentar por que se estudiaron.
-Anteriormente hemos explicado en el capitulo anterior, dos grandes enfoques en la sección \machinelearning~\ref{} y \losslessdatacompression{}\ref{}, ambas áreas buscan un objetivo e inclusive se han realizados trabajos(ver \cite{}) que permiten se integradas. Acorde a la literatura ambos enfoques buscan realizar predicciones, ya se señalado y fundamentado los puntos a favor que tienen realizar predicciones mediante \machinelearning, básicamente es un entrenamiento de un gran conjunto de datos y mediante varias etapas logra tener un entrenamiento de un modelo que generaliza una entrada para lograr una predicción. Los problemas en este enfoque es que los acercamientos no son  eficientes en recursos, es decir, la cantidad de recursos que se utilizan tienden a ser altos, también los conjuntos de datos de entrenamiento tienen que se bastante grandes para reducir errores.. Por otro lado el enfoque de  \losslessdatacompression busca la realización de predicciones las cuales básicamente en la literatura que hemos estudiado, es sobre secuencias discretas, en la que nos hemos aproximado a usar ciertas propiedades de los trabajos realizados por los algoritmos de compresión desarrollados por \emph{Lempel-Ziv} en \cite{ZivLempel1978}. Dentro del área de las ciencias de computación, {predecir} es uno de los últimos puntos en el camino de los análisis de datos predictivos.
+Anteriormente hemos explicado en el capitulo anterior, dos grandes enfoques en la sección \machinelearning~\ref{ch2:sec-machinelearning-seq-data} y \losslessdatacompression~\ref{ch2:compressdata-predict-seq}, ambas áreas buscan un objetivo e inclusive se han realizados trabajos(ver referencias~\cite{Sculley2006},~\cite{Li2005} y~\cite{Begleiter2004} ) que permiten se integradas. Acorde a la literatura ambos enfoques buscan realizar predicciones, ya se ha señalado y fundamentado los puntos a favor que tienen realizar predicciones mediante \machinelearning, básicamente es un entrenamiento de un gran conjunto de datos y mediante varias etapas logra tener un entrenamiento de un modelo que generaliza una entrada para lograr una predicción. Los problemas en este enfoque es que los acercamientos no son  eficientes en recursos, es decir, la cantidad de recursos que se utilizan tienden a ser altos, también los conjuntos de datos de entrenamiento tienen que se bastante grandes para reducir errores. Por otro lado el enfoque de  \losslessdatacompression busca la realización de predicciones las cuales básicamente en la literatura que hemos estudiado, es sobre secuencias discretas, en la que nos hemos aproximado a usar ciertas propiedades de los trabajos realizados por los algoritmos de compresión desarrollados por \emph{Lempel-Ziv}\cite{ZivLempel1978}. Dentro del área de las ciencias de computación, \emph{predecir} es uno de los últimos puntos en el camino de los análisis de datos predictivos.
 
 % Explicar que es la predicción
 El proceso de decidir naturalmente acciones frecuentes que realizamos es parte de un comportamiento que podemos analizar. Este comportamiento presenta análisis y muestras. Este desafío de anticipar la decisión es una la realización de análisis predictivos. Evidentemente realizar análisis predictivos es un área bastante compleja que involucra tópicos estadísticos y temas específicos de probabilidades. Para lograr declarar precisamente lo que ocurrirá en un cierto escenario y con determinadas condiciones, ha esto llamamos \emph{predecir}.
 
 Existen variados campos y escenario en el cual se pueden realizar predicciones, nosotros buscamos estudiar y comprender los escenarios en que los eventos ocurren de manera secuencial y discreta. 
 
-Aprender de la experiencia para predecir secuencias de símbolos es un problema fundamental en \machinelearning con varias aplicaciones~\cite{Laird1994}. Probablemente los enfoques que usan \losslessdatacompression son lo más simples para abordar las predicciones de secuencias, con métodos basados en diccionario que actualizan constantemente el modelo. También hay aproximaciones de Markov, que durante este capitulo estudiaremos y recordaremos de la sección 2\ref{}, ciertos análisis que se pueden hacer. En este capítulo abordaremos los siguientes temas:
-
-
-
-
+Aprender de la experiencia para predecir secuencias de símbolos es un problema fundamental en \machinelearning con varias aplicaciones~\cite{Laird1994}. Probablemente los enfoques que usan \losslessdatacompression son lo más simples para abordar las predicciones de secuencias, con métodos basados en diccionario que actualizan constantemente el modelo. También hay aproximaciones de Markov, que durante este capitulo estudiaremos y recordaremos de la sección~\ref{sec-clas-alg-compreessdata}, ciertos análisis que se pueden hacer. En este capítulo abordaremos los siguientes temas:
 
 % Detallar que veremos en este capitulo
-
-
-
 \begin{itemize}
 	\menorEspacioItemize
 	\item Escenario de predicciones discretas sobre un alfabeto finito.

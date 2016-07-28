@@ -17,7 +17,7 @@ En los modelos tradicionales de Markov, los estados son visibles para el observa
 
 
 
-\subsubsection{Terminología para HMM}
+\subsection{Terminología para HMM}
 
 Para comprender diremos que tendremos $i$ estados que representan ciertos eventos, no afectos al tiempo. Cada estado tiene $q_{i}$, que es la probabilidad de ese estado.
 
@@ -56,14 +56,14 @@ Los estados en \HMM son modelos generativos, los cuales modelan la distribución
 
 
 
-\subsubsection{Formalización HMM}
-Una especificación completa de \HMM (\emph{Rabiner 1989}~\cite{Rabiner1990}) requiere una definición formal de los siguientes elementos:
+\subsection{Formalización HMM}
+Una especificación completa de \HMM (\emph{Rabiner }~\cite{Rabiner1990}, 1989) requiere una definición formal de los siguientes elementos:
 
 
 \begin{itemize}
 	\menorEspacioItemize
 	\item \textbf{N} es la cantidad de estados ocultos.
- 	\item \textbf{M} es la cantidad de simbolos observables por estado.
+ 	\item \textbf{M} es la cantidad de símbolos observables por estado.
 	\item \textbf{ Distribución de probabilidad de la transición de estados}\\
 	Sea $A={a_{ij}}$ con $a_{ij} = P[q_{t+1}=S_{j} | q_t = S_i  ]$, con $i,j = 1,\dots,N$.
 
@@ -97,7 +97,7 @@ Una especificación completa de \HMM (\emph{Rabiner 1989}~\cite{Rabiner1990}) re
 \end{itemize}
 
 
-Un modelo Lambda,$\lambda$, está compuesto de probabilidades $\pi$ iniciales, las probabilidades de las transiciones de estado según la definición de la matriz A, y las probabilidades de los estados que emiten una o más observaciones.
+Un modelo Lambda, $\lambda$, está compuesto de probabilidades $\pi$ iniciales, las probabilidades de las transiciones de estado según la definición de la matriz A, y las probabilidades de los estados que emiten una o más observaciones.
 
 
 
@@ -108,8 +108,8 @@ Un modelo Lambda,$\lambda$, está compuesto de probabilidades $\pi$ iniciales, l
 
 
  
-
-\subsubsection{Problemas fundamentales de HMM}
+\uncm
+\subsection{Problemas fundamentales de HMM}
 
 Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los siguientes tres problemas:
 

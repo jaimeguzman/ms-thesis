@@ -1,5 +1,5 @@
 \uncm
-\section{Compresión para predicciones secuenciales}
+\section{Compresión para predicciones secuenciales}\label{ch2:compressdata-predict-seq}
 
 %Introduccion de la sección
 \input{compression/compresion-intro}
@@ -18,25 +18,24 @@ El modelamiento es una etapa muy importante en el diseño de algoritmos. Un mode
 
 
 
-En los problemas que aborda la Compresión de Datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la busqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución facil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computacion, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento. Los modelos comunmente usados en Compresión de datos son los siguiente:
-
+En los problemas que aborda la Compresión de Datos , el modelamiento puede ser visto como un proceso en el cual se identifica caracteres \emph{redundantes} de un fuente de datos y la búsqueda eficiente para ser descritos. Algunos problemas, como en todo, no son de una resolución fácil e inclusivo realizar el modelamiento resulta imposible. Es por eso que el modelamiento matemático resulta ser muy importante en el área de la ciencia de computación, es por eso que la el área de Compresión de datos da una gran importancia a este modelamiento. Los modelos comúnmente usados en Compresión de datos son los siguiente:
 \begin{itemize}
 	\menorEspacioItemize
-	\item \textbf{Modelo físico:} Conocimiento de la físcia de los datos, como el origen de los datos de una cierte fuente, la cual puede ser un procesos generativo o mediante observación empírica.
+	\item \textbf{Modelo físico:} Conocimiento de la física de los datos, como el origen de los datos de una cierta fuente, la cual puede ser un procesos generativo o mediante observación empírica.
 	\item \textbf{Modelos de probabilidad:} Uso de teoría de probabilidades para describir la fuente de datos.
 	\item \textbf{Modelo de Markov:} Uso de la teoría de cadena de Markov para modelar fuentes de datos.
 	\item \textbf{Modelo compuesto:} Es la descripción de la fuente de datos como una combinación de varios tipos y el uso de un conmutador para activar un tipo a la vez.
 
 \end{itemize}
 
-El resultado final del modelamiento matemático en el contexto de la compresión, es un modelo factible en el cual la redundancia de datos y ciertas restricciones de salida se intercectan en una relación definidad, tanto para la entrada del algoritmo como su salida. En otras palabras los problemas de compresión  buscan un algoritmo eficiente para remover la mayor cantidad de redundacia (ver Sección~\ref{ch2:concept-redundacia}) desde una fuente de datos.
+El resultado final del modelamiento matemático en el contexto de la compresión, es un modelo factible en el cual la redundancia de datos y ciertas restricciones de salida se interceptan en una relación definida, tanto para la entrada del algoritmo como su salida. En otras palabras los problemas de compresión  buscan un algoritmo eficiente para remover la mayor cantidad de redundancia (ver Sección~\ref{ch2:concept-redundacia}) desde una fuente de datos.
 
-\uncm
+
  
 
 
 
-
+\uncm
 \subsection{Teoría de la información elemental}
 
 
@@ -58,7 +57,7 @@ La Entropía sirve para medir los eventos o símbolos con ocurrencia individual 
 
 \subsubsection{Redundancia}\label{ch2:concept-redundacia}
 
-La Redundancia de datos, se puede describir como la superposción de datos ó datos que poseen una base común, características comunes o equivalentes en alguna estructura. En el área de Compresión de Datos se vuelve una de las primeras tarea indentificar la redundacia en ciertos origenes de datos.
+La Redundancia de datos, se puede describir como la superposición de datos ó datos que poseen una base común, características comunes o equivalentes en alguna estructura. En el área de Compresión de Datos se vuelve una de las primeras tarea identificar la redundancia en ciertos orígenes de datos.
 
 
  
@@ -70,13 +69,13 @@ La Redundancia de datos, se puede describir como la superposción de datos ó da
 % \subsubsection{Compresión basada en Diccionarios}
 
 \uncm
-\subsection{Clasificación de algoritmos de compresión} 
+\subsection{Clasificación de algoritmos de compresión}\label{sec-clas-alg-compreessdata} 
 
-Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos incial. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o decompresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extración, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciónes de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmistir información más rapidamente y abordar sus propiedades de transformación, como también la predicción.
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos original. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o de-compresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida~(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extracción, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida~(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciones de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmitir información más rápidamente y abordar sus propiedades de transformación, como también la predicción.
 % For example, in UNIX or Linux, commands compress, uncompress, gzip and gunzip have all used the dictionary compression methods at some stage.~\cite{MengyiPu2006}
 
 
-Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto~\cite{}, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
+Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto, clasificación de proteínas~\cite{}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
 % JUSTO EN EL PARRAFO ANTERIOR FALTA UN NEXO A TEO DE INFORMACION
 
 Existen varios \losslessdatacompression interesantes, algunos son basados en en diccionario. En esta sección veremos que se pueden usar para realizar modelos predictivos. Nos enfocaremos en los que estan basados en un modelo variable de Markov, los cuales nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
@@ -111,7 +110,7 @@ Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos
   	\input{compression/dmc}
  
 
-\subsubsection{Familia de algoritmos Lempel\&Ziv}\label{ch2:sec-lzfamily}
+\subsubsection{Familia de algoritmos Lempel-Ziv}\label{ch2:sec-lzfamily}
 	\input{compression/familia-lz}
 
 
