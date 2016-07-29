@@ -2,74 +2,43 @@
 % 
 % ~\cite{Moghaddam2009}
 % ~\cite{Begleiter2004}
+% ~\cite{Rissanen1983}
+% ~\cite{Langdon1983}
 % 
 % shortcuts: \lzSieteOcho \lzSieteSiete
 %
 %
-
-\lempelziv~78~\cite{ZivLempel1978} es uno de los algoritmos \losslessdatacompression más populares~\cite{Begleiter2004}, en la sección anterior hemos vistos varios ejemplos en donde se usa este algoritmo, (ver sección~\ref{ch2:sec-lzfamily}). Recordemos que este tipo de algoritmos es basado en diccionarios, específicamente usa un \trie, para representarlo. 
-
-\lzSieteOcho divide una secuencia larga en frases de tamaño variable, de tal manera que una nueva frase es la subcadena más corta que no se haya visto anteriormente como una frase. Cada frase es codificada por el índice de su prefijo anexado(\emph{append}) por un símbolo; por lo tanto el código \lzSieteOcho contiene los pares (puntero, símbolos). Además podemos mencionar que el  rendimiento de \lzSieteOcho depende del número de frases, pero el objetivo final es reducir, comprimiendo, al mínimo la secuencia. El algortimo comienza con una raiz que contiene un frase vacía, luego todas las otras frases que se le dan al algoritmo se almacenan en los nodos internos.
-% Número de frases y redundanancia.
-
-
-
-
+% TODO: colocar la jodida representaciones de math como lo explica ~\cite{Begleiter2004}
+\lempelziv~78~\cite{ZivLempel1978} es uno de los algoritmos \LDC más populares~\cite{Begleiter2004}, en la sección anterior hemos vistos varios escenarios ejemplos en donde puede ser usado, (ver sección~\ref{ch2:sec-lzfamily}). Recordemos que este tipo de algoritmos es basado en diccionarios, que simultáneamente es representado por una estructura \trie. En la figura~\ref{alg:pseudocode-lz78} se tiene el algoritmo.
 % Seucodigo de algormito de compresión LZ78
 \input{compression/seudocode-lz78}
 % https://www.safaribooksonline.com/library/view/analytic-pattern-matching/9781316287392/Chapter_9.html
 
 
+Para poder explicar este algoritmo supongamos que tenemos una secuencia de un tamaño largo, y extraemos de esta una subsecuencia de menor tamaño, a este lo llamaremos \emph{frase}. \lzSieteOcho divide una secuencia larga en frases de tamaño variable de tal manera que una nueva frase es la subsecuencia más corta que no se ha visto anteriormente, como una frase. Cada frase es codificada por el índice de su prefijo anexado(\emph{append}) por un símbolo; por lo tanto el código \lzSieteOcho contiene los pares (puntero, símbolos). Además podemos mencionar que el  rendimiento de \lzSieteOcho depende del número de frases, pero el objetivo final es reducir, comprimir, al mínimo la secuencia. El algoritmo comienza con una raíz que contiene un frase vacía y luego todas las otras frases que se le dan al algoritmo se almacenan en los nodos internos. 
+% Número de frases y redundanancia.
 
 
 
-\textbf{Observaciones sobre LZ78}
+\subsubsection{Observaciones sobre LZ78}
 
+\lzSieteOcho, con respecto a su predecesor ha tenido ciertas mejoras. Por ejemplo, el diccionario teóricamente puede mantener secuencias o frases que ha encontrado, para siempre. Por otro lado,  el tamaño del diccionario no tiene un limite y tampoco  debiese crecer infinitamente. Si es necesario algunos patrones deben ser reubicados, cuando el diccionario esta lleno. Otra opción, es directamente parar el crecimiento, evitando el ingreso de más frases ó permitir que el diccionario comience desde cero, cuandon alcanza un cierto número de entradas. Además como hemos mencionado anteriormente, existen variables como \texttt{LZW}, que es la variación más popular. 
+\lzSieteOcho al igual que todos los algoritmos \losslessdatacompression tienen una estrecha relación con las predicciones en secuencias discretas.
 
-- LZ78 ha hecho algunas mejoras sobre LZ77. 
-Por ejemplo, en teoría, el diccionario puede mantener a los 
-patrones para siempre después de haber sido visto una vez. 
-En la práctica, sin embargo, el tamaño del diccionario 
-no puede crecer indefinidamente. 
-Algunos patrones pueden necesitar ser reinstalado si el diccionario está lleno.
+En 1983 los investigadores \emph{Langdon}~\cite{Langdon1983} y \emph{Rissanen}~\cite{Rissanen1983}, comenzaron a discutir la componente de predicción de este algoritmo. Posteriormente en el trabajo de \emph{Feder}\etal señaló que cualquier \LDC es candidato a ser usado como un algoritmo predictor y viceversa (ver \emph{Feder}\etal~\cite{Feder1992}). Por lo tanto, el algoritmo \lzSieteOcho es un algoritmo de predicción universal con respecto a la gran clase de fuentes de Markov estacionarias y ergódicos de orden finito ~\cite{Begleiter2004}.
 
-- Las palabras de código de salida contienen un componente 
-menos que los de LZ77. Esto mejora la eficiencia de los datos.
+% Por ejemplo, cualquier análisis de \lempelziv con una determinada secuencia de entrada, puede perder toda la información de sus extremos de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
+	
+% \item La tasa de convergencia de \lzSieteOcho a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \lzSieteOcho se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . 
 
 
 
 
-% \textbf{The prediction component of this algorithm was first discussed by Langdon (1983) and Rissanen (1983).}~\cite{Begleiter2004}
+% CONECTOR CON LA SIGUINENTE SECCIóN
+\uncm
+Concluimos esta sección, en que ciertos algoritmos de compresión se pueden usar para predecir. Además, dentro de la clasificación de algoritmos sin pérdidas, existen algunos que son basados en diccionarios, como \lzSieteOcho. Estos se concentran en la memoria de las secuencias o frases que han visto, la cual memoria puede ser acotada explicitamente al diccionario o se puede extender infinitamente. Con lo viste en esta sección, en el próximo capítulo se estudiará y profundizará más sobre el tema de predicciones, en particular las que corresponden a \webasccesslog, que ocurren secuencialmente y se pueden representar por símbolos en una determinada secuencia.
+
+
+
 
  
-% \textbf{An lz78-based prediction algorithm was proposed by Langdon (1983) and Rissanen (1983).}~\cite{Begleiter2004}
-
-
-% \textbf{In the learning phase the algorithm constructs from the training sequence q1n a binary tree (trie) that records the parsed phrases (as discussed above).}~\cite{Begleiter2004}
-
-% \textbf{Several performance guarantees were proven for the lz78 compression (and prediction)
-% algorithm. Within a probabilistic setting (see Section 2), when the unknown source is stationary and ergodic Markov of finite order, the redundancy is bounded above by (1/ ln n) where n is the length of the training sequence (Savari, 1997). Thus, the lz78 algorithm is a universal prediction algorithm with respect to the large class of stationary and ergodic Markov sources of finite order.}~\cite{Begleiter2004}
-
-
-% LIMITACION DE CRECIMIENTO:
-% While the LZ78 algorithm has the ability to capture patterns and hold them indefinitely,
-%  it also has a rather serious drawback. 
-%  As seen from the example, the dictionary keeps growing without bound. 
-%  In a practical situation, we would have to stop the growth of the dictionary at some stage and then either prune it back or treat the encoding as a fixed dictionary scheme. 
-%  We will discuss some possible approaches when we study applications of dictionary coding.
-
-
-Sin embargo se presentan ciertos problemas de análisis con \lzSieteOcho. Cualquier aplicación práctica de \lzSieteOcho sufre  los siguientes inconvenientes: 
-
-\begin{itemize}
-	\menorEspacioItemize	
-	\item En cualquier análisis \emph{Lempel} \& \emph{Ziv}, una cadena de entrada, toda la información cruzada de los bordes de las frases se pierden. En muchos casos, serian patrones y éstos afectarían al siguiente símbolo en la secuencia.
-	
-	\item La tasa de convergencia de \lzSieteOcho a la predictibilidad óptima como se definió anteriormente es lento. Los resultados experimentales que realizaremos  describirán que \lzSieteOcho se acerca de forma asintótica a un óptimo~(ver Ryabko~\etal \cite{Ryabko2002}) . Esta estrecha relación entre predicciones en secuencias discretas y algoritmo sin perdida, donde, en principio cualquier \texttt{LCA} es candidato a ser usado como un predictor y viceversa (ver Feder \etal~\cite{Feder1992}). 
-	
-\end{itemize}
-
-
-
-The memory may be an explicit dictionary that can be extended infinitely, or an implicit limited dictionary as sliding windows. Each seen string is stored into a dictionary with an index. The indices of all the seen strings are used as codewords. The compression and decompression algorithm maintains individually its own dictionary but the two dictionaries are identical. Many variations are based on three representative families, namely LZ77, LZ78 and LZW. Implementation issues include the choice of the size of the buffers, the dictionary and indices.
-
