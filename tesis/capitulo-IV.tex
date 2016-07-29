@@ -52,7 +52,7 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, Lempel Ziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar predicciones en secuencias discretas con distintos largos.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, \lempelziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar predicciones en secuencias discretas con distintos largos.
 
 En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning, PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma \texttt{API }que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accuracy} (Exactitud) frente a distintas porciones de datos. Con el conjunto de datos que tenemos haremos variadas pruebas para ver métricas como Accuracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
@@ -449,17 +449,7 @@ poder elegir secuencias optimo acorde a los criterios históricos, así podría 
 
 
 
-
-
-
-
-
-
-
-
-
-\uncm
-\uncm
+\newpage
 \section{Conclusiones y Contribuciones}\label{ch:conlusion-contrib-all}
 
 \input{conclusion}

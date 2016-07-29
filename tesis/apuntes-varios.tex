@@ -1,10 +1,9 @@
 
 
 
-
 \emph{There are a great many VMM prediction algorithms. In fact, any lossless compression algorithm can be used for prediction.}~\cite{Begleiter2004} 
 
-\emph{ The ‘probabilistic suffix tree (PST)’ algorithm is well known in the machine learning community.}~\cite{Begleiter2004} 
+\emph{ The probabilistic suffix tree (PST) algorithm is well known in the machine learning community.}~\cite{Begleiter2004} 
 
 \emph{lz78 and lz77 attracted enormous attention and inspired the area of lossless compression and sequence prediction.}~\cite{Begleiter2004} 
 
@@ -52,7 +51,7 @@ Data Compression algorithms exploit characteristics such as repeating substrings
 
 \emph{The Lempel-Ziv Coding is not one algorithm but actually a collection of algorithms, all based on the same technique. Basically it is a dictionary compression technique where strings are switched to their corresponding index in the dictionary. The big difference between the Lempel-Ziv methods is how the dictionary is created. }~\cite{Mans Andersson}
 
-\emph{The LZ78 algorithm uses a more traditional dictionary where past strings are added. It begins with a dictionary containing only one string, the null string or the empty string, and an empty buffer string. For every symbol read it searches the dictionary for any occurrences of the string buffer concatenated with the new symbol. If found, the symbol is added to the buffer and the next symbol is read. If not found, the string is added to the dictionary and a token consisting of two parts is created, the number of the dictionary string corresponding to the the string buffer and the symbol which was read, e.g. (3,’e’). This token is added to the compressed data and the string is stored in the dictionary}~\cite{Mans Andersson}
+\emph{The LZ78 algorithm uses a more traditional dictionary where past strings are added. It begins with a dictionary containing only one string, the null string or the empty string, and an empty buffer string. For every symbol read it searches the dictionary for any occurrences of the string buffer concatenated with the new symbol. If found, the symbol is added to the buffer and the next symbol is read. If not found, the string is added to the dictionary and a token consisting of two parts is created, the number of the dictionary string corresponding to the the string buffer and the symbol which was read, e.g. (3,e). This token is added to the compressed data and the string is stored in the dictionary}~\cite{Mans Andersson}
 
 
 
@@ -198,7 +197,7 @@ SECCION COMPRESSION
 % - hablar mas de que LZ78 es basado en un diccicionario.
 
 
-%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context ‘a’ occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
+%   Consider the sequence of input symbols xn = “aaababbbbbaabccddcbaaaa”. An LZ78 parsing of this string of input symbols would yield the following set of phrases: “a,aa,b,ab,bb,bba,abc,c,d,dc,ba,aaa”. As described above, this algorithm maintains statistics for all contexts seen within the phrases wi . For example, the context a occurs 5 times (at the beginning of the phrases “a, aa, ab, abc, aaa”), the context “bb” is seen 2 times (“bb,bba”), etc. These context statistics are stored in a trie. (Fig. 2).
 
 
 %empezar habalr sibre lempel ziv
