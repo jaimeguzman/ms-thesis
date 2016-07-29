@@ -5,6 +5,9 @@
 % ~\cite{Begleiter2004}
 % 
 
+
+
+
 Sabemos que \lzSieteOcho es un algoritmo que no tendrá pérdida, si buscamos representar la navegación de un usuario no deseamos perder datos, ya que estos mismo nos servirán para realizar una predicción, y esta representación debe ser la base para ese objetivo, un modelo.
 
 Para comenzar con el modelo, debemos tomar las ideas principales que tiene \lzSieteOcho. Primero en base a una sequencia de símbolos crear un diccionario, y después crear un \trie que represente la estructura y modelo. Uno de los factores de los sistemas que están en linea o \webs, es siempre reducir su complejidad y con la simple idea anterior es posible. Segundo debemos hacer que cada sesión que realice el usuario es representado por una secuencia, gracias el trabajo realizado por \emph{Claude}~\etal en~\cite{Claude2014}, podemos solamente preocuparnos de continuar la constucción, ya que los datos ya han sido minados de los \webasccesslog.
@@ -15,12 +18,23 @@ Supogamos que $S_{1}$ es la secuencia de un cierto usuario, con el  algoritmo \l
 
 % TODO explicar esto con el modelo de navegacion que usa ~\cite{Moghaddam2009}
 
-
 % Explicamos este algoritmo con un ejemplo. Supongamos que el usuario solicita las páginas \texttt{ABABCBC} secuencialmente. Si utilizamos el algoritmo \lzSieteOcho, entonces generaríamos un \emph{trie} con nodos  \texttt{A, B, AB, BC, C} que deberán insertar. 
+
+
+% \texttt{LZW} y \lzSieteOcho básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. 
+
+% La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
 
 
 % Cuando se inserta una secuencia en el árbol los contadores de las aristas que representan el paso desde la raíz hasta la última petición de secuencia se incrementa en cada inserción. 
 % Supongamos ahora que el usuario B pide a la secuencia de páginas \texttt{ABCABCD}, estos generaría cambios en el \emph{trie} y de cumplir las condiciones se incrementarían los contadores. 
+
+% TODO: ESTE PARRAFO DEBO CORREGIRLO
+% Un método de predicción en línea no necesita depender de pre procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El preprocesamiento se hace cuando tenemos una nueva petición.
+
+
+
+
 
 
 % TODO:

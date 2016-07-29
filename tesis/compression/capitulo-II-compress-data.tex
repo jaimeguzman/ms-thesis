@@ -71,7 +71,7 @@ La Redundancia de datos, se puede describir como la superposición de datos ó d
 \uncm
 \subsection{Clasificación de algoritmos de compresión}\label{sec-clas-alg-compreessdata} 
 
-Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos original. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o de-compresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos (\losslessdatacompression)y con pérdida~(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extracción, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida~(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciones de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmitir información más rápidamente y abordar sus propiedades de transformación, como también la predicción.
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos original. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o de-compresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos  y con pérdida~(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extracción, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida~(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciones de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmitir información más rápidamente y abordar sus propiedades de transformación, como también la predicción.
 % For example, in UNIX or Linux, commands compress, uncompress, gzip and gunzip have all used the dictionary compression methods at some stage.~\cite{MengyiPu2006}
 
 
@@ -84,40 +84,27 @@ Existen varios algoritmos \losslessdatacompression interesantes, algunos son bas
 
 
 
-
-
-
-
-
-
-
-
-
 \uncm
 \subsection{Algoritmos de compresión}
 
 %MEJORAR ESTA INTRO o BORRARLA
-Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \emph{Machine Learning} y además tengan propiedades para ser candidatos a un predictor. 
+Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos de compresión que tengan un espacio vectorial de características conjunto con \machinelearning y además tengan propiedades para ser candidatos a un predictor. 
 
 
 \subsubsection{Prediction by Partial Match (PPM)}
-	\input{compression/ppm}
+\input{compression/ppm}
  
 \subsubsection{Probabilistic Suffix Tree (PST)}
- 	\input{compression/pst}
+\input{compression/pst}
 
 \subsubsection{Cadenas de Markov Dinámicas}
-  	\input{compression/dmc}
- 
+\input{compression/dmc}
 
 \subsubsection{Familia de algoritmos Lempel-Ziv}\label{ch2:sec-lzfamily}
-	\input{compression/familia-lz}
-
-
-
+\input{compression/familia-lz}
 \uncm
 \subsection{Algoritmo Lempel-Ziv 78}
-	\input{compression/algoritmoLZ78}
+\input{compression/algoritmoLZ78}
 
 
 

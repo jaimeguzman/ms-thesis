@@ -1,67 +1,39 @@
- 
-Los algoritmos originales de la familia fueron desarrollados por \emph{Jacob Ziv} y \emph{Abraham Lempel} en sus trabajos publicados en 1977~\cite{ZivLempel1977} y 1978~\cite{ZivLempel1978}. Ambas publicaciones proporcionan dos enfoques diferentes para la creación de diccionarios adaptables, y cada enfoque ha dado lugar a una serie de variaciones. Se puede decir que existen dos grupos que generaron algoritmos derivados, es decir, \lzSieteSiete~\cite{ZivLempel1977} y \lzSieteOcho~\cite{ZivLempel1978}. Otra popular variante  de \lzSieteOcho es \texttt{LZW}, que fue una publicación de \emph{Terry Welch} en 1984. Existen muchas variantes de los algoritmos anteriormente señalados,  pero enfocaremos nuestro estudio y discusiones en el prominente \lzSieteOcho. 
+%
+% ~\cite{Moghaddam2009}
+% ~\cite{Begleiter2004}
+% ~\cite{Rissanen1983}
+% ~\cite{Langdon1983}
+% 
+% shortcuts: \lzSieteOcho \lzSieteSiete
+%
+
+Los algoritmos originales de la familia fueron desarrollados por \emph{Jacob Ziv} y \emph{Abraham Lempel}, en sus trabajos publicados en 1977~\cite{ZivLempel1977} y 1978~\cite{ZivLempel1978}. Ambas publicaciones proporcionan dos enfoques para la creación de diccionarios adaptables, y cada enfoque ha dado lugar a una serie de variaciones. Se puede decir que existen dos grupos que generaron algoritmos derivados, es decir, \lzSieteSiete~\cite{ZivLempel1977} y \lzSieteOcho~\cite{ZivLempel1978}. Otra popular variante  de \lzSieteOcho es \texttt{LZW}, que fue una publicación de \emph{Terry Welch} en 1984. Existen muchas variantes de los algoritmos anteriormente señalados,  pero enfocaremos nuestro estudio y discusiones en el prominente \lzSieteOcho. 
+
+%hacer este monito: https://dl.dropboxusercontent.com/spa/srrxi5k8b49mdt9/p-f_cjtr.png
 
 
-Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones hace un tiempo, debido a que es posible que se haya desplazado hacia fuera de la memoria histórica (\emph{buffer}). En estas situaciones, los patrones son ignorados o si son consultados el algoritmo retorna no encontrado. Para poder extender la memoria de los patrones encontrado se desarrollo \lzSieteOcho con un diccionario en una representación de \trie, el cual permite mantener los patrones permanentemente durante todo el proceso de codificación.
+Los enfoques de algoritmos de compresión basados en diccionario es no utilizar ningún modelo estadístico, pero se basan en la identificación de patrones repetidos. Por lo tanto, el efecto de compresión y descompresión no depende de la calidad del modelo estadístico, ni está limitado por la entropía de los datos. Por lo tanto, se puede lograr una mejor relación de compresión que los métodos basados en un modelo estadístico\footnote{\footnoteHuffman}, pero manteniendo el objetivo de eliminar la redundancia almacenada en series repetitivas de frases, dentro de una secuencia. Los algoritmos basados en diccionarios son normalmente más rápido que los basados en entropía. 
+
+Una de los grandes problemas de \lzSieteSiete es que no puede reconocer ocurrencia de ciertos patrones del pasado, debido a que es posible que ya se haya desplazado hacia fuera de la memoria histórica (\emph{buffer}). En estas situaciones los patrones son ignorados o si son consultados el algoritmo no retorna nada. Para poder extender la memoria de los patrones encontrado, \lempelziv desarrollaron \lzSieteOcho con un diccionario que permite mantener los patrones permanentemente durante todo el proceso. El diccionario que se utilizado para almacenar los patrones antes visto  y los índices que son utilizados para comprimir los patrones repetidos. El contenido del diccionario varía en función de la secuencia de entrada de secuencias para ser comprimidas.
 
 
-
-% TODO: ESTE PARRAFO DEBO CORREGIRLO
-Un método de predicción en línea no necesita depender de pre procesamiento tiempo de los datos históricos disponibles con el fin de construir un modelo de predicción. El preprocesamiento se hace cuando tenemos una nueva petición. \texttt{LZW} y \lzSieteOcho básicamente son los algoritmos de compresión de datos sin pérdidas con una buena funcionalidad. La parte más importante de estos algoritmos es la construcción de un diccionario de algoritmos que usamos para la creación del modelo predictivo. 
-
-
-
-% REVISAR
-
-
-
-algoritmos aritméticos, así como algoritmos de Huffman se basan en un modelo estadístico, es decir, un alfabeto y la distribución de probabilidad de una fuente. 
-
-La eficiencia de la compresión para una fuente dada depende del tamaño del alfabeto y lo cerca su distribución de probabilidad de las estadísticas es a las de la fuente. 
-
-
-El método de codificación también afecta a la eficacia de la compresión. 
-Para un código de longitud variable, las longitudes de las palabras de código tienen que satisfacer la desigualdad Kraft con el fin de ser únicamente descifrable. Esto, de alguna manera, ofrece orientación teórica de hasta qué punto un algoritmo de compresión puede ir; en otro, limita el rendimiento de estos algoritmos de compresión.
-
- 
-
-
-El diccionario se utiliza para almacenar los patrones de cadena visto antes y los índices se utilizan para codificar los patrones repetidos. El diccionario aparece ya sea en un explícito o una forma implícita, como veremos más adelante.
-
-enfoques de compresión diccionario aplican diversas técnicas que incorporan la estructura de los datos con el fin de lograr una mejor compresión. El objetivo es eliminar la redundancia de almacenar series repetitivas de palabras y frases repetidas dentro de la secuencia de texto. El codificador mantiene un registro de las palabras más comunes o frases en un documento llamado un diccionario y utiliza sus índices en el diccionario como fichas de salida. Idealmente, las fichas son mucho más cortos en comparación con las palabras o frases a sí mismos y las palabras y frases se repiten con frecuencia en el documento.
-
-El codificador lee la cadena de entrada, identifica esas palabras recurrentes, y da salida a sus índices en el diccionario. Una nueva palabra se emite en forma no comprimida y agregados en el diccionario como una entrada nueva. Las principales operaciones implican la comparación de secuencias, mantenimiento diccionario y una forma eficiente de codificación.
-
-Compresores y descompresores ambos mantienen un diccionario por sí mismos. Los algoritmos basados en diccionarios son normalmente más rápido que los basados en entropía. Ellos procesar la entrada como una secuencia de caracteres en lugar de como corrientes de bits.
+Esta familia de algoritmos tienen muchas aplicaciones y se han utilizado en una serie de programas de software comerciales. Por ejemplo, en UNIX o Linux, con comandos para comprimir y descomprimir, \emph{gzip}\footnote{gzip es un software libre GNU que reemplaza al programa \texttt{compress} de UNIX, ver~\url{http://www.gzip.org/}}. Sin embargo, hay otros aspectos a considerar, por ejemplo ¿Cómo se pueden identificar ciertos patrones de secuencias correctamente? ¿Cuáles son las buenas técnicas que se pueden utilizar para comprobar si un símbolo está en el diccionario?. Diferentes opciones de reconocimiento de secuencias, pueden dar diferentes resultados de la compresión realizada. Por otro lado, ¿Qué hacemos si el diccionario crece en un gran tamaño y también que hacer si lo hace rápidamente?. Tenemos que contemplar que ciertas estructuras de datos puede ser afectas a disminuir la eficacia de sus operaciones directamente. Por ejemplo, cuanto más grande es el diccionario, más tiempo se necesita para comprobar si una frase o secuencia está dentro del diccionario, esta idea la desarrollaremos en la próxima sección, que detalla estas soluciones con \lzSieteOcho. 
 
 
 
-La entrada al algoritmo de compresión es una corriente de símbolos y la salida consiste en una mezcla de tokens y palabras en forma original. Cuando se da salida a fichas, el sistema de codificación puede ser clasificado como de trabajo en la moda-variable-a fijo, ya que, en la forma básica, cada cadena a codificar es de diferente longitud, pero las palabras de código, es decir, los índices en el diccionario, son de la mismo largo.
-
-
-
-
-enfoques basados en diccionarios son adaptativos 1 en la naturaleza porque el diccionario se actualiza durante el proceso de compresión y descompresión. El contenido del diccionario varía en función de la secuencia de entrada de texto para ser comprimido.
-
-
-
-
-enfoques de diccionario no utilizan ningún modelo estadístico, pero se basan en la identificación de los patrones repetidos. Por lo tanto, el efecto de compresión no depende de la calidad del modelo estadístico, ni está limitado por la entropía de una fuente. Se puede, por lo tanto, a menudo lograr una mejor relación de compresión que los métodos basados en un modelo estadístico.
-
-
-
-Sin embargo, hay otros aspectos a tener en cuenta. Por ejemplo, ¿cómo se pueden identificar ciertos patrones de cadena? ¿Cuáles son las buenas técnicas que pueden utilizarse para comprobar si un símbolo está en el diccionario? Diferentes opciones de patrones pueden dar lugar a diferentes resultados de compresión. ¿Qué debemos hacer si el diccionario se expande en tamaño demasiado rápido? Ciertas estructuras de datos pueden afectar a la eficacia de ciertas operaciones directamente. Por ejemplo, cuanto más grande es el diccionario, cuanto más tiempo se necesita para comprobar si una palabra está en el diccionario. Algunas estructuras de datos dedicados son muy útiles, tales como colas circulares, montones, tablas hash, y quadtrees intentos. Centrado por los tres algoritmos de representación, muchos algoritmos se han rediseñado para lograr o mejorar aspectos individuales de ellos.
-
-
-
-Diccionario algoritmos tienen muchas aplicaciones y se han utilizado en una serie de programas de software comerciales. Por ejemplo, en UNIX o Linux, comandos comprimir, descomprimir, gzip y gunzip todos han usado los métodos de compresión de diccionario en algún momento. Dado que nuestro interés se centra en los enfoques de los algoritmos de diccionario, vamos a examinar tres algoritmos más populares de forma fundamental, a saber, LZ77, LZ78 y el LZW.
 
 
  
+% NO ME ACUERDO DE ESTA REFERENCIA 
+% 
+% El método de codificación también afecta a la eficacia de la compresión. 
+% Para un código de longitud variable, las longitudes de las palabras de código tienen que satisfacer la desigualdad Kraft con el fin de ser únicamente descifrable. Esto, de alguna manera, ofrece orientación teórica de hasta qué punto un algoritmo de compresión puede ir; en otro, limita el rendimiento de estos algoritmos de compresión.
+
+ 
+ % El diccionario aparece ya sea en un forma explícita o implícita.
 
 
 
-% REVISAR
+% Dado que nuestro interés se centra en los enfoques de los algoritmos de diccionario, vamos a examinar tres algoritmos más populares de forma fundamental, a saber, LZ77, LZ78 y el LZW.
 
-
-
+% todos han usado los métodos de compresión de diccionario en algún momento.
