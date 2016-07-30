@@ -154,75 +154,59 @@
 
 
 \frontmatter %% Inicio de la portada
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Modelo de Predicción Secuencial de Webaccess Log basado en el Algoritmo de Compresión LZ78 y Machine Learning}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % para precisar aún más su tema, use un subtítulo
 %\subtitle{Subtítulo explicativo del tema}
-\author{Jaime Guzmán}
-\email{mail@jguzman.cl}
-\date{2016}
-
-
+\author{Jaime Guzmán} \email{mail@jguzman.cl} \date{2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Profesor guía
 \professor{Adín Ramirez}
 % Comité
 \committee{Francisco Claude}{Martin Gutierrez}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dedicatoria
 \dedicatory{Dedicado a mi hijo, mis padres y las personas que no dejaron de apoyarme a pesar de las adversidades.}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Agradecimientos
-%\acknowledgment{ \input{thanks-to} }
-
-%ACTUALIZAR ESTO
+\acknowledgment{ \input{thanks-to} }
 % Abstract en inglés
 \abstract{ \input{abstracts/abstract-en} }
-% Resumen
+% Resumen - Abstract en español
 \resumen{ 	\input{abstracts/abstract-es} }
-
-
-\makecover	% Generamos la portada
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makecover				 % Generamos la portada
 \tableofcontents % tabla de contenido
-\listoftables	% Indice de tablas
-\listoffigures	% Indice de figuras
-\mainmatter	 % Inicio del contenido
-
-
+\listoftables					% Indice de tablas
+\listoffigures			 % Indice de figuras
+\mainmatter	 			 % Inicio del contenido
 % LA GRACI ES SER REPETITIVO SIN QUE SE NOTE.
- 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{capitulo-I}
-
-	\input{capitulo-preliminar}
-
-
+\input{capitulo-preliminar}
 \input{capitulo-II}
-
 \input{capitulo-III}
-
 \input{capitulo-IV}
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Iniciamos el resto de secciones adicionales al contenido: referencias y apendices
 \backmatter
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%Se presenta una revision bibliografica acertada, actual, y exhaustiva (se consulta toda la literatura relevante).
 %Presenta y redacta los objetivos, el trabajo realizado, y la validacion de manera detallada. Presenta discusiones detalladas, articuladas, claras, y un buen uso del lenguaje tecnico.
 % Bibliografía - El estilo por defecto es IEEE Transactions
 \bibliographystyle{ieeetr}
 \bibliography{IEEEabrv,referencias}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simbología y glosario
 % Utilice un paquete para generar símbolos y glosarios.
 % Por ejemplo: nomencl (http://texdoc.net/pkg/nomencl)
 % Anexos
 \appendix
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{anexo}  
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
 \printglossary[type=\acronymtype]
