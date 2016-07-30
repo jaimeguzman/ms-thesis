@@ -23,6 +23,7 @@ PredictionIO-CompressApp-Ref/
 *.fls
 *.out
 *.toc
+tesis/thesis.for.tmp
 
 ## Intermediate documents:
 *.dvi
