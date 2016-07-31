@@ -2,55 +2,21 @@
 % Introduccion 
 %
 %
+Internet es una fuente de información que crece constantemente y es visitada con una gran frecuencia, posee billones de web públicas. Dado este rápido desarrollo y accesos a grandes colecciones de datos, se vuelve fundamental y desafiante lograr anticipar las acciones de un usuario realice para investigadores e ingenierios. Los beneficios de lograr predicciones con la suficiente precisión pueden por ejemplo, mejorar la experiencia de usuarios en base a su comportamiento, registrados por \webasccesslog, ó mejorar la experiencia de compras en comercios electrónicos.
 
-Nuevos recursos en la web y la inclusión de variadas áreas de la ciencia de la computación	en distintos escenarios han permitido crear grandes colecciones de datos que se pueden analizar, clasificar y procesar. Encontrar información útil y relevante dentro de estos grandes volúmenes ayuda a comprender y mejorar las decisiones basado en un conocimiento histórico  y a la vez determinando patrones, frecuencias de ocurrencia cuando se generan a medida que transcurre el tiempo. 
+Existen varias área que buscan un estudio de este problema, el de las predicciones web de usuarios, también conocido como WPP. Algunos de estos enfoques para  abordarlo, por ejemplo son:  Análisis Predictivos de Patrones, Web Usage Minning, Web Access Pattern, Machine Learning y predicciones secuenciales con algoritmos de compresión. Esta tesis usará estas dos ultimas áreas para la implementación de un modelo predictivo simple y en un servidor de Machine Learning.
 
+La implementación  propuesto se basa en la implementación del algoritmo \lzSieteOcho que está adaptado para modelar y representar la navegación secuencial del usuario. Nuestra propuesta disminuye el tiempo de actualización del modelo predictivo, con actualizaciones a medida que se va usando. Además la puesta en marcha del servicio, que es un desventaja en el desarrollo de sistemas predictivos \online.
 
-Hoy en día las aplicaciones de \inet que los usuarios enfrentan no pueden ser estáticas y no tener características o funcionalidades que ayuden a anticipar la interacción. Estas nuevas características deseadas toman mucha relevancia al encontrarnos en un auge de información generada por usuarios, redes sociales y variadas plataformas generadoras de contenido y datos. Podemos decir que ésta es una de las razones para  crear o usar  herramientas de análisis y predicción, que nos permitan conocer cómo se comportan un usuario  dentro de una \web, conocer su frecuencia de accesos a un recurso en \inet, etc.\par
 
 Cuando se navega en un sitio web se puede recolecta una gran cantidad de registros almacenados en el lado del servidor, los cuales pueden ser por ejemplo, datos de accesos de la sesión realizada, también estos  registros representan usuarios de la \web  que se encuentran activos, llamaremos en adelante a estos registros de acceso: \webasccesslog,   los cuales se pueden realizar variadas análisis, por ejemplo:  Existe un usuario el cual intenta comprar un cierto producto en una web de comercio electrónico. Este sigue un cierto comportamiento ya que hasta el momento de comprar, se genera un un estado de búsqueda o visita en todas las elecciones posibles, puede volver como abandonar variados productos, hasta encontrar y comprar, o no. 
 
-Hemos mencionado  que  en general las \webs y en sí \inet genera un gran volumen de datos constantemente, y se deben usar técnicas específicas que nos den resultados cuantitativos para darle una interpretación a nuestro análisis. Una de las técnicas que toma sentido y da un gran aporte en este ámbito es el uso de Minería de datos  en los \webasccesslog.  Estás técnicas están a la disposición  de estudios y análisis de datos tanto para las industria, como para la academia y  se han convertido en una área importante  de investigación, en los últimos años, en la cual podemos extender el campo usando estás técnicas en la búsqueda de nuevas aproximaciones para modelos predictivos en demanda. 
-
-
-
 Predecir estos  accesos no es trivial, aún los modelos predictivos que se han implementado no logran dar con un patrón para la navegación de usuario, de manera genérica. Dado la diversidad de perfiles de usuarios que se pueden encontrar en ciertas \webs  y distintos flujos de navegación de contenido de las mismas.  
-
-
-
-Nuestro modelo propuesto se basa en la implementación del algoritmo \lzSieteOcho que está adaptado para modelar y representar la navegación secuencial del usuario. Nuestra propuesta disminuye la complejidad computacional  y la puesta en marcha del servicio, que es un desventaja en el desarrollo de sistemas predictivos \online.
 
 En este trabajo se presenta un modelo de predicción \online, que poseen un entrenamiento inicial \offline si es deseado y que se puede consumir como una \API de servicios \REST, la cual permite una integración ha variadas plataformas clientes y sistemas que no tenga un componente \online y con una buena exactitud de predicción. 
 
+% conector:
+En las próximas secciones pretendemos que el lector se contextualice más en el escenario que deseamos realizar predicciones, trabajos relacionados que presentan otros enfoques y los fundamentos que soportan esta tesis al trabajar con \webasccesslog.
 
 
 
-
-
-%  IDEAS PARA INTRODUCCION
-
-% - Existen muchos avances en la recoleción de datos, los cuales son de gran utilidad para dar informes etc.. 
-% Es importante poder encontrar información útil en estos grandes volumenes de datos, ya que podriamos i.e tener una visión global o en un cierto cálculo poder hacer operaciones con mayor número de muestras.
-
-% La web como en sí las personas siguen patrones ó de otra forma dichos comportamientos. Esta variable puede ser comparada en relación al tiempo.
-
-
-% - Se pueden analizar, clasificar y procesar
-
-
-
-% - El \inet ha evolucionado, no solo en comon se construye si no también como los usuarios se relacionan con los elementos de este.
-
-% ============================
-
-
-% En la actualidad los usuarios y clientes finales de muchos servicios que se ofrecen en \inet, poseen una característica común que es la interacción entre los usuarios y estos sistemas informáticos. Podemos tomar como ejemplos las paginas de redes sociales, comercios electrónicos o noticias.
-
-% Otros de los aspectos importantes de la clasificación genérica que hemos realizado es que los usuarios tiene una cierta forma de navegar, de ahora en adelante señalaremos que un usuario es persona real que interactúa con una plataforma web. Esta navegación en muchos casos se podría explicar como procesos aleatorios que son totalmente incierto de predecir, por otro lado podemos pensar o estudiar una aproximación que me permita adelantarnos al usuario en ese instante y poder realizar acciones.
-
-
-% Si elegimos un escenario en el cual un usuario accede a un portal de noticias. Podriamos entregar a una gran nivel de predicción del próximo árticulo que leerá ó inclusive si es un lector con ciertos patrones de lectura mejorar la navegación, conociendo con anterioridad como se relaciona.
-
-% En un escenario como el comercio electrónico, tener predicciones de comportamientos  de usuarios podría disminuir la brecha entre que el usuario esta navegando productos a la compra.
-
-% ============================
