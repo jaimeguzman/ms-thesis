@@ -26,13 +26,14 @@ M(x_{t} | x_{1}^{t-1} ) =  \dfrac{M(x_{1}^{t})}{M(x_{1}^{t-1} )},\ t=1,...,T.
 \end{equation}
 
 
-El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a \texttt{LDC}. La cantidad $-\log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la ``auto--información'', puede ser la de compresión ideal o ``largo de secuencia'' de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1}) \ ,\end{equation} esta puede ser  \emph{online} (con  una pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979}.
+El registro de pérdida $L$ tiene variadas interpretaciones. Tal vez la más importante se encuentra en su equivalencia a \LDC. La cantidad $-\log M (x_{i} | x_{1} \cdots x_{i-1}) $, que también se llama la ``auto--información'', puede ser la de compresión ideal o ``largo de secuencia'' de $x_{i}$, en \emph{bits} por símbolo, con respecto a la distribución de probabilidad condicional  \begin{equation}M (X | x_{1} \cdots x_{i-1}) \ ,\end{equation} esta puede ser  \online(con  una pequeña redundancia arbitraria) usando codificación aritmética (Rissanen y Langdon, 1979)\cite{RissanenLangdon1979}.
 
 
 Por lo tanto, el promedio de $L$ también mide la tasa de compresión media de una secuencia de prueba, cuando se utilizan las predicciones generadas por $M$, es decir, un bajo promedio de $L$ %log-loss function
 sobre la secuencia $x_{1}^{T}$ puede implicar una buena compresión de esta secuencia \cite{Begleiter2004}.
 
-Si se supone que el entrenamiento y las secuencias de pruebas fueron generados de una fuente desconocida\footnote{Mas adelante usaremos el término en ingles \emph{Data Source}, para referirnos a fuentes de datos , tanto conocidas como desconocidas.} $P$. Definimos una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es \begin{equation}
+%\footnote{Mas adelante usaremos el término en ingles \emph{Data Source}
+Si se supone que el entrenamiento y las secuencias de pruebas fueron generados de una fuente desconocida, para referirnos a fuentes de datos , tanto conocidas como desconocidas. $P$. Definimos una secuencia dada por valores aleatorios $X_{1}^{T} = X_{1} \cdots X_{T} $, podemos decir que claramente la distribución $P$ minimiza unicamente \emph{log-loss} o como la hemos llamado anteriormente $L$, lo cual es \begin{equation}
 P = arg\ min_{M} \{ - E_{P} \{\log M( X_{1}^{T} )\}   \}
 \end{equation}
 
@@ -71,16 +72,6 @@ El objetivo de cada predictor es tener una función de minimización tal que min
 
 
 
-%$$ T = \dfrac{1}{n} \sum^{n}^{t=1} {L( b_{t},x_{t} ) }  $$
-
-
-
-% Given the resources in a practical situation, the predictor that is capable of possibly meeting these
-% requirements must be a member of the set of all possible finite state machines (FSM’s). Consider the set of all possible finite state predictors with S states. Then the S-state predictability of the sequence xn (denoted by π S (x n ) ), is defined as the minimum fraction of prediction errors made by an FS predictor with S-
-% states. This is a measure of the performance of the best possible predictor with S states, with reference to a given sequence. For a fixed-length sequence, as S is increased, the best possible predictor for that sequence will eventually make zero errors. The finite state predictability for a particular sequence is then defined as the S – state predictability for very large S, and very large n, i.e. the finite state predictability of a particular sequence is
-% lim limπS(xn). S→∞ n→∞
-% FS predictability is an indicator of the best possible sequential prediction that can be made on an arbitrarily long sequence of input symbols by any FSM. This quantity is analogous to FS compressibility, as defined in (Ref. 5), where a value of zero for the FS predictability indicates perfect predictability and a value of 1⁄2 indicates perfect unpredictability.
-% This notion of predictability enables a different optimal FS predictor for every individual sequence, but it has been shown in (Ref. 1) that there exist universal FS predictors that, independent of the particular sequence being considered, always attain the FS predictability.
 
 
 

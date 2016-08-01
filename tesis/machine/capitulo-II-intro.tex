@@ -26,14 +26,16 @@ Un modelo es una construcción matemática para capturar patrones de un conjunto
 
 Cada uno de los modelos señalados son entrenados por algoritmos de \machinelearning, nos concentraremos en los modelos probabilísticos, los cuales pueden ser entrenados por algoritmos de \emph{regresión lineal}, \emph{forecasting} o \emph{predicción}. Todos los algoritmos mencionados anteriormente intentan de alguna manera determinar que pasará en el futuro, dado a cierta información provista de experiencia o conocimiento previo.
 
-Esta sección entrega un punto introductorio a ciertos fundamentos y referencias de algoritmos que son mencionados. Estos se agrupan en la siguientes categorías:
+Esta sección se entrega un punto introductorio a ciertos fundamentos y referencias de algoritmos que son mencionados o para contextualizar al lector, estos se agrupan en la siguientes categorías:
 
 \begin{itemize}
 	\menorEspacioItemize
 	\item \textbf{Regresión}
 			\input{machine/regresion}
+			\mediocm
 	\item \textbf{Clasificadores}	
 			\input{machine/clasificadores}
+			\mediocm
 	\item \textbf{Predictores}
 			\input{machine/predictores}
 	% \item[Optimización]	
@@ -48,30 +50,25 @@ Existen varios algoritmos con distintos estos fines, los anteriores no son la to
 
 Al momento de realizar nuevos algoritmos o modificaciones que ayudan a algunos modelos tradicionales de \machinelearning, se abre un nueva perspectiva para abordar mas problemas con nuevos propósitos. \emph{Sculley y Brodley} en~\cite{Sculley2006} plantean y discuten esta nueva perspectiva con un enfoque más teórico e empírico. La idea fundamental que plantean es que si se tiene un \emph{string} $x$ e $y$, y  se comprimen juntos estos pueden ser más eficientes, es decir,  ambos \emph{strings} comparten la misma información. El caso anterior es la perspectiva de juntar las áreas de \machinelearning y \emph{Data Compression}. 
 
-Si estos \emph{strings} representan grandes volúmenes de datos o largas secuencias de símbolos, usando algunas técnicas o algoritmos de compresión, pueden ayudar considerablemente a enfrentar este escenario, en el cual existe gran complejidad al momento de realizar el entrenamiento. Además, si se consideran estas aproximación, es posible entregar mejores resultado, siendo un beneficio considerable. En el ejemplo anterior como en otras tareas de \machinelearning se puede usar algoritmos de compresión, tanto en tareas tradicionales de clasificación ó agrupamiento.  Esta perspectiva inclusivas no son novedosas y ha aparecido en variados campos de interés~\cite{Sculley2006}, algunas veces con la promesa de reducir los problemas, por ejemplo cuando se realiza la selección implícita de ciertas características de un conjunto de datos. 
-
-Li~\etal~\cite{Li2005}, lograron implementar una nueva clase de \emph{string kernel}\footnote{Los String kernel, son operaciones que permiten trabajar funciones no lineales, como lineales. Para un explicación detallada ver~\cite{Li2005}.} basada en un algoritmo de compresión y lo utilizaron para manejar un clasificador \texttt{SVM} para la clasificación de géneros musicales. Uno de los algoritmos utilizado por \emph{Sculley}~\cite{Sculley2006}, para evaluar este espacio vectorial común, es de la familia de \emph{Lempel-Ziv}, más adelante se detallará en la  sección~\ref{ch2:sec-lzfamily}.
+Si estos \emph{strings} representan grandes volúmenes de datos o largas secuencias de símbolos, usando algunas técnicas o algoritmos de compresión, pueden ayudar considerablemente a enfrentar este escenario, en el cual existe gran complejidad al momento de realizar el entrenamiento. Además, si se consideran estas aproximación, es posible entregar mejores resultado, siendo un beneficio considerable. En el ejemplo anterior como en otras tareas de \machinelearning se puede usar algoritmos de compresión, tanto en tareas tradicionales de clasificación ó agrupamiento.  Esta perspectiva inclusivas no es novedosa y ha aparecido en variados campos de interés~\cite{Sculley2006}, algunas veces con la promesa de reducir los problemas, por ejemplo cuando se realiza la selección implícita de ciertas características de un conjunto de datos. Otro trabajo interesante, es el que hacen los autores  \emph{Li}~\etal~\cite{Li2005}, que lograron implementar una nueva clase de \emph{string kernel}\footnote{Los String kernel, son operaciones que permiten trabajar funciones no lineales, como lineales. Para un explicación detallada ver~\cite{Li2005}.} basada en un algoritmo de compresión y lo utilizaron para manejar un clasificador \texttt{SVM} para la clasificación de géneros musicales. Uno de los algoritmos utilizado por \emph{Sculley}~\cite{Sculley2006}, para evaluar este espacio vectorial común, es de la familia de \lempelziv, más adelante se detallará en la  sección~\ref{ch2:sec-lzfamily}.
 % AGREGAR EL EJEMPLO DE DETECCION DE SPAM TROLES
 
 Como se ha señalado, una de las motivaciones que se puede tener al usar técnicas de compresión es ahorrar espacio para ciertos conjuntos de datos que se desean entrenar. Por otro lado también se puede ahorrar tiempo en transmitir o mover ciertos conjuntos de datos, lo que implica que finalmente en la mayoría de los datos se elimina la redundancia de información innecesaria.
 
-Los algoritmos de compresión pueden ser con o sin pérdida de informacion, abordaremos solamente los algoritmo sin pérdida (\losslessdatacompression). Estos algoritmos en función de los análisis predictivo sobre secuencias han sido adaptados como \lzSieteOcho~\cite{ZivLempel1978} y Active Lezi\cite{Gopalratnam2007}. Por otra parte, ciertos algoritmos de \machinelearning, tales como redes neuronales y \emph{sequential rule mining} se han aplicado para realizar predicciones de secuencias~\cite{Gueniche2015}.
+Los algoritmos de compresión pueden ser con o sin pérdida de información, abordaremos solamente los algoritmo sin pérdida (\losslessdatacompression). Estos algoritmos en función de los análisis predictivo sobre secuencias han sido adaptados como \lzSieteOcho~\cite{ZivLempel1978} y Active Lezi\cite{Gopalratnam2007}. Por otra parte, ciertos algoritmos de \machinelearning, tales como redes neuronales y \emph{sequential rule mining} se han aplicado para realizar predicciones de secuencias~\cite{Gueniche2015}.
 
-\emph{Begleiter}~\etal en~\cite{Begleiter2004} plantea que existe una  íntima relación entre predicciones  en secuencias discretas y \losslessdatacompression, donde, en principio cualquier algoritmo de compresión sin pérdida puede ser utilizado para realizar predicciones y viceversa (ver \emph{Feder y Merhav} en~\cite{Feder1992}).
+\emph{Begleiter}~\etal en~\cite{Begleiter2004} plantea que existe una  íntima relación entre predicciones  en secuencias discretas y \losslessdatacompression, donde en principio, cualquier algoritmo de compresión sin pérdida puede ser utilizado para realizar predicciones y viceversa (ver \emph{Feder y Merhav} en~\cite{Feder1992}).
 
-También existen algoritmos que son \emph{modelos variables de markov}, estos modelos están basados en Markov. Se detallará más en la sección~\ref{sec-clas-alg-compreessdata}, además se realizará una aproximación a los \emph{modelos ocultos de markov}~\ref{ch2:sec-hmm} que son más asociados a aproximaciones con \machinelearning.
-
-
+También existen algoritmos que son \emph{modelos variables de Markov}, estos modelos están basados en Markov. Se detallará más en la sección~\ref{sec-clas-alg-compreessdata}, además se realizará una aproximación a los \emph{modelos ocultos de Markov} que son más asociados a aproximaciones con \machinelearning.
 
 
-\uncm
-Hemos introducidos varios conceptos que veremos más adelante, uno de los más importante es el acercamiento de dos areas para poder complementar una problemática específica y común. Hemos hablado de como ciertos modelosm, y como son entrenados por algoritmos. Además hemos visto una primera revisión a la literatura en la cual ha validado a que podemos hacer esta intersección de áreas de conocimiento de manera correcta, para lograr el objetivo de esta tesis, que es las predicciones. En las proximas secciones de este capítulo se estudiará un base teórica para comprender el aporte que puede hacer un algoritmo \losslessdatacompression para un sistema de entrenamiento y predicción de \machinelearning.
 
 
-% Summary
+\mediocm
+Hemos introducidos varios conceptos que veremos más adelante, uno de los más importante es el acercamiento de dos áreas para poder complementar una problemática específica y común. Hemos hablado de como ciertos modelos, y como son entrenados por algoritmos. Además hemos visto una primera revisión a la literatura en la cual ha validado a que podemos hacer esta intersección de áreas de conocimiento de manera correcta, para lograr el objetivo de esta tesis, que es las predicciones. En las próximas secciones de este capítulo se estudiará un base teórica para comprender el aporte que puede hacer un algoritmo \losslessdatacompression para un sistema de entrenamiento y predicción de \machinelearning.
 
-% In this chapter, you learned about different regression, classification, and clustering algorithms. You learned how each of the algorithms work, and the type of problems for which they are suited. The goal of this chapter is to provide you with the foundation for using these algorithms to solve the various problems covered in upcoming chapters. In addition, the resources provided in this chapter will help you learn more deeply about state-of-art machine learning and the theory behind some of these algorithms.
 
+ 
 
 
 

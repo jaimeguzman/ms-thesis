@@ -52,30 +52,20 @@
 %Se interpretan con claridad (es decir, se consideran distintos factores y anteceden- tes descritos hasta el momento) los resultados obtenidos.
 }
 
-Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, \lempelziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \emph{webaccess logs}. Al momento de generar el árbol este creará una representación \emph{trie} de un diccionario de símbolos, se utilizará para realizar predicciones en secuencias discretas con distintos largos.
+Lo que se busca es un modelo de accesos de navegación secuencial creado por un algoritmo de compresión, \lempelziv,  para usarlo como un modelo  predicción. Se usará para buscar resultados sobre secuencias finitas discretas de \webasccesslog. Al momento de generar el árbol este creará una representación \trie de un diccionario de símbolos, se utilizará para realizar predicciones en secuencias discretas con distintos largos.
 
-En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \emph{Machine Learning, PredictionIO} que ya se ha explicado anteriormente. Usaremos la misma \texttt{API }que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accuracy} (Exactitud) frente a distintas porciones de datos. Con el conjunto de datos que tenemos haremos variadas pruebas para ver métricas como Accuracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
+En base a lo anterior y teniendo en funcionamiento el algoritmo para crear un modelo de predicción, se integrará con el servidor de \machinelearning, \predictionio que ya se ha explicado anteriormente. Usaremos la misma \API que ofrece la librería para poder realizar las evaluaciones de nuestras métricas, dado el dominio de nuestro problema la métrica a usar será \emph{Accuracy} (Exactitud) frente a distintas porciones de datos. Con el conjunto de datos que tenemos haremos variadas pruebas para ver métricas como Accuracy, usaremos \emph{cross validation} en distintos escenarios que nos permitirán tener información relevante de comportamiento de nuestro modelo propuesto en escenarios ideales como en escenarios reales.
 
-%- Cross validation: This method is generally applied in machine-learning evaluation [14]. In our experiments, we performed a K-fold cross validation with k = 10. In this way, our dataset is 10 times split into 10 different sets of learning (90 
-% of the total dataset) and testing (10 % of the total data).
-%-Learning the model: We accomplished the learning step using different learning algorithms depending on
 
-%%%%% Gueniche_Fournier-Viger_Raman_Tseng
-%Tree is a type of prefix tree (aka trie). It contains all training sequences. Each tree node represents an item and each training sequence is represented by a path starting from the tree root and ending by an inner node or a leaf. Just like a prefix tree, the prediction tree is a compact representation of the training sequences. Sequences sharing a common prefix share a common path in the tree. The Lookup Table is an associative array which allows to locate any training sequences in the prediction tree with a constant access time. Finally the Inverted Index is a set of bit vectors that indicates for each item i from the alphabet Z, the set of sequences containing i.
 
 
 
 \section{Nuestro modelo de predicción ML-LDC}\label{sec:nuestromodelopredict-mlldc}
 
 
-%%%%%%% \cite{Moghaddam2009}
-
-%The techniques that rely on sequential patterns such as Markov models and sequential association rules mining contain more precise information about users’ navigation behavior. 
 
 
-%There is an arc from node A to B if and only if at some point in time a client accessed to B within w accesses after A, where w is the lookahead window size. The weight of the arc is the ratio of the number of accesses to B within a window after A to the number of accesses to A itself. 
-
-Basados en un servidor de \emph{Machine Learning}, hemos desarrollado un motor de predicción con un algoritmo basado en \emph{Lempel} \& \emph{Ziv} \cite{ZivLempel1977}. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
+Basados en un servidor de \emph{Machine Learning}, hemos desarrollado un motor de predicción con un algoritmo basado en \lempelziv \cite{ZivLempel1977}. Cada sesión es representada por un nodo y sus hijos. Sea la sesión \begin{equation}
 Input = \{ A,A,A,B,A,B,B,B,B,B,A,A,B,C,C,D,D,C,B,A,A,A,A \}
 \end{equation} la cual representaremos con nuestro modelo de predicción
 
@@ -200,25 +190,6 @@ Usaremos \emph{SBT} para gestionar todas las librerías que se requieran como de
 
 
 
-% Es una métrica que captura una porición correcta de toda la data a probar. 
-% Una manera de modelar esto es para cada consulta que hacemos al predictor, damos un score de 1 y 0, luego podemos tomar el promedio de este score.
-
-% PredictionIO sobre métricas
-
-
-% PredictionIO has a [[AverageMetric]] helper class which provides this feature. This class takes 4 type parameters, [[EvalInfo]], [[Query]], [[PredictedResult]], and [[ActualResult]], these types can be found from the engine's signature. Line 5 below is the custom calculation.
-
-%Precision is a metric for binary classifier capturing the portion of correction prediction among all positive predictions. We don't care about the cases where the QPA-tuple gives a negative prediction. (Recall that a binary classifier only provide two output values: positive and negative.) The following table illustrates all four cases:
-
-%Calculating the precision metric is a slightly more involved procedure than calculating the accuracy metric as we have to specially handle the don't care negative cases.
-
-%x PredictionIO provides a helper class OptionAverageMetric allows user to specify don't care values as None. It only aggregates the non-None values. Lines 3 to 4 is the method signature of calcuate method. The key difference is that the return value is a Option[Double], in contrast to Double for AverageMetric. This class only computes the average of Some(.) results. Lines 5 to 13 are the actual logic. The first if factors out the positively predicted case, and the computation is simliar to the accuracy metric. The negatively predicted case are the don't cares, which we return None.
-
-% \subsection{Experimento comparativo con Frequent Sequency Pattern}
-
-
-%\subsection{Decission Tree}
-%\subsection{Asociation Rulz}
 
 
 

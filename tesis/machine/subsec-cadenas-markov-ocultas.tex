@@ -6,12 +6,12 @@
 
 % En HMM la observación es una función de probabilidad del estado.
 
-Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  es un modelo probabilistico basado en los procesos de Markov, también conocido como cadenas de Markov. Una cadena o proceso de Markov es una secuencia de eventos, estos se pueden representar por estados, la probabilidad de cada uno estados sólo depende del estado anterior.
+Los Modelos ocultos de Markov o en sus siglas en inglés \HMM (\emph{Hidden Markov Model})  es un modelo probabilísticos basado en los procesos de Markov, también conocido como cadenas de Markov. Una cadena o proceso de Markov es una secuencia de eventos, estos se pueden representar por estados, la probabilidad de cada uno estados sólo depende del estado anterior.
 
 
-Estos \HMM son modelos dinámicos con un proceso estocástico doble, en el cual el sistema es modelado mediante un proceso de markov con estados no observados directamente, es decir, estados ocultos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de símbolos observados. Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó vídeo, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
+Estos \HMM son modelos dinámicos con un proceso estocástico doble, en el cual el sistema es modelado mediante un proceso de Markov con estados no observados directamente, es decir, estados ocultos. Aunque el proceso estocástico es subyacente y no directamente observable, este se puede observar sobre otro conjunto de procesos estocásticos, que producen una secuencia de símbolos observados. Normalmente han sido usados en reconocimiento de voz o habla, reconocimiento de patrones de imágenes ó vídeo, traducción de textos, clasificación de texto, etiquetado de documentos y finalmente también en compresión de datos.
 
-En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades transición. Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
+En los modelos tradicionales de Markov, los estados son visibles para el observador, y los estados de transición son visibles a un observador, y los estados de transición son parametizables, usando probabilidades de transición. Cada estado tiene una distribución de probabilidad sobre la salida \emph{emitida} (variables observadas).
 % Y QUE PASA CON LOS HMM se habla de los tradicionales falta mejorar esta idea
 
 
@@ -57,22 +57,22 @@ Los estados en \HMM son modelos generativos, los cuales modelan la distribución
 
 
 \subsection{Formalización HMM}
-Una especificación completa de \HMM (\emph{Rabiner }~\cite{Rabiner1990}, 1989) requiere una definición formal de los siguientes elementos:
+Una especificación completa de \HMM (\emph{Rabiner}~\cite{Rabiner1990}, 1989) requiere una definición formal de los siguientes elementos:
 
 
 \begin{itemize}
 	\menorEspacioItemize
 	\item \textbf{N} es la cantidad de estados ocultos.
  	\item \textbf{M} es la cantidad de símbolos observables por estado.
-	\item \textbf{ Distribución de probabilidad de la transición de estados}\\
+	\item \textbf{Distribución de probabilidad de la transición de estados}\\
 	Sea $A={a_{ij}}$ con $a_{ij} = P[q_{t+1}=S_{j} | q_t = S_i  ]$, con $i,j = 1,\dots,N$.
 
-	\item \textbf{ Distribución de probabilidad de observación de simbolos  en cada estado} \\
+	\item \textbf{Distribución de probabilidad de observación de simbolos  en cada estado} \\
 	Sea $B={b_{ij}}$ con $b_{j}(k) = P[v_{k}  | q_t = S_j ]$, con $i \in {1,\dots, N}$ e $j \in {1,\dots, M}$.
 
-	\item \textbf{ Distribución de probabilidad del estado inicial}\\
+	\item \textbf{Distribución de probabilidad del estado inicial}\\
 	Sea $\pi = {\pi_{i}}$, donde  $\pi_{i} = P[q_i=S_i] $ y $i=1,\dots,N$.
-	\item \textbf{ Notación}
+	\item \textbf{Notación}
 		\begin{itemize}
 			\menorEspacioItemize
 			\item Observación: $O = O_{1},O_{2},\dots ,O_{T}$, de tamaño $T$.
@@ -111,7 +111,7 @@ Un modelo Lambda, $\lambda$, está compuesto de probabilidades $\pi$ iniciales, 
 \uncm
 \subsection{Problemas fundamentales de HMM}
 
-Si resumieramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los siguientes tres problemas:
+Si resumiéramos los problemas fundamentales que pueden ser trabajados por \HMM, tendríamos los siguientes tres:
 
 \begin{enumerate}
 	\menorEspacioItemize

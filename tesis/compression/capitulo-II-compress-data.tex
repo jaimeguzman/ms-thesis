@@ -12,9 +12,9 @@
 
 \subsection{Modelamiento matemático}\label{sec-ldc-model-math}
 
-El modelamiento matemático es un proceso en el cual se configura un ambiente que permite a ciertas variables de interes ser observadas o explorar un cierto comportamiento  de un sistema. En si este proceso es una formalización y extensión de la descripción de un problema, todas las reglas y relaciones que presenta estas observaciones se pueden formular mediantes formulas matemáticas.
+El modelamiento matemático es un proceso en el cual se configura un ambiente que permite a ciertas variables de interés ser observadas o explorar un cierto comportamiento  de un sistema. En si este proceso es una formalización y extensión de la descripción de un problema, todas las reglas y relaciones que presenta estas observaciones se pueden formular mediante formulas matemáticas.
 
-El modelamiento es una etapa muy importante en el diseño de algoritmos. Un modelo puede decir inmediatamente el acercamiento de n algoritmo, es decir, un  buen modelo puede llevar a soluciones eficientes de los algoritmos. Ciertas condiciones previas se deben asumir y el ambiente debe ser descrito  en términos matemáticos. En el área de Compresión de datos, los modelos son usados para describir ciertas fuentes de datos.
+El modelamiento es una etapa muy importante en el diseño de algoritmos. Un modelo puede decir inmediatamente el acercamiento de un algoritmo, es decir, un  buen modelo puede llevar a soluciones eficientes de los algoritmos. Ciertas condiciones previas se deben asumir y el ambiente debe ser descrito  en términos matemáticos. En el área de Compresión de datos, los modelos son usados para describir ciertas fuentes de datos.
 
 
 
@@ -41,7 +41,7 @@ El resultado final del modelamiento matemático en el contexto de la compresión
 
 La Teoría de la Información fue propuesta por \emph{Claude E. Shannon} en los laboratorios \emph{Bell} en 1948 y se basa en el estudio de la información basada en teoría de probabilidades. Su objetivo es una la realización de forma matemática que pueda medir la cantidad de información.
 
-La expectativa de los resultados de un evento se puede medir por la probabilidad del evento. La alta expectativa corresponde a una alta probabilidad de que el evento ocurra. Un evento que ocurra pocas veces significa que es un evento de baja probabilidad. Un evento que nunca sucede tiene una probabilidad cero. Por lo tanto la cantidad de información en un mensaje también se puede medir cuantitativamente de acuerdo con la incertidumbre o sorpresa de que un evento ocurra.
+La expectativa de los resultados de un evento se puede medir por la probabilidad del evento. La alta expectativa corresponde a una alta probabilidad de que el evento ocurra. Un evento que ocurra pocas veces significa que es un evento de baja probabilidad. Un evento que nunca sucede tiene una probabilidad cero. Por lo tanto la cantidad de información en un mensaje también se puede medir cuantitativa-mente de acuerdo con la incertidumbre o sorpresa de que un evento ocurra.
 
 
 
@@ -71,14 +71,14 @@ La Redundancia de datos, se puede describir como la superposición de datos ó d
 \uncm
 \subsection{Clasificación de algoritmos de compresión}\label{sec-clas-alg-compreessdata} 
 
-Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos original. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o de-compresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos  y con pérdida~(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos. Estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extracción, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida~(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciones de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmitir información más rápidamente y abordar sus propiedades de transformación, como también la predicción.
+Los algoritmos de compresión tienen como objetivo convertir datos de una fuente a una representación más comprimida, inversamente desde una representación comprimida a una fuente de datos original. El primer proceso lo realiza un \emph{compresor de datos} y el segundo es un \emph{decodificador o de-compresor de datos}. Estos algoritmos se clasifican en algoritmos sin pérdida de datos  y con pérdida~(\emph{Lossy Data Compression}). Los algoritmos de compresión sin pérdida o  \losslessdatacompression(\LDC) son los que abordaremos., estos usan técnicas de reconstrucción de información de un archivo comprimido sin perder información. Estos algoritmo se encuentran en el día a día, por ejemplo en programas de escritorio o en el \emph{Unix} o \emph{Linux}, comandos de compresión, y de extracción, \emph{gzip}, \emph{gunzip} todos ocupan compresión basada en diccionarios~\cite{MengyiPu2006}. La motivación de profundizar en el área de compresión sin pérdida~(\LDC), es la cantidad de posibilidades que entregan para mejorar ciertas operaciones de manera más eficiente, por ejemplo la  transferencia de archivos en la web, que ayudan a transmitir información más rápidamente y abordar sus propiedades de transformación, como también la predicción.
 % For example, in UNIX or Linux, commands compress, uncompress, gzip and gunzip have all used the dictionary compression methods at some stage.~\cite{MengyiPu2006}
 
 
 Las propiedades de estos algoritmos no solo permiten juntar un colección de archivos y lograr un tasa de compresión óptima para ser transmitida por \inet, también pueden ayudar a realizar análisis predictivo en grandes volúmenes de información, por ejemplo; análisis de texto, clasificación de proteínas~\cite[sección 6]{Begleiter2004}, moderación de contenidos en web y predicciones del comportamiento de usuarios que navegan en un sitio de \inet. Este último punto es nuestro mayor interés, predicciones de \webasccesslog de una \emph{web}. Para introducir el objetivo de usar \LDC para las predicciones se debe presentar formalmente los algoritmos de compresión que permitan realizar esta aproximación.
 % JUSTO EN EL PARRAFO ANTERIOR FALTA UN NEXO A TEO DE INFORMACION
 
-Existen varios algoritmos \losslessdatacompression interesantes, algunos son basados en en diccionario. En esta sección veremos que se pueden usar para realizar modelos predictivos. Nos enfocaremos en los que están basados en un modelo variable de Markov, los cuales nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
+Existen varios algoritmos \losslessdatacompression interesantes, algunos son basados en en diccionario. En esta sección veremos que se pueden usar para realizar modelos predictivos, para lo cual, nos enfocaremos en los que están basados en un modelo variable de Markov, los cuales nos ayudarán en nuestra etapa experimental a dar un modelamiento secuencial de la navegación de un usuario, como también crear funciones de predicciones en base a la probabilidad de ver cada nodo dado a su frecuencia. Aprender de predicciones sobre secuencia de datos discretas sigue siendo un ítem fundamental y un desafío en patrones de reconocimiento y \machinelearning, y con \LDC se pretende realizar.
 
 
 
@@ -97,10 +97,10 @@ Existen varios algoritmos de compresión, nuestro enfoque es usar los algoritmos
 \subsubsection{Probabilistic Suffix Tree (PST)}
 \input{compression/pst}
 
-\subsubsection{Cadenas de Markov Dinámicas}
+\subsubsection{Compresión Dinámica de Markov}
 \input{compression/dmc}
 
-\subsubsection{Familia de algoritmos Lempel-Ziv}\label{ch2:sec-lzfamily}
+\subsubsection{Familia de algoritmos \lempelziv}\label{ch2:sec-lzfamily}
 \input{compression/familia-lz}
 \uncm
 \subsection{Algoritmo Lempel-Ziv 78}

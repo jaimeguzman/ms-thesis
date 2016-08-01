@@ -8,18 +8,17 @@
 Si se tiene un problema de predicción en el cual debemos buscar la siguiente página web que el usuario desea visitar, dada a su página actual o más la página más frecuente~\cite{Poornalatha2012}, es el problema que esta tesis aborda, por lo cual buscamos un modelo que lo solucione con una representación simple.
 
 
-Varios modelos han sido propuestos para modelar la navegación de un usuario y predecir la siguiente página que el usuario accederá. Se han desarrollado enfoques como  reglas de asociación, búsqueda de patrones secuenciales, \emph{clustering} y \emph{clasificación} son métodos bastante frecuentes~\cite{Moghaddam2009}, filtros colaborativos, etc.. 
+Varios modelos han sido propuestos para modelar la navegación de un usuario y predecir la siguiente página que el usuario accederá. Se han desarrollado enfoques como  reglas de asociación, búsqueda de patrones secuenciales, \emph{clustering} y \emph{clasificación} son métodos bastante frecuentes~\cite{Moghaddam2009}, filtros colaborativos, etc.
 
 
 En la literatura se han propuesto aproximaciones interesantes. Queremos discutir el modelo de navegación propuesto por \emph{Moghaddam}~\etal en ~\cite{Moghaddam2009}, la selección de este trabajo es una de las aproximaciones más directa a la que presenta esta tesis, pero con un enfoque usando algoritmos de tipo \losslessdatacompression y no \machinelearning. A  diferencia del anterior queremos seguir en la linea de investigación usando un modelo de navegación representado por un \emph{trie} que es la base para \lzSieteOcho, pero incluirlo en las etapas que un sistema de \machinelearning posee, ya que creemos tener un aprendizaje  y una actualización constante de los datos, generan mejores  probabilidad. Además entregan un sistema que responde a la demanda y presenta mejores características con respecto a tener disponibilidad en linea.
 
-Otros de las aproximaciones a la solución de este problema es la desarrollada por {Dongshan}~\etal~\cite{Dongshan2002}, en la cual la aproximación es el desarrollo de un modelo de Markov representado mediante un estructura de datos de árbol, llamado \emph{Hybrid Tree Markov Model} o~\texttt{HTMM}~(ver referencia~\cite{Dongshan2002}).
+Otros de las aproximaciones a la solución de este problema es la desarrollada por {Dongshan}~\etal~\cite{Dongshan2002}, en la cual la aproximación es el desarrollo de un modelo de Markov representado mediante un estructura de datos de árbol, llamado \emph{Hybrid Tree Markov Model} o~\texttt{HTMM}~(ver referencia~\cite{Dongshan2002}), en la próxima sección veremos como poder abordar esto pero solamente con un \trie.
 \uncm
  
  % TODO:
  % Concluir y conectar con el que sigue
- 
- \textbf{CONECTOR pendiente a la siguiente subseccion}
+ % \textbf{CONECTOR pendiente a la siguiente subseccion}
 
  
 
